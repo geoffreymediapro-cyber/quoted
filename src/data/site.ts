@@ -144,6 +144,33 @@ export const CLIENTS: Client[] = [
 ];
 
 /* -------------------------------------------------------------------------
+   Stack — outils du metier
+   ⚠️ A CONFIRMER : ne laisser que les outils reellement utilises. Annoncer
+   la maitrise d'un outil qu'on n'a pas est une fausse declaration.
+   ------------------------------------------------------------------------- */
+
+export interface Tool {
+	code: string;
+	name: string;
+	use: string;
+}
+
+export const TOOLS: Tool[] = [
+	{ code: 'GPT', name: 'ChatGPT', use: 'Relevés de réponses' },
+	{ code: 'PPX', name: 'Perplexity', use: 'Réponses & sources' },
+	{ code: 'GEM', name: 'Gemini', use: 'Relevés de réponses' },
+	{ code: 'CLA', name: 'Claude', use: 'Relevés de réponses' },
+	{ code: 'GSC', name: 'Search Console', use: 'Indexation & requêtes' },
+	{ code: 'BWT', name: 'Bing Webmaster', use: 'Indexation Bing / Copilot' },
+	{ code: 'SF', name: 'Screaming Frog', use: 'Crawl & extraction' },
+	{ code: 'SEM', name: 'Semrush', use: 'Données de marché' },
+	{ code: 'AH', name: 'Ahrefs', use: 'Autorité & médias' },
+	{ code: 'SCH', name: 'Schema Validator', use: 'Données structurées' },
+	{ code: 'IDX', name: 'IndexNow', use: 'Soumission d’URL' },
+	{ code: 'LKR', name: 'Looker Studio', use: 'Reporting' },
+];
+
+/* -------------------------------------------------------------------------
    Methode
    ------------------------------------------------------------------------- */
 
