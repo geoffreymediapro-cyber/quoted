@@ -45,7 +45,7 @@ Quatre suffisent à piloter, à condition de les relever de la même façon à c
 
 **La part de voix concurrentielle.** Sur les mêmes prompts, qui est cité et à quelle fréquence. Cet indicateur est souvent le plus parlant en interne : il montre non pas que vous progressez dans l'absolu, mais que vous prenez ou perdez du terrain.
 
-**La composition des sources.** Quels types de sources le moteur reprend sur votre marché — médias, forums, encyclopédie, sites de marque, comparateurs. C'est ce qui oriente les efforts hors site, et cette composition varie fortement d'un secteur à l'autre.
+**La composition des sources.** Quels types de sources le moteur reprend sur votre marché : médias, forums, encyclopédie, sites de marque, comparateurs. C'est ce qui oriente les efforts hors site, et cette composition varie fortement d'un secteur à l'autre.
 
 ## Les pièges classiques
 
@@ -55,7 +55,7 @@ Quatre suffisent à piloter, à condition de les relever de la même façon à c
 
 **Interpréter une variation isolée.** Une mise à jour de modèle peut déplacer tous les résultats d'un coup, indépendamment de votre travail. D'où l'intérêt de suivre aussi des concurrents : si tout le monde baisse en même temps, la cause n'est pas chez vous.
 
-**Attendre une corrélation propre avec le trafic.** Une part des réponses générées ne produit aucun clic, par construction. La visibilité dans les réponses se juge en partie hors analytics — d'où l'importance de la mesure directe.
+**Attendre une corrélation propre avec le trafic.** Une part des réponses générées ne produit aucun clic, par construction. La visibilité dans les réponses se juge en partie hors analytics, d'où l'importance de la mesure directe.
 
 ## À quelle fréquence
 
@@ -65,4 +65,4 @@ Ce qui compte davantage que la fréquence, c'est la régularité et la stabilit�
 
 ## Ce que nous livrons
 
-Chez Quoted, ce suivi est **inclus dans les jours d'accompagnement** : il n'y a pas de licence d'outil facturée à part. En contrepartie, le reporting est produit par nos soins et livré par cycle — il n'y a pas de dashboard temps réel. Le premier relevé est établi pendant [l'état des lieux initial](/#expertise) et sert de point de référence pour tout ce qui suit.
+Chez Quoted, ce suivi est **inclus dans les jours d'accompagnement** : il n'y a pas de licence d'outil facturée à part. En contrepartie, le reporting est produit par nos soins et livré par cycle : il n'y a pas de dashboard temps réel. Le premier relevé est établi pendant [l'état des lieux initial](/#expertise) et sert de point de référence pour tout ce qui suit.

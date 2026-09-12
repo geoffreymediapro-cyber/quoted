@@ -23,7 +23,7 @@ et :
 
 La seconde peut être citée telle quelle. La première est inutilisable.
 
-Le développement, les nuances et les cas particuliers viennent après. Ils ne disparaissent pas — ils cessent simplement de faire écran à la réponse.
+Le développement, les nuances et les cas particuliers viennent après. Ils ne disparaissent pas : ils cessent simplement de faire écran à la réponse.
 
 ## 2. Structurer pour le découpage
 
@@ -36,7 +36,7 @@ Un moteur découpe vos pages en fragments avant de s'en servir. Plus le découpa
 
 ## 3. Sourcer ce qui est affirmé
 
-Un chiffre sans date ni origine est un chiffre qu'un moteur prend un risque à reprendre. Datez, attribuez, liez la source primaire quand elle existe. Si une donnée provient d'une étude, nommez l'étude et l'année. Si elle provient de votre propre expérience, dites-le explicitement — une donnée assumée comme interne reste une donnée attribuable.
+Un chiffre sans date ni origine est un chiffre qu'un moteur prend un risque à reprendre. Datez, attribuez, liez la source primaire quand elle existe. Si une donnée provient d'une étude, nommez l'étude et l'année. Si elle provient de votre propre expérience, dites-le explicitement : une donnée assumée comme interne reste une donnée attribuable.
 
 L'inverse est vrai aussi : purger les affirmations invérifiables d'une page augmente la confiance globale accordée au reste.
 
@@ -62,11 +62,11 @@ Trois terrains reviennent constamment :
 
 - **Les médias que les moteurs citent déjà** dans votre secteur. Ils s'identifient par relevé, pas au jugé : ce ne sont pas toujours les plus connus.
 - **Reddit et les forums spécialisés**, largement repris par plusieurs moteurs. Une présence organique et utile, pas une opération de placement.
-- **Wikipédia et Wikidata**, quand les critères d'admissibilité sont réellement remplis — ce qui est loin d'être toujours le cas, et ne se force pas.
+- **Wikipédia et Wikidata**, quand les critères d'admissibilité sont réellement remplis, ce qui est loin d'être toujours le cas, et ne se force pas.
 
 ## 7. Mailler ce qui traite du même sujet
 
-Le maillage interne n'a pas changé de rôle : il consolide un sujet et montre où se trouve la référence. En contexte GEO il gagne une fonction supplémentaire — il permet au moteur de rattacher plusieurs fragments au même ensemble cohérent, plutôt que de traiter chaque page comme un document isolé.
+Le maillage interne n'a pas changé de rôle : il consolide un sujet et montre où se trouve la référence. En contexte GEO il gagne une fonction supplémentaire : il permet au moteur de rattacher plusieurs fragments au même ensemble cohérent, plutôt que de traiter chaque page comme un document isolé.
 
 Les ancres descriptives valent mieux que les « en savoir plus », et un lien pertinent vaut mieux que cinq liens posés au hasard.
 
