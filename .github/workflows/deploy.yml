@@ -28,8 +28,11 @@ jobs:
           node-version: 22
           cache: npm
 
+      # npm install et non npm ci : le lockfile est genere sous Windows, or les
+      # dependances optionnelles de sharp (@emnapi/*, variantes wasm) se
+      # resolvent differemment sous Linux et font echouer npm ci.
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Build Astro site
         run: npm run build
