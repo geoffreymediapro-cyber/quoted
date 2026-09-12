@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="quoted.fr"
+	description="Site en cours de construction."
+	noindex={true}
+>
+	<main>
+		<p class="tag">quoted.fr</p>
+		<h1>Site en cours de construction</h1>
+		<p class="lead">
+			Le contenu arrive prochainement. La chaine de deploiement est en place.
+		</p>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		max-width: 40rem;
+		margin: 0 auto;
+		padding: 2rem 1.5rem;
+	}
+
+	.tag {
+		margin: 0 0 1rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--muted);
+	}
+
+	h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(1.75rem, 5vw, 2.75rem);
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	.lead {
+		margin: 0;
+		color: var(--muted);
+		font-size: 1.0625rem;
+	}
+</style>
