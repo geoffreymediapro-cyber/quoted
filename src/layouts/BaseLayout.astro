@@ -1,12 +1,42 @@
 ---
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/instrument-sans';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_NAME, SITE_URL } from '../data/site';
+
 interface Props {
 	title: string;
 	description: string;
 	noindex?: boolean;
+	/** JSON-LD supplementaire propre a la page. */
+	schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const { title, description, noindex = false, schema } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).href;
+
+const organisation = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: SITE_NAME,
+	url: SITE_URL,
+	description:
+		"Agence GEO (Generative Engine Optimization) : audit, contenu et suivi de la visibilité des marques dans les réponses générées par ChatGPT, Perplexity, Gemini et Claude.",
+	areaServed: 'FR',
+	knowsAbout: [
+		'Generative Engine Optimization',
+		'Answer Engine Optimization',
+		'Référencement naturel',
+		'Données structurées',
+		'E-E-A-T',
+	],
+};
+
+const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 
 <!doctype html>
@@ -14,54 +44,74 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
+
 		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={SITE_NAME} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:locale" content="fr_FR" />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<meta name="theme-color" content="#fcfaf7" />
+
+		{/* Sans JS, rien ne declencherait le reveal : le contenu resterait invisible. */}
+		<noscript>
+			<style>
+				.reveal {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			</style>
+		</noscript>
+
+		{
+			schemas.map((entry) => (
+				<script type="application/ld+json" set:html={JSON.stringify(entry)} />
+			))
+		}
 	</head>
+
 	<body>
-		<slot />
+		<a class="skip-link" href="#main">Aller au contenu principal</a>
+		<Header />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+
+		<script>
+			// Reveal au scroll : une seule observation, puis on relache l'element.
+			const targets = document.querySelectorAll('.reveal');
+
+			if (targets.length) {
+				const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+				if (reduce || !('IntersectionObserver' in window)) {
+					targets.forEach((el) => el.classList.add('is-in'));
+				} else {
+					const observer = new IntersectionObserver(
+						(entries) => {
+							entries.forEach((entry) => {
+								if (entry.isIntersecting) {
+									entry.target.classList.add('is-in');
+									observer.unobserve(entry.target);
+								}
+							});
+						},
+						{ rootMargin: '0px 0px -12% 0px', threshold: 0.08 },
+					);
+
+					targets.forEach((el) => observer.observe(el));
+				}
+			}
+		</script>
 	</body>
 </html>
-
-<style is:global>
-	:root {
-		color-scheme: light dark;
-		--bg: #ffffff;
-		--fg: #14171f;
-		--muted: #5b6472;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--bg: #10131a;
-			--fg: #f2f4f8;
-			--muted: #a3adbd;
-		}
-	}
-
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-
-	body {
-		margin: 0;
-		background: var(--bg);
-		color: var(--fg);
-		font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-		line-height: 1.6;
-		-webkit-font-smoothing: antialiased;
-	}
-
-	img {
-		max-width: 100%;
-		height: auto;
-	}
-</style>

@@ -1,0 +1,97 @@
+---
+import { METHOD } from '../data/site';
+---
+
+<section class="section section--ink" id="methode">
+	<div class="shell">
+		<div class="section-head reveal">
+			<p class="eyebrow" data-num="04">Méthode</p>
+			<h2>Cinq temps, toujours dans cet ordre.</h2>
+			<p>
+				Aucune étape n'est décorative&nbsp;: chacune produit une décision. On ne passe
+				à la suivante que lorsque la précédente a donné un résultat lisible.
+			</p>
+		</div>
+
+		<ol class="steps">
+			{
+				METHOD.map((item, index) => (
+					<li class="step reveal" style={`--delay: ${index * 70}ms`}>
+						<span class="step__num" aria-hidden="true">
+							{item.step}
+						</span>
+						<div class="step__body">
+							<h3>{item.title}</h3>
+							<p>{item.body}</p>
+						</div>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.steps {
+		list-style: none;
+		padding: 0;
+		counter-reset: step;
+		display: grid;
+	}
+
+	.step {
+		display: grid;
+		grid-template-columns: minmax(6rem, 10rem) minmax(0, 1fr);
+		gap: clamp(1.25rem, 4vw, 3.5rem);
+		padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
+		border-top: 1px solid rgba(244, 242, 251, 0.14);
+		align-items: start;
+	}
+
+	.step:last-child {
+		border-bottom: 1px solid rgba(244, 242, 251, 0.14);
+	}
+
+	.step__num {
+		font-family: var(--display);
+		font-size: clamp(2.75rem, 6vw, 4.5rem);
+		line-height: 0.85;
+		color: transparent;
+		-webkit-text-stroke: 1px rgba(244, 242, 251, 0.42);
+		transition: color 0.35s ease, -webkit-text-stroke-color 0.35s ease;
+	}
+
+	.step:hover .step__num {
+		color: var(--violet-edge);
+		-webkit-text-stroke-color: transparent;
+	}
+
+	.step__body {
+		max-width: var(--measure);
+	}
+
+	.step h3 {
+		font-size: var(--step-2);
+		margin-bottom: 0.6rem;
+		color: #fff;
+	}
+
+	.step p {
+		font-size: var(--step--1);
+		line-height: 1.65;
+		color: rgba(244, 242, 251, 0.7);
+	}
+
+	@media (max-width: 44rem) {
+		.step {
+			grid-template-columns: 1fr;
+			gap: 0.6rem;
+		}
+
+		.step__num {
+			color: var(--violet-edge);
+			-webkit-text-stroke: 0;
+			font-size: 1.5rem;
+		}
+	}
+</style>

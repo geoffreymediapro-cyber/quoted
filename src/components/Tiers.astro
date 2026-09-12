@@ -1,0 +1,315 @@
+---
+import { TIERS, LEVERS } from '../data/site';
+---
+
+<section class="section" id="tarifs">
+	<div class="shell">
+		<div class="section-head reveal">
+			<p class="eyebrow" data-num="03">Accompagnement mensuel</p>
+			<h2>Trois paliers, une seule logique&nbsp;: <span class="accent">le rythme</span>.</h2>
+			<p>
+				La visibilité dans les réponses générées se construit par cycles de publication.
+				Vous choisissez le nombre de jours par mois&nbsp;; le contenu de ces jours est
+				cadré ensemble au démarrage.
+			</p>
+		</div>
+
+		<div class="tiers">
+			{
+				TIERS.map((tier, index) => (
+					<article
+						class:list={['card', 'tier', 'reveal', { 'tier--featured': tier.featured }]}
+						style={`--delay: ${index * 80}ms`}
+					>
+						<header>
+							<h3>{tier.name}</h3>
+							<p class="tier__days">{tier.days}</p>
+						</header>
+
+						<p class="tier__pitch">{tier.pitch}</p>
+
+						<div class="tier__prices">
+							<div class="tier__price">
+								<span class="tier__amount">{tier.priceStandard}</span>
+								<span class="tier__label">par mois, sans engagement</span>
+							</div>
+							<div class="tier__price tier__price--alt">
+								<span class="tier__amount">{tier.priceCommitted}</span>
+								<span class="tier__label">avec engagement 2 à 3 mois</span>
+							</div>
+						</div>
+
+						<a class:list={['btn', tier.featured ? 'btn--primary' : 'btn--ghost']} href="#contact">
+							Parler de ce palier
+						</a>
+					</article>
+				))
+			}
+		</div>
+
+		<!-- Comparatif des leviers -->
+		<div class="levers reveal">
+			<h3 class="levers__title">Ce que couvre chaque palier</h3>
+
+			<div class="levers__scroll">
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Levier</th>
+							{TIERS.map((tier) => <th scope="col">{tier.name}</th>)}
+						</tr>
+					</thead>
+					<tbody>
+						{
+							LEVERS.map((row) => (
+								<tr>
+									<th scope="row">{row.lever}</th>
+									<td data-head="Signal">{row.signal}</td>
+									<td data-head="Voice">{row.voice}</td>
+									<td data-head="Authority">{row.authority}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<p class="levers__note">
+				Les volumes de contenus sont indicatifs&nbsp;: ils varient selon la longueur, la
+				complexité et le niveau de sourcing nécessaire. Ils sont arrêtés précisément au
+				devis.
+			</p>
+		</div>
+
+		<!-- Add-on -->
+		<aside class="addon reveal">
+			<div>
+				<p class="addon__tag">Option récurrente</p>
+				<h3>Netlinking média</h3>
+				<p>
+					Obtenir des mentions sur les médias que les moteurs citent réellement dans
+					votre secteur. L'enveloppe se situe entre 500 et 1 500 € par mois, et n'est
+					chiffrée qu'après le Radar&nbsp;: elle dépend entièrement de l'autorité des
+					médias identifiés comme sources.
+				</p>
+			</div>
+			<a class="btn btn--ghost" href="#contact">En discuter</a>
+		</aside>
+	</div>
+</section>
+
+<style>
+	.tiers {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		gap: clamp(1rem, 2.2vw, 1.5rem);
+		margin-bottom: clamp(3rem, 6vw, 5rem);
+	}
+
+	.tier {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.tier--featured {
+		background: var(--ink);
+		border-color: var(--ink);
+		color: #f4f2fb;
+	}
+
+	.tier--featured:hover {
+		border-color: var(--violet);
+	}
+
+	.tier h3 {
+		font-size: var(--step-3);
+	}
+
+	.tier__days {
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--violet);
+		margin-top: 0.3rem;
+	}
+
+	.tier--featured .tier__days {
+		color: var(--violet-edge);
+	}
+
+	.tier__pitch {
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.tier--featured .tier__pitch {
+		color: rgba(244, 242, 251, 0.75);
+	}
+
+	.tier__prices {
+		display: grid;
+		gap: 0.6rem;
+		padding-block: 1.1rem;
+		border-block: 1px solid var(--line);
+		margin-top: auto;
+	}
+
+	.tier--featured .tier__prices {
+		border-color: rgba(244, 242, 251, 0.16);
+	}
+
+	.tier__price {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		flex-wrap: wrap;
+	}
+
+	.tier__amount {
+		font-family: var(--display);
+		font-size: 1.85rem;
+		line-height: 1;
+		color: var(--violet-deep);
+	}
+
+	.tier--featured .tier__amount {
+		color: #fff;
+	}
+
+	.tier__price--alt .tier__amount {
+		font-size: 1.25rem;
+		color: var(--ink-soft);
+	}
+
+	.tier--featured .tier__price--alt .tier__amount {
+		color: var(--violet-edge);
+	}
+
+	.tier__label {
+		font-size: 0.72rem;
+		color: var(--ink-mute);
+	}
+
+	.tier--featured .tier__label {
+		color: rgba(244, 242, 251, 0.55);
+	}
+
+	.tier--featured .btn--ghost {
+		border-color: rgba(244, 242, 251, 0.3);
+		color: #fff;
+	}
+
+	/* --- Tableau des leviers --- */
+	.levers__title {
+		font-size: var(--step-2);
+		margin-bottom: 1.5rem;
+	}
+
+	.levers__scroll {
+		overflow-x: auto;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		background: var(--paper-raised);
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--step--1);
+	}
+
+	thead th {
+		text-align: left;
+		font-family: var(--sans);
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+		padding: 1rem 1.1rem;
+		border-bottom: 1px solid var(--line);
+		white-space: nowrap;
+	}
+
+	thead th:not(:first-child) {
+		color: var(--violet);
+	}
+
+	tbody th {
+		text-align: left;
+		font-family: var(--sans);
+		font-size: var(--step--1);
+		font-weight: 600;
+		color: var(--ink);
+		padding: 1rem 1.1rem;
+		vertical-align: top;
+		white-space: nowrap;
+	}
+
+	tbody td {
+		padding: 1rem 1.1rem;
+		vertical-align: top;
+		color: var(--ink-soft);
+		line-height: 1.5;
+		min-width: 12rem;
+	}
+
+	tbody tr + tr th,
+	tbody tr + tr td {
+		border-top: 1px solid var(--line);
+	}
+
+	.levers__note {
+		margin-top: 1rem;
+		font-size: 0.8rem;
+		color: var(--ink-mute);
+		max-width: var(--measure);
+	}
+
+	/* --- Add-on --- */
+	.addon {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		margin-top: clamp(2.5rem, 5vw, 4rem);
+		padding: clamp(1.5rem, 3vw, 2.25rem);
+		border: 1px dashed var(--line-strong);
+		border-radius: var(--radius-lg);
+		background: var(--violet-wash);
+	}
+
+	.addon > div {
+		max-width: 52ch;
+	}
+
+	.addon__tag {
+		font-size: 0.66rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--violet);
+		margin-bottom: 0.4rem;
+	}
+
+	.addon h3 {
+		font-size: var(--step-2);
+		margin-bottom: 0.6rem;
+	}
+
+	.addon p {
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 40rem) {
+		.addon .btn {
+			width: 100%;
+		}
+	}
+</style>

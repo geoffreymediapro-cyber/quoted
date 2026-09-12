@@ -6,7 +6,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://quoted.fr',
 
-	integrations: [sitemap()],
+	integrations: [
+		sitemap({
+			// Les pages legales sont en noindex tant qu'elles ne sont pas completees.
+			filter: (page) =>
+				!page.includes('/mentions-legales') && !page.includes('/politique-de-confidentialite'),
+		}),
+	],
 
 	build: {
 		inlineStylesheets: 'auto',

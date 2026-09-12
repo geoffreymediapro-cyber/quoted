@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../data/site';
+---
+
+<BaseLayout
+	title="Politique de confidentialité | Quoted"
+	description="Traitement des données personnelles sur le site quoted.fr."
+	noindex={true}
+>
+	<section class="section">
+		<div class="shell shell--narrow">
+			<h1>Politique de confidentialité</h1>
+
+			<p class="todo">
+				<strong>Page à compléter.</strong> Le responsable de traitement doit être
+				identifié (dénomination, adresse, contact) avant publication. Cette page est en
+				<code>noindex</code> en attendant. Le reste décrit l'état réel du site à ce
+				jour.
+			</p>
+
+			<div class="prose">
+				<h2>Responsable de traitement</h2>
+				<p>
+					<em>À compléter</em> — dénomination, adresse et coordonnées du responsable de
+					traitement. Contact&nbsp;: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+				</p>
+
+				<h2>Ce que ce site collecte</h2>
+				<p>
+					Ce site est un site statique. Il ne comporte ni formulaire, ni compte
+					utilisateur, ni espace de commentaire. Aucune donnée n'est saisie ni stockée
+					sur le site&nbsp;: la prise de contact se fait par e-mail, à votre
+					initiative.
+				</p>
+
+				<h2>Cookies et mesure d'audience</h2>
+				<p>
+					Aucun cookie n'est déposé, et aucun outil de mesure d'audience n'est installé
+					à ce jour. Les polices de caractères sont hébergées sur le domaine
+					lui-même&nbsp;: aucune requête n'est adressée à un service tiers lors de la
+					consultation des pages.
+				</p>
+				<p>
+					Si une mesure d'audience venait à être ajoutée, cette page serait mise à jour
+					et, le cas échéant, un bandeau de consentement conforme aux recommandations
+					de la CNIL serait mis en place.
+				</p>
+
+				<h2>Hébergement et journaux techniques</h2>
+				<p>
+					Le site est hébergé par GitHub&nbsp;Pages (GitHub,&nbsp;Inc., États-Unis).
+					Comme tout hébergeur, GitHub est susceptible de conserver des journaux de
+					connexion techniques, incluant l'adresse IP, à des fins de sécurité et de
+					bon fonctionnement du service. Ce traitement relève de l'hébergeur.
+				</p>
+
+				<h2>Échanges par e-mail</h2>
+				<p>
+					Lorsque vous nous écrivez, les informations contenues dans votre message sont
+					utilisées pour vous répondre et, le cas échéant, établir une proposition
+					commerciale. Elles ne sont ni cédées ni revendues, et ne servent pas à
+					alimenter une prospection automatisée.
+				</p>
+				<p>
+					Durée de conservation&nbsp;: <em>à préciser</em> (usage courant&nbsp;: 3 ans
+					à compter du dernier contact pour un prospect, durée légale applicable pour un
+					client).
+				</p>
+
+				<h2>Vos droits</h2>
+				<p>
+					Vous disposez d'un droit d'accès, de rectification, d'effacement, de
+					limitation, d'opposition et de portabilité sur les données vous concernant.
+					Pour l'exercer, écrivez à
+					<a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Vous pouvez
+					également introduire une réclamation auprès de la CNIL.
+				</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	h1 {
+		font-size: var(--step-4);
+		margin-bottom: 2rem;
+	}
+
+	.todo {
+		border-left: 3px solid var(--ember);
+		background: #fff6f2;
+		padding: 1rem 1.25rem;
+		border-radius: 0 var(--radius) var(--radius) 0;
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		margin-bottom: 2.5rem;
+	}
+
+	.prose :global(h2) {
+		font-size: var(--step-2);
+		margin-top: 2.5rem;
+		margin-bottom: 0.9rem;
+	}
+
+	.prose :global(p),
+	.prose :global(li) {
+		color: var(--ink-soft);
+		line-height: 1.7;
+	}
+
+	.prose :global(p + p) {
+		margin-top: 1rem;
+	}
+
+	.prose :global(em) {
+		color: var(--ember);
+		font-style: normal;
+		font-weight: 600;
+	}
+
+	.prose :global(a) {
+		color: var(--violet-deep);
+	}
+
+	code {
+		font-family: ui-monospace, monospace;
+		font-size: 0.9em;
+		background: var(--paper-sunk);
+		padding: 0.1em 0.35em;
+		border-radius: 3px;
+	}
+</style>

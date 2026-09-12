@@ -1,0 +1,156 @@
+---
+import { CONTACT_EMAIL } from '../data/site';
+
+const year = 2026;
+---
+
+<footer class="footer">
+	<div class="shell footer__grid">
+		<div class="footer__brand">
+			<a class="footer__logo" href="/">
+				<span aria-hidden="true">&ldquo;</span>Quoted
+			</a>
+			<p>
+				Agence GEO. Nous travaillons la visibilité des marques dans les réponses
+				générées par les moteurs d'IA : ChatGPT, Perplexity, Gemini, Claude.
+			</p>
+		</div>
+
+		<nav class="footer__col" aria-label="Offre">
+			<h2>Offre</h2>
+			<ul>
+				<li><a href="/#offre">Radar — audit GEO</a></li>
+				<li><a href="/#offre">Exploration sémantique</a></li>
+				<li><a href="/#offre">Sprint contenu</a></li>
+				<li><a href="/#tarifs">Accompagnement mensuel</a></li>
+				<li><a href="/#tarifs">Tarifs</a></li>
+			</ul>
+		</nav>
+
+		<nav class="footer__col" aria-label="Ressources">
+			<h2>Ressources</h2>
+			<ul>
+				<li><a href="/guide/">Guide GEO</a></li>
+				<li><a href="/#methode">Méthode</a></li>
+				<li><a href="/#perimetre">Périmètre</a></li>
+				<li><a href="/#faq">Questions fréquentes</a></li>
+			</ul>
+		</nav>
+
+		<div class="footer__col">
+			<h2>Contact</h2>
+			<ul>
+				<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+				<li><a href="/#contact">Demander le Radar</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="shell footer__base">
+		<p>&copy; {year} Quoted. Tous droits réservés.</p>
+		<ul class="footer__legal">
+			<li><a href="/mentions-legales/">Mentions légales</a></li>
+			<li><a href="/politique-de-confidentialite/">Politique de confidentialité</a></li>
+		</ul>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--ink);
+		color: rgba(244, 242, 251, 0.72);
+		padding-top: clamp(3.5rem, 7vw, 5.5rem);
+		padding-bottom: 2rem;
+		font-size: var(--step--1);
+	}
+
+	.footer__grid {
+		display: grid;
+		grid-template-columns: 1.6fr repeat(3, 1fr);
+		gap: clamp(2rem, 4vw, 3.5rem);
+		padding-bottom: clamp(2.5rem, 5vw, 4rem);
+	}
+
+	.footer__logo {
+		display: inline-block;
+		font-family: var(--display);
+		font-size: 2rem;
+		color: #fff;
+		text-decoration: none;
+		letter-spacing: -0.02em;
+		margin-bottom: 0.9rem;
+	}
+
+	.footer__logo span {
+		color: var(--violet-edge);
+	}
+
+	.footer__brand p {
+		max-width: 32ch;
+		line-height: 1.65;
+	}
+
+	.footer__col h2 {
+		font-family: var(--sans);
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(244, 242, 251, 0.45);
+		margin-bottom: 1.1rem;
+	}
+
+	.footer__col ul {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.footer a {
+		color: inherit;
+		text-decoration: none;
+		transition: color 0.18s ease;
+	}
+
+	.footer__col a:hover,
+	.footer__legal a:hover {
+		color: #fff;
+	}
+
+	.footer__base {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 2rem;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 1.75rem;
+		border-top: 1px solid rgba(244, 242, 251, 0.12);
+		font-size: 0.8rem;
+		color: rgba(244, 242, 251, 0.5);
+	}
+
+	.footer__legal {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	@media (max-width: 60rem) {
+		.footer__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.footer__brand {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 34rem) {
+		.footer__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,150 @@
+---
+import { CONTACT_EMAIL } from '../data/site';
+
+const subject = encodeURIComponent('Demande — Radar GEO');
+const body = encodeURIComponent(
+	`Bonjour,
+
+Notre site :
+Notre secteur :
+Ce qu'on cherche à obtenir :
+Un ou deux concurrents de référence :
+
+Merci,`,
+);
+
+const steps = [
+	{
+		title: 'Vous écrivez',
+		body: 'Votre site, votre secteur, ce que vous cherchez à obtenir. Trois lignes suffisent pour démarrer.',
+	},
+	{
+		title: 'On répond sous 48 h ouvrées',
+		body: 'Une première lecture de votre situation, et la mission qui correspond — y compris si ce n’est pas la nôtre.',
+	},
+	{
+		title: 'On cadre ensemble',
+		body: 'Un échange, puis un devis chiffré avec un périmètre écrit. Rien ne démarre avant votre accord.',
+	},
+];
+---
+
+<section class="section cta" id="contact">
+	<div class="shell cta__grid">
+		<div class="cta__copy">
+			<p class="eyebrow" data-num="08">Contact</p>
+			<h2>Voyons d'abord ce que l'IA dit <span class="accent">déjà</span> de vous.</h2>
+			<p class="lede">
+				Écrivez-nous en quelques lignes. Vous recevrez une première lecture de votre
+				situation et la mission qui correspond&nbsp;— sans relance commerciale
+				automatique derrière.
+			</p>
+
+			<div class="cta__actions">
+				<a class="btn btn--primary" href={`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`}>
+					Écrire à Quoted
+					<span class="btn__arrow" aria-hidden="true">→</span>
+				</a>
+				<a class="cta__mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+			</div>
+		</div>
+
+		<ol class="cta__steps">
+			{
+				steps.map((step, index) => (
+					<li class="reveal" style={`--delay: ${index * 80}ms`}>
+						<span class="cta__num">{String(index + 1).padStart(2, '0')}</span>
+						<div>
+							<h3>{step.title}</h3>
+							<p>{step.body}</p>
+						</div>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.cta {
+		background:
+			radial-gradient(70% 100% at 15% 0%, var(--violet-wash), transparent 60%),
+			var(--paper);
+		border-top: 1px solid var(--line);
+	}
+
+	.cta__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+		gap: clamp(2.5rem, 6vw, 5rem);
+		align-items: start;
+	}
+
+	.cta__copy h2 {
+		margin-block: 1.25rem 1.35rem;
+	}
+
+	.cta__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 1.25rem;
+		margin-top: 2rem;
+	}
+
+	.cta__mail {
+		font-size: var(--step--1);
+		color: var(--violet-deep);
+		text-underline-offset: 4px;
+		text-decoration-thickness: 1px;
+	}
+
+	.cta__steps {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0;
+		background: var(--paper-raised);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.cta__steps li {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+		padding: clamp(1.15rem, 2.4vw, 1.6rem);
+	}
+
+	.cta__steps li + li {
+		border-top: 1px solid var(--line);
+	}
+
+	.cta__num {
+		font-family: var(--display);
+		font-size: 1.25rem;
+		color: var(--violet);
+		line-height: 1.3;
+	}
+
+	.cta__steps h3 {
+		font-family: var(--sans);
+		font-size: var(--step-0);
+		font-weight: 600;
+		letter-spacing: 0;
+		margin-bottom: 0.3rem;
+	}
+
+	.cta__steps p {
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 60rem) {
+		.cta__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

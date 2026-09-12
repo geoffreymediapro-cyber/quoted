@@ -1,0 +1,164 @@
+---
+import { OFFERS } from '../data/site';
+---
+
+<section class="section section--sunk" id="offre">
+	<div class="shell">
+		<div class="section-head reveal">
+			<p class="eyebrow" data-num="02">Missions ponctuelles</p>
+			<h2>Commencer par savoir <span class="accent">où vous en êtes</span>.</h2>
+			<p>
+				Quatre missions sans engagement. La plupart des projets démarrent par le Radar,
+				parce qu'on ne produit pas utilement tant qu'on n'a pas relevé ce que les
+				moteurs répondent déjà.
+			</p>
+		</div>
+
+		<div class="offers">
+			{
+				OFFERS.map((offer, index) => (
+					<article
+						class:list={[
+							'card',
+							'offer',
+							'reveal',
+							{ 'offer--featured': offer.featured },
+						]}
+						style={`--delay: ${index * 80}ms`}
+					>
+						{offer.featured && <span class="offer__flag">Le plus demandé</span>}
+
+						<header class="offer__head">
+							<p class="offer__kicker">{offer.kicker}</p>
+							<h3>{offer.name}</h3>
+						</header>
+
+						<p class="offer__price">
+							{offer.price}
+							{offer.priceNote && <span>{offer.priceNote}</span>}
+						</p>
+
+						<p class="offer__desc">{offer.description}</p>
+
+						<ul class="ticks offer__features">
+							{offer.features.map((feature) => (
+								<li>{feature}</li>
+							))}
+						</ul>
+
+						{offer.deliverable && (
+							<p class="offer__deliverable">
+								<span>Livrable</span>
+								{offer.deliverable}
+							</p>
+						)}
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.offers {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+		gap: clamp(1rem, 2.2vw, 1.5rem);
+		align-items: start;
+	}
+
+	.offer {
+		display: flex;
+		flex-direction: column;
+		gap: 1.1rem;
+		height: 100%;
+	}
+
+	.offer--featured {
+		border-color: var(--violet-edge);
+		box-shadow: var(--shadow-card);
+	}
+
+	.offer--featured::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--violet);
+		opacity: 0.28;
+		pointer-events: none;
+	}
+
+	.offer__flag {
+		position: absolute;
+		top: -0.7rem;
+		left: clamp(1.4rem, 2.6vw, 2rem);
+		background: var(--ember);
+		color: #fff;
+		font-size: 0.64rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		padding: 0.28rem 0.6rem;
+		border-radius: 999px;
+	}
+
+	.offer__kicker {
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+		margin-bottom: 0.4rem;
+	}
+
+	.offer__price {
+		font-family: var(--display);
+		font-size: 2.1rem;
+		line-height: 1;
+		color: var(--violet-deep);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.5rem;
+		padding-bottom: 1.1rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.offer__price span {
+		font-family: var(--sans);
+		font-size: 0.72rem;
+		font-weight: 500;
+		color: var(--ink-mute);
+		letter-spacing: 0.02em;
+	}
+
+	.offer__desc {
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.offer__features {
+		margin-top: auto;
+	}
+
+	.offer__deliverable {
+		font-size: 0.78rem;
+		line-height: 1.55;
+		color: var(--ink-soft);
+		background: var(--violet-wash);
+		border-radius: var(--radius);
+		padding: 0.75rem 0.9rem;
+	}
+
+	.offer__deliverable span {
+		display: block;
+		font-size: 0.62rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--violet);
+		margin-bottom: 0.25rem;
+	}
+</style>

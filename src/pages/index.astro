@@ -1,51 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Shift from '../components/Shift.astro';
+import Offers from '../components/Offers.astro';
+import Tiers from '../components/Tiers.astro';
+import Method from '../components/Method.astro';
+import Scope from '../components/Scope.astro';
+import GuideTeaser from '../components/GuideTeaser.astro';
+import Faq from '../components/Faq.astro';
+import Cta from '../components/Cta.astro';
+import { FAQ } from '../data/site';
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: FAQ.map((item) => ({
+		'@type': 'Question',
+		name: item.q,
+		acceptedAnswer: { '@type': 'Answer', text: item.a },
+	})),
+};
 ---
 
 <BaseLayout
-	title="quoted.fr"
-	description="Site en cours de construction."
-	noindex={true}
+	title="Quoted — agence GEO : être cité par ChatGPT, Perplexity et Gemini"
+	description="Agence GEO (Generative Engine Optimization). Audit de visibilité dans les moteurs de réponse, contenus conçus pour être cités, suivi mensuel. Radar d'entrée à 1 500 €, accompagnement à partir de 400 €/mois."
+	schema={faqSchema}
 >
-	<main>
-		<p class="tag">quoted.fr</p>
-		<h1>Site en cours de construction</h1>
-		<p class="lead">
-			Le contenu arrive prochainement. La chaine de deploiement est en place.
-		</p>
-	</main>
+	<Hero />
+	<Marquee />
+	<Shift />
+	<Offers />
+	<Tiers />
+	<Method />
+	<Scope />
+	<GuideTeaser />
+	<Faq />
+	<Cta />
 </BaseLayout>
-
-<style>
-	main {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		max-width: 40rem;
-		margin: 0 auto;
-		padding: 2rem 1.5rem;
-	}
-
-	.tag {
-		margin: 0 0 1rem;
-		font-size: 0.8125rem;
-		font-weight: 600;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: var(--muted);
-	}
-
-	h1 {
-		margin: 0 0 1rem;
-		font-size: clamp(1.75rem, 5vw, 2.75rem);
-		line-height: 1.15;
-		letter-spacing: -0.02em;
-	}
-
-	.lead {
-		margin: 0;
-		color: var(--muted);
-		font-size: 1.0625rem;
-	}
-</style>

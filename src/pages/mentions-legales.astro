@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../data/site';
+---
+
+<BaseLayout
+	title="Mentions légales | Quoted"
+	description="Mentions légales du site quoted.fr."
+	noindex={true}
+>
+	<section class="section">
+		<div class="shell shell--narrow">
+			<h1>Mentions légales</h1>
+
+			<p class="todo">
+				<strong>Page à compléter.</strong> Les informations d'identification de
+				l'éditeur ne sont pas encore renseignées&nbsp;: cette page est en
+				<code>noindex</code> tant qu'elle n'est pas finalisée. Éléments requis par
+				l'article 6 III de la LCEN&nbsp;: dénomination sociale, forme juridique,
+				capital, adresse du siège, RCS et SIREN, numéro de TVA intracommunautaire,
+				directeur de la publication, et coordonnées de l'hébergeur.
+			</p>
+
+			<div class="prose">
+				<h2>Éditeur du site</h2>
+				<ul>
+					<li>Dénomination sociale : <em>à compléter</em></li>
+					<li>Forme juridique : <em>à compléter</em></li>
+					<li>Capital social : <em>à compléter</em></li>
+					<li>Siège social : <em>à compléter</em></li>
+					<li>RCS / SIREN : <em>à compléter</em></li>
+					<li>N° de TVA intracommunautaire : <em>à compléter</em></li>
+					<li>Directeur de la publication : <em>à compléter</em></li>
+					<li>Contact : <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+				</ul>
+
+				<h2>Hébergement</h2>
+				<p>
+					Le site est hébergé par GitHub&nbsp;Pages — GitHub,&nbsp;Inc., 88 Colin P.
+					Kelly Jr. Street, San Francisco, CA 94107, États-Unis.
+				</p>
+				<p>
+					La zone DNS du domaine <code>quoted.fr</code> est gérée par Hetzner Online
+					GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne.
+				</p>
+
+				<h2>Propriété intellectuelle</h2>
+				<p>
+					L'ensemble des contenus présents sur ce site (textes, structure, éléments
+					graphiques) est protégé par le droit d'auteur. Toute reproduction ou
+					représentation, totale ou partielle, sans autorisation préalable, est
+					interdite.
+				</p>
+
+				<h2>Responsabilité</h2>
+				<p>
+					Les informations publiées sur ce site, notamment dans le guide, sont fournies
+					à titre informatif. Elles ne constituent pas un engagement de résultat et ne
+					sauraient se substituer à une analyse de votre situation particulière.
+				</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	h1 {
+		font-size: var(--step-4);
+		margin-bottom: 2rem;
+	}
+
+	.todo {
+		border-left: 3px solid var(--ember);
+		background: #fff6f2;
+		padding: 1rem 1.25rem;
+		border-radius: 0 var(--radius) var(--radius) 0;
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		margin-bottom: 2.5rem;
+	}
+
+	.prose :global(h2) {
+		font-size: var(--step-2);
+		margin-top: 2.5rem;
+		margin-bottom: 0.9rem;
+	}
+
+	.prose :global(p),
+	.prose :global(li) {
+		color: var(--ink-soft);
+		line-height: 1.7;
+	}
+
+	.prose :global(ul) {
+		padding-left: 1.25rem;
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.prose :global(li::marker) {
+		color: var(--violet);
+	}
+
+	.prose :global(em) {
+		color: var(--ember);
+		font-style: normal;
+		font-weight: 600;
+	}
+
+	.prose :global(a) {
+		color: var(--violet-deep);
+	}
+
+	code {
+		font-family: ui-monospace, monospace;
+		font-size: 0.9em;
+		background: var(--paper-sunk);
+		padding: 0.1em 0.35em;
+		border-radius: 3px;
+	}
+</style>

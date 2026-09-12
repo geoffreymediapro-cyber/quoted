@@ -1,0 +1,290 @@
+---
+const path = Astro.url.pathname;
+// Sur les pages internes, les ancres doivent repartir de l'accueil.
+const home = path === '/' ? '' : '/';
+
+const links = [
+	{ href: `${home}#offre`, label: 'Offre' },
+	{ href: `${home}#methode`, label: 'Méthode' },
+	{ href: `${home}#tarifs`, label: 'Tarifs' },
+	{ href: '/guide/', label: 'Guide' },
+	{ href: `${home}#faq`, label: 'FAQ' },
+];
+---
+
+<header class="masthead" data-masthead>
+	<div class="shell masthead__inner">
+		<a class="brand" href="/" aria-label="Quoted — accueil">
+			<span class="brand__mark" aria-hidden="true">&ldquo;</span>
+			<span class="brand__text">
+				<span class="brand__name">Quoted</span>
+				<span class="brand__role">Agence GEO</span>
+			</span>
+		</a>
+
+		<nav class="nav" aria-label="Navigation principale">
+			<ul class="nav__list">
+				{
+					links.map((link) => (
+						<li>
+							<a
+								class="nav__link"
+								href={link.href}
+								aria-current={link.href === path ? 'page' : undefined}
+							>
+								{link.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<a class="btn btn--primary masthead__cta" href={`${home}#contact`}>
+			Demander le Radar
+		</a>
+
+		<button
+			class="burger"
+			type="button"
+			aria-expanded="false"
+			aria-controls="menu-mobile"
+			data-burger
+		>
+			<span class="visually-hidden">Ouvrir le menu</span>
+			<span class="burger__bar" aria-hidden="true"></span>
+			<span class="burger__bar" aria-hidden="true"></span>
+		</button>
+	</div>
+
+	<div class="drawer" id="menu-mobile" hidden data-drawer>
+		<ul class="drawer__list">
+			{
+				links.map((link) => (
+					<li>
+						<a href={link.href}>{link.label}</a>
+					</li>
+				))
+			}
+		</ul>
+		<a class="btn btn--primary drawer__cta" href={`${home}#contact`}>Demander le Radar</a>
+	</div>
+</header>
+
+<style>
+	.masthead {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: color-mix(in srgb, var(--paper) 82%, transparent);
+		backdrop-filter: blur(14px) saturate(150%);
+		border-bottom: 1px solid transparent;
+		transition:
+			border-color 0.25s ease,
+			background-color 0.25s ease;
+	}
+
+	.masthead[data-stuck] {
+		border-bottom-color: var(--line);
+		background: color-mix(in srgb, var(--paper) 94%, transparent);
+	}
+
+	.masthead__inner {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-height: 4.5rem;
+	}
+
+	/* --- Marque --- */
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		text-decoration: none;
+		margin-right: auto;
+	}
+
+	.brand__mark {
+		font-family: var(--display);
+		font-size: 2.6rem;
+		line-height: 0.55;
+		color: var(--violet);
+		transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+	}
+
+	.brand:hover .brand__mark {
+		transform: translateY(-2px) rotate(-6deg);
+	}
+
+	.brand__text {
+		display: grid;
+		line-height: 1.1;
+	}
+
+	.brand__name {
+		font-family: var(--display);
+		font-size: 1.45rem;
+		letter-spacing: -0.02em;
+	}
+
+	.brand__role {
+		font-size: 0.66rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+	}
+
+	/* --- Navigation --- */
+	.nav__list {
+		display: flex;
+		align-items: center;
+		gap: 1.75rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.nav__link {
+		position: relative;
+		font-size: var(--step--1);
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--ink-soft);
+		padding-block: 0.4rem;
+		transition: color 0.18s ease;
+	}
+
+	.nav__link::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		background: var(--violet);
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1);
+	}
+
+	.nav__link:hover,
+	.nav__link[aria-current='page'] {
+		color: var(--ink);
+	}
+
+	.nav__link:hover::after,
+	.nav__link[aria-current='page']::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	/* --- Burger --- */
+	.burger {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 2.75rem;
+		height: 2.75rem;
+		padding: 0;
+		background: transparent;
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius);
+		cursor: pointer;
+	}
+
+	.burger__bar {
+		display: block;
+		width: 1.1rem;
+		height: 1.5px;
+		margin-inline: auto;
+		background: var(--ink);
+		transition: transform 0.24s ease, opacity 0.24s ease;
+	}
+
+	.burger[aria-expanded='true'] .burger__bar:first-child {
+		transform: translateY(3.25px) rotate(45deg);
+	}
+
+	.burger[aria-expanded='true'] .burger__bar:last-child {
+		transform: translateY(-3.25px) rotate(-45deg);
+	}
+
+	/* --- Tiroir mobile --- */
+	.drawer {
+		border-top: 1px solid var(--line);
+		background: var(--paper);
+		padding: 1.25rem var(--gutter) 2rem;
+	}
+
+	.drawer[hidden] {
+		display: none;
+	}
+
+	.drawer__list {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0.25rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.drawer__list a {
+		display: block;
+		padding: 0.75rem 0;
+		border-bottom: 1px solid var(--line);
+		font-family: var(--display);
+		font-size: 1.5rem;
+		text-decoration: none;
+	}
+
+	.drawer__cta {
+		width: 100%;
+	}
+
+	@media (max-width: 62rem) {
+		.nav,
+		.masthead__cta {
+			display: none;
+		}
+
+		.burger {
+			display: flex;
+		}
+	}
+</style>
+
+<script>
+	const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+	const drawer = document.querySelector<HTMLElement>('[data-drawer]');
+	const masthead = document.querySelector<HTMLElement>('[data-masthead]');
+
+	if (burger && drawer) {
+		burger.addEventListener('click', () => {
+			const open = burger.getAttribute('aria-expanded') === 'true';
+			burger.setAttribute('aria-expanded', String(!open));
+			drawer.hidden = open;
+		});
+
+		// Referme le tiroir des qu'on navigue vers une ancre
+		drawer.addEventListener('click', (event) => {
+			if ((event.target as HTMLElement).closest('a')) {
+				burger.setAttribute('aria-expanded', 'false');
+				drawer.hidden = true;
+			}
+		});
+	}
+
+	if (masthead) {
+		const sentinel = () => {
+			if (window.scrollY > 8) {
+				masthead.setAttribute('data-stuck', '');
+			} else {
+				masthead.removeAttribute('data-stuck');
+			}
+		};
+		sentinel();
+		window.addEventListener('scroll', sentinel, { passive: true });
+	}
+</script>
