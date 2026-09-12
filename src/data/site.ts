@@ -5,13 +5,13 @@
 
 export const SITE_NAME = 'Quoted';
 export const SITE_URL = 'https://quoted.fr';
-export const SITE_TAGLINE = 'Agence GEO — Generative Engine Optimization';
+export const SITE_TAGLINE = 'Agence GEO, Generative Engine Optimization';
 
 /** TODO : creer la boite (aucun MX sur la zone quoted.fr pour l'instant). */
 export const CONTACT_EMAIL = 'contact@quoted.fr';
 
 /* -------------------------------------------------------------------------
-   Ce qu'on fait — capacites, sans packaging commercial ni prix
+   Ce qu'on fait : capacites, sans packaging commercial ni prix
    ------------------------------------------------------------------------- */
 
 export interface Service {
@@ -88,7 +88,7 @@ export const SERVICES: Service[] = [
 		name: 'Présence hors site',
 		kicker: 'Le point qui débloque',
 		description:
-			'Votre site n\'est qu\'une source parmi celles que le moteur consulte. Ce qui se dit ailleurs pèse souvent davantage — et c\'est là que se gagnent les citations.',
+			'Votre site n\'est qu\'une source parmi celles que le moteur consulte. Ce qui se dit ailleurs pèse souvent davantage, et c\'est là que se gagnent les citations.',
 		features: [
 			'Médias réellement cités dans votre secteur',
 			'Présence organique sur Reddit',
@@ -98,7 +98,7 @@ export const SERVICES: Service[] = [
 ];
 
 /* -------------------------------------------------------------------------
-   Clients accompagnes — profils anonymises
+   Clients accompagnes : profils anonymises
    ------------------------------------------------------------------------- */
 
 export interface Client {
@@ -109,7 +109,7 @@ export interface Client {
 }
 
 /**
- * ⚠️ CONTENU DE STRUCTURE — a remplacer par les profils reels.
+ * ⚠️ CONTENU DE STRUCTURE : a remplacer par les profils reels.
  * Tant que PLACEHOLDER_CLIENTS vaut true, un bandeau d'avertissement
  * s'affiche au-dessus de la section pour qu'aucune de ces lignes ne soit
  * lue comme une reference reelle.
@@ -144,7 +144,7 @@ export const CLIENTS: Client[] = [
 ];
 
 /* -------------------------------------------------------------------------
-   Stack — outils du metier
+   Stack : outils du metier
    ⚠️ A CONFIRMER : ne laisser que les outils reellement utilises. Annoncer
    la maitrise d'un outil qu'on n'a pas est une fausse declaration.
    ------------------------------------------------------------------------- */
@@ -178,7 +178,7 @@ export const METHOD: { step: string; title: string; body: string }[] = [
 	{
 		step: '01',
 		title: 'Cartographier',
-		body: "On identifie les personas et les prompts qui comptent réellement dans votre marché, puis on relève ce que ChatGPT, Perplexity, Gemini et Claude répondent aujourd'hui — et qui ils citent.",
+		body: "On identifie les personas et les prompts qui comptent réellement dans votre marché, puis on relève ce que ChatGPT, Perplexity, Gemini et Claude répondent aujourd'hui, et qui ils citent.",
 	},
 	{
 		step: '02',
@@ -193,7 +193,7 @@ export const METHOD: { step: string; title: string; body: string }[] = [
 	{
 		step: '04',
 		title: 'Faire citer',
-		body: 'Le maillage interne consolide le sujet côté site. Hors du site, on travaille les sources que les moteurs reprennent réellement — médias, Reddit, référentiels.',
+		body: 'Le maillage interne consolide le sujet côté site. Hors du site, on travaille les sources que les moteurs reprennent réellement : médias, Reddit, référentiels.',
 	},
 	{
 		step: '05',
