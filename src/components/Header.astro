@@ -4,9 +4,9 @@ const path = Astro.url.pathname;
 const home = path === '/' ? '' : '/';
 
 const links = [
-	{ href: `${home}#offre`, label: 'Offre' },
+	{ href: `${home}#expertise`, label: 'Ce qu’on fait' },
+	{ href: `${home}#clients`, label: 'Clients' },
 	{ href: `${home}#methode`, label: 'Méthode' },
-	{ href: `${home}#tarifs`, label: 'Tarifs' },
 	{ href: '/guide/', label: 'Guide' },
 	{ href: `${home}#faq`, label: 'FAQ' },
 ];
@@ -15,7 +15,7 @@ const links = [
 <header class="masthead" data-masthead>
 	<div class="shell masthead__inner">
 		<a class="brand" href="/" aria-label="Quoted — accueil">
-			<span class="brand__mark" aria-hidden="true">&ldquo;</span>
+			<span class="brand__mark" aria-hidden="true">&rdquo;</span>
 			<span class="brand__text">
 				<span class="brand__name">Quoted</span>
 				<span class="brand__role">Agence GEO</span>
@@ -40,9 +40,7 @@ const links = [
 			</ul>
 		</nav>
 
-		<a class="btn btn--primary masthead__cta" href={`${home}#contact`}>
-			Demander le Radar
-		</a>
+		<a class="btn btn--primary masthead__cta" href={`${home}#contact`}>Nous écrire</a>
 
 		<button
 			class="burger"
@@ -67,7 +65,7 @@ const links = [
 				))
 			}
 		</ul>
-		<a class="btn btn--primary drawer__cta" href={`${home}#contact`}>Demander le Radar</a>
+		<a class="btn btn--primary drawer__cta" href={`${home}#contact`}>Nous écrire</a>
 	</div>
 </header>
 
@@ -76,27 +74,24 @@ const links = [
 		position: sticky;
 		top: 0;
 		z-index: 100;
-		background: color-mix(in srgb, var(--paper) 82%, transparent);
-		backdrop-filter: blur(14px) saturate(150%);
+		background: color-mix(in srgb, var(--paper) 88%, transparent);
+		backdrop-filter: blur(12px);
 		border-bottom: 1px solid transparent;
-		transition:
-			border-color 0.25s ease,
-			background-color 0.25s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.masthead[data-stuck] {
 		border-bottom-color: var(--line);
-		background: color-mix(in srgb, var(--paper) 94%, transparent);
 	}
 
 	.masthead__inner {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
-		min-height: 4.5rem;
+		min-height: 4.25rem;
 	}
 
-	/* --- Marque --- */
+	/* --- Marque : pastille violette + mot-symbole --- */
 	.brand {
 		display: inline-flex;
 		align-items: center;
@@ -106,32 +101,39 @@ const links = [
 	}
 
 	.brand__mark {
-		font-family: var(--display);
-		font-size: 2.6rem;
-		line-height: 0.55;
-		color: var(--violet);
-		transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+		display: grid;
+		place-items: center;
+		width: 1.85rem;
+		height: 1.85rem;
+		background: var(--violet);
+		color: #fff;
+		font-size: 1.3rem;
+		font-weight: 800;
+		line-height: 2.1;
+		border-radius: var(--radius);
+		transition: background-color 0.18s ease;
 	}
 
 	.brand:hover .brand__mark {
-		transform: translateY(-2px) rotate(-6deg);
+		background: var(--ink);
 	}
 
 	.brand__text {
 		display: grid;
-		line-height: 1.1;
+		line-height: 1.05;
 	}
 
 	.brand__name {
-		font-family: var(--display);
-		font-size: 1.45rem;
-		letter-spacing: -0.02em;
+		font-size: 1.15rem;
+		font-weight: 800;
+		letter-spacing: -0.035em;
+		text-transform: uppercase;
 	}
 
 	.brand__role {
-		font-size: 0.66rem;
-		font-weight: 600;
-		letter-spacing: 0.18em;
+		font-family: var(--mono);
+		font-size: 0.6rem;
+		letter-spacing: 0.16em;
 		text-transform: uppercase;
 		color: var(--ink-mute);
 	}
@@ -140,7 +142,7 @@ const links = [
 	.nav__list {
 		display: flex;
 		align-items: center;
-		gap: 1.75rem;
+		gap: 1.5rem;
 		list-style: none;
 		padding: 0;
 	}
@@ -151,8 +153,8 @@ const links = [
 		font-weight: 500;
 		text-decoration: none;
 		color: var(--ink-soft);
-		padding-block: 0.4rem;
-		transition: color 0.18s ease;
+		padding-block: 0.35rem;
+		transition: color 0.16s ease;
 	}
 
 	.nav__link::after {
@@ -161,11 +163,11 @@ const links = [
 		left: 0;
 		bottom: 0;
 		width: 100%;
-		height: 1px;
+		height: 2px;
 		background: var(--violet);
 		transform: scaleX(0);
 		transform-origin: right;
-		transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1);
+		transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
 	}
 
 	.nav__link:hover,
@@ -185,8 +187,8 @@ const links = [
 		flex-direction: column;
 		justify-content: center;
 		gap: 5px;
-		width: 2.75rem;
-		height: 2.75rem;
+		width: 2.6rem;
+		height: 2.6rem;
 		padding: 0;
 		background: transparent;
 		border: 1px solid var(--line-strong);
@@ -196,26 +198,26 @@ const links = [
 
 	.burger__bar {
 		display: block;
-		width: 1.1rem;
-		height: 1.5px;
+		width: 1.05rem;
+		height: 2px;
 		margin-inline: auto;
 		background: var(--ink);
-		transition: transform 0.24s ease, opacity 0.24s ease;
+		transition: transform 0.22s ease;
 	}
 
 	.burger[aria-expanded='true'] .burger__bar:first-child {
-		transform: translateY(3.25px) rotate(45deg);
+		transform: translateY(3.5px) rotate(45deg);
 	}
 
 	.burger[aria-expanded='true'] .burger__bar:last-child {
-		transform: translateY(-3.25px) rotate(-45deg);
+		transform: translateY(-3.5px) rotate(-45deg);
 	}
 
 	/* --- Tiroir mobile --- */
 	.drawer {
 		border-top: 1px solid var(--line);
 		background: var(--paper);
-		padding: 1.25rem var(--gutter) 2rem;
+		padding: 1rem var(--gutter) 1.75rem;
 	}
 
 	.drawer[hidden] {
@@ -226,16 +228,16 @@ const links = [
 		list-style: none;
 		padding: 0;
 		display: grid;
-		gap: 0.25rem;
-		margin-bottom: 1.25rem;
+		margin-bottom: 1.1rem;
 	}
 
 	.drawer__list a {
 		display: block;
-		padding: 0.75rem 0;
+		padding: 0.8rem 0;
 		border-bottom: 1px solid var(--line);
-		font-family: var(--display);
-		font-size: 1.5rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
 		text-decoration: none;
 	}
 
@@ -243,7 +245,7 @@ const links = [
 		width: 100%;
 	}
 
-	@media (max-width: 62rem) {
+	@media (max-width: 64rem) {
 		.nav,
 		.masthead__cta {
 			display: none;

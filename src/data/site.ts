@@ -1,7 +1,6 @@
 /**
  * Contenu editorial centralise du site.
- * Tout ce qui est susceptible de changer souvent (tarifs, libelles d'offre,
- * FAQ) vit ici plutot que dans les composants.
+ * Aucun tarif ni offre packagee n'est publie : le chiffrage se fait au devis.
  */
 
 export const SITE_NAME = 'Quoted';
@@ -12,157 +11,135 @@ export const SITE_TAGLINE = 'Agence GEO — Generative Engine Optimization';
 export const CONTACT_EMAIL = 'contact@quoted.fr';
 
 /* -------------------------------------------------------------------------
-   Missions one-shot
+   Ce qu'on fait — capacites, sans packaging commercial ni prix
    ------------------------------------------------------------------------- */
 
-export interface Offer {
+export interface Service {
 	id: string;
 	name: string;
 	kicker: string;
-	price: string;
-	priceNote?: string;
 	description: string;
 	features: string[];
-	deliverable?: string;
-	featured?: boolean;
 }
 
-export const OFFERS: Offer[] = [
+export const SERVICES: Service[] = [
 	{
-		id: 'radar',
-		name: 'Radar',
-		kicker: 'Audit GEO complet',
-		price: '1 500 €',
+		id: 'cartographie',
+		name: 'Cartographie de prompts',
+		kicker: 'Point de départ',
 		description:
-			"L'état des lieux complet de votre visibilité dans les moteurs de réponse. Trois volets : exploration sémantique, audit de visibilité, audit technique léger.",
+			"On reconstruit les questions que vos clients posent réellement à une IA, par intention, puis on relève ce que les moteurs répondent aujourd'hui.",
 		features: [
-			'Personas et prompts représentatifs par intention',
+			'Personas et intentions de recherche',
+			'Panel de prompts stable et rejouable',
 			'Tests sur ChatGPT, Perplexity, Gemini et Claude',
-			'Cartographie des sources citées et benchmark concurrentiel',
-			'Données structurées, arborescence, signaux E-E-A-T',
 		],
-		deliverable:
-			'Rapport de diagnostic + roadmap priorisée (matrice impact/effort) et palier d’accompagnement recommandé.',
-		featured: true,
 	},
 	{
-		id: 'exploration',
-		name: 'Exploration sémantique',
-		kicker: 'État des lieux rapide',
-		price: '500 € / jour',
-		priceNote: 'généralement 1 jour',
+		id: 'visibilite',
+		name: 'Audit de visibilité',
+		kicker: 'État des lieux',
 		description:
-			'La version allégée du Radar, sans volet technique ni roadmap complète : la cartographie des prompts et de votre visibilité actuelle, rien de plus.',
+			'Qui est cité sur vos sujets, à quelle fréquence, et par quel type de source. Votre position réelle face à vos concurrents, prompt par prompt.',
 		features: [
-			'Prompts représentatifs de votre marché',
-			'Relevé des réponses et des sources citées',
-			'Position de votre marque face aux concurrents',
+			'Cartographie des sources citées',
+			'Benchmark concurrentiel sur les mêmes prompts',
+			'Composition des sources par typologie',
 		],
-		deliverable: 'Synthèse de cadrage, sans engagement.',
 	},
 	{
-		id: 'sprint',
-		name: 'Sprint contenu',
-		kicker: 'Production one-shot',
-		price: 'Sur devis',
-		priceNote: 'base 500 € / jour',
+		id: 'contenu',
+		name: 'Contenu conçu pour être cité',
+		kicker: 'Production',
 		description:
-			"Un lot de contenus pensés pour être repris par les moteurs d'IA, sans engagement récurrent. Le socle avant de décider d'un accompagnement mensuel.",
+			"Des pages dont un moteur peut extraire une réponse autonome : formulation en tête, structure explicite, affirmations sourçables et vérifiables.",
 		features: [
-			'Lot de 5 à 10 pièces selon le brief',
-			'Rédaction orientée extractibilité et sourcing',
-			'Intégration des signaux E-E-A-T',
+			'Réponse en tête, phrases autonomes',
+			'Structure découpable et intertitres interrogatifs',
+			'Sourcing et signaux E-E-A-T',
 		],
-		deliverable: 'Contenus livrés prêts à publier.',
 	},
 	{
-		id: 'wikipedia',
-		name: 'Wikipédia & Wikidata',
-		kicker: 'Via partenaire spécialisé',
-		price: 'Sur devis',
+		id: 'maillage',
+		name: 'Maillage et cocon sémantique',
+		kicker: 'Consolidation',
 		description:
-			"Deux sources massivement reprises par les moteurs d'IA. Nous ne produisons pas cette expertise en interne : la mission est confiée à un partenaire spécialisé, et nous en assurons le pilotage.",
+			'Rattacher vos pages entre elles pour qu\'un moteur traite votre expertise comme un ensemble cohérent, pas comme des documents isolés.',
 		features: [
-			'Mission réalisée par un partenaire dédié',
-			'Pilotage et intégration à votre stratégie GEO',
-			'Vendable en complément de n’importe quelle mission',
+			'Ancres descriptives et pertinentes',
+			'Hub par pilier thématique',
+			'Ajusté à chaque publication',
+		],
+	},
+	{
+		id: 'technique',
+		name: 'Données structurées',
+		kicker: 'Socle technique',
+		description:
+			'Lever les ambiguïtés sur ce que vous êtes : quelle entité, quel auteur, quelle réponse à quelle question. La cohérence prime sur l\'exhaustivité du balisage.',
+		features: [
+			'Organization, Person, Product',
+			'FAQPage, HowTo, Article',
+			'Cohérence balisage / texte visible',
+		],
+	},
+	{
+		id: 'hors-site',
+		name: 'Présence hors site',
+		kicker: 'Le point qui débloque',
+		description:
+			'Votre site n\'est qu\'une source parmi celles que le moteur consulte. Ce qui se dit ailleurs pèse souvent davantage — et c\'est là que se gagnent les citations.',
+		features: [
+			'Médias réellement cités dans votre secteur',
+			'Présence organique sur Reddit',
+			'Wikipédia et Wikidata, via partenaire spécialisé',
 		],
 	},
 ];
 
 /* -------------------------------------------------------------------------
-   Paliers d'accompagnement recurrent
+   Clients accompagnes — profils anonymises
    ------------------------------------------------------------------------- */
 
-export interface Tier {
-	id: string;
-	name: string;
-	days: string;
-	pitch: string;
-	priceStandard: string;
-	priceCommitted: string;
-	featured?: boolean;
+export interface Client {
+	sector: string;
+	profile: string;
+	context: string;
+	work: string;
 }
 
-export const TIERS: Tier[] = [
-	{
-		id: 'signal',
-		name: 'Signal',
-		days: '1 jour / mois',
-		pitch: 'Entretenir une présence et tenir le rythme sur les pages qui comptent.',
-		priceStandard: '500 €',
-		priceCommitted: '400 €',
-	},
-	{
-		id: 'voice',
-		name: 'Voice',
-		days: '2 jours / mois',
-		pitch: 'Installer la marque comme source récurrente, y compris hors de votre site.',
-		priceStandard: '1 000 €',
-		priceCommitted: '800 €',
-		featured: true,
-	},
-	{
-		id: 'authority',
-		name: 'Authority',
-		days: '3 jours / mois',
-		pitch: 'Un run continu : production, maillage, veille et réaction rapide.',
-		priceStandard: '1 500 €',
-		priceCommitted: '1 200 €',
-	},
-];
+/**
+ * ⚠️ CONTENU DE STRUCTURE — a remplacer par les profils reels.
+ * Tant que PLACEHOLDER_CLIENTS vaut true, un bandeau d'avertissement
+ * s'affiche au-dessus de la section pour qu'aucune de ces lignes ne soit
+ * lue comme une reference reelle.
+ */
+export const PLACEHOLDER_CLIENTS = true;
 
-/** Tableau comparatif des leviers par palier. */
-export const LEVERS: { lever: string; signal: string; voice: string; authority: string }[] = [
+export const CLIENTS: Client[] = [
 	{
-		lever: 'Contenu GEO',
-		signal: '2 à 3 contenus créés ou optimisés',
-		voice: '4 à 6 contenus',
-		authority: '6 à 10 contenus + itération sur l’existant',
+		sector: 'Secteur à renseigner',
+		profile: 'Taille / typologie',
+		context: 'La situation de départ : ce que les moteurs répondaient, ou ne répondaient pas.',
+		work: 'Ce qui a été mis en place.',
 	},
 	{
-		lever: 'Maillage interne',
-		signal: 'Pages prioritaires (5 à 10)',
-		voice: 'Cocon sémantique étendu (15 à 20 pages)',
-		authority: 'Continu, ajusté à chaque publication',
+		sector: 'Secteur à renseigner',
+		profile: 'Taille / typologie',
+		context: 'La situation de départ.',
+		work: 'Ce qui a été mis en place.',
 	},
 	{
-		lever: 'SEO technique GEO',
-		signal: 'Actions ponctuelles (FAQ schema, sourcing)',
-		voice: 'Traitement systématique',
-		authority: 'Continu + veille',
+		sector: 'Secteur à renseigner',
+		profile: 'Taille / typologie',
+		context: 'La situation de départ.',
+		work: 'Ce qui a été mis en place.',
 	},
 	{
-		lever: 'Reddit',
-		signal: '—',
-		voice: 'Présence organique sur les subreddits pertinents',
-		authority: 'Surveillance active et réponse rapide sur les threads',
-	},
-	{
-		lever: 'Suivi de visibilité',
-		signal: 'Reporting mensuel simple',
-		voice: 'Reporting mensuel détaillé',
-		authority: 'Reporting + alertes en continu',
+		sector: 'Secteur à renseigner',
+		profile: 'Taille / typologie',
+		context: 'La situation de départ.',
+		work: 'Ce qui a été mis en place.',
 	},
 ];
 
@@ -179,7 +156,7 @@ export const METHOD: { step: string; title: string; body: string }[] = [
 	{
 		step: '02',
 		title: 'Prioriser',
-		body: "Chaque écart constaté devient une action, classée dans une matrice impact/effort. Vous savez ce qui se joue en premier, ce qui attend, et ce que ça coûte.",
+		body: 'Chaque écart constaté devient une action, classée dans une matrice impact/effort. Vous savez ce qui se joue en premier, ce qui attend, et ce que ça coûte.',
 	},
 	{
 		step: '03',
@@ -189,12 +166,12 @@ export const METHOD: { step: string; title: string; body: string }[] = [
 	{
 		step: '04',
 		title: 'Faire citer',
-		body: "Le maillage interne consolide le sujet côté site. Hors du site, on travaille les sources que les moteurs reprennent réellement — médias, Reddit, référentiels.",
+		body: 'Le maillage interne consolide le sujet côté site. Hors du site, on travaille les sources que les moteurs reprennent réellement — médias, Reddit, référentiels.',
 	},
 	{
 		step: '05',
 		title: 'Mesurer',
-		body: "On rejoue les mêmes prompts, mois après mois, sur les mêmes moteurs. Le reporting montre ce qui a bougé, sur quelles requêtes, et face à quels concurrents.",
+		body: 'On rejoue les mêmes prompts, mois après mois, sur les mêmes moteurs. Le reporting montre ce qui a bougé, sur quelles requêtes, et face à quels concurrents.',
 	},
 ];
 
@@ -216,7 +193,7 @@ export const SCOPE_OUT: { label: string; detail: string }[] = [
 	{
 		label: 'Audit de crawlabilité complet',
 		detail:
-			'robots.txt, architecture technique lourde, refonte : cela reste du SEO classique, côté votre équipe ou votre agence. Nous pouvons le cadrer en upsell, jamais le faire passer pour du GEO.',
+			'robots.txt, architecture technique lourde, refonte : cela reste du SEO classique, côté votre équipe ou votre agence. Nous pouvons le cadrer, jamais le faire passer pour du GEO.',
 	},
 	{
 		label: 'Fabrication ou achat d’avis',
@@ -241,19 +218,23 @@ export const FAQ: { q: string; a: string }[] = [
 	},
 	{
 		q: 'Comment mesure-t-on la visibilité dans ChatGPT ou Perplexity ?',
-		a: "En rejouant un jeu de prompts stable, défini pendant le Radar, sur les mêmes moteurs et à intervalles réguliers. On relève si votre marque apparaît, dans quel contexte, et quelles sources sont citées. Ce n'est pas un classement au sens du SEO : les réponses varient d'une exécution à l'autre. C'est pour cette raison qu'on travaille sur un panel de prompts et sur une tendance, pas sur une capture isolée.",
+		a: "En rejouant un jeu de prompts stable, défini au démarrage, sur les mêmes moteurs et à intervalles réguliers. On relève si votre marque apparaît, dans quel contexte, et quelles sources sont citées. Ce n'est pas un classement au sens du SEO : les réponses varient d'une exécution à l'autre. C'est pour cette raison qu'on travaille sur un panel de prompts et sur une tendance, pas sur une capture isolée.",
 	},
 	{
 		q: 'Vous garantissez d’être cité ?',
 		a: "Non, et méfiez-vous de qui le promet. Une réponse générée n'est pas un résultat de recherche : elle dépend du modèle, de sa version, du contexte de la question et des sources disponibles au moment de la génération. Ce sur quoi nous nous engageons : un diagnostic honnête, un plan priorisé, une production régulière et une mesure qui montre le mouvement réel.",
 	},
 	{
-		q: 'Par où commencer ?',
-		a: "Par le Radar dans la grande majorité des cas : sans état des lieux, on produit à l'aveugle. Il se termine par une roadmap priorisée et par le palier d'accompagnement recommandé, ce qui vous laisse libre de continuer avec nous ou d'exécuter en interne. Si vous voulez d'abord une lecture rapide avant d'engager 1 500 €, l'exploration sémantique seule remplit ce rôle.",
+		q: 'Par où commence-t-on ?',
+		a: "Par un état des lieux, dans la grande majorité des cas : sans relevé de ce que les moteurs répondent déjà, on produit à l'aveugle. Il se termine par une feuille de route priorisée, ce qui vous laisse libre de continuer avec nous ou d'exécuter en interne. Si vous voulez d'abord une lecture rapide avant d'engager un budget, une version allégée limitée à la cartographie des prompts remplit ce rôle.",
 	},
 	{
-		q: 'Faut-il s’engager sur la durée ?',
-		a: "Non. Les trois paliers sont disponibles sans engagement. Un engagement de 2 à 3 mois donne un tarif réduit, simplement parce qu'il permet de planifier la production et parce que le GEO se juge sur plusieurs cycles de publication, pas sur trois semaines.",
+		q: 'Comment travaillez-vous ensuite ?',
+		a: "En cycles mensuels, avec un volume de jours défini ensemble selon l'ambition et le rythme de publication visés. Le GEO se juge sur plusieurs cycles, pas sur trois semaines. L'engagement dans la durée n'est pas obligatoire, et le périmètre de chaque cycle est écrit avant de démarrer.",
+	},
+	{
+		q: 'Combien ça coûte ?',
+		a: "Le chiffrage dépend de votre marché, du volume de prompts à couvrir, de la production nécessaire et du niveau de sourcing exigé par votre secteur. Nous n'affichons pas de grille standard, parce qu'un devis honnête suppose de connaître ces éléments. Écrivez-nous en décrivant votre situation : vous recevrez une proposition chiffrée avec un périmètre écrit, sans engagement.",
 	},
 	{
 		q: 'Vous vendez un outil ou un dashboard ?',
@@ -261,6 +242,6 @@ export const FAQ: { q: string; a: string }[] = [
 	},
 	{
 		q: 'Travaillez-vous en marque blanche pour des agences ?',
-		a: "Oui. Les missions one-shot comme les paliers récurrents peuvent être opérés pour le compte d'une agence, sous sa marque. Écrivez-nous en précisant le contexte et le volume envisagé pour obtenir les conditions partenaires.",
+		a: "Oui. Les missions ponctuelles comme l'accompagnement récurrent peuvent être opérés pour le compte d'une agence, sous sa marque. Écrivez-nous en précisant le contexte et le volume envisagé pour obtenir les conditions partenaires.",
 	},
 ];

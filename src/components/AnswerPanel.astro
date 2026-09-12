@@ -16,10 +16,11 @@ const sources = [
 ];
 ---
 
-<figure class="panel rise" style="--delay: 320ms">
-	<div class="panel__chrome" aria-hidden="true">
-		<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+<figure class="panel rise" style="--delay: 280ms">
+	<div class="panel__chrome">
+		<span class="panel__dot" aria-hidden="true"></span>
 		<span class="panel__label">Réponse générée</span>
+		<span class="panel__live" aria-hidden="true">live</span>
 	</div>
 
 	<div class="panel__body">
@@ -29,13 +30,13 @@ const sources = [
 		</p>
 
 		<div class="answer">
-			<p class="answer__line answer__line--text">
+			<p class="answer__text">
 				Plusieurs acteurs ressortent régulièrement sur ce sujet.
-				<mark>Votre marque</mark><span class="ref">2</span> est citée pour
+				<mark>Votre marque</mark><sup>2</sup> est citée pour
 			</p>
-			<span class="answer__line bar" style="--w: 96%; --delay: 620ms"></span>
-			<span class="answer__line bar" style="--w: 88%; --delay: 700ms"></span>
-			<span class="answer__line bar" style="--w: 62%; --delay: 780ms"></span>
+			<span class="bar" style="--w: 96%; --delay: 560ms"></span>
+			<span class="bar" style="--w: 88%; --delay: 630ms"></span>
+			<span class="bar" style="--w: 62%; --delay: 700ms"></span>
 		</div>
 
 		<div class="sources">
@@ -45,7 +46,7 @@ const sources = [
 					sources.map((source, index) => (
 						<li
 							class:list={['source', { 'source--on': source.highlight }]}
-							style={`--delay: ${880 + index * 90}ms`}
+							style={`--delay: ${790 + index * 80}ms`}
 						>
 							<span class="source__num">{index + 1}</span>
 							<span class="source__label">{source.label}</span>
@@ -70,77 +71,68 @@ const sources = [
 <style>
 	.panel {
 		background: var(--paper-raised);
-		border: 1px solid var(--line);
+		border: 1px solid var(--ink);
 		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-float);
 		overflow: hidden;
-		position: relative;
 	}
 
-	/* Halo violet derriere le panneau */
-	.panel::before {
-		content: '';
-		position: absolute;
-		inset: -30% -20% 40% -20%;
-		background: radial-gradient(
-			60% 60% at 50% 40%,
-			rgba(75, 51, 224, 0.16),
-			transparent 70%
-		);
-		pointer-events: none;
-	}
-
+	/* --- Barre de titre --- */
 	.panel__chrome {
 		display: flex;
 		align-items: center;
-		gap: 0.4rem;
-		padding: 0.75rem 1rem;
-		border-bottom: 1px solid var(--line);
-		background: var(--paper-sunk);
+		gap: 0.55rem;
+		padding: 0.65rem 0.9rem;
+		background: var(--ink);
+		color: #fff;
 	}
 
-	.dot {
-		width: 0.5rem;
-		height: 0.5rem;
+	.panel__dot {
+		width: 0.45rem;
+		height: 0.45rem;
 		border-radius: 50%;
-		background: var(--line-strong);
+		background: var(--ember);
 	}
 
-	.panel__label {
-		margin-left: auto;
-		font-size: 0.66rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
+	.panel__label,
+	.panel__live {
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--ink-mute);
+	}
+
+	.panel__live {
+		margin-left: auto;
+		color: rgba(238, 240, 244, 0.5);
 	}
 
 	.panel__body {
-		padding: clamp(1.2rem, 3vw, 1.85rem);
-		position: relative;
+		padding: clamp(1.1rem, 2.5vw, 1.6rem);
 	}
 
 	/* --- Prompt --- */
 	.prompt {
 		display: flex;
 		align-items: baseline;
-		gap: 0.5rem;
-		padding-bottom: 1.1rem;
-		margin-bottom: 1.25rem;
-		border-bottom: 1px dashed var(--line-strong);
+		gap: 0.45rem;
+		padding-bottom: 1rem;
+		margin-bottom: 1.15rem;
+		border-bottom: 1px solid var(--line);
 		font-size: var(--step--1);
 		color: var(--ink-soft);
 	}
 
 	.prompt em {
 		color: var(--ink-mute);
+		font-style: normal;
 	}
 
 	.prompt__caret {
 		width: 2px;
-		height: 0.95em;
+		height: 0.9em;
 		background: var(--violet);
-		animation: blink 1.15s steps(2, start) infinite;
+		animation: blink 1.1s steps(2, start) infinite;
 		flex: none;
 	}
 
@@ -153,31 +145,38 @@ const sources = [
 	/* --- Reponse --- */
 	.answer {
 		display: grid;
-		gap: 0.6rem;
-		margin-bottom: 1.6rem;
+		gap: 0.55rem;
+		margin-bottom: 1.5rem;
 	}
 
-	.answer__line--text {
+	.answer__text {
 		font-size: var(--step--1);
-		line-height: 1.7;
-		animation: fade 0.6s ease backwards;
-		animation-delay: 540ms;
+		line-height: 1.65;
+		animation: fade 0.5s ease backwards;
+		animation-delay: 480ms;
 	}
 
 	mark {
-		background: none;
-		color: var(--violet);
-		font-weight: 600;
-		box-shadow: inset 0 -0.45em 0 var(--violet-wash);
+		background: var(--violet-wash);
+		color: var(--violet-deep);
+		font-weight: 700;
+		padding: 0 0.15em;
+	}
+
+	sup {
+		font-family: var(--mono);
+		font-size: 0.6em;
+		color: var(--ember);
+		margin-left: 0.1em;
 	}
 
 	.bar {
 		display: block;
-		height: 0.58rem;
+		height: 0.5rem;
 		width: var(--w);
-		border-radius: 999px;
-		background: linear-gradient(90deg, var(--paper-sunk), #eeeaf6);
-		animation: grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+		background: var(--paper-sunk);
+		border: 1px solid var(--line);
+		animation: grow 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 		animation-delay: var(--delay);
 		transform-origin: left;
 	}
@@ -192,50 +191,52 @@ const sources = [
 	@keyframes fade {
 		from {
 			opacity: 0;
-			transform: translateY(6px);
+			transform: translateY(5px);
 		}
 	}
 
 	/* --- Sources --- */
 	.sources__title {
-		font-size: 0.66rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: var(--ink-mute);
-		margin-bottom: 0.7rem;
+		margin-bottom: 0.6rem;
 	}
 
 	.sources ul {
 		list-style: none;
 		padding: 0;
 		display: grid;
-		gap: 0.35rem;
+		border: 1px solid var(--line);
 	}
 
 	.source {
 		display: grid;
-		grid-template-columns: 1.35rem 1fr auto;
-		gap: 0.7rem;
+		grid-template-columns: 1.2rem 1fr auto;
+		gap: 0.65rem;
 		align-items: center;
-		padding: 0.55rem 0.7rem;
-		border: 1px solid transparent;
-		border-radius: var(--radius);
-		font-size: 0.82rem;
-		animation: fade 0.55s ease backwards;
+		padding: 0.5rem 0.65rem;
+		font-size: 0.8rem;
+		animation: fade 0.5s ease backwards;
 		animation-delay: var(--delay);
+	}
+
+	.source + .source {
+		border-top: 1px solid var(--line);
 	}
 
 	.source__num {
 		display: grid;
 		place-items: center;
-		width: 1.35rem;
-		height: 1.35rem;
-		border-radius: 50%;
+		width: 1.2rem;
+		height: 1.2rem;
 		background: var(--paper-sunk);
 		color: var(--ink-mute);
-		font-size: 0.68rem;
-		font-weight: 600;
+		font-family: var(--mono);
+		font-size: 0.62rem;
 	}
 
 	.source__label {
@@ -246,14 +247,15 @@ const sources = [
 	}
 
 	.source__kind {
-		font-size: 0.68rem;
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.04em;
 		color: var(--ink-mute);
 		white-space: nowrap;
 	}
 
 	.source--on {
 		background: var(--violet-wash);
-		border-color: var(--violet-edge);
 	}
 
 	.source--on .source__num {
@@ -263,7 +265,7 @@ const sources = [
 
 	.source--on .source__label {
 		color: var(--violet-deep);
-		font-weight: 600;
+		font-weight: 700;
 	}
 
 	.source--on .source__kind {
@@ -274,26 +276,25 @@ const sources = [
 	.panel__engines {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.4rem;
-		padding: 0.85rem clamp(1.2rem, 3vw, 1.85rem);
+		gap: 0.35rem;
+		padding: 0.75rem clamp(1.1rem, 2.5vw, 1.6rem);
 		border-top: 1px solid var(--line);
 		background: var(--paper-sunk);
 	}
 
 	.engine {
-		font-size: 0.68rem;
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		color: var(--ink-mute);
-		padding: 0.25rem 0.6rem;
+		font-family: var(--mono);
+		font-size: 0.62rem;
+		letter-spacing: 0.06em;
+		color: var(--ink-soft);
+		padding: 0.2rem 0.5rem;
 		border: 1px solid var(--line-strong);
-		border-radius: 999px;
 		background: var(--paper-raised);
 	}
 
 	@media (max-width: 26rem) {
 		.source {
-			grid-template-columns: 1.35rem 1fr;
+			grid-template-columns: 1.2rem 1fr;
 		}
 
 		.source__kind {

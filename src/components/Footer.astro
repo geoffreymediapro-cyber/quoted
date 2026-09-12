@@ -16,14 +16,14 @@ const year = 2026;
 			</p>
 		</div>
 
-		<nav class="footer__col" aria-label="Offre">
-			<h2>Offre</h2>
+		<nav class="footer__col" aria-label="Ce qu’on fait">
+			<h2>Ce qu’on fait</h2>
 			<ul>
-				<li><a href="/#offre">Radar — audit GEO</a></li>
-				<li><a href="/#offre">Exploration sémantique</a></li>
-				<li><a href="/#offre">Sprint contenu</a></li>
-				<li><a href="/#tarifs">Accompagnement mensuel</a></li>
-				<li><a href="/#tarifs">Tarifs</a></li>
+				<li><a href="/#expertise">Cartographie de prompts</a></li>
+				<li><a href="/#expertise">Audit de visibilité</a></li>
+				<li><a href="/#expertise">Contenu conçu pour être cité</a></li>
+				<li><a href="/#expertise">Présence hors site</a></li>
+				<li><a href="/#clients">Clients accompagnés</a></li>
 			</ul>
 		</nav>
 
@@ -41,7 +41,7 @@ const year = 2026;
 			<h2>Contact</h2>
 			<ul>
 				<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
-				<li><a href="/#contact">Demander le Radar</a></li>
+				<li><a href="/#contact">Demander un diagnostic</a></li>
 			</ul>
 		</div>
 	</div>
@@ -73,11 +73,12 @@ const year = 2026;
 
 	.footer__logo {
 		display: inline-block;
-		font-family: var(--display);
-		font-size: 2rem;
+		font-size: 1.6rem;
+		font-weight: 800;
+		text-transform: uppercase;
 		color: #fff;
 		text-decoration: none;
-		letter-spacing: -0.02em;
+		letter-spacing: -0.035em;
 		margin-bottom: 0.9rem;
 	}
 
@@ -91,12 +92,12 @@ const year = 2026;
 	}
 
 	.footer__col h2 {
-		font-family: var(--sans);
-		font-size: 0.68rem;
-		font-weight: 600;
-		letter-spacing: 0.18em;
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: rgba(244, 242, 251, 0.45);
+		color: rgba(238, 240, 244, 0.45);
 		margin-bottom: 1.1rem;
 	}
 

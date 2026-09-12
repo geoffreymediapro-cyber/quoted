@@ -1,0 +1,124 @@
+---
+import { SERVICES } from '../data/site';
+---
+
+<section class="section" id="expertise">
+	<div class="shell">
+		<div class="section-head reveal">
+			<p class="eyebrow" data-num="02">Ce qu'on fait</p>
+			<h2>Six leviers, <span class="accent">un seul objectif</span></h2>
+			<p>
+				Être la source que le moteur reprend. Chaque levier se travaille séparément ou
+				dans un même mouvement, selon ce que révèle l'état des lieux.
+			</p>
+		</div>
+
+		<div class="grid">
+			{
+				SERVICES.map((service, index) => (
+					<article class="cell reveal" style={`--delay: ${index * 50}ms`}>
+						<p class="cell__index">{String(index + 1).padStart(2, '0')}</p>
+						<p class="tag">{service.kicker}</p>
+						<h3>{service.name}</h3>
+						<p class="cell__desc">{service.description}</p>
+						<ul class="ticks">
+							{service.features.map((feature) => (
+								<li>{feature}</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	/* Grille apparente : les cellules partagent leurs bordures */
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.cell {
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+		padding: clamp(1.35rem, 2.4vw, 2rem);
+		position: relative;
+		transition: background-color 0.18s ease;
+	}
+
+	.cell:hover {
+		background: var(--paper-sunk);
+	}
+
+	/* Filets internes, sans doubler les bords exterieurs */
+	.cell:not(:nth-child(3n)) {
+		border-right: 1px solid var(--line);
+	}
+
+	.cell:nth-child(n + 4) {
+		border-top: 1px solid var(--line);
+	}
+
+	.cell__index {
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		color: var(--violet);
+		letter-spacing: 0.1em;
+	}
+
+	.cell h3 {
+		font-size: var(--step-1);
+		margin-bottom: 0.1rem;
+	}
+
+	.cell__desc {
+		font-size: var(--step--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		flex: 1;
+	}
+
+	.cell .ticks {
+		padding-top: 0.85rem;
+		border-top: 1px solid var(--line);
+	}
+
+	@media (max-width: 60rem) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.cell:not(:nth-child(3n)) {
+			border-right: 0;
+		}
+
+		.cell:nth-child(odd) {
+			border-right: 1px solid var(--line);
+		}
+
+		.cell:nth-child(n + 3) {
+			border-top: 1px solid var(--line);
+		}
+	}
+
+	@media (max-width: 38rem) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+
+		.cell:nth-child(odd) {
+			border-right: 0;
+		}
+
+		.cell:nth-child(n + 2) {
+			border-top: 1px solid var(--line);
+		}
+	}
+</style>

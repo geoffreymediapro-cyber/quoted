@@ -65,4 +65,4 @@ Ce qui compte davantage que la fréquence, c'est la régularité et la stabilit�
 
 ## Ce que nous livrons
 
-Chez Quoted, ce suivi est **inclus dans les jours d'accompagnement** : il n'y a pas de licence d'outil facturée à part. En contrepartie, le reporting est produit par nos soins et livré par cycle — il n'y a pas de dashboard temps réel. Le premier relevé est établi pendant le [Radar](/#offre) et sert de point de référence pour tout ce qui suit.
+Chez Quoted, ce suivi est **inclus dans les jours d'accompagnement** : il n'y a pas de licence d'outil facturée à part. En contrepartie, le reporting est produit par nos soins et livré par cycle — il n'y a pas de dashboard temps réel. Le premier relevé est établi pendant [l'état des lieux initial](/#expertise) et sert de point de référence pour tout ce qui suit.

@@ -69,9 +69,12 @@ const entries = (await getCollection('guide', ({ data }) => !data.draft)).sort(
 	}
 
 	.guide-list__num {
-		font-family: var(--display);
-		font-size: 1.15rem;
-		color: var(--ink-mute);
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		color: var(--violet);
+		padding-top: 0.35rem;
 	}
 
 	.guide-list__body {
@@ -80,18 +83,19 @@ const entries = (await getCollection('guide', ({ data }) => !data.draft)).sort(
 	}
 
 	.guide-list__chapter {
-		font-size: 0.64rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--violet);
+		color: var(--ink-mute);
 	}
 
 	.guide-list__title {
-		font-family: var(--display);
 		font-size: var(--step-2);
-		line-height: 1.15;
-		letter-spacing: -0.02em;
+		font-weight: 700;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
 		transition: color 0.18s ease;
 	}
 

@@ -1,0 +1,203 @@
+---
+import { CLIENTS, PLACEHOLDER_CLIENTS } from '../data/site';
+---
+
+<section class="section section--sunk" id="clients">
+	<div class="shell">
+		<div class="section-head reveal">
+			<p class="eyebrow" data-num="03">Clients accompagnés</p>
+			<h2>Les marques que nous <span class="accent">accompagnons</span></h2>
+			<p>
+				Nos références sont présentées sans nom, par choix. Ce que vous voyez ici, c'est
+				le profil, la situation de départ et le travail engagé.
+			</p>
+		</div>
+
+		{
+			PLACEHOLDER_CLIENTS && (
+				<p class="todo reveal">
+					<strong>Section à compléter.</strong> Les profils ci-dessous sont un gabarit,
+					pas des références réelles. Fournir pour chaque client : secteur, taille,
+					situation de départ et travail engagé.
+				</p>
+			)
+		}
+
+		<div class="board">
+			<div class="board__list">
+				{
+					CLIENTS.map((client, index) => (
+						<article
+							class:list={['client', 'reveal', { 'client--todo': PLACEHOLDER_CLIENTS }]}
+							style={`--delay: ${index * 50}ms`}
+						>
+							<p class="client__num">{String(index + 1).padStart(2, '0')}</p>
+							<div class="client__id">
+								<h3>{client.sector}</h3>
+								<p class="tag">{client.profile}</p>
+							</div>
+							<p class="client__context">{client.context}</p>
+							<p class="client__work">{client.work}</p>
+						</article>
+					))
+				}
+			</div>
+
+			<!-- Encart : la confidentialite assumee comme position -->
+			<aside class="note reveal">
+				<p class="note__label">Pourquoi aucun logo</p>
+				<p class="note__body">
+					Travailler la visibilité d'une marque dans les réponses générées, c'est entrer
+					dans sa stratégie de contenu et dans ses points faibles. Nous ne les affichons
+					pas en vitrine.
+				</p>
+				<p class="note__body">
+					Les références nominatives et les exemples détaillés sont communiqués en
+					entretien, avec l'accord du client concerné.
+				</p>
+				<a class="btn btn--ghost note__cta" href="#contact">
+					Demander des références
+					<span class="btn__arrow" aria-hidden="true">→</span>
+				</a>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.todo {
+		border-left: 3px solid var(--ember);
+		background: #fff3ee;
+		padding: 0.85rem 1.1rem;
+		margin-bottom: 1.75rem;
+		font-size: var(--step--1);
+		line-height: 1.55;
+		color: var(--ink-soft);
+	}
+
+	.board {
+		display: grid;
+		grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+		gap: clamp(1.25rem, 2.5vw, 2rem);
+		align-items: start;
+	}
+
+	.board__list {
+		display: grid;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
+		background: var(--paper-raised);
+		overflow: hidden;
+	}
+
+	.client {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(9rem, 1fr) minmax(0, 1.4fr) minmax(0, 1.2fr);
+		gap: clamp(0.75rem, 2vw, 1.5rem);
+		align-items: start;
+		padding: clamp(1rem, 2vw, 1.4rem);
+		transition: background-color 0.18s ease;
+	}
+
+	.client + .client {
+		border-top: 1px solid var(--line);
+	}
+
+	.client:hover {
+		background: var(--paper-sunk);
+	}
+
+	.client--todo h3,
+	.client--todo .client__context,
+	.client--todo .client__work {
+		color: var(--ink-mute);
+	}
+
+	.client__num {
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		color: var(--violet);
+		letter-spacing: 0.08em;
+		padding-top: 0.2rem;
+	}
+
+	.client__id h3 {
+		font-size: var(--step-0);
+		margin-bottom: 0.25rem;
+	}
+
+	.client__context,
+	.client__work {
+		font-size: var(--step--1);
+		line-height: 1.55;
+		color: var(--ink-soft);
+	}
+
+	.client__work {
+		color: var(--ink);
+	}
+
+	/* --- Encart --- */
+	.note {
+		display: grid;
+		gap: 0.85rem;
+		padding: clamp(1.25rem, 2.4vw, 1.75rem);
+		background: var(--ink);
+		color: rgba(238, 240, 244, 0.72);
+		border-radius: var(--radius-lg);
+		position: sticky;
+		top: 6rem;
+	}
+
+	.note__label {
+		font-family: var(--mono);
+		font-size: var(--step--2);
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--violet-edge);
+		padding-bottom: 0.85rem;
+		border-bottom: 1px solid rgba(238, 240, 244, 0.16);
+	}
+
+	.note__body {
+		font-size: var(--step--1);
+		line-height: 1.6;
+	}
+
+	.note__cta {
+		margin-top: 0.5rem;
+		justify-self: start;
+		border-color: rgba(238, 240, 244, 0.3);
+		color: #fff;
+	}
+
+	.note__cta:hover {
+		background: #fff;
+		color: var(--ink);
+		border-color: #fff;
+	}
+
+	@media (max-width: 64rem) {
+		.board {
+			grid-template-columns: 1fr;
+		}
+
+		.note {
+			position: static;
+		}
+	}
+
+	@media (max-width: 48rem) {
+		.client {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+			row-gap: 0.5rem;
+		}
+
+		.client__context,
+		.client__work {
+			grid-column: 2;
+		}
+	}
+</style>

@@ -49,4 +49,4 @@ Par un relevé, pas par de la production. Tant qu'on n'a pas observé ce que les
 
 Ce relevé consiste à définir un panel de prompts représentatifs des intentions réelles de vos clients, à les exécuter sur plusieurs moteurs, et à consigner les réponses obtenues et les sources rattachées. Il fait apparaître trois choses : les sujets où vous êtes déjà présent, ceux où un concurrent occupe la place, et ceux où le moteur cite un tiers que personne n'avait identifié comme concurrent.
 
-C'est exactement l'objet de notre mission [Radar](/#offre).
+C'est exactement le point de départ de [notre travail](/#expertise).
