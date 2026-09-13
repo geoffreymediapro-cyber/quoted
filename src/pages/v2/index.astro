@@ -1,0 +1,929 @@
+---
+import { getCollection } from 'astro:content';
+import V2Layout from '../../layouts/V2Layout.astro';
+import {
+	SERVICES,
+	METHOD,
+	TOOLS,
+	CLIENTS,
+	PLACEHOLDER_CLIENTS,
+	CONTACT_EMAIL,
+} from '../../data/site';
+
+const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+
+const diffs = [
+	{
+		title: 'Un relevé avant toute production',
+		body: "Tant qu'on n'a pas vu ce que les moteurs répondent déjà sur vos sujets, produire revient à tirer à l'aveugle. L'état des lieux passe avant la première ligne écrite.",
+	},
+	{
+		title: 'Aucun outil à vous facturer',
+		body: "Pas de licence maison en supplément. Le suivi de visibilité est compris dans les jours d'accompagnement, sous forme de reporting produit par nos soins.",
+	},
+	{
+		title: 'Un périmètre écrit noir sur blanc',
+		body: "Ce que nous faisons, et surtout ce que nous refusons de faire, est posé avant le devis. Un périmètre flou finit toujours par se payer d'un côté ou de l'autre.",
+	},
+	{
+		title: 'Aucune promesse de position',
+		body: "Personne ne contrôle une réponse générée. Nous nous engageons sur le travail fourni et sur la mesure, jamais sur un rang garanti dans une réponse d'IA.",
+	},
+];
+
+const sources = [
+	{ n: 1, label: 'votre-marque.fr', kind: 'Site de la marque', on: true },
+	{ n: 2, label: 'guide-comparatif.fr', kind: 'Média spécialisé' },
+	{ n: 3, label: 'reddit.com / r/…', kind: 'Discussion' },
+];
+---
+
+<V2Layout
+	title="Quoted V2 (test) · agence GEO"
+	description="Version 2 de la page d'accueil, page de comparaison non indexée."
+>
+	<!-- ================= HERO ================= -->
+	<section class="hero">
+		<div class="wrap hero__grid">
+			<div>
+				<p class="kicker up">Agence GEO · Generative Engine Optimization</p>
+				<h1 class="up" style="--d: 60ms">
+					L'agence qui fait <span class="hl">citer votre marque</span> par les IA
+				</h1>
+				<p class="hero__lede up" style="--d: 120ms">
+					Vos prospects posent désormais leurs questions à ChatGPT, Perplexity ou
+					Gemini, et repartent avec une réponse rédigée accompagnée de trois ou quatre
+					sources. Nous travaillons votre place dans cette réponse.
+				</p>
+				<div class="hero__act up" style="--d: 180ms">
+					<a class="b b--fill" href="#contact">
+						Parler de votre visibilité
+						<span class="arrow" aria-hidden="true">→</span>
+					</a>
+					<a class="b b--line" href="#services">Voir nos services</a>
+				</div>
+				<ul class="hero__pts up" style="--d: 240ms">
+					<li>Relevé avant production</li>
+					<li>Périmètre écrit</li>
+					<li>Sans engagement de durée</li>
+				</ul>
+			</div>
+
+			<figure class="card up" style="--d: 300ms">
+				<div class="card__bar">
+					<span class="card__label">Réponse générée</span>
+					<span class="card__tag">Illustration</span>
+				</div>
+				<div class="card__in">
+					<p class="card__q">Quel logiciel de facturation pour une TPE en 2026 ?</p>
+					<p class="card__a">
+						Trois solutions reviennent régulièrement sur ce besoin.
+						<mark>Votre marque</mark><sup>1</sup> est citée pour sa conformité à la
+						facturation électronique<sup>2</sup> et la qualité de son
+						support<sup>3</sup>.
+					</p>
+					<p class="card__st">Sources citées</p>
+					<ul class="card__src">
+						{
+							sources.map((s) => (
+								<li class:list={[{ on: s.on }]}>
+									<span class="card__n">{s.n}</span>
+									<span class="card__d">{s.label}</span>
+									<span class="card__k">{s.kind}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</figure>
+		</div>
+	</section>
+
+	<!-- ================= POSITIONNEMENT ================= -->
+	<section class="band band--navy">
+		<div class="wrap only">
+			<h2 class="obs">On ne fait que ça.</h2>
+			<p class="obs" style="--d: 80ms">
+				Pas de refonte, pas de campagnes payantes, pas de rédaction au kilomètre. Une
+				seule question nous occupe : pourquoi un moteur de réponse cite une source
+				plutôt qu'une autre, et comment faire pour que ce soit la vôtre.
+			</p>
+			<div class="only__chips obs" style="--d: 160ms">
+				{TOOLS.slice(0, 6).map((tool) => <span>{tool.name}</span>)}
+			</div>
+		</div>
+	</section>
+
+	<!-- ================= DIFFERENCIATEURS ================= -->
+	<section class="band">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kicker">Ce qui nous distingue</p>
+				<h2>Quatre engagements, <span class="blue">tenus par écrit</span></h2>
+				<p>
+					Le GEO attire beaucoup de promesses invérifiables. Voici ce que nous pouvons
+					réellement garantir, et ce que personne ne peut garantir.
+				</p>
+			</div>
+			<div class="quad">
+				{
+					diffs.map((diff, index) => (
+						<article class="quad__c obs" style={`--d: ${index * 70}ms`}>
+							<span class="quad__n">{String(index + 1).padStart(2, '0')}</span>
+							<h3>{diff.title}</h3>
+							<p>{diff.body}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ================= SERVICES ================= -->
+	<section class="band band--tint" id="services">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kicker">Nos services</p>
+				<h2>Six leviers pour devenir une <span class="hl">source citée</span></h2>
+				<p>
+					Chacun se travaille seul ou dans un même mouvement, selon ce que révèle
+					l'état des lieux.
+				</p>
+			</div>
+			<div class="srv">
+				{
+					SERVICES.map((service, index) => (
+						<article class="srv__c obs" style={`--d: ${index * 50}ms`}>
+							<p class="srv__k">{service.kicker}</p>
+							<h3>{service.name}</h3>
+							<p class="srv__d">{service.description}</p>
+							<ul class="srv__l">
+								{service.features.map((feature) => (
+									<li>{feature}</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ================= METHODE ================= -->
+	<section class="band" id="methode">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kicker">Notre méthode</p>
+				<h2>Cinq temps, toujours dans cet ordre</h2>
+				<p>
+					Aucune étape n'est décorative : chacune produit une décision. On ne passe à
+					la suivante que lorsque la précédente a donné un résultat lisible.
+				</p>
+			</div>
+			<ol class="meth">
+				{
+					METHOD.map((step, index) => (
+						<li class="meth__s obs" style={`--d: ${index * 60}ms`}>
+							<span class="meth__n">{step.step}</span>
+							<h3>{step.title}</h3>
+							<p>{step.body}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<!-- ================= CLIENTS ================= -->
+	<section class="band band--tint" id="clients">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kicker">Clients accompagnés</p>
+				<h2>Les marques que nous accompagnons</h2>
+				<p>
+					Nos références sont présentées sans nom, par choix. Ce que vous voyez ici,
+					c'est le profil, la situation de départ et le travail engagé.
+				</p>
+			</div>
+
+			{
+				PLACEHOLDER_CLIENTS && (
+					<p class="todo obs">
+						<strong>Section à compléter.</strong> Les profils ci-dessous sont un
+						gabarit, pas des références réelles.
+					</p>
+				)
+			}
+
+			<div class="cli">
+				<div class="cli__l">
+					{
+						CLIENTS.map((client, index) => (
+							<article class="cli__c obs" style={`--d: ${index * 50}ms`}>
+								<span class="cli__n">{String(index + 1).padStart(2, '0')}</span>
+								<div>
+									<h3>{client.sector}</h3>
+									<p class="cli__p">{client.profile}</p>
+								</div>
+								<p class="cli__x">{client.context}</p>
+							</article>
+						))
+					}
+				</div>
+				<aside class="cli__note obs">
+					<h3>Pourquoi aucun logo</h3>
+					<p>
+						Travailler la visibilité d'une marque, c'est entrer dans sa stratégie de
+						contenu et dans ses points faibles. Nous ne les affichons pas en vitrine.
+					</p>
+					<p>
+						Les références nominatives sont communiquées en entretien, avec l'accord du
+						client concerné.
+					</p>
+					<a class="b b--lemon" href="#contact">Demander des références</a>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	<!-- ================= RESSOURCES ================= -->
+	<section class="band" id="ressources">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kicker">Ressources</p>
+				<h2>Notre méthode, <span class="blue">en accès libre</span></h2>
+				<p>
+					Pas de livre blanc à échanger contre votre adresse e-mail. Si vous préférez
+					appliquer la méthode vous-même, elle est écrite.
+				</p>
+			</div>
+			<div class="res">
+				{
+					guides.map((guide, index) => (
+						<a class="res__c obs" href={`/guide/${guide.id}/`} style={`--d: ${index * 60}ms`}>
+							<p class="res__k">{guide.data.chapter}</p>
+							<h3>{guide.data.title}</h3>
+							<p class="res__d">{guide.data.description}</p>
+							<span class="res__go">
+								Lire <span class="arrow" aria-hidden="true">→</span>
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ================= CONTACT ================= -->
+	<section class="band band--navy" id="contact">
+		<div class="wrap fin">
+			<div>
+				<p class="kicker obs">Contact</p>
+				<h2 class="obs" style="--d: 60ms">
+					Voyons d'abord ce que l'IA dit <span class="hl">déjà</span> de vous
+				</h2>
+				<p class="fin__p obs" style="--d: 120ms">
+					Décrivez votre situation en quelques lignes. Vous recevrez une première
+					lecture et la mission qui correspond, y compris si ce n'est pas la nôtre.
+				</p>
+				<div class="fin__act obs" style="--d: 180ms">
+					<a class="b b--lemon" href={`mailto:${CONTACT_EMAIL}?subject=Demande%20de%20diagnostic%20GEO`}>
+						Écrire à Quoted
+						<span class="arrow" aria-hidden="true">→</span>
+					</a>
+					<a class="b b--line" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+				</div>
+			</div>
+			<ol class="fin__steps obs" style="--d: 240ms">
+				<li>
+					<span><strong>Vous écrivez.</strong> Votre site, votre secteur, votre objectif.</span>
+				</li>
+				<li>
+					<span><strong>Réponse sous 48 h ouvrées.</strong> Une première lecture de votre situation.</span>
+				</li>
+				<li>
+					<span><strong>On cadre ensemble.</strong> Un devis chiffré, avec un périmètre écrit.</span>
+				</li>
+			</ol>
+		</div>
+	</section>
+</V2Layout>
+
+<style>
+	/* ============ HERO ============ */
+	.hero {
+		padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5.5rem);
+		background:
+			radial-gradient(60% 70% at 85% 0%, var(--blue-wash), transparent 70%),
+			var(--paper);
+	}
+
+	.hero__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+
+	.hero__lede {
+		margin-block: 1.35rem 2rem;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: var(--ink-soft);
+		max-width: 40ch;
+	}
+
+	.hero__act {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+		margin-bottom: 2rem;
+	}
+
+	.hero__pts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.5rem;
+		list-style: none;
+		padding: 0;
+		font-size: var(--s--1);
+		font-weight: 600;
+		color: var(--ink-mute);
+	}
+
+	.hero__pts li {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.hero__pts li::before {
+		content: '';
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: var(--lemon);
+		box-shadow: 0 0 0 3px var(--blue-wash);
+	}
+
+	/* --- Carte reponse --- */
+	.card {
+		background: var(--paper);
+		border-radius: var(--round);
+		box-shadow: var(--shadow);
+		overflow: hidden;
+		border: 1px solid var(--line);
+	}
+
+	.card__bar {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.8rem 1.1rem;
+		background: var(--navy);
+		color: #fff;
+	}
+
+	.card__label {
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.card__tag {
+		margin-left: auto;
+		font-size: 0.66rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(234, 240, 251, 0.6);
+		border: 1px solid rgba(234, 240, 251, 0.28);
+		border-radius: 999px;
+		padding: 0.15rem 0.55rem;
+	}
+
+	.card__in {
+		padding: clamp(1.2rem, 2.5vw, 1.7rem);
+	}
+
+	.card__q {
+		font-family: var(--display);
+		font-size: var(--s-1);
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		padding-bottom: 0.9rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.card__a {
+		font-size: var(--s--1);
+		line-height: 1.7;
+		color: var(--ink-soft);
+		margin-bottom: 1.3rem;
+	}
+
+	.card__a mark {
+		background: var(--lemon);
+		color: var(--navy);
+		font-weight: 700;
+		padding: 0 0.2em;
+		border-radius: 3px;
+	}
+
+	.card__a sup {
+		color: var(--blue);
+		font-weight: 700;
+		font-size: 0.7em;
+	}
+
+	.card__st {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+		margin-bottom: 0.6rem;
+	}
+
+	.card__src {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.card__src li {
+		display: grid;
+		grid-template-columns: 1.4rem 1fr auto;
+		gap: 0.7rem;
+		align-items: center;
+		padding: 0.55rem 0.7rem;
+		border-radius: var(--round-sm);
+		background: var(--paper-tint);
+		font-size: 0.82rem;
+	}
+
+	.card__src li.on {
+		background: var(--blue-wash);
+	}
+
+	.card__n {
+		display: grid;
+		place-items: center;
+		width: 1.4rem;
+		height: 1.4rem;
+		border-radius: 50%;
+		background: #fff;
+		color: var(--ink-mute);
+		font-size: 0.68rem;
+		font-weight: 700;
+	}
+
+	.card__src li.on .card__n {
+		background: var(--blue);
+		color: #fff;
+	}
+
+	.card__d {
+		color: var(--ink-soft);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.card__src li.on .card__d {
+		color: var(--blue-deep);
+		font-weight: 700;
+	}
+
+	.card__k {
+		font-size: 0.68rem;
+		color: var(--ink-mute);
+		white-space: nowrap;
+	}
+
+	/* ============ POSITIONNEMENT ============ */
+	.only {
+		text-align: center;
+		display: grid;
+		justify-items: center;
+		gap: 1.25rem;
+	}
+
+	.only h2 {
+		font-size: var(--s-4);
+	}
+
+	.only > p {
+		max-width: 58ch;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: rgba(234, 240, 251, 0.75);
+	}
+
+	.only__chips {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+	}
+
+	.only__chips span {
+		padding: 0.4rem 0.9rem;
+		border-radius: 999px;
+		border: 1px solid rgba(234, 240, 251, 0.22);
+		font-size: var(--s--1);
+		font-weight: 600;
+		color: rgba(234, 240, 251, 0.85);
+	}
+
+	/* ============ DIFFERENCIATEURS ============ */
+	.quad {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(1rem, 2.2vw, 1.75rem);
+	}
+
+	.quad__c {
+		padding: clamp(1.4rem, 2.6vw, 2.1rem);
+		border-radius: var(--round);
+		background: var(--paper-tint);
+		transition: background-color 0.2s ease, transform 0.2s ease;
+	}
+
+	.quad__c:hover {
+		background: var(--blue-wash);
+		transform: translateY(-3px);
+	}
+
+	.quad__n {
+		display: inline-grid;
+		place-items: center;
+		width: 2.4rem;
+		height: 2.4rem;
+		border-radius: 50%;
+		background: var(--blue);
+		color: #fff;
+		font-family: var(--display);
+		font-weight: 700;
+		font-size: 0.9rem;
+		margin-bottom: 1rem;
+	}
+
+	.quad__c h3 {
+		margin-bottom: 0.55rem;
+	}
+
+	.quad__c p {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	/* ============ SERVICES ============ */
+	.srv {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.srv__c {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: clamp(1.35rem, 2.4vw, 1.9rem);
+		background: var(--paper);
+		border-radius: var(--round);
+		border: 1px solid var(--line);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+
+	.srv__c:hover {
+		box-shadow: var(--shadow);
+		transform: translateY(-3px);
+	}
+
+	.srv__k {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--blue);
+	}
+
+	.srv__d {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		flex: 1;
+	}
+
+	.srv__l {
+		list-style: none;
+		padding: 0.85rem 0 0;
+		margin: 0;
+		border-top: 1px solid var(--line);
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.82rem;
+		color: var(--ink-soft);
+	}
+
+	.srv__l li {
+		display: grid;
+		grid-template-columns: 0.9rem 1fr;
+		gap: 0.5rem;
+	}
+
+	.srv__l li::before {
+		content: '';
+		width: 0.9rem;
+		height: 0.9rem;
+		margin-top: 0.25rem;
+		border-radius: 50%;
+		background: var(--lemon);
+	}
+
+	/* ============ METHODE ============ */
+	.meth {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0;
+		counter-reset: m;
+	}
+
+	.meth__s {
+		display: grid;
+		grid-template-columns: 4.5rem minmax(0, 1fr);
+		/* row-gap distinct : sinon le titre et son paragraphe sont ecartes
+		   de toute la gouttiere horizontale. */
+		column-gap: clamp(1rem, 3vw, 2.5rem);
+		row-gap: 0.4rem;
+		padding-block: clamp(1.4rem, 2.8vw, 2rem);
+		border-top: 1px solid var(--line);
+		align-items: start;
+	}
+
+	.meth__s:last-child {
+		border-bottom: 1px solid var(--line);
+	}
+
+	.meth__n {
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: var(--navy);
+		color: #fff;
+		font-family: var(--display);
+		font-weight: 700;
+		font-size: 0.95rem;
+	}
+
+	/* h3 et p sont freres du numero : sans cette contrainte ils repassent
+	   en colonne 1 (largeur du rond) au lieu de suivre le texte. */
+	.meth__s h3,
+	.meth__s p {
+		grid-column: 2;
+	}
+
+	.meth__s h3 {
+		margin-bottom: 0.4rem;
+	}
+
+	.meth__s p {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 68ch;
+	}
+
+	/* ============ CLIENTS ============ */
+	.todo {
+		border-left: 4px solid var(--lemon);
+		background: #fffbe6;
+		padding: 0.85rem 1.1rem;
+		border-radius: 0 var(--round-sm) var(--round-sm) 0;
+		font-size: var(--s--1);
+		color: var(--ink-soft);
+		margin-bottom: 1.5rem;
+	}
+
+	.cli {
+		display: grid;
+		grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+		gap: clamp(1.25rem, 2.5vw, 2rem);
+		align-items: start;
+	}
+
+	.cli__l {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.cli__c {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(8rem, 1fr) minmax(0, 1.4fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 1.1rem 1.25rem;
+		background: var(--paper);
+		border-radius: var(--round-sm);
+		border: 1px solid var(--line);
+	}
+
+	.cli__n {
+		font-family: var(--display);
+		font-weight: 700;
+		color: var(--blue);
+	}
+
+	.cli__c h3 {
+		font-size: var(--s-0);
+		color: var(--ink-mute);
+	}
+
+	.cli__p,
+	.cli__x {
+		font-size: 0.82rem;
+		color: var(--ink-mute);
+	}
+
+	.cli__note {
+		padding: clamp(1.35rem, 2.5vw, 1.9rem);
+		background: var(--navy);
+		color: rgba(234, 240, 251, 0.75);
+		border-radius: var(--round);
+		display: grid;
+		gap: 0.8rem;
+	}
+
+	.cli__note h3 {
+		color: #fff;
+	}
+
+	.cli__note p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+	}
+
+	.cli__note .b {
+		justify-self: start;
+		margin-top: 0.4rem;
+	}
+
+	/* ============ RESSOURCES ============ */
+	.res {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.res__c {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: clamp(1.35rem, 2.4vw, 1.9rem);
+		border-radius: var(--round);
+		background: var(--paper-tint);
+		text-decoration: none;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+	}
+
+	.res__c:hover {
+		background: var(--blue-wash);
+		transform: translateY(-3px);
+	}
+
+	.res__k {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--blue);
+	}
+
+	.res__d {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		flex: 1;
+	}
+
+	.res__go {
+		font-family: var(--display);
+		font-weight: 600;
+		color: var(--blue-deep);
+	}
+
+	/* ============ CONTACT ============ */
+	.fin {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+
+	.fin__p {
+		margin-block: 1.2rem 1.9rem;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: rgba(234, 240, 251, 0.75);
+		max-width: 46ch;
+	}
+
+	.fin__act {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+
+	.fin__steps {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0.75rem;
+		counter-reset: f;
+	}
+
+	.fin__steps li {
+		counter-increment: f;
+		display: grid;
+		grid-template-columns: 2rem 1fr;
+		gap: 0.85rem;
+		align-items: baseline;
+		padding: 1rem 1.2rem;
+		border-radius: var(--round-sm);
+		background: rgba(234, 240, 251, 0.07);
+		font-size: var(--s--1);
+		line-height: 1.55;
+	}
+
+	.fin__steps li::before {
+		content: '0' counter(f);
+		font-family: var(--display);
+		font-weight: 700;
+		color: var(--lemon);
+	}
+
+	.fin__steps strong {
+		color: #fff;
+	}
+
+	/* ============ RESPONSIVE ============ */
+	@media (max-width: 66rem) {
+		.srv,
+		.res {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.cli {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 62rem) {
+		.hero__grid,
+		.fin {
+			grid-template-columns: 1fr;
+		}
+
+		.hero__lede {
+			max-width: 48ch;
+		}
+	}
+
+	@media (max-width: 48rem) {
+		.quad {
+			grid-template-columns: 1fr;
+		}
+
+		.cli__c {
+			grid-template-columns: 2.5rem 1fr;
+			row-gap: 0.4rem;
+		}
+
+		.cli__x {
+			grid-column: 2;
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.srv,
+		.res {
+			grid-template-columns: 1fr;
+		}
+
+		.meth__s {
+			grid-template-columns: 1fr;
+			gap: 0.7rem;
+		}
+	}
+</style>
