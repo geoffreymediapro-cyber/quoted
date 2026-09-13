@@ -1,82 +1,119 @@
 ---
+import { Image } from 'astro:assets';
+
 /**
- * Illustration du hero : une reponse generee par un moteur d'IA, avec sa
- * liste de sources. C'est la promesse du site rendue visible : la marque
- * cliente figure parmi les sources citees.
- * Contenu volontairement generique : aucune marque de moteur n'est imitee.
+ * Visuel du hero : ce que devient une recherche quand un moteur redige la
+ * reponse. La marque cliente figure parmi les sources citees.
+ *
+ * Deux modes :
+ *  1. Si une capture reelle existe dans src/assets/hero-answer.(png|jpg|webp),
+ *     elle est utilisee telle quelle. C'est le mode a privilegier : rien ne
+ *     vaut une vraie reponse d'AI Overview, de Gemini ou de Perplexity.
+ *  2. Sinon, l'illustration ci-dessous prend le relais. Elle est explicitement
+ *     signalee comme illustration et n'imite aucune interface existante.
  */
 
-const engines = ['ChatGPT', 'Perplexity', 'Gemini', 'Claude'];
+const found = import.meta.glob<{ default: ImageMetadata }>(
+	'../assets/hero-answer.{png,jpg,jpeg,webp,avif}',
+	{ eager: true },
+);
+const screenshot = Object.values(found)[0]?.default;
+
+const engines = ['ChatGPT', 'Perplexity', 'Gemini', 'AI Overviews'];
 
 const sources = [
-	{ label: 'guide-comparatif.fr', kind: 'Média spécialisé' },
-	{ label: 'votre-marque.fr', kind: 'Site de la marque', highlight: true },
-	{ label: 'reddit.com / r/…', kind: 'Discussion' },
-	{ label: 'fr.wikipedia.org', kind: 'Encyclopédie' },
+	{ n: 1, label: 'votre-marque.fr', kind: 'Site de la marque', highlight: true },
+	{ n: 2, label: 'guide-comparatif.fr', kind: 'Média spécialisé' },
+	{ n: 3, label: 'reddit.com / r/…', kind: 'Discussion' },
+	{ n: 4, label: 'fr.wikipedia.org', kind: 'Encyclopédie' },
 ];
 ---
 
-<figure class="panel rise" style="--delay: 280ms">
-	<div class="panel__chrome">
-		<span class="panel__dot" aria-hidden="true"></span>
-		<span class="panel__label">Réponse générée</span>
-		<span class="panel__live" aria-hidden="true">live</span>
-	</div>
+{
+	screenshot ? (
+		<figure class="shot rise" style="--delay: 280ms">
+			<Image
+				src={screenshot}
+				alt="Réponse générée par un moteur d'IA affichant la liste des sources qu'il cite."
+				widths={[560, 840, 1120]}
+				sizes="(max-width: 62rem) 92vw, 40rem"
+				loading="eager"
+			/>
+		</figure>
+	) : (
+		<figure class="panel rise" style="--delay: 280ms">
+			<div class="panel__chrome">
+				<span class="panel__dot" aria-hidden="true" />
+				<span class="panel__label">Réponse générée</span>
+				<span class="panel__tag">Illustration</span>
+			</div>
 
-	<div class="panel__body">
-		<p class="prompt">
-			<span class="prompt__caret" aria-hidden="true"></span>
-			« Quel prestataire choisir pour <em>…</em> ? »
-		</p>
+			<div class="panel__body">
+				<p class="prompt">
+					<span class="prompt__caret" aria-hidden="true" />
+					Quel logiciel de facturation pour une TPE en 2026 ?
+				</p>
 
-		<div class="answer">
-			<p class="answer__text">
-				Plusieurs acteurs ressortent régulièrement sur ce sujet.
-				<mark>Votre marque</mark><sup>2</sup> est citée pour
-			</p>
-			<span class="bar" style="--w: 96%; --delay: 560ms"></span>
-			<span class="bar" style="--w: 88%; --delay: 630ms"></span>
-			<span class="bar" style="--w: 62%; --delay: 700ms"></span>
-		</div>
+				<div class="answer">
+					<p>
+						Trois solutions reviennent régulièrement sur ce besoin.
+						<mark>Votre marque</mark>
+						<sup>1</sup> est citée pour sa conformité à la facturation électronique et
+						sa prise en main rapide<sup>2</sup>. Les retours d'utilisateurs vont dans
+						le même sens sur la qualité du support<sup>3</sup>.
+					</p>
+				</div>
 
-		<div class="sources">
-			<p class="sources__title">Sources citées</p>
-			<ul>
-				{
-					sources.map((source, index) => (
-						<li
-							class:list={['source', { 'source--on': source.highlight }]}
-							style={`--delay: ${790 + index * 80}ms`}
-						>
-							<span class="source__num">{index + 1}</span>
-							<span class="source__label">{source.label}</span>
-							<span class="source__kind">{source.kind}</span>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-	</div>
+				<div class="sources">
+					<p class="sources__title">Sources citées</p>
+					<ul>
+						{sources.map((source, index) => (
+							<li
+								class:list={['source', { 'source--on': source.highlight }]}
+								style={`--delay: ${640 + index * 80}ms`}
+							>
+								<span class="source__num">{source.n}</span>
+								<span class="source__label">{source.label}</span>
+								<span class="source__kind">{source.kind}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
 
-	<div class="panel__engines">
-		{engines.map((engine) => <span class="engine">{engine}</span>)}
-	</div>
-
-	<figcaption class="visually-hidden">
-		Illustration d'une réponse générée par un moteur d'IA citant la marque parmi ses
-		sources.
-	</figcaption>
-</figure>
+			<div class="panel__engines">
+				{engines.map((engine) => (
+					<span class="engine">{engine}</span>
+				))}
+			</div>
+		</figure>
+	)
+}
 
 <style>
+	/* --- Mode capture reelle --- */
+	.shot {
+		margin: 0;
+		border: 1px solid var(--ink);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.shot :global(img) {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	/* --- Mode illustration --- */
 	.panel {
+		margin: 0;
 		background: var(--paper-raised);
 		border: 1px solid var(--ink);
 		border-radius: var(--radius-lg);
 		overflow: hidden;
 	}
 
-	/* --- Barre de titre --- */
 	.panel__chrome {
 		display: flex;
 		align-items: center;
@@ -94,7 +131,7 @@ const sources = [
 	}
 
 	.panel__label,
-	.panel__live {
+	.panel__tag {
 		font-family: var(--mono);
 		font-size: var(--step--2);
 		font-weight: 500;
@@ -102,16 +139,19 @@ const sources = [
 		text-transform: uppercase;
 	}
 
-	.panel__live {
+	/* Mention explicite : ce panneau n'est pas une capture */
+	.panel__tag {
 		margin-left: auto;
-		color: rgba(238, 240, 244, 0.5);
+		padding: 0.1rem 0.4rem;
+		border: 1px solid rgba(238, 240, 244, 0.3);
+		color: rgba(238, 240, 244, 0.6);
+		letter-spacing: 0.08em;
 	}
 
 	.panel__body {
 		padding: clamp(1.1rem, 2.5vw, 1.6rem);
 	}
 
-	/* --- Prompt --- */
 	.prompt {
 		display: flex;
 		align-items: baseline;
@@ -120,12 +160,8 @@ const sources = [
 		margin-bottom: 1.15rem;
 		border-bottom: 1px solid var(--line);
 		font-size: var(--step--1);
-		color: var(--ink-soft);
-	}
-
-	.prompt em {
-		color: var(--ink-mute);
-		font-style: normal;
+		font-weight: 700;
+		color: var(--ink);
 	}
 
 	.prompt__caret {
@@ -142,18 +178,16 @@ const sources = [
 		}
 	}
 
-	/* --- Reponse --- */
 	.answer {
-		display: grid;
-		gap: 0.55rem;
 		margin-bottom: 1.5rem;
+		animation: fade 0.5s ease backwards;
+		animation-delay: 460ms;
 	}
 
-	.answer__text {
+	.answer p {
 		font-size: var(--step--1);
-		line-height: 1.65;
-		animation: fade 0.5s ease backwards;
-		animation-delay: 480ms;
+		line-height: 1.7;
+		color: var(--ink-soft);
 	}
 
 	mark {
@@ -165,27 +199,9 @@ const sources = [
 
 	sup {
 		font-family: var(--mono);
-		font-size: 0.6em;
+		font-size: 0.62em;
 		color: var(--ember);
-		margin-left: 0.1em;
-	}
-
-	.bar {
-		display: block;
-		height: 0.5rem;
-		width: var(--w);
-		background: var(--paper-sunk);
-		border: 1px solid var(--line);
-		animation: grow 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-		animation-delay: var(--delay);
-		transform-origin: left;
-	}
-
-	@keyframes grow {
-		from {
-			transform: scaleX(0);
-			opacity: 0;
-		}
+		margin-left: 0.08em;
 	}
 
 	@keyframes fade {
@@ -195,7 +211,6 @@ const sources = [
 		}
 	}
 
-	/* --- Sources --- */
 	.sources__title {
 		font-family: var(--mono);
 		font-size: var(--step--2);
@@ -272,7 +287,6 @@ const sources = [
 		color: var(--violet);
 	}
 
-	/* --- Pied : moteurs testes --- */
 	.panel__engines {
 		display: flex;
 		flex-wrap: wrap;
