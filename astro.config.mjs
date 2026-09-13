@@ -9,8 +9,11 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			// Pages legales : noindex tant qu'elles ne sont pas completees.
+			// /v2/ : page de comparaison, jamais indexee.
 			filter: (page) =>
-				!page.includes('/mentions-legales') && !page.includes('/politique-de-confidentialite'),
+				!page.includes('/mentions-legales') &&
+				!page.includes('/politique-de-confidentialite') &&
+				!page.includes('/v2'),
 		}),
 	],
 

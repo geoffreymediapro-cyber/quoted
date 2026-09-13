@@ -1,0 +1,1365 @@
+---
+import { getCollection } from 'astro:content';
+import V2Layout from '../../layouts/V2Layout.astro';
+import {
+	SERVICES,
+	METHOD,
+	TOOLS,
+	SCOPE_IN,
+	SCOPE_OUT,
+	CLIENTS,
+	PLACEHOLDER_CLIENTS,
+	FAQ,
+	CONTACT_EMAIL,
+} from '../../data/site';
+
+const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+
+const proofs = [
+	'Relevé avant toute production',
+	'Méthode publiée en accès libre',
+	'Périmètre écrit avant le devis',
+	'Aucun outil facturé en licence',
+];
+
+/** Trois entrees dans le meme systeme, plutot qu'un catalogue. */
+const doors = [
+	{
+		label: 'Le relevé',
+		title: 'Savoir où vous en êtes',
+		body: "Ce que les moteurs répondent déjà sur vos sujets, et qui ils citent à votre place. C'est la porte par laquelle presque tout le monde entre.",
+	},
+	{
+		label: 'La production',
+		title: 'Devenir citable',
+		body: 'Des contenus dont un moteur peut extraire une réponse autonome, un maillage qui consolide le sujet, des données structurées cohérentes.',
+	},
+	{
+		label: 'Hors site',
+		title: 'Être confirmé ailleurs',
+		body: "Ce que votre site affirme pèse moins que ce que les autres confirment. Médias, Reddit, référentiels : les sources que les moteurs reprennent.",
+	},
+];
+
+/**
+ * Surfaces de reponse. Le statut est honnete : ce qui est hors perimetre
+ * l'est vraiment, et c'est ce qui rend le reste credible.
+ */
+const surfaces = [
+	{ code: 'AI', name: 'AI Overviews de Google', note: 'La réponse générée au-dessus des liens.', on: true },
+	{ code: 'GPT', name: 'ChatGPT', note: 'Citations dans le moteur conversationnel le plus utilisé.', on: true },
+	{ code: 'PPX', name: 'Perplexity', note: 'Réponses systématiquement sourcées, très lisibles à mesurer.', on: true },
+	{ code: 'GEM', name: 'Gemini', note: 'Intégré à l’écosystème Google, en progression rapide.', on: true },
+	{ code: 'RDT', name: 'Reddit et forums', note: 'Massivement repris par les moteurs. Présence organique, jamais de faux comptes.', on: true },
+	{ code: 'WIK', name: 'Wikipédia et Wikidata', note: 'Sources de référence pour les entités. Via un partenaire spécialisé.', on: true },
+	{ code: 'SEO', name: 'Google organique', note: 'Nous traitons ce qui rend une page citable. L’audit technique lourd et la refonte restent du SEO classique.', on: false },
+	{ code: 'YT', name: 'YouTube et vidéo', note: 'Surface réelle, mais ce n’est pas notre métier. Nous vous orientons.', on: false },
+	{ code: 'SHP', name: 'Shopping et flux produit', note: 'Flux marchands et fiches produit : hors périmètre.', on: false },
+	{ code: 'ASO', name: 'App Store et Google Play', note: 'Optimisation de fiches applicatives : hors périmètre.', on: false },
+];
+
+const covered = surfaces.filter((s) => s.on).length;
+
+const scanSubject = encodeURIComponent('Scan de visibilité IA');
+const scanBody = encodeURIComponent(
+	`Bonjour,
+
+Notre site :
+Notre secteur :
+Deux ou trois questions que nos clients posent avant d'acheter :
+Un concurrent de référence :
+
+Merci,`,
+);
+---
+
+<V2Layout
+	title="Quoted V2 (test) · agence GEO"
+	description="Version 2 de la page d'accueil, page de comparaison non indexée."
+>
+	<!-- ===================== HERO ===================== -->
+	<section class="hero">
+		<div class="hero__blob" aria-hidden="true"></div>
+
+		<div class="wrap hero__grid">
+			<div class="hero__copy">
+				<p class="kick up">Agence GEO · Generative Engine Optimization</p>
+
+				<h1 class="up" style="--d: 60ms">
+					Vos clients demandent.<br />
+					<span class="lime">L'IA répond.</span><br />
+					Elle cite qui ?
+				</h1>
+
+				<p class="hero__lede up" style="--d: 120ms">
+					ChatGPT, Perplexity, Gemini, AI Overviews : sur ces surfaces, il ne reste
+					que trois ou quatre sources à l'écran. Nous travaillons votre place parmi
+					elles, et nous la mesurons mois après mois.
+				</p>
+
+				<div class="hero__act up" style="--d: 180ms">
+					<a class="b b--go" href="#contact">
+						Scanner ma visibilité IA
+						<span class="arw" aria-hidden="true">→</span>
+					</a>
+					<a class="b b--line" href="#surfaces">Voir les surfaces couvertes</a>
+				</div>
+			</div>
+
+			<div class="hero__vis up" style="--d: 260ms">
+				<!-- Carte 1 : la question, detachee et posee en avant -->
+				<figure class="ask">
+					<span class="ask__dot" aria-hidden="true"></span>
+					Quel logiciel de facturation pour une TPE en 2026 ?
+				</figure>
+
+				<!-- Carte 2 : la reponse generee et ses sources -->
+				<figure class="ans">
+					<div class="ans__bar">
+						<span>Réponse générée</span>
+						<span class="ans__tag">Illustration</span>
+					</div>
+					<div class="ans__in">
+						<p class="ans__txt">
+							Trois solutions reviennent régulièrement sur ce besoin.
+							<mark>Votre marque</mark><sup>1</sup> est citée pour sa conformité à la
+							facturation électronique<sup>2</sup>.
+						</p>
+						<p class="ans__st">Sources citées</p>
+						<ul class="ans__src">
+							<li class="on"><span>1</span>votre-marque.fr</li>
+							<li><span>2</span>guide-comparatif.fr</li>
+							<li><span>3</span>reddit.com / r/…</li>
+						</ul>
+					</div>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== BARRE DE PREUVE ===================== -->
+	<div class="proof">
+		<div class="wrap proof__in">
+			{proofs.map((proof) => <span>{proof}</span>)}
+		</div>
+	</div>
+
+	<!-- ===================== TROIS PORTES ===================== -->
+	<section class="band">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Notre approche</p>
+				<h2>Trois portes. <span class="lime">Un seul système.</span></h2>
+				<p>
+					Le relevé, la production et la présence hors site ne sont pas trois
+					prestations à cocher : ce sont trois entrées dans le même mécanisme. Vous
+					entrez par celle qui correspond à votre situation, le reste suit.
+				</p>
+			</div>
+
+			<div class="doors">
+				{
+					doors.map((door, index) => (
+						<article class="door obs" style={`--d: ${index * 80}ms`}>
+							<p class="door__l">{door.label}</p>
+							<h3>{door.title}</h3>
+							<p class="door__b">{door.body}</p>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== SURFACES ===================== -->
+	<section class="band band--card" id="surfaces">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Couverture</p>
+				<h2>Dix surfaces. <span class="lime">{covered} couvertes.</span></h2>
+				<p>
+					Vos clients ne cherchent pas au même endroit selon la question. Voici où
+					nous intervenons, et où nous n'intervenons pas. Les quatre dernières cases
+					sont réelles et nous ne les traitons pas : autant le dire ici plutôt qu'au
+					moment du devis.
+				</p>
+			</div>
+
+			<ul class="surf">
+				{
+					surfaces.map((surface, index) => (
+						<li class:list={['surf__c', 'obs', { off: !surface.on }]} style={`--d: ${index * 35}ms`}>
+							<span class="surf__code" aria-hidden="true">
+								{surface.code}
+							</span>
+							<span class="surf__st">{surface.on ? 'Couvert' : 'Hors périmètre'}</span>
+							<h3>{surface.name}</h3>
+							<p>{surface.note}</p>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<!-- ===================== SERVICES ===================== -->
+	<section class="band" id="services">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Le détail, levier par levier</p>
+				<h2>Ce qu'on fait <span class="lime">concrètement</span></h2>
+			</div>
+
+			<div class="srv">
+				{
+					SERVICES.map((service, index) => (
+						<article class="srv__c obs" style={`--d: ${index * 50}ms`}>
+							<p class="srv__k">{service.kicker}</p>
+							<h3>{service.name}</h3>
+							<p class="srv__d">{service.description}</p>
+							<ul class="ticks">
+								{service.features.map((feature) => (
+									<li>{feature}</li>
+								))}
+							</ul>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== OUTILS ===================== -->
+	<section class="band band--card" id="outils">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Nos outils</p>
+				<h2>Rien de <span class="lime">propriétaire</span></h2>
+				<p>
+					Aucune licence maison à vous refacturer. Ce sont les mêmes instruments que
+					n'importe qui peut ouvrir : ce qui change, c'est le protocole appliqué
+					dessus, et la régularité avec laquelle il est rejoué.
+				</p>
+			</div>
+
+			<ul class="tools">
+				{
+					TOOLS.map((tool, index) => (
+						<li class="tool obs" style={`--d: ${index * 30}ms`}>
+							<span class="tool__c" aria-hidden="true">
+								{tool.code}
+							</span>
+							<span>
+								<span class="tool__n">{tool.name}</span>
+								<span class="tool__u">{tool.use}</span>
+							</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<!-- ===================== METHODE ===================== -->
+	<section class="band" id="methode">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Comment on travaille</p>
+				<h2>Cinq temps, <span class="lime">dans cet ordre</span></h2>
+				<p>
+					Aucune étape n'est décorative : chacune produit une décision. On ne passe à
+					la suivante que lorsque la précédente a donné un résultat lisible.
+				</p>
+			</div>
+
+			<ol class="meth">
+				{
+					METHOD.map((step, index) => (
+						<li class="meth__s obs" style={`--d: ${index * 60}ms`}>
+							<span class="meth__n">{step.step}</span>
+							<h3>{step.title}</h3>
+							<p>{step.body}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</section>
+
+	<!-- ===================== PERIMETRE ===================== -->
+	<section class="band band--navy" id="perimetre">
+		<div class="wrap on-dark">
+			<div class="head obs">
+				<p class="kick">Périmètre</p>
+				<h2>Ce qu'on <span class="lime">refuse</span> de faire</h2>
+				<p>
+					Un périmètre flou finit toujours par se payer, d'un côté ou de l'autre.
+					Autant l'écrire avant le devis.
+				</p>
+			</div>
+
+			<div class="scope">
+				<div class="scope__in obs">
+					<h3>Dans le périmètre</h3>
+					<ul class="ticks">
+						{SCOPE_IN.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+
+				<div class="scope__out obs" style="--d: 90ms">
+					<h3>Hors périmètre</h3>
+					<ul>
+						{
+							SCOPE_OUT.map((item) => (
+								<li>
+									<p class="scope__l">
+										<span aria-hidden="true">✕</span>
+										{item.label}
+									</p>
+									<p class="scope__d">{item.detail}</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== CLIENTS ===================== -->
+	<section class="band" id="clients">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Clients accompagnés</p>
+				<h2>Les marques que <span class="lime">nous accompagnons</span></h2>
+				<p>
+					Nos références sont présentées sans nom, par choix. Ce que vous voyez ici,
+					c'est le profil, la situation de départ et le travail engagé.
+				</p>
+			</div>
+
+			{
+				PLACEHOLDER_CLIENTS && (
+					<p class="todo obs">
+						<strong>Section à compléter.</strong> Les profils ci-dessous sont un
+						gabarit, pas des références réelles.
+					</p>
+				)
+			}
+
+			<div class="cli">
+				<div class="cli__l">
+					{
+						CLIENTS.map((client, index) => (
+							<article class="cli__c obs" style={`--d: ${index * 50}ms`}>
+								<span class="cli__n">{String(index + 1).padStart(2, '0')}</span>
+								<div>
+									<h3>{client.sector}</h3>
+									<p class="cli__p">{client.profile}</p>
+								</div>
+								<p class="cli__x">{client.context}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<aside class="cli__note obs">
+					<h3>Pourquoi aucun logo</h3>
+					<p>
+						Travailler la visibilité d'une marque, c'est entrer dans sa stratégie de
+						contenu et dans ses points faibles. Nous ne les affichons pas en vitrine.
+					</p>
+					<p>
+						Les références nominatives sont communiquées en entretien, avec l'accord du
+						client concerné.
+					</p>
+					<a class="b b--navy" href="#contact">Demander des références</a>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== RESSOURCES ===================== -->
+	<section class="band band--card" id="ressources">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Ressources</p>
+				<h2>Tout ce qu'on sait, <span class="lime">en accès libre</span></h2>
+				<p>
+					Pas de livre blanc à échanger contre votre adresse e-mail. Si vous préférez
+					appliquer la méthode vous-même, elle est écrite.
+				</p>
+			</div>
+
+			<div class="res">
+				{
+					guides.map((guide, index) => (
+						<a class="res__c obs" href={`/guide/${guide.id}/`} style={`--d: ${index * 60}ms`}>
+							<p class="res__k">{guide.data.chapter}</p>
+							<h3>{guide.data.title}</h3>
+							<p class="res__d">{guide.data.description}</p>
+							<span class="res__go">
+								Lire <span class="arw" aria-hidden="true">→</span>
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== FAQ ===================== -->
+	<section class="band" id="faq">
+		<div class="wrap">
+			<div class="head obs">
+				<p class="kick">Questions fréquentes</p>
+				<h2>Ce qu'on nous demande <span class="lime">avant de signer</span></h2>
+			</div>
+
+			<div class="faq">
+				{
+					FAQ.map((item, index) => (
+						<details class="qa obs" style={`--d: ${index * 35}ms`} name="faq">
+							<summary>
+								<span>{item.q}</span>
+								<span class="qa__s" aria-hidden="true" />
+							</summary>
+							<div class="qa__a">
+								<p>{item.a}</p>
+							</div>
+						</details>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ===================== CONTACT ===================== -->
+	<section class="band band--navy" id="contact">
+		<div class="wrap fin on-dark">
+			<div>
+				<p class="kick obs">Le scan</p>
+				<h2 class="obs" style="--d: 60ms">
+					Voyons d'abord ce que l'IA <span class="lime">dit déjà</span> de vous
+				</h2>
+				<p class="fin__p obs" style="--d: 120ms">
+					Envoyez-nous votre site, votre secteur et deux ou trois questions que vos
+					clients posent avant d'acheter. Nous rejouons ces questions sur les moteurs
+					et nous vous renvoyons ce qu'ils répondent, et qui ils citent.
+				</p>
+				<div class="fin__act obs" style="--d: 180ms">
+					<a class="b b--go" href={`mailto:${CONTACT_EMAIL}?subject=${scanSubject}&body=${scanBody}`}>
+						Scanner ma visibilité IA
+						<span class="arw" aria-hidden="true">→</span>
+					</a>
+					<a class="b b--line" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+				</div>
+			</div>
+
+			<div class="fin__box obs" style="--d: 240ms">
+				<p class="fin__bt">Ce que contient le scan</p>
+				<ul class="ticks">
+					<li>Cinq prompts de votre marché rejoués sur quatre moteurs</li>
+					<li>Ce qui ressort, et les sources citées à chaque fois</li>
+					<li>Si votre marque apparaît, et à quelle place</li>
+					<li>Les deux ou trois écarts les plus évidents</li>
+				</ul>
+				<p class="fin__bn">
+					Gratuit, sans engagement, et sans relance automatique derrière. Réponse sous
+					48 h ouvrées. Ce n'est pas un audit complet : c'est un aperçu honnête pour
+					savoir s'il y a matière à travailler.
+				</p>
+			</div>
+		</div>
+	</section>
+</V2Layout>
+
+<style>
+	/* ================= HERO ================= */
+	.hero {
+		position: relative;
+		padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+		overflow: hidden;
+	}
+
+	/* Grande forme organique qui deborde a droite */
+	.hero__blob {
+		position: absolute;
+		top: -18%;
+		right: -14%;
+		width: 62%;
+		height: 132%;
+		background: var(--navy);
+		border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+		pointer-events: none;
+	}
+
+	.hero__grid {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+		gap: clamp(2rem, 5vw, 3.5rem);
+		align-items: center;
+	}
+
+	.hero h1 {
+		font-size: var(--s-4);
+	}
+
+	.hero__lede {
+		margin-block: 1.4rem 2rem;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: var(--ink-soft);
+		max-width: 38ch;
+	}
+
+	.hero__act {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+
+	.hero__vis {
+		position: relative;
+		/* Laisse la place a la pastille pour qu'elle ne recouvre pas la barre
+		   de titre de la carte reponse. */
+		padding-top: 4.25rem;
+	}
+
+	/* Carte question, posee en avant et en decalage */
+	.ask {
+		position: absolute;
+		top: 0;
+		left: -3rem;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		max-width: 28rem;
+		padding: 0.8rem 1.2rem;
+		background: var(--lemon);
+		color: var(--navy);
+		border-radius: 999px;
+		font-size: 0.82rem;
+		font-weight: 700;
+		line-height: 1.3;
+		box-shadow: var(--shadow);
+	}
+
+	.ask__dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: var(--coral);
+		flex: none;
+	}
+
+	.ans {
+		background: var(--paper-card);
+		border-radius: var(--round);
+		box-shadow: var(--shadow);
+		overflow: hidden;
+	}
+
+	.ans__bar {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.85rem 1.2rem;
+		background: var(--navy-deep);
+		color: #fff;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.ans__tag {
+		margin-left: auto;
+		padding: 0.15rem 0.55rem;
+		border: 1px solid rgba(233, 238, 247, 0.28);
+		border-radius: 999px;
+		color: rgba(233, 238, 247, 0.6);
+		font-size: 0.64rem;
+	}
+
+	.ans__in {
+		padding: clamp(1.2rem, 2.5vw, 1.7rem);
+	}
+
+	.ans__txt {
+		font-size: var(--s--1);
+		line-height: 1.7;
+		color: var(--ink-soft);
+		margin-bottom: 1.3rem;
+	}
+
+	.ans__txt mark {
+		background: var(--coral-soft);
+		color: var(--navy);
+		font-weight: 700;
+		padding: 0 0.2em;
+		border-radius: 3px;
+	}
+
+	.ans__txt sup {
+		color: var(--blue);
+		font-weight: 700;
+		font-size: 0.7em;
+	}
+
+	.ans__st {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+		margin-bottom: 0.6rem;
+	}
+
+	.ans__src {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 0.4rem;
+	}
+
+	.ans__src li {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0.55rem 0.75rem;
+		border-radius: var(--round-sm);
+		background: var(--paper);
+		font-size: 0.84rem;
+		color: var(--ink-soft);
+	}
+
+	.ans__src li span {
+		display: grid;
+		place-items: center;
+		width: 1.35rem;
+		height: 1.35rem;
+		border-radius: 50%;
+		background: #fff;
+		font-size: 0.68rem;
+		font-weight: 700;
+		color: var(--ink-mute);
+		flex: none;
+	}
+
+	.ans__src li.on {
+		background: var(--blue-wash);
+		color: var(--blue-deep);
+		font-weight: 700;
+	}
+
+	.ans__src li.on span {
+		background: var(--blue);
+		color: #fff;
+	}
+
+	/* ================= BARRE DE PREUVE ================= */
+	.proof {
+		background: var(--navy);
+		color: #e9eef7;
+	}
+
+	.proof__in {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.75rem 2rem;
+		padding-block: 1rem;
+	}
+
+	.proof__in span {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		font-size: 0.84rem;
+		font-weight: 600;
+	}
+
+	.proof__in span::before {
+		content: '';
+		width: 1.1rem;
+		height: 1.1rem;
+		flex: none;
+		border-radius: 50%;
+		background: var(--lemon);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230f1e33' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
+		background-size: 0.78rem;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	/* ================= PORTES ================= */
+	.doors {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2.2vw, 1.6rem);
+	}
+
+	.door {
+		padding: clamp(1.4rem, 2.6vw, 2.1rem);
+		border-radius: var(--round);
+		background: var(--paper-card);
+		border: 1px solid var(--line);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.door:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow);
+	}
+
+	.door__l {
+		display: inline-block;
+		font-family: var(--display);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--navy);
+		background: var(--lemon);
+		padding: 0.25rem 0.65rem;
+		border-radius: 999px;
+		margin-bottom: 1rem;
+	}
+
+	.door h3 {
+		font-size: var(--s-2);
+		margin-bottom: 0.6rem;
+	}
+
+	.door__b {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	/* ================= SURFACES ================= */
+	.surf {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		gap: 0.85rem;
+	}
+
+	.surf__c {
+		position: relative;
+		padding: 1.25rem 1.35rem;
+		border-radius: var(--round-sm);
+		background: var(--paper);
+		border: 1px solid var(--line);
+	}
+
+	.surf__code {
+		display: inline-grid;
+		place-items: center;
+		width: 2.4rem;
+		height: 2.4rem;
+		border-radius: 9px;
+		background: var(--navy);
+		color: var(--lemon);
+		font-family: var(--display);
+		font-size: 0.7rem;
+		font-weight: 800;
+		margin-bottom: 0.9rem;
+	}
+
+	.surf__st {
+		position: absolute;
+		top: 1.35rem;
+		right: 1.35rem;
+		font-size: 0.64rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		background: var(--lemon);
+		color: var(--navy);
+	}
+
+	.surf__c h3 {
+		font-size: var(--s-0);
+		margin-bottom: 0.35rem;
+	}
+
+	.surf__c p {
+		font-size: 0.82rem;
+		line-height: 1.55;
+		color: var(--ink-soft);
+	}
+
+	/* Hors perimetre : volontairement en retrait, mais lisible */
+	.surf__c.off {
+		background: transparent;
+		border-style: dashed;
+	}
+
+	.surf__c.off .surf__code {
+		background: transparent;
+		border: 1px solid var(--line-strong);
+		color: var(--ink-mute);
+	}
+
+	.surf__c.off .surf__st {
+		background: transparent;
+		border: 1px solid var(--line-strong);
+		color: var(--ink-mute);
+	}
+
+	.surf__c.off h3 {
+		color: var(--ink-mute);
+	}
+
+	/* ================= SERVICES ================= */
+	.srv {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.srv__c {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: clamp(1.35rem, 2.4vw, 1.9rem);
+		background: var(--paper-card);
+		border-radius: var(--round);
+		border: 1px solid var(--line);
+	}
+
+	.srv__k {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--blue);
+	}
+
+	.srv__d {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		flex: 1;
+	}
+
+	.srv__c :global(.ticks) {
+		padding-top: 0.85rem;
+		border-top: 1px solid var(--line);
+	}
+
+	/* ================= OUTILS ================= */
+	.tools {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.7rem;
+	}
+
+	.tool {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.8rem 0.95rem;
+		border-radius: var(--round-sm);
+		background: var(--paper);
+	}
+
+	.tool__c {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 2.3rem;
+		height: 2.3rem;
+		border-radius: 8px;
+		background: var(--navy);
+		color: var(--lemon);
+		font-family: var(--display);
+		font-size: 0.66rem;
+		font-weight: 800;
+	}
+
+	.tool__n,
+	.tool__u {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.tool__n {
+		font-family: var(--display);
+		font-size: var(--s--1);
+		font-weight: 700;
+	}
+
+	.tool__u {
+		font-size: 0.7rem;
+		color: var(--ink-mute);
+	}
+
+	/* ================= METHODE ================= */
+	.meth {
+		list-style: none;
+		padding: 0;
+	}
+
+	.meth__s {
+		display: grid;
+		grid-template-columns: 4.5rem minmax(0, 1fr);
+		column-gap: clamp(1rem, 3vw, 2.5rem);
+		row-gap: 0.4rem;
+		padding-block: clamp(1.4rem, 2.8vw, 2rem);
+		border-top: 1px solid var(--line-strong);
+		align-items: start;
+	}
+
+	.meth__s:last-child {
+		border-bottom: 1px solid var(--line-strong);
+	}
+
+	.meth__n {
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: var(--coral);
+		color: var(--navy);
+		font-family: var(--display);
+		font-weight: 800;
+		font-size: 0.95rem;
+	}
+
+	.meth__s h3,
+	.meth__s p {
+		grid-column: 2;
+	}
+
+	.meth__s h3 {
+		font-size: var(--s-2);
+	}
+
+	.meth__s p {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 68ch;
+	}
+
+	/* ================= PERIMETRE ================= */
+	.scope {
+		display: grid;
+		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+		gap: clamp(1.25rem, 3vw, 2rem);
+		align-items: start;
+	}
+
+	.scope__in,
+	.scope__out {
+		padding: clamp(1.4rem, 2.6vw, 2rem);
+		border-radius: var(--round);
+	}
+
+	.scope__in {
+		background: rgba(233, 238, 247, 0.07);
+	}
+
+	.scope__out {
+		background: var(--paper-card);
+		color: var(--ink-soft);
+	}
+
+	.scope h3 {
+		margin-bottom: 1.2rem;
+		padding-bottom: 0.9rem;
+		border-bottom: 1px solid rgba(233, 238, 247, 0.18);
+		color: #fff;
+	}
+
+	.scope__out h3 {
+		color: var(--ink);
+		border-bottom-color: var(--line);
+	}
+
+	.scope__in :global(.ticks) {
+		color: rgba(233, 238, 247, 0.82);
+		font-size: var(--s--1);
+	}
+
+	.scope__out ul {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.scope__l {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
+		font-family: var(--display);
+		font-weight: 700;
+		font-size: var(--s-0);
+		color: var(--ink);
+		margin-bottom: 0.3rem;
+	}
+
+	.scope__l span {
+		color: var(--coral);
+	}
+
+	.scope__d {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		padding-left: 1.4rem;
+	}
+
+	/* ================= CLIENTS ================= */
+	.todo {
+		border-left: 4px solid var(--coral);
+		background: #fff2ec;
+		padding: 0.9rem 1.15rem;
+		border-radius: 0 var(--round-sm) var(--round-sm) 0;
+		font-size: var(--s--1);
+		color: var(--ink-soft);
+		margin-bottom: 1.6rem;
+	}
+
+	.cli {
+		display: grid;
+		grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+		gap: clamp(1.25rem, 2.5vw, 2rem);
+		align-items: start;
+	}
+
+	.cli__l {
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.cli__c {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(8rem, 1fr) minmax(0, 1.4fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 1.05rem 1.25rem;
+		background: var(--paper-card);
+		border-radius: var(--round-sm);
+		border: 1px solid var(--line);
+	}
+
+	.cli__n {
+		font-family: var(--display);
+		font-weight: 800;
+		color: var(--coral);
+	}
+
+	.cli__c h3 {
+		font-size: var(--s-0);
+		color: var(--ink-mute);
+	}
+
+	.cli__p,
+	.cli__x {
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--ink-mute);
+	}
+
+	.cli__note {
+		padding: clamp(1.35rem, 2.5vw, 1.9rem);
+		background: var(--navy);
+		color: rgba(233, 238, 247, 0.75);
+		border-radius: var(--round);
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.cli__note h3 {
+		color: #fff;
+	}
+
+	.cli__note p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+	}
+
+	.cli__note .b {
+		justify-self: start;
+		margin-top: 0.3rem;
+		background: var(--lemon);
+		color: var(--navy);
+	}
+
+	/* ================= RESSOURCES ================= */
+	.res {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.res__c {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: clamp(1.35rem, 2.4vw, 1.9rem);
+		border-radius: var(--round);
+		background: var(--paper);
+		text-decoration: none;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.res__c:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow);
+	}
+
+	.res__k {
+		font-size: 0.68rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--blue);
+	}
+
+	.res__d {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		flex: 1;
+	}
+
+	.res__go {
+		font-family: var(--display);
+		font-weight: 700;
+		color: var(--blue-deep);
+	}
+
+	/* ================= FAQ ================= */
+	.faq {
+		max-width: 58rem;
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	.qa {
+		background: var(--paper-card);
+		border: 1px solid var(--line);
+		border-radius: var(--round-sm);
+	}
+
+	summary {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 1.15rem 1.35rem;
+		cursor: pointer;
+		list-style: none;
+		font-family: var(--display);
+		font-size: var(--s-1);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		line-height: 1.25;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary:hover {
+		color: var(--blue);
+	}
+
+	.qa__s {
+		position: relative;
+		flex: none;
+		width: 1.1rem;
+		height: 1.1rem;
+		margin-top: 0.3rem;
+	}
+
+	.qa__s::before,
+	.qa__s::after {
+		content: '';
+		position: absolute;
+		inset: 50% 0 auto 0;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--coral);
+		transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.3, 1);
+	}
+
+	.qa__s::after {
+		transform: rotate(90deg);
+	}
+
+	.qa[open] .qa__s::after {
+		transform: rotate(0deg);
+	}
+
+	.qa__a {
+		padding: 0 1.35rem 1.35rem;
+		max-width: 62ch;
+	}
+
+	.qa__a p {
+		font-size: var(--s--1);
+		line-height: 1.7;
+		color: var(--ink-soft);
+	}
+
+	/* ================= CONTACT ================= */
+	.fin {
+		display: grid;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		gap: clamp(2rem, 5vw, 3.5rem);
+		align-items: center;
+	}
+
+	.fin__p {
+		margin-block: 1.2rem 1.9rem;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: rgba(233, 238, 247, 0.75);
+		max-width: 46ch;
+	}
+
+	.fin__act {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+
+	.fin__box {
+		padding: clamp(1.5rem, 3vw, 2.1rem);
+		border-radius: var(--round);
+		background: rgba(233, 238, 247, 0.07);
+		border: 1px solid rgba(233, 238, 247, 0.14);
+	}
+
+	.fin__bt {
+		font-family: var(--display);
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--lemon);
+		margin-bottom: 1.1rem;
+	}
+
+	.fin__box :global(.ticks) {
+		color: rgba(233, 238, 247, 0.85);
+		font-size: var(--s--1);
+	}
+
+	.fin__bn {
+		margin-top: 1.2rem;
+		padding-top: 1.1rem;
+		border-top: 1px solid rgba(233, 238, 247, 0.14);
+		font-size: 0.8rem;
+		line-height: 1.6;
+		color: rgba(233, 238, 247, 0.6);
+	}
+
+	/* ================= RESPONSIVE ================= */
+	@media (max-width: 68rem) {
+		.tools {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 66rem) {
+		.srv,
+		.res {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.cli {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 62rem) {
+		.hero__grid,
+		.fin {
+			grid-template-columns: 1fr;
+		}
+
+		.hero__blob {
+			top: auto;
+			bottom: -30%;
+			right: -30%;
+			width: 90%;
+			height: 60%;
+			opacity: 0.9;
+		}
+
+		.hero__vis {
+			max-width: 32rem;
+			padding-top: 2rem;
+		}
+
+		.ask {
+			left: 0;
+		}
+
+		.scope {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 56rem) {
+		.doors {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 46rem) {
+		.tools {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 44rem) {
+		.srv,
+		.res {
+			grid-template-columns: 1fr;
+		}
+
+		.meth__s {
+			grid-template-columns: 1fr;
+		}
+
+		.meth__s h3,
+		.meth__s p {
+			grid-column: 1;
+		}
+
+		.cli__c {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+			row-gap: 0.4rem;
+		}
+
+		.cli__x {
+			grid-column: 2;
+		}
+	}
+
+	@media (max-width: 30rem) {
+		.tools {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

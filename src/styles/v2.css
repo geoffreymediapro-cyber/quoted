@@ -1,0 +1,354 @@
+/* =========================================================================
+   Quoted — V2 (page de test /v2/), inspiree de botanik.ai
+   Papier chaud, encre bleu nuit, display Bricolage en capitales, et une
+   seule couleur inattendue reservee au bouton principal.
+   Tout est scope sous .v2 : global.css n'est pas charge sur cette page,
+   la home en ligne n'est donc pas touchee.
+   ========================================================================= */
+
+.v2 {
+	/* --- Surfaces : papier chaud plutot que blanc pur --- */
+	--paper: #f7f4ef;
+	--paper-card: #ffffff;
+	--navy: #0f1e33;
+	--navy-deep: #081422;
+	--ink: #101c2e;
+	--ink-soft: #4a5769;
+	--ink-mute: #7c8798;
+
+	/* --- Bleu de marque, citron, et le corail du bouton --- */
+	--blue: #2049e5;
+	--blue-deep: #0f2bb0;
+	--blue-wash: #e6ecff;
+	--lemon: #ffd919;
+	--coral: #ff8259;
+	--coral-soft: #ffd4c6;
+
+	--line: #e0dcd4;
+	--line-strong: #c4bdb1;
+
+	/* --- Typo --- */
+	--display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+	--body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+
+	--s--1: clamp(0.84rem, 0.81rem + 0.13vw, 0.92rem);
+	--s-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+	--s-1: clamp(1.12rem, 1.03rem + 0.42vw, 1.38rem);
+	--s-2: clamp(1.4rem, 1.2rem + 0.95vw, 2rem);
+	--s-3: clamp(1.9rem, 1.45rem + 2.1vw, 3.1rem);
+	--s-4: clamp(2.4rem, 1.6rem + 3.9vw, 4.9rem);
+
+	--gutter: clamp(1.15rem, 4vw, 2.5rem);
+	--pad-y: clamp(3.5rem, 7vw, 6.5rem);
+	--round: 22px;
+	--round-sm: 12px;
+
+	--shadow: 0 3px 6px rgba(15, 30, 51, 0.05), 0 24px 48px -28px rgba(15, 30, 51, 0.4);
+
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--body);
+	font-size: var(--s-0);
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+.v2 *,
+.v2 *::before,
+.v2 *::after {
+	box-sizing: border-box;
+}
+
+.v2 h1,
+.v2 h2,
+.v2 h3,
+.v2 h4,
+.v2 p,
+.v2 ul,
+.v2 ol,
+.v2 figure {
+	margin: 0;
+}
+
+.v2 img,
+.v2 svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.v2 a {
+	color: inherit;
+}
+
+.v2 :focus-visible {
+	outline: 3px solid var(--blue);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
+.v2 ::selection {
+	background: var(--lemon);
+	color: var(--navy);
+}
+
+/* -------------------------------------------------------------------------
+   Titres : capitales serrees, display a fort caractere
+   ------------------------------------------------------------------------- */
+
+.v2 h1,
+.v2 h2 {
+	font-family: var(--display);
+	font-weight: 800;
+	text-transform: uppercase;
+	line-height: 0.95;
+	letter-spacing: -0.03em;
+	text-wrap: balance;
+}
+
+.v2 h1 {
+	font-size: var(--s-4);
+}
+
+.v2 h2 {
+	font-size: var(--s-3);
+}
+
+.v2 h3 {
+	font-family: var(--display);
+	font-size: var(--s-1);
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+}
+
+/* Mot mis en couleur dans un titre */
+.v2 .lime {
+	color: var(--blue);
+}
+
+.v2 .on-dark .lime {
+	color: var(--lemon);
+}
+
+/* -------------------------------------------------------------------------
+   Structure
+   ------------------------------------------------------------------------- */
+
+.v2 .wrap {
+	width: min(100% - (var(--gutter) * 2), 78rem);
+	margin-inline: auto;
+}
+
+.v2 .band {
+	padding-block: var(--pad-y);
+}
+
+.v2 .band--card {
+	background: var(--paper-card);
+}
+
+.v2 .band--navy {
+	background: var(--navy);
+	color: #e9eef7;
+}
+
+.v2 .kick {
+	display: inline-block;
+	font-family: var(--display);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--blue);
+	margin-bottom: 1rem;
+}
+
+.v2 .band--navy .kick {
+	color: var(--lemon);
+}
+
+.v2 .head {
+	max-width: 46rem;
+	margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.v2 .head p {
+	margin-top: 1.1rem;
+	font-size: var(--s-1);
+	line-height: 1.5;
+	color: var(--ink-soft);
+	max-width: 56ch;
+}
+
+.v2 .band--navy .head p {
+	color: rgba(233, 238, 247, 0.72);
+}
+
+/* -------------------------------------------------------------------------
+   Boutons : le corail est reserve a l'action principale
+   ------------------------------------------------------------------------- */
+
+.v2 .b {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem 1.7rem;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	font-family: var(--display);
+	font-size: var(--s--1);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1),
+		background-color 0.18s ease,
+		color 0.18s ease,
+		border-color 0.18s ease;
+}
+
+.v2 .b:hover {
+	transform: translateY(-2px);
+}
+
+.v2 .b--go {
+	background: var(--coral);
+	color: var(--navy);
+}
+
+.v2 .b--go:hover {
+	background: var(--lemon);
+}
+
+.v2 .b--navy {
+	background: var(--navy);
+	color: #fff;
+}
+
+.v2 .b--navy:hover {
+	background: var(--blue);
+}
+
+.v2 .b--line {
+	border-color: var(--line-strong);
+	color: var(--ink);
+}
+
+.v2 .b--line:hover {
+	border-color: var(--navy);
+	background: var(--navy);
+	color: #fff;
+}
+
+.v2 .band--navy .b--line {
+	border-color: rgba(233, 238, 247, 0.3);
+	color: #fff;
+}
+
+.v2 .band--navy .b--line:hover {
+	border-color: #fff;
+	background: #fff;
+	color: var(--navy);
+}
+
+.v2 .arw {
+	transition: transform 0.18s ease;
+}
+
+.v2 .b:hover .arw {
+	transform: translateX(3px);
+}
+
+/* -------------------------------------------------------------------------
+   Listes a coche
+   ------------------------------------------------------------------------- */
+
+.v2 .ticks {
+	list-style: none;
+	padding: 0;
+	display: grid;
+	gap: 0.45rem;
+	font-size: 0.86rem;
+	color: var(--ink-soft);
+}
+
+.v2 .ticks li {
+	display: grid;
+	grid-template-columns: 1rem 1fr;
+	gap: 0.55rem;
+}
+
+.v2 .ticks li::before {
+	content: '';
+	width: 1rem;
+	height: 1rem;
+	margin-top: 0.22rem;
+	border-radius: 50%;
+	background: var(--lemon);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230f1e33' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
+	background-size: 0.72rem;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* -------------------------------------------------------------------------
+   Animations
+   ------------------------------------------------------------------------- */
+
+@keyframes v2rise {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.v2 .up {
+	animation: v2rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+	animation-delay: var(--d, 0ms);
+}
+
+.v2 .obs {
+	opacity: 0;
+	transform: translateY(20px);
+	transition:
+		opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	transition-delay: var(--d, 0ms);
+}
+
+.v2 .obs.seen {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.v2 .obs {
+		opacity: 1;
+		transform: none;
+	}
+
+	.v2 .up {
+		animation: none;
+	}
+}
+
+.v2 .sr {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}

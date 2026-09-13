@@ -1,0 +1,318 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/plus-jakarta-sans';
+import '../styles/v2.css';
+
+import BrandMark from '../components/BrandMark.astro';
+import { CONTACT_EMAIL } from '../data/site';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+
+const nav = [
+	{ href: '#surfaces', label: 'Surfaces' },
+	{ href: '#services', label: 'Services' },
+	{ href: '#methode', label: 'Méthode' },
+	{ href: '#clients', label: 'Clients' },
+	{ href: '#ressources', label: 'Ressources' },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{/* Page de comparaison : jamais indexee, jamais dans le sitemap. */}
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="theme-color" content="#f7f4ef" />
+		<noscript>
+			<style>
+				.v2 .obs {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			</style>
+		</noscript>
+	</head>
+
+	<body class="v2">
+		<div class="flag">
+			Version&nbsp;2 · page de comparaison, non indexée ·
+			<a href="/">voir la version en ligne</a>
+		</div>
+
+		<header class="top" data-top>
+			<div class="wrap top__in">
+				<a class="logo" href="/v2/">
+					<span class="logo__sq" aria-hidden="true"><BrandMark /></span>
+					Quoted
+				</a>
+
+				<nav class="menu" aria-label="Navigation">
+					{nav.map((item) => <a href={item.href}>{item.label}</a>)}
+				</nav>
+
+				<a class="b b--go top__cta" href="#contact">Scanner ma visibilité IA</a>
+
+				<button class="burger" type="button" aria-expanded="false" data-burger>
+					<span class="sr">Ouvrir le menu</span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+
+			<div class="tray" hidden data-tray>
+				{nav.map((item) => <a href={item.href}>{item.label}</a>)}
+				<a class="b b--go" href="#contact">Scanner ma visibilité IA</a>
+			</div>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer class="foot">
+			<div class="wrap foot__in">
+				<div>
+					<p class="foot__logo"><BrandMark class="foot__mark" />Quoted</p>
+					<p class="foot__line">
+						Agence GEO. La visibilité de votre marque dans les réponses générées par
+						ChatGPT, Perplexity, Gemini et les AI Overviews.
+					</p>
+				</div>
+				<a class="b b--go" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+			</div>
+		</footer>
+
+		<script>
+			const targets = document.querySelectorAll('.obs');
+			if (targets.length) {
+				const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				if (reduce || !('IntersectionObserver' in window)) {
+					targets.forEach((el) => el.classList.add('seen'));
+				} else {
+					const io = new IntersectionObserver(
+						(entries) => {
+							entries.forEach((e) => {
+								if (e.isIntersecting) {
+									e.target.classList.add('seen');
+									io.unobserve(e.target);
+								}
+							});
+						},
+						{ rootMargin: '0px 0px -10% 0px', threshold: 0.06 },
+					);
+					targets.forEach((el) => io.observe(el));
+				}
+			}
+
+			const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+			const tray = document.querySelector<HTMLElement>('[data-tray]');
+			burger?.addEventListener('click', () => {
+				const open = burger.getAttribute('aria-expanded') === 'true';
+				burger.setAttribute('aria-expanded', String(!open));
+				if (tray) tray.hidden = open;
+			});
+			tray?.addEventListener('click', (event) => {
+				if ((event.target as HTMLElement).closest('a')) {
+					burger?.setAttribute('aria-expanded', 'false');
+					tray.hidden = true;
+				}
+			});
+
+			const top = document.querySelector<HTMLElement>('[data-top]');
+			const stick = () => {
+				if (window.scrollY > 8) top?.setAttribute('data-stuck', '');
+				else top?.removeAttribute('data-stuck');
+			};
+			stick();
+			window.addEventListener('scroll', stick, { passive: true });
+		</script>
+	</body>
+</html>
+
+<style>
+	.flag {
+		background: var(--lemon);
+		color: var(--navy);
+		text-align: center;
+		padding: 0.5rem 1rem;
+		font-size: 0.78rem;
+		font-weight: 700;
+	}
+
+	.flag a {
+		text-decoration: underline;
+	}
+
+	.top {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: color-mix(in srgb, var(--paper) 90%, transparent);
+		backdrop-filter: blur(14px);
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s ease;
+	}
+
+	.top[data-stuck] {
+		border-bottom-color: var(--line);
+	}
+
+	.top__in {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		min-height: 4.75rem;
+	}
+
+	.logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		margin-right: auto;
+		font-family: var(--display);
+		font-size: 1.4rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: -0.03em;
+		text-decoration: none;
+	}
+
+	.logo__sq {
+		display: grid;
+		place-items: center;
+		width: 2.1rem;
+		height: 2.1rem;
+		border-radius: 9px;
+		background: var(--navy);
+		color: var(--lemon);
+	}
+
+	.logo__sq :global(svg) {
+		width: 1.1rem;
+		height: 1.1rem;
+	}
+
+	.menu {
+		display: flex;
+		gap: 1.6rem;
+	}
+
+	.menu a {
+		font-family: var(--display);
+		font-size: var(--s--1);
+		font-weight: 600;
+		color: var(--ink-soft);
+		text-decoration: none;
+		transition: color 0.16s ease;
+	}
+
+	.menu a:hover {
+		color: var(--blue);
+	}
+
+	.burger {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		background: transparent;
+		border: 1px solid var(--line-strong);
+		border-radius: 10px;
+		cursor: pointer;
+	}
+
+	.burger span[aria-hidden] {
+		width: 1.1rem;
+		height: 2px;
+		margin-inline: auto;
+		background: var(--ink);
+		border-radius: 2px;
+	}
+
+	.tray {
+		display: grid;
+		gap: 0.25rem;
+		padding: 0.75rem var(--gutter) 1.5rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.tray[hidden] {
+		display: none;
+	}
+
+	.tray a:not(.b) {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid var(--line);
+		font-family: var(--display);
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.tray .b {
+		margin-top: 1rem;
+	}
+
+	@media (max-width: 64rem) {
+		.menu,
+		.top__cta {
+			display: none;
+		}
+
+		.burger {
+			display: flex;
+		}
+	}
+
+	/* --- Pied --- */
+	.foot {
+		background: var(--navy);
+		color: rgba(233, 238, 247, 0.72);
+		padding-block: clamp(2.5rem, 5vw, 4rem);
+	}
+
+	.foot__in {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.foot__logo {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--display);
+		font-size: 1.7rem;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: -0.03em;
+		color: #fff;
+		margin-bottom: 0.6rem;
+	}
+
+	.foot__logo :global(.foot__mark) {
+		width: 1.15rem;
+		height: 1.15rem;
+		color: var(--lemon);
+	}
+
+	.foot__line {
+		max-width: 44ch;
+		font-size: var(--s--1);
+		line-height: 1.6;
+	}
+</style>
