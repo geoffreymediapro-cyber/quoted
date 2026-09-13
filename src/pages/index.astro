@@ -1,16 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import Shift from '../components/Shift.astro';
-import Services from '../components/Services.astro';
-import Clients from '../components/Clients.astro';
-import Method from '../components/Method.astro';
-import Stack from '../components/Stack.astro';
-import Scope from '../components/Scope.astro';
-import GuideTeaser from '../components/GuideTeaser.astro';
-import Faq from '../components/Faq.astro';
-import Cta from '../components/Cta.astro';
+import Hero from '../components/home/Hero.astro';
+import Positioning from '../components/home/Positioning.astro';
+import Engagements from '../components/home/Engagements.astro';
+import Services from '../components/home/Services.astro';
+import Stack from '../components/home/Stack.astro';
+import Method from '../components/home/Method.astro';
+import Scope from '../components/home/Scope.astro';
+import Clients from '../components/home/Clients.astro';
+import Resources from '../components/home/Resources.astro';
+import Faq from '../components/home/Faq.astro';
+import Contact from '../components/home/Contact.astro';
 import { FAQ } from '../data/site';
 
 const faqSchema = {
@@ -30,14 +30,14 @@ const faqSchema = {
 	schema={faqSchema}
 >
 	<Hero />
-	<Marquee />
-	<Shift />
+	<Positioning />
+	<Engagements />
 	<Services />
-	<Clients />
-	<Method />
 	<Stack />
+	<Method />
 	<Scope />
-	<GuideTeaser />
+	<Clients />
+	<Resources />
 	<Faq />
-	<Cta />
+	<Contact />
 </BaseLayout>

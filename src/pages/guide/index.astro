@@ -30,23 +30,23 @@ const schema = {
 	description="Guide pratique du Generative Engine Optimization : ce que c'est, comment se faire citer par ChatGPT, Perplexity et Gemini, et comment mesurer sa visibilité sérieusement."
 	schema={schema}
 >
-	<section class="section head">
-		<div class="shell">
-			<p class="eyebrow" data-num="Guide">GEO</p>
+	<section class="intro">
+		<div class="wrap">
+			<p class="kicker">Guide GEO</p>
 			<h1>Le guide.</h1>
 			<p class="lede">
 				La méthode que nous appliquons en mission, écrite en clair. Pas de teasing, pas
-				de livre blanc à télécharger contre votre adresse e-mail&nbsp;: si vous voulez
+				de livre blanc à télécharger contre votre adresse e-mail : si vous voulez
 				l'appliquer vous-même, tout est là.
 			</p>
 		</div>
 	</section>
 
-	<section class="section section--sunk">
-		<div class="shell chapters">
+	<section class="band band--tint">
+		<div class="wrap chapters">
 			{
 				[...chapters.entries()].map(([chapter, items]) => (
-					<div class="chapter reveal">
+					<div class="chapter obs">
 						<h2 class="chapter__name">{chapter}</h2>
 						<ul class="chapter__list">
 							{items.map((entry) => (
@@ -54,8 +54,8 @@ const schema = {
 									<a href={`/guide/${entry.id}/`}>
 										<h3>{entry.data.title}</h3>
 										<p>{entry.data.description}</p>
-										<span class="chapter__more">
-											Lire <span aria-hidden="true">→</span>
+										<span class="chapter__go">
+											Lire <span class="arrow" aria-hidden="true">→</span>
 										</span>
 									</a>
 								</li>
@@ -67,31 +67,31 @@ const schema = {
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="shell">
-			<div class="closing">
-				<h2>Vous préférez qu'on s'en charge&nbsp;?</h2>
-				<p class="lede">
-					On applique tout ce qui précède à votre marché, et on en sort une feuille de
-					route priorisée.
-				</p>
-				<a class="btn btn--primary" href="/#expertise">
-					Ce qu'on fait
-					<span class="btn__arrow" aria-hidden="true">→</span>
-				</a>
-			</div>
+	<section class="band">
+		<div class="wrap closing obs">
+			<h2>Vous préférez qu'on s'en charge ?</h2>
+			<p class="lede">
+				On applique tout ce qui précède à votre marché, et on en sort une feuille de
+				route priorisée.
+			</p>
+			<a class="b b--fill" href="/#services">
+				Voir nos services
+				<span class="arrow" aria-hidden="true">→</span>
+			</a>
 		</div>
 	</section>
 </BaseLayout>
 
 <style>
-	.head {
-		padding-bottom: clamp(2.5rem, 5vw, 4rem);
+	.intro {
+		padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+		background:
+			radial-gradient(55% 70% at 85% 0%, var(--blue-wash), transparent 70%),
+			var(--paper);
 	}
 
-	.head h1 {
-		font-size: var(--step-5);
-		margin-block: 1.25rem 1.5rem;
+	.intro h1 {
+		margin-bottom: 1.35rem;
 	}
 
 	.chapters {
@@ -101,19 +101,19 @@ const schema = {
 
 	.chapter {
 		display: grid;
-		grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr);
-		gap: clamp(1.5rem, 4vw, 3rem);
+		grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr);
+		gap: clamp(1.25rem, 3.5vw, 2.5rem);
 		align-items: start;
 	}
 
 	.chapter__name {
-		font-family: var(--sans);
-		font-size: 0.7rem;
-		font-weight: 600;
-		letter-spacing: 0.16em;
+		font-family: var(--body);
+		font-size: 0.74rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: var(--violet);
-		padding-top: 0.5rem;
+		color: var(--blue);
+		padding-top: 0.6rem;
 	}
 
 	.chapter__list {
@@ -124,47 +124,42 @@ const schema = {
 	}
 
 	.chapter__list a {
-		display: block;
-		background: var(--paper-raised);
+		display: grid;
+		gap: 0.6rem;
+		background: var(--paper);
 		border: 1px solid var(--line);
-		border-radius: var(--radius-lg);
+		border-radius: var(--round);
 		padding: clamp(1.25rem, 2.5vw, 1.85rem);
 		text-decoration: none;
 		transition:
-			border-color 0.22s ease,
-			transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1),
-			box-shadow 0.22s ease;
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
 	}
 
 	.chapter__list a:hover {
-		border-color: var(--violet-edge);
+		border-color: transparent;
 		transform: translateY(-3px);
-		box-shadow: var(--shadow-card);
-	}
-
-	.chapter__list h3 {
-		font-size: var(--step-2);
-		margin-bottom: 0.6rem;
+		box-shadow: var(--shadow);
 	}
 
 	.chapter__list p {
-		font-size: var(--step--1);
+		font-size: var(--s--1);
 		line-height: 1.6;
 		color: var(--ink-soft);
 		max-width: 62ch;
-		margin-bottom: 1rem;
 	}
 
-	.chapter__more {
-		font-size: var(--step--1);
+	.chapter__go {
+		font-family: var(--display);
 		font-weight: 600;
-		color: var(--violet);
+		color: var(--blue-deep);
 	}
 
 	.closing {
-		text-align: center;
 		display: grid;
 		justify-items: center;
+		text-align: center;
 		gap: 1.25rem;
 	}
 
@@ -175,7 +170,7 @@ const schema = {
 	@media (max-width: 48rem) {
 		.chapter {
 			grid-template-columns: 1fr;
-			gap: 1rem;
+			gap: 0.85rem;
 		}
 	}
 </style>

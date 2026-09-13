@@ -1,6 +1,6 @@
 ---
-import '@fontsource-variable/archivo';
-import '@fontsource-variable/geist-mono';
+import '@fontsource-variable/outfit';
+import '@fontsource-variable/plus-jakarta-sans';
 import '../styles/global.css';
 
 import Header from '../components/Header.astro';
@@ -24,7 +24,7 @@ const organisation = {
 	name: SITE_NAME,
 	url: SITE_URL,
 	description:
-		"Agence GEO (Generative Engine Optimization) : audit, contenu et suivi de la visibilité des marques dans les réponses générées par ChatGPT, Perplexity, Gemini et Claude.",
+		"Agence GEO (Generative Engine Optimization) : audit, contenu et suivi de la visibilité des marques dans les réponses générées par ChatGPT, Perplexity, Gemini et les AI Overviews.",
 	areaServed: 'FR',
 	knowsAbout: [
 		'Generative Engine Optimization',
@@ -58,13 +58,12 @@ const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [sc
 		<meta property="og:url" content={canonical} />
 		<meta property="og:locale" content="fr_FR" />
 		<meta name="twitter:card" content="summary_large_image" />
-
-		<meta name="theme-color" content="#ffffff" />
+		<meta name="theme-color" content="#0f1e33" />
 
 		{/* Sans JS, rien ne declencherait le reveal : le contenu resterait invisible. */}
 		<noscript>
 			<style>
-				.reveal {
+				.obs {
 					opacity: 1 !important;
 					transform: none !important;
 				}
@@ -79,7 +78,7 @@ const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [sc
 	</head>
 
 	<body>
-		<a class="skip-link" href="#main">Aller au contenu principal</a>
+		<a class="skip" href="#main">Aller au contenu principal</a>
 		<Header />
 		<main id="main">
 			<slot />
@@ -87,28 +86,27 @@ const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [sc
 		<Footer />
 
 		<script>
-			// Reveal au scroll : une seule observation, puis on relache l'element.
-			const targets = document.querySelectorAll('.reveal');
+			const targets = document.querySelectorAll('.obs');
 
 			if (targets.length) {
 				const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 				if (reduce || !('IntersectionObserver' in window)) {
-					targets.forEach((el) => el.classList.add('is-in'));
+					targets.forEach((el) => el.classList.add('seen'));
 				} else {
-					const observer = new IntersectionObserver(
+					const io = new IntersectionObserver(
 						(entries) => {
 							entries.forEach((entry) => {
 								if (entry.isIntersecting) {
-									entry.target.classList.add('is-in');
-									observer.unobserve(entry.target);
+									entry.target.classList.add('seen');
+									io.unobserve(entry.target);
 								}
 							});
 						},
-						{ rootMargin: '0px 0px -12% 0px', threshold: 0.08 },
+						{ rootMargin: '0px 0px -10% 0px', threshold: 0.06 },
 					);
 
-					targets.forEach((el) => observer.observe(el));
+					targets.forEach((el) => io.observe(el));
 				}
 			}
 		</script>

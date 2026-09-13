@@ -4,52 +4,45 @@ import { CONTACT_EMAIL } from '../data/site';
 const year = 2026;
 ---
 
-<footer class="footer">
-	<div class="shell footer__grid">
-		<div class="footer__brand">
-			<a class="footer__logo" href="/">
-				<span aria-hidden="true">&ldquo;</span>Quoted
-			</a>
-			<p>
-				Agence GEO. Nous travaillons la visibilité des marques dans les réponses
-				générées par les moteurs d'IA : ChatGPT, Perplexity, Gemini, Claude.
+<footer class="foot">
+	<div class="wrap foot__grid">
+		<div class="foot__brand">
+			<p class="foot__logo"><span aria-hidden="true">&rdquo;</span>Quoted</p>
+			<p class="foot__line">
+				Agence GEO. La visibilité de votre marque dans les réponses générées par
+				ChatGPT, Perplexity, Gemini et les AI Overviews.
 			</p>
+			<a class="b b--lemon foot__cta" href={`mailto:${CONTACT_EMAIL}`}>
+				{CONTACT_EMAIL}
+			</a>
 		</div>
 
-		<nav class="footer__col" aria-label="Ce qu’on fait">
-			<h2>Ce qu’on fait</h2>
+		<nav class="foot__col" aria-label="Services">
+			<h2>Services</h2>
 			<ul>
-				<li><a href="/#expertise">Cartographie de prompts</a></li>
-				<li><a href="/#expertise">Audit de visibilité</a></li>
-				<li><a href="/#expertise">Contenu conçu pour être cité</a></li>
-				<li><a href="/#expertise">Présence hors site</a></li>
-				<li><a href="/#clients">Clients accompagnés</a></li>
+				<li><a href="/#services">Cartographie de prompts</a></li>
+				<li><a href="/#services">Audit de visibilité</a></li>
+				<li><a href="/#services">Contenu conçu pour être cité</a></li>
+				<li><a href="/#services">Présence hors site</a></li>
+				<li><a href="/#outils">Nos outils</a></li>
 			</ul>
 		</nav>
 
-		<nav class="footer__col" aria-label="Ressources">
-			<h2>Ressources</h2>
+		<nav class="foot__col" aria-label="En savoir plus">
+			<h2>En savoir plus</h2>
 			<ul>
 				<li><a href="/guide/">Guide GEO</a></li>
 				<li><a href="/#methode">Méthode</a></li>
-				<li><a href="/#outils">Outils</a></li>
 				<li><a href="/#perimetre">Périmètre</a></li>
+				<li><a href="/#clients">Clients accompagnés</a></li>
 				<li><a href="/#faq">Questions fréquentes</a></li>
 			</ul>
 		</nav>
-
-		<div class="footer__col">
-			<h2>Contact</h2>
-			<ul>
-				<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
-				<li><a href="/#contact">Demander un diagnostic</a></li>
-			</ul>
-		</div>
 	</div>
 
-	<div class="shell footer__base">
+	<div class="wrap foot__base">
 		<p>&copy; {year} Quoted. Tous droits réservés.</p>
-		<ul class="footer__legal">
+		<ul>
 			<li><a href="/mentions-legales/">Mentions légales</a></li>
 			<li><a href="/politique-de-confidentialite/">Politique de confidentialité</a></li>
 		</ul>
@@ -57,82 +50,82 @@ const year = 2026;
 </footer>
 
 <style>
-	.footer {
-		background: var(--ink);
-		color: rgba(244, 242, 251, 0.72);
-		padding-top: clamp(3.5rem, 7vw, 5.5rem);
+	.foot {
+		background: var(--navy);
+		color: rgba(234, 240, 251, 0.72);
+		padding-top: clamp(3rem, 6vw, 5rem);
 		padding-bottom: 2rem;
-		font-size: var(--step--1);
+		font-size: var(--s--1);
 	}
 
-	.footer__grid {
+	.foot__grid {
 		display: grid;
-		grid-template-columns: 1.6fr repeat(3, 1fr);
+		grid-template-columns: 1.6fr 1fr 1fr;
 		gap: clamp(2rem, 4vw, 3.5rem);
-		padding-bottom: clamp(2.5rem, 5vw, 4rem);
+		padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
 	}
 
-	.footer__logo {
-		display: inline-block;
-		font-size: 1.6rem;
-		font-weight: 800;
-		text-transform: uppercase;
+	.foot__logo {
+		font-family: var(--display);
+		font-size: 1.7rem;
+		font-weight: 700;
+		letter-spacing: -0.04em;
 		color: #fff;
-		text-decoration: none;
-		letter-spacing: -0.035em;
-		margin-bottom: 0.9rem;
+		margin-bottom: 0.6rem;
 	}
 
-	.footer__logo span {
-		color: var(--violet-edge);
+	.foot__logo span {
+		color: var(--lemon);
+		margin-right: 0.15rem;
 	}
 
-	.footer__brand p {
-		max-width: 32ch;
-		line-height: 1.65;
+	.foot__line {
+		max-width: 40ch;
+		line-height: 1.6;
+		margin-bottom: 1.4rem;
 	}
 
-	.footer__col h2 {
-		font-family: var(--mono);
-		font-size: var(--step--2);
-		font-weight: 500;
-		letter-spacing: 0.14em;
+	.foot__col h2 {
+		font-family: var(--body);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: rgba(238, 240, 244, 0.45);
+		color: rgba(234, 240, 251, 0.45);
 		margin-bottom: 1.1rem;
 	}
 
-	.footer__col ul {
+	.foot__col ul {
 		list-style: none;
 		padding: 0;
 		display: grid;
-		gap: 0.65rem;
+		gap: 0.6rem;
 	}
 
-	.footer a {
+	.foot a {
 		color: inherit;
 		text-decoration: none;
-		transition: color 0.18s ease;
+		transition: color 0.16s ease;
 	}
 
-	.footer__col a:hover,
-	.footer__legal a:hover {
+	.foot__col a:hover,
+	.foot__base a:hover {
 		color: #fff;
 	}
 
-	.footer__base {
+	.foot__base {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem 2rem;
 		justify-content: space-between;
 		align-items: center;
 		padding-top: 1.75rem;
-		border-top: 1px solid rgba(244, 242, 251, 0.12);
+		border-top: 1px solid rgba(234, 240, 251, 0.12);
 		font-size: 0.8rem;
-		color: rgba(244, 242, 251, 0.5);
+		color: rgba(234, 240, 251, 0.5);
 	}
 
-	.footer__legal {
+	.foot__base ul {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1.5rem;
@@ -140,18 +133,18 @@ const year = 2026;
 		padding: 0;
 	}
 
-	@media (max-width: 60rem) {
-		.footer__grid {
+	@media (max-width: 58rem) {
+		.foot__grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
-		.footer__brand {
+		.foot__brand {
 			grid-column: 1 / -1;
 		}
 	}
 
 	@media (max-width: 34rem) {
-		.footer__grid {
+		.foot__grid {
 			grid-template-columns: 1fr;
 		}
 	}

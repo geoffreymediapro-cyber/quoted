@@ -1,51 +1,47 @@
 /* =========================================================================
-   Quoted, systeme de design
-   Direction : technique et dense. Blanc franc, grotesque serree en capitales,
-   labels en monospace, bordures nettes, grille apparente.
+   Quoted — systeme de design
+   Bleu nuit, bleu electrique, accent citron. Geometrique arrondi, titres
+   en casse normale, blocs pleins. Outfit pour l'affichage, Plus Jakarta
+   Sans pour le texte courant.
    ========================================================================= */
 
 :root {
 	/* --- Surfaces --- */
+	--navy: #0f1e33;
 	--paper: #ffffff;
-	--paper-sunk: #f3f5f8;
-	--paper-raised: #ffffff;
-	--ink: #0a0d14;
-	--ink-soft: #454d5e;
-	--ink-mute: #78818f;
+	--paper-tint: #f4f6fb;
+	--ink: #101c2e;
+	--ink-soft: #4a5769;
+	--ink-mute: #7c8798;
 
-	/* --- Violet dominant, bleu secondaire, accent chaud rare --- */
-	--violet: #4b2fe8;
-	--violet-deep: #2a17a8;
-	--violet-wash: #eeeaff;
-	--violet-edge: #cfc4ff;
-	--blue: #0e5cff;
-	--ember: #ff5c2b;
+	/* --- Bleu dominant, citron en accent rare --- */
+	--blue: #2049e5;
+	--blue-deep: #0f2bb0;
+	--blue-wash: #e8edff;
+	--lemon: #ffd919;
 
-	/* --- Traits : francs, jamais estompes --- */
-	--line: #e2e6ed;
-	--line-strong: #c3cad6;
+	--line: #e2e7f0;
+	--line-strong: #c3ccdb;
 
 	/* --- Typo --- */
-	--sans: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-	--mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+	--display: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+	--body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+	--mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', monospace;
 
-	--step--2: 0.7rem;
-	--step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.86rem);
-	--step-0: clamp(0.95rem, 0.92rem + 0.16vw, 1.05rem);
-	--step-1: clamp(1.1rem, 1.03rem + 0.34vw, 1.3rem);
-	--step-2: clamp(1.35rem, 1.18rem + 0.82vw, 1.85rem);
-	--step-3: clamp(1.7rem, 1.35rem + 1.7vw, 2.7rem);
-	--step-4: clamp(2.1rem, 1.5rem + 3vw, 4rem);
-	--step-5: clamp(2.6rem, 1.6rem + 4.9vw, 5.6rem);
+	--s--1: clamp(0.84rem, 0.81rem + 0.13vw, 0.92rem);
+	--s-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+	--s-1: clamp(1.15rem, 1.06rem + 0.42vw, 1.4rem);
+	--s-2: clamp(1.4rem, 1.2rem + 0.95vw, 2rem);
+	--s-3: clamp(1.8rem, 1.42rem + 1.85vw, 2.9rem);
+	--s-4: clamp(2.2rem, 1.55rem + 3.2vw, 4.1rem);
 
-	/* --- Rythme : plus serre que l'editorial --- */
-	--gutter: clamp(1.1rem, 3.5vw, 2.25rem);
-	--section-y: clamp(3.5rem, 6.5vw, 6rem);
-	--measure: 60ch;
-	--radius: 2px;
-	--radius-lg: 3px;
+	--gutter: clamp(1.15rem, 4vw, 2.5rem);
+	--pad-y: clamp(3.5rem, 7vw, 6.5rem);
+	--measure: 62ch;
+	--round: 18px;
+	--round-sm: 10px;
 
-	--shadow-card: 0 1px 0 var(--line-strong);
+	--shadow: 0 2px 4px rgba(16, 28, 46, 0.04), 0 18px 40px -24px rgba(16, 28, 46, 0.35);
 }
 
 *,
@@ -60,7 +56,7 @@
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 5.5rem;
+	scroll-padding-top: 6rem;
 	-webkit-text-size-adjust: 100%;
 }
 
@@ -81,10 +77,9 @@ html {
 body {
 	background: var(--paper);
 	color: var(--ink);
-	font-family: var(--sans);
-	font-size: var(--step-0);
-	font-weight: 400;
-	line-height: 1.55;
+	font-family: var(--body);
+	font-size: var(--s-0);
+	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden;
@@ -110,48 +105,44 @@ select {
 }
 
 :focus-visible {
-	outline: 2px solid var(--violet);
-	outline-offset: 2px;
+	outline: 3px solid var(--blue);
+	outline-offset: 3px;
+	border-radius: 4px;
 }
 
 ::selection {
-	background: var(--violet);
-	color: #fff;
+	background: var(--lemon);
+	color: var(--navy);
 }
 
 /* -------------------------------------------------------------------------
-   Typographie : capitales serrees pour les titres, mono pour les labels
+   Titres
    ------------------------------------------------------------------------- */
 
 h1,
-h2 {
-	font-weight: 800;
-	text-transform: uppercase;
-	line-height: 0.94;
+h2,
+h3,
+h4 {
+	font-family: var(--display);
+	font-weight: 600;
+	line-height: 1.04;
 	letter-spacing: -0.035em;
 	text-wrap: balance;
 }
 
 h1 {
-	font-size: var(--step-5);
+	font-size: var(--s-4);
+	font-weight: 700;
 }
 
 h2 {
-	font-size: var(--step-4);
+	font-size: var(--s-3);
 }
 
 h3 {
-	font-size: var(--step-2);
-	font-weight: 700;
-	line-height: 1.15;
-	letter-spacing: -0.02em;
-}
-
-h4 {
-	font-size: var(--step-1);
-	font-weight: 700;
+	font-size: var(--s-1);
 	line-height: 1.2;
-	letter-spacing: -0.015em;
+	letter-spacing: -0.025em;
 }
 
 p {
@@ -162,227 +153,208 @@ strong {
 	font-weight: 700;
 }
 
-/* Mot mis en avant dans un titre : violet, pas d'italique */
-.accent {
-	color: var(--violet);
+/* Mot souligne : trait citron passe derriere le texte */
+.hl {
+	position: relative;
+	white-space: nowrap;
+}
+
+.hl::after {
+	content: '';
+	position: absolute;
+	left: -0.06em;
+	right: -0.06em;
+	bottom: 0.06em;
+	height: 0.3em;
+	background: var(--lemon);
+	z-index: -1;
+	border-radius: 2px;
+}
+
+.blue {
+	color: var(--blue);
 }
 
 /* -------------------------------------------------------------------------
-   Primitives de mise en page
+   Structure
    ------------------------------------------------------------------------- */
 
-.shell {
-	width: min(100% - (var(--gutter) * 2), 80rem);
+.wrap {
+	width: min(100% - (var(--gutter) * 2), 76rem);
 	margin-inline: auto;
-	position: relative;
 }
 
-.shell--narrow {
+.wrap--narrow {
 	width: min(100% - (var(--gutter) * 2), 52rem);
 }
 
-.section {
-	padding-block: var(--section-y);
-	position: relative;
-	border-top: 1px solid var(--line);
+.band {
+	padding-block: var(--pad-y);
 }
 
-.section--sunk {
-	background: var(--paper-sunk);
+.band--tint {
+	background: var(--paper-tint);
 }
 
-.section--ink {
-	background: var(--ink);
-	color: #eef0f4;
-	border-top-color: var(--ink);
+.band--navy {
+	background: var(--navy);
+	color: #eaf0fb;
 }
 
-/* Label de section : numero + intitule, en monospace */
-.eyebrow {
+.kicker {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.7rem;
-	font-family: var(--mono);
-	font-size: var(--step--2);
-	font-weight: 500;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--violet);
+	gap: 0.5rem;
+	padding: 0.4rem 0.85rem;
+	border-radius: 999px;
+	background: var(--blue-wash);
+	color: var(--blue-deep);
+	font-size: 0.76rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	margin-bottom: 1.1rem;
 }
 
-.eyebrow::before {
-	content: attr(data-num);
-	padding: 0.15rem 0.4rem;
-	background: var(--violet);
+.band--navy .kicker {
+	background: rgba(234, 240, 251, 0.12);
 	color: #fff;
-	letter-spacing: 0.06em;
 }
 
-.section--ink .eyebrow {
-	color: var(--violet-edge);
-}
-
-.section--ink .eyebrow::before {
-	background: var(--violet-edge);
-	color: var(--ink);
-}
-
-.section-head {
-	display: grid;
-	gap: 1rem;
+.head {
 	max-width: 44rem;
-	margin-bottom: clamp(2.25rem, 4vw, 3.25rem);
+	margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
-.section-head p {
-	font-size: var(--step-1);
+.head p {
+	margin-top: 1rem;
+	font-size: var(--s-1);
 	line-height: 1.5;
 	color: var(--ink-soft);
-	max-width: var(--measure);
+	max-width: 54ch;
 }
 
-.section--ink .section-head p {
-	color: rgba(238, 240, 244, 0.7);
+.band--navy .head p {
+	color: rgba(234, 240, 251, 0.72);
 }
 
 .lede {
-	font-size: var(--step-1);
+	font-size: var(--s-1);
 	line-height: 1.5;
 	color: var(--ink-soft);
 	max-width: var(--measure);
 }
 
-/* Etiquette monospace generique */
-.tag {
-	font-family: var(--mono);
-	font-size: var(--step--2);
-	font-weight: 500;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--ink-mute);
-}
-
 /* -------------------------------------------------------------------------
-   Boutons : rectangulaires, francs
+   Boutons
    ------------------------------------------------------------------------- */
 
-.btn {
+.b {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	padding: 0.8rem 1.35rem;
-	border: 1px solid transparent;
-	border-radius: var(--radius);
-	font-family: var(--mono);
-	font-size: var(--step--2);
-	font-weight: 500;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
+	padding: 0.95rem 1.6rem;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	font-family: var(--display);
+	font-size: var(--s--1);
+	font-weight: 600;
 	text-decoration: none;
 	cursor: pointer;
 	transition:
-		background-color 0.16s ease,
-		border-color 0.16s ease,
-		color 0.16s ease;
+		transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1),
+		background-color 0.18s ease,
+		color 0.18s ease,
+		border-color 0.18s ease;
 }
 
-.btn--primary {
-	background: var(--violet);
+.b:hover {
+	transform: translateY(-2px);
+}
+
+.b--fill {
+	background: var(--blue);
 	color: #fff;
 }
 
-.btn--primary:hover {
-	background: var(--ink);
+.b--fill:hover {
+	background: var(--blue-deep);
 }
 
-.btn--ghost {
-	background: transparent;
+.b--lemon {
+	background: var(--lemon);
+	color: var(--navy);
+}
+
+.b--lemon:hover {
+	background: #ffe75c;
+}
+
+.b--line {
 	border-color: var(--line-strong);
 	color: var(--ink);
 }
 
-.btn--ghost:hover {
-	border-color: var(--ink);
-	background: var(--ink);
+.b--line:hover {
+	border-color: var(--blue);
+	color: var(--blue);
+}
+
+.band--navy .b--line {
+	border-color: rgba(234, 240, 251, 0.32);
 	color: #fff;
 }
 
-.btn--light {
+.band--navy .b--line:hover {
+	border-color: #fff;
 	background: #fff;
-	color: var(--ink);
+	color: var(--navy);
 }
 
-.btn--light:hover {
-	background: var(--violet);
-	color: #fff;
+.arrow {
+	transition: transform 0.18s ease;
 }
 
-.btn__arrow {
-	transition: transform 0.16s ease;
-}
-
-.btn:hover .btn__arrow {
+.b:hover .arrow {
 	transform: translateX(3px);
 }
 
 /* -------------------------------------------------------------------------
-   Cartes : bordure franche, pas d'ombre portee
+   Listes a puce citron
    ------------------------------------------------------------------------- */
 
-.card {
-	background: var(--paper-raised);
-	border: 1px solid var(--line);
-	border-radius: var(--radius-lg);
-	padding: clamp(1.25rem, 2.2vw, 1.75rem);
-	position: relative;
-	transition:
-		border-color 0.18s ease,
-		background-color 0.18s ease;
-}
-
-.card:hover {
-	border-color: var(--ink);
-}
-
-/* -------------------------------------------------------------------------
-   Listes a coche
-   ------------------------------------------------------------------------- */
-
-.ticks {
+.dots {
 	list-style: none;
 	padding: 0;
 	display: grid;
-	gap: 0.5rem;
-	font-size: var(--step--1);
+	gap: 0.45rem;
+	font-size: 0.86rem;
 	color: var(--ink-soft);
 }
 
-.ticks li {
+.dots li {
 	display: grid;
 	grid-template-columns: 0.9rem 1fr;
-	gap: 0.65rem;
-	align-items: start;
+	gap: 0.55rem;
 }
 
-.ticks li::before {
+.dots li::before {
 	content: '';
 	width: 0.9rem;
 	height: 0.9rem;
-	margin-top: 0.28rem;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%234b2fe8' stroke-width='2' stroke-linecap='square'%3E%3Cpath d='M2 6.2l2.6 2.6L10 3.2'/%3E%3C/svg%3E");
-	background-size: contain;
-	background-repeat: no-repeat;
+	margin-top: 0.25rem;
+	border-radius: 50%;
+	background: var(--lemon);
 }
 
 /* -------------------------------------------------------------------------
-   Animations : sobres, courtes
+   Animations
    ------------------------------------------------------------------------- */
 
 @keyframes rise {
 	from {
 		opacity: 0;
-		transform: translateY(10px);
+		transform: translateY(16px);
 	}
 
 	to {
@@ -391,37 +363,132 @@ strong {
 	}
 }
 
-.rise {
-	animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-	animation-delay: var(--delay, 0ms);
+.up {
+	animation: rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+	animation-delay: var(--d, 0ms);
 }
 
-.reveal {
+.obs {
 	opacity: 0;
-	transform: translateY(12px);
+	transform: translateY(20px);
 	transition:
-		opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-		transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-	transition-delay: var(--delay, 0ms);
+		opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+		transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	transition-delay: var(--d, 0ms);
 }
 
-.reveal.is-in {
+.obs.seen {
 	opacity: 1;
 	transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.reveal {
+	.obs {
 		opacity: 1;
 		transform: none;
 	}
+
+	.up {
+		animation: none;
+	}
+}
+
+/* -------------------------------------------------------------------------
+   Corps d'article (Markdown du guide)
+   ------------------------------------------------------------------------- */
+
+.prose {
+	font-size: 1.05rem;
+	line-height: 1.75;
+	color: var(--ink-soft);
+}
+
+.prose > * + * {
+	margin-top: 1.25rem;
+}
+
+.prose h2 {
+	font-size: var(--s-2);
+	color: var(--ink);
+	margin-top: 3rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--line);
+	scroll-margin-top: 6.5rem;
+}
+
+.prose h3 {
+	font-size: var(--s-1);
+	color: var(--ink);
+	margin-top: 2.25rem;
+	scroll-margin-top: 6.5rem;
+}
+
+.prose strong {
+	color: var(--ink);
+}
+
+.prose a {
+	color: var(--blue-deep);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+	text-decoration-color: var(--line-strong);
+	transition: text-decoration-color 0.18s ease;
+}
+
+.prose a:hover {
+	text-decoration-color: var(--blue);
+}
+
+.prose ul,
+.prose ol {
+	padding-left: 1.35rem;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.prose li::marker {
+	color: var(--blue);
+}
+
+.prose blockquote {
+	margin-inline: 0;
+	padding: 1rem 1.35rem;
+	border-left: 4px solid var(--lemon);
+	background: var(--paper-tint);
+	border-radius: 0 var(--round-sm) var(--round-sm) 0;
+	font-family: var(--display);
+	font-size: var(--s-1);
+	font-weight: 500;
+	line-height: 1.45;
+	letter-spacing: -0.02em;
+	color: var(--ink);
+}
+
+.prose blockquote p {
+	margin: 0;
+}
+
+.prose code {
+	font-family: var(--mono);
+	font-size: 0.88em;
+	background: var(--paper-tint);
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	padding: 0.1em 0.35em;
+}
+
+.prose hr {
+	border: 0;
+	border-top: 1px solid var(--line);
+	margin-block: 2.5rem;
 }
 
 /* -------------------------------------------------------------------------
    Utilitaires
    ------------------------------------------------------------------------- */
 
-.visually-hidden {
+.sr {
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -433,24 +500,22 @@ strong {
 	border: 0;
 }
 
-.skip-link {
+.skip {
 	position: absolute;
 	top: 0.5rem;
 	left: 0.5rem;
 	z-index: 200;
 	padding: 0.7rem 1.1rem;
-	background: var(--ink);
+	background: var(--navy);
 	color: #fff;
-	border-radius: var(--radius);
+	border-radius: 999px;
 	text-decoration: none;
-	font-family: var(--mono);
-	font-size: var(--step--2);
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	transform: translateY(-160%);
+	font-size: var(--s--1);
+	font-weight: 700;
+	transform: translateY(-180%);
 	transition: transform 0.2s ease;
 }
 
-.skip-link:focus-visible {
+.skip:focus-visible {
 	transform: none;
 }

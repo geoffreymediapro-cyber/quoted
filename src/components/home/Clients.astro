@@ -1,0 +1,163 @@
+---
+import { CLIENTS, PLACEHOLDER_CLIENTS } from '../../data/site';
+---
+
+<section class="band band--tint" id="clients">
+	<div class="wrap">
+		<div class="head obs">
+			<p class="kicker">Clients accompagnés</p>
+			<h2>Les marques que nous accompagnons</h2>
+			<p>
+				Nos références sont présentées sans nom, par choix. Ce que vous voyez ici,
+				c'est le profil, la situation de départ et le travail engagé.
+			</p>
+		</div>
+
+		{
+			PLACEHOLDER_CLIENTS && (
+				<p class="todo obs">
+					<strong>Section à compléter.</strong> Les profils ci-dessous sont un gabarit,
+					pas des références réelles. Fournir pour chaque client : secteur, taille,
+					situation de départ et travail engagé.
+				</p>
+			)
+		}
+
+		<div class="cli">
+			<div class="cli__l">
+				{
+					CLIENTS.map((client, index) => (
+						<article class="cli__c obs" style={`--d: ${index * 50}ms`}>
+							<span class="cli__n">{String(index + 1).padStart(2, '0')}</span>
+							<div>
+								<h3>{client.sector}</h3>
+								<p class="cli__p">{client.profile}</p>
+							</div>
+							<p class="cli__x">{client.context}</p>
+							<p class="cli__w">{client.work}</p>
+						</article>
+					))
+				}
+			</div>
+
+			<aside class="cli__note obs">
+				<h3>Pourquoi aucun logo</h3>
+				<p>
+					Travailler la visibilité d'une marque dans les réponses générées, c'est entrer
+					dans sa stratégie de contenu et dans ses points faibles. Nous ne les affichons
+					pas en vitrine.
+				</p>
+				<p>
+					Les références nominatives et les exemples détaillés sont communiqués en
+					entretien, avec l'accord du client concerné.
+				</p>
+				<a class="b b--lemon" href="#contact">
+					Demander des références
+					<span class="arrow" aria-hidden="true">→</span>
+				</a>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.todo {
+		border-left: 4px solid var(--lemon);
+		background: #fffbe6;
+		padding: 0.9rem 1.15rem;
+		border-radius: 0 var(--round-sm) var(--round-sm) 0;
+		font-size: var(--s--1);
+		line-height: 1.55;
+		color: var(--ink-soft);
+		margin-bottom: 1.75rem;
+	}
+
+	.cli {
+		display: grid;
+		grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+		gap: clamp(1.25rem, 2.5vw, 2rem);
+		align-items: start;
+	}
+
+	.cli__l {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.cli__c {
+		display: grid;
+		grid-template-columns: 2.5rem minmax(8rem, 1fr) minmax(0, 1.3fr) minmax(0, 1.1fr);
+		gap: 1rem;
+		align-items: center;
+		padding: 1.1rem 1.25rem;
+		background: var(--paper);
+		border-radius: var(--round-sm);
+		border: 1px solid var(--line);
+	}
+
+	.cli__n {
+		font-family: var(--display);
+		font-weight: 700;
+		color: var(--blue);
+	}
+
+	.cli__c h3 {
+		font-size: var(--s-0);
+		color: var(--ink-mute);
+	}
+
+	.cli__p,
+	.cli__x,
+	.cli__w {
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--ink-mute);
+	}
+
+	.cli__note {
+		padding: clamp(1.35rem, 2.5vw, 1.9rem);
+		background: var(--navy);
+		color: rgba(234, 240, 251, 0.75);
+		border-radius: var(--round);
+		display: grid;
+		gap: 0.85rem;
+		position: sticky;
+		top: 6.5rem;
+	}
+
+	.cli__note h3 {
+		color: #fff;
+	}
+
+	.cli__note p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+	}
+
+	.cli__note .b {
+		justify-self: start;
+		margin-top: 0.3rem;
+	}
+
+	@media (max-width: 66rem) {
+		.cli {
+			grid-template-columns: 1fr;
+		}
+
+		.cli__note {
+			position: static;
+		}
+	}
+
+	@media (max-width: 48rem) {
+		.cli__c {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+			row-gap: 0.45rem;
+		}
+
+		.cli__x,
+		.cli__w {
+			grid-column: 2;
+		}
+	}
+</style>

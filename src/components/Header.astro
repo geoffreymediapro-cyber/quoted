@@ -1,47 +1,35 @@
 ---
 const path = Astro.url.pathname;
-// Sur les pages internes, les ancres doivent repartir de l'accueil.
+// Sur les pages interieures, les ancres doivent repartir de l'accueil.
 const home = path === '/' ? '' : '/';
 
 const links = [
-	{ href: `${home}#expertise`, label: 'Ce qu’on fait' },
-	{ href: `${home}#clients`, label: 'Clients' },
+	{ href: `${home}#services`, label: 'Services' },
 	{ href: `${home}#methode`, label: 'Méthode' },
-	{ href: `${home}#outils`, label: 'Outils' },
+	{ href: `${home}#clients`, label: 'Clients' },
 	{ href: '/guide/', label: 'Guide' },
 	{ href: `${home}#faq`, label: 'FAQ' },
 ];
 ---
 
-<header class="masthead" data-masthead>
-	<div class="shell masthead__inner">
-		<a class="brand" href="/" aria-label="Quoted, retour à l'accueil">
-			<span class="brand__mark" aria-hidden="true">&rdquo;</span>
-			<span class="brand__text">
-				<span class="brand__name">Quoted</span>
-				<span class="brand__role">Agence GEO</span>
-			</span>
+<header class="top" data-top>
+	<div class="wrap top__in">
+		<a class="logo" href="/" aria-label="Quoted, retour à l'accueil">
+			<span class="logo__sq" aria-hidden="true">&rdquo;</span>
+			Quoted
 		</a>
 
-		<nav class="nav" aria-label="Navigation principale">
-			<ul class="nav__list">
-				{
-					links.map((link) => (
-						<li>
-							<a
-								class="nav__link"
-								href={link.href}
-								aria-current={link.href === path ? 'page' : undefined}
-							>
-								{link.label}
-							</a>
-						</li>
-					))
-				}
-			</ul>
+		<nav class="menu" aria-label="Navigation principale">
+			{
+				links.map((link) => (
+					<a href={link.href} aria-current={link.href === path ? 'page' : undefined}>
+						{link.label}
+					</a>
+				))
+			}
 		</nav>
 
-		<a class="btn btn--primary masthead__cta" href={`${home}#contact`}>Nous écrire</a>
+		<a class="b b--fill top__cta" href={`${home}#contact`}>Nous écrire</a>
 
 		<button
 			class="burger"
@@ -50,205 +38,166 @@ const links = [
 			aria-controls="menu-mobile"
 			data-burger
 		>
-			<span class="visually-hidden">Ouvrir le menu</span>
-			<span class="burger__bar" aria-hidden="true"></span>
-			<span class="burger__bar" aria-hidden="true"></span>
+			<span class="sr">Ouvrir le menu</span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
 		</button>
 	</div>
 
-	<div class="drawer" id="menu-mobile" hidden data-drawer>
-		<ul class="drawer__list">
-			{
-				links.map((link) => (
-					<li>
-						<a href={link.href}>{link.label}</a>
-					</li>
-				))
-			}
-		</ul>
-		<a class="btn btn--primary drawer__cta" href={`${home}#contact`}>Nous écrire</a>
+	<div class="tray" id="menu-mobile" hidden data-tray>
+		{links.map((link) => <a href={link.href}>{link.label}</a>)}
+		<a class="b b--fill" href={`${home}#contact`}>Nous écrire</a>
 	</div>
 </header>
 
 <style>
-	.masthead {
+	.top {
 		position: sticky;
 		top: 0;
-		z-index: 100;
-		background: color-mix(in srgb, var(--paper) 88%, transparent);
-		backdrop-filter: blur(12px);
+		z-index: 50;
+		background: color-mix(in srgb, var(--paper) 90%, transparent);
+		backdrop-filter: blur(14px);
 		border-bottom: 1px solid transparent;
 		transition: border-color 0.2s ease;
 	}
 
-	.masthead[data-stuck] {
+	.top[data-stuck] {
 		border-bottom-color: var(--line);
 	}
 
-	.masthead__inner {
+	.top__in {
 		display: flex;
 		align-items: center;
 		gap: 1.5rem;
-		min-height: 4.25rem;
+		min-height: 4.75rem;
 	}
 
-	/* --- Marque : pastille violette + mot-symbole --- */
-	.brand {
+	.logo {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.6rem;
-		text-decoration: none;
+		gap: 0.55rem;
 		margin-right: auto;
+		font-family: var(--display);
+		font-size: 1.35rem;
+		font-weight: 700;
+		letter-spacing: -0.04em;
+		text-decoration: none;
 	}
 
-	.brand__mark {
+	.logo__sq {
 		display: grid;
 		place-items: center;
-		width: 1.85rem;
-		height: 1.85rem;
-		background: var(--violet);
+		width: 2rem;
+		height: 2rem;
+		border-radius: 8px;
+		background: var(--blue);
 		color: #fff;
-		font-size: 1.3rem;
-		font-weight: 800;
+		font-size: 1.35rem;
 		line-height: 2.1;
-		border-radius: var(--radius);
 		transition: background-color 0.18s ease;
 	}
 
-	.brand:hover .brand__mark {
-		background: var(--ink);
+	.logo:hover .logo__sq {
+		background: var(--navy);
 	}
 
-	.brand__text {
-		display: grid;
-		line-height: 1.05;
-	}
-
-	.brand__name {
-		font-size: 1.15rem;
-		font-weight: 800;
-		letter-spacing: -0.035em;
-		text-transform: uppercase;
-	}
-
-	.brand__role {
-		font-family: var(--mono);
-		font-size: 0.6rem;
-		letter-spacing: 0.16em;
-		text-transform: uppercase;
-		color: var(--ink-mute);
-	}
-
-	/* --- Navigation --- */
-	.nav__list {
+	.menu {
 		display: flex;
-		align-items: center;
-		gap: 1.5rem;
-		list-style: none;
-		padding: 0;
+		gap: 1.6rem;
 	}
 
-	.nav__link {
+	.menu a {
 		position: relative;
-		font-size: var(--step--1);
-		font-weight: 500;
-		text-decoration: none;
+		font-size: var(--s--1);
+		font-weight: 600;
 		color: var(--ink-soft);
-		padding-block: 0.35rem;
+		text-decoration: none;
+		padding-block: 0.4rem;
 		transition: color 0.16s ease;
 	}
 
-	.nav__link::after {
+	.menu a::after {
 		content: '';
 		position: absolute;
 		left: 0;
 		bottom: 0;
 		width: 100%;
 		height: 2px;
-		background: var(--violet);
+		border-radius: 2px;
+		background: var(--lemon);
 		transform: scaleX(0);
 		transform-origin: right;
-		transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+		transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.3, 1);
 	}
 
-	.nav__link:hover,
-	.nav__link[aria-current='page'] {
+	.menu a:hover,
+	.menu a[aria-current='page'] {
 		color: var(--ink);
 	}
 
-	.nav__link:hover::after,
-	.nav__link[aria-current='page']::after {
+	.menu a:hover::after,
+	.menu a[aria-current='page']::after {
 		transform: scaleX(1);
 		transform-origin: left;
 	}
 
-	/* --- Burger --- */
 	.burger {
 		display: none;
 		flex-direction: column;
-		justify-content: center;
 		gap: 5px;
-		width: 2.6rem;
-		height: 2.6rem;
-		padding: 0;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
 		background: transparent;
 		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
+		border-radius: 10px;
 		cursor: pointer;
 	}
 
-	.burger__bar {
-		display: block;
-		width: 1.05rem;
+	.burger span[aria-hidden] {
+		width: 1.1rem;
 		height: 2px;
 		margin-inline: auto;
 		background: var(--ink);
+		border-radius: 2px;
 		transition: transform 0.22s ease;
 	}
 
-	.burger[aria-expanded='true'] .burger__bar:first-child {
+	.burger[aria-expanded='true'] span[aria-hidden]:first-of-type {
 		transform: translateY(3.5px) rotate(45deg);
 	}
 
-	.burger[aria-expanded='true'] .burger__bar:last-child {
+	.burger[aria-expanded='true'] span[aria-hidden]:last-of-type {
 		transform: translateY(-3.5px) rotate(-45deg);
 	}
 
-	/* --- Tiroir mobile --- */
-	.drawer {
+	.tray {
+		display: grid;
+		padding: 0.75rem var(--gutter) 1.5rem;
 		border-top: 1px solid var(--line);
-		background: var(--paper);
-		padding: 1rem var(--gutter) 1.75rem;
 	}
 
-	.drawer[hidden] {
+	.tray[hidden] {
 		display: none;
 	}
 
-	.drawer__list {
-		list-style: none;
-		padding: 0;
-		display: grid;
-		margin-bottom: 1.1rem;
-	}
-
-	.drawer__list a {
-		display: block;
-		padding: 0.8rem 0;
+	.tray a:not(.b) {
+		padding: 0.75rem 0;
 		border-bottom: 1px solid var(--line);
-		font-size: 1.1rem;
-		font-weight: 700;
-		letter-spacing: -0.02em;
+		font-family: var(--display);
+		font-size: 1.25rem;
+		font-weight: 600;
+		letter-spacing: -0.03em;
 		text-decoration: none;
 	}
 
-	.drawer__cta {
-		width: 100%;
+	.tray .b {
+		margin-top: 1rem;
 	}
 
-	@media (max-width: 64rem) {
-		.nav,
-		.masthead__cta {
+	@media (max-width: 62rem) {
+		.menu,
+		.top__cta {
 			display: none;
 		}
 
@@ -260,34 +209,30 @@ const links = [
 
 <script>
 	const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
-	const drawer = document.querySelector<HTMLElement>('[data-drawer]');
-	const masthead = document.querySelector<HTMLElement>('[data-masthead]');
+	const tray = document.querySelector<HTMLElement>('[data-tray]');
+	const top = document.querySelector<HTMLElement>('[data-top]');
 
-	if (burger && drawer) {
+	if (burger && tray) {
 		burger.addEventListener('click', () => {
 			const open = burger.getAttribute('aria-expanded') === 'true';
 			burger.setAttribute('aria-expanded', String(!open));
-			drawer.hidden = open;
+			tray.hidden = open;
 		});
 
-		// Referme le tiroir des qu'on navigue vers une ancre
-		drawer.addEventListener('click', (event) => {
+		tray.addEventListener('click', (event) => {
 			if ((event.target as HTMLElement).closest('a')) {
 				burger.setAttribute('aria-expanded', 'false');
-				drawer.hidden = true;
+				tray.hidden = true;
 			}
 		});
 	}
 
-	if (masthead) {
-		const sentinel = () => {
-			if (window.scrollY > 8) {
-				masthead.setAttribute('data-stuck', '');
-			} else {
-				masthead.removeAttribute('data-stuck');
-			}
+	if (top) {
+		const stick = () => {
+			if (window.scrollY > 8) top.setAttribute('data-stuck', '');
+			else top.removeAttribute('data-stuck');
 		};
-		sentinel();
-		window.addEventListener('scroll', sentinel, { passive: true });
+		stick();
+		window.addEventListener('scroll', stick, { passive: true });
 	}
 </script>

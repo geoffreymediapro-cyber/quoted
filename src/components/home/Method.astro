@@ -1,0 +1,91 @@
+---
+import { METHOD } from '../../data/site';
+---
+
+<section class="band band--tint" id="methode">
+	<div class="wrap">
+		<div class="head obs">
+			<p class="kicker">Notre méthode</p>
+			<h2>Cinq temps, toujours dans cet ordre</h2>
+			<p>
+				Aucune étape n'est décorative : chacune produit une décision. On ne passe à la
+				suivante que lorsque la précédente a donné un résultat lisible.
+			</p>
+		</div>
+
+		<ol class="meth">
+			{
+				METHOD.map((step, index) => (
+					<li class="meth__s obs" style={`--d: ${index * 60}ms`}>
+						<span class="meth__n">{step.step}</span>
+						<h3>{step.title}</h3>
+						<p>{step.body}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.meth {
+		list-style: none;
+		padding: 0;
+		display: grid;
+	}
+
+	.meth__s {
+		display: grid;
+		grid-template-columns: 4.5rem minmax(0, 1fr);
+		/* row-gap distinct : sinon le titre et son paragraphe sont ecartes
+		   de toute la gouttiere horizontale. */
+		column-gap: clamp(1rem, 3vw, 2.5rem);
+		row-gap: 0.4rem;
+		padding-block: clamp(1.4rem, 2.8vw, 2rem);
+		border-top: 1px solid var(--line-strong);
+		align-items: start;
+	}
+
+	.meth__s:last-child {
+		border-bottom: 1px solid var(--line-strong);
+	}
+
+	.meth__n {
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background: var(--navy);
+		color: #fff;
+		font-family: var(--display);
+		font-weight: 700;
+		font-size: 0.95rem;
+	}
+
+	/* h3 et p sont freres du numero : sans cette contrainte ils repassent
+	   en colonne 1 (largeur du rond) au lieu de suivre le texte. */
+	.meth__s h3,
+	.meth__s p {
+		grid-column: 2;
+	}
+
+	.meth__s p {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 68ch;
+	}
+
+	@media (max-width: 40rem) {
+		.meth__s {
+			grid-template-columns: 1fr;
+			row-gap: 0.6rem;
+		}
+
+		.meth__s h3,
+		.meth__s p {
+			grid-column: 1;
+		}
+	}
+</style>
