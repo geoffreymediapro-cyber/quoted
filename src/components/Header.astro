@@ -1,4 +1,6 @@
 ---
+import BrandMark from './BrandMark.astro';
+
 const path = Astro.url.pathname;
 // Sur les pages interieures, les ancres doivent repartir de l'accueil.
 const home = path === '/' ? '' : '/';
@@ -15,7 +17,7 @@ const links = [
 <header class="top" data-top>
 	<div class="wrap top__in">
 		<a class="logo" href="/" aria-label="Quoted, retour à l'accueil">
-			<span class="logo__sq" aria-hidden="true">&rdquo;</span>
+			<span class="logo__sq" aria-hidden="true"><BrandMark /></span>
 			Quoted
 		</a>
 
@@ -92,9 +94,12 @@ const links = [
 		border-radius: 8px;
 		background: var(--blue);
 		color: #fff;
-		font-size: 1.35rem;
-		line-height: 2.1;
 		transition: background-color 0.18s ease;
+	}
+
+	.logo__sq :global(svg) {
+		width: 1.05rem;
+		height: 1.05rem;
 	}
 
 	.logo:hover .logo__sq {

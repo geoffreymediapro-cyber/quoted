@@ -1,0 +1,27 @@
+---
+/**
+ * Guillemet fermant de la marque, trace en formes pleines plutot qu'en
+ * caractere : le rendu ne depend plus de la police ni du calage vertical,
+ * et il est identique au favicon et a l'image Open Graph.
+ * Cercle + queue effilee : reste lisible autour de 16 px, la ou un trace
+ * plus rectangulaire se lisait « JJ ».
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg
+	class={className}
+	viewBox="0 0 64 64"
+	fill="currentColor"
+	aria-hidden="true"
+	focusable="false"
+>
+	<circle cx="19" cy="24" r="11"></circle>
+	<path d="M9 27h20L14 54z"></path>
+	<circle cx="45" cy="24" r="11"></circle>
+	<path d="M35 27h20L40 54z"></path>
+</svg>

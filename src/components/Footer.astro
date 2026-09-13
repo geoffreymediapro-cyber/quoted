@@ -1,4 +1,5 @@
 ---
+import BrandMark from './BrandMark.astro';
 import { CONTACT_EMAIL } from '../data/site';
 
 const year = 2026;
@@ -7,7 +8,7 @@ const year = 2026;
 <footer class="foot">
 	<div class="wrap foot__grid">
 		<div class="foot__brand">
-			<p class="foot__logo"><span aria-hidden="true">&rdquo;</span>Quoted</p>
+			<p class="foot__logo"><BrandMark class="foot__mark" />Quoted</p>
 			<p class="foot__line">
 				Agence GEO. La visibilité de votre marque dans les réponses générées par
 				ChatGPT, Perplexity, Gemini et les AI Overviews.
@@ -36,6 +37,7 @@ const year = 2026;
 				<li><a href="/#perimetre">Périmètre</a></li>
 				<li><a href="/#clients">Clients accompagnés</a></li>
 				<li><a href="/#faq">Questions fréquentes</a></li>
+				<li><a href="/rss.xml">Flux RSS du guide</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -66,6 +68,9 @@ const year = 2026;
 	}
 
 	.foot__logo {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 		font-family: var(--display);
 		font-size: 1.7rem;
 		font-weight: 700;
@@ -74,9 +79,10 @@ const year = 2026;
 		margin-bottom: 0.6rem;
 	}
 
-	.foot__logo span {
+	.foot__logo :global(.foot__mark) {
+		width: 1.15rem;
+		height: 1.15rem;
 		color: var(--lemon);
-		margin-right: 0.15rem;
 	}
 
 	.foot__line {

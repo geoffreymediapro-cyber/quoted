@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-	<rect width="64" height="64" rx="12" fill="#4b33e0" />
-	<text
-		x="32"
-		y="52"
-		font-family="Georgia, 'Times New Roman', serif"
-		font-size="64"
-		text-anchor="middle"
-		fill="#ffffff"
-	>&#8220;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quoted">
+	<rect width="64" height="64" rx="14" fill="#2049e5" />
+	<!-- Guillemet fermant en formes pleines : rendu identique partout,
+	     contrairement a un <text> qui depend des polices du systeme. -->
+	<g fill="#ffffff" transform="translate(4 6) scale(0.86)">
+		<circle cx="19" cy="24" r="11" />
+		<path d="M9 27h20L14 54z" />
+		<circle cx="45" cy="24" r="11" />
+		<path d="M35 27h20L40 54z" />
+	</g>
 </svg>
