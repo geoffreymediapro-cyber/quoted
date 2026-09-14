@@ -261,6 +261,22 @@ export const TOOLS: Tool[] = [
 ];
 
 /* -------------------------------------------------------------------------
+   Le consultant
+   ⚠️ A COMPLETER : nom complet exact et intitule a confirmer. Aucune
+   affirmation de parcours n'est ecrite ici tant qu'elle n'est pas fournie.
+   ------------------------------------------------------------------------- */
+
+export const CONSULTANT = {
+	name: 'Geoffrey',
+	role: 'Fondateur de Quoted',
+	points: [
+		'Un seul interlocuteur, du premier relevé au reporting',
+		'Les relevés sont faits à la main, pas délégués à un junior',
+		'Ce qui dépasse le périmètre est confié à un partenaire, et vous le savez',
+	],
+};
+
+/* -------------------------------------------------------------------------
    Process en 4 etapes, presente en onglets sur la home.
    ------------------------------------------------------------------------- */
 
@@ -281,7 +297,7 @@ export const PROCESS: Step[] = [
 		body: "Avant de toucher à quoi que ce soit, on mesure : ce que les moteurs répondent déjà sur vos sujets, qui ils citent, et ce que votre site leur donne à lire.",
 		points: [
 			'Panel de prompts construit sur vos intentions réelles',
-			'Relevé sur ChatGPT, Gemini, Claude et les AI Overviews',
+			'Relevé sur ChatGPT, Perplexity, Gemini, Claude et les AI Overviews',
 			'Lecture technique de ce qui rend vos pages citables',
 		],
 		when: 'Semaine 1 à 2',
