@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import {
 	EXPERTISES,
-	METHOD,
 	CLIENTS,
 	PLACEHOLDER_CLIENTS,
 	FAQ,
@@ -291,30 +290,8 @@ Merci,`,
 	</div>
 </section>
 
-<!-- ===================== METHODE ===================== -->
-<section class="band band--soft" id="methode">
-	<div class="wrap">
-		<div class="head obs">
-			<p class="kick">Comment on travaille</p>
-			<h2>Cinq temps, <span class="hi">dans cet ordre</span></h2>
-		</div>
-
-		<ol class="meth">
-			{
-				METHOD.map((step, index) => (
-					<li class="meth__s obs" style={`--d: ${index * 50}ms`}>
-						<span class="meth__n">{step.step}</span>
-						<h3>{step.title}</h3>
-						<p>{step.body}</p>
-					</li>
-				))
-			}
-		</ol>
-	</div>
-</section>
-
 <!-- ===================== CLIENTS ===================== -->
-<section class="band" id="clients">
+<section class="band band--soft" id="clients">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Clients accompagnés</p>
@@ -363,7 +340,7 @@ Merci,`,
 </section>
 
 <!-- ===================== RESSOURCES ===================== -->
-<section class="band band--soft" id="ressources">
+<section class="band" id="ressources">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Ressources</p>
@@ -387,7 +364,7 @@ Merci,`,
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section class="band" id="faq">
+<section class="band band--soft" id="faq">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Questions fréquentes</p>
@@ -1013,51 +990,6 @@ Merci,`,
 		color: var(--ink-mute);
 	}
 
-	/* ================= METHODE ================= */
-	.meth {
-		list-style: none;
-		padding: 0;
-	}
-
-	.meth__s {
-		display: grid;
-		grid-template-columns: 3.6rem minmax(0, 1fr);
-		column-gap: clamp(1rem, 2.5vw, 2rem);
-		row-gap: 0.3rem;
-		padding-block: clamp(1.1rem, 2.2vw, 1.5rem);
-		border-top: 1px solid var(--line-strong);
-		align-items: start;
-	}
-
-	.meth__s:last-child {
-		border-bottom: 1px solid var(--line-strong);
-	}
-
-	.meth__n {
-		display: grid;
-		place-items: center;
-		width: 2.6rem;
-		height: 2.6rem;
-		border-radius: 50%;
-		background: var(--accent);
-		color: #fff;
-		font-family: var(--display);
-		font-weight: 800;
-		font-size: 0.85rem;
-	}
-
-	.meth__s h3,
-	.meth__s p {
-		grid-column: 2;
-	}
-
-	.meth__s p {
-		font-size: var(--s--1);
-		line-height: 1.6;
-		color: var(--ink-soft);
-		max-width: 72ch;
-	}
-
 	/* ================= CLIENTS ================= */
 	.todo {
 		border-left: 4px solid var(--accent);
@@ -1353,15 +1285,6 @@ Merci,`,
 	@media (max-width: 44rem) {
 		.gui {
 			grid-template-columns: 1fr;
-		}
-
-		.meth__s {
-			grid-template-columns: 1fr;
-		}
-
-		.meth__s h3,
-		.meth__s p {
-			grid-column: 1;
 		}
 
 		.cli__c {

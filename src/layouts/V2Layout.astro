@@ -19,8 +19,8 @@ const nav = [
 	{ href: '#expertises', label: 'Expertises' },
 	{ href: '#surfaces', label: 'Surfaces' },
 	{ href: '#resultats', label: 'Résultats' },
-	{ href: '#methode', label: 'Méthode' },
 	{ href: '#clients', label: 'Clients' },
+	{ href: '#ressources', label: 'Ressources' },
 ];
 ---
 
@@ -49,17 +49,15 @@ const nav = [
 		<div class="flag">
 			<span>Page de comparaison, non indexée</span>
 			<span class="flag__sw">
-				<a href="/v2/" aria-current={theme === 'blue' ? 'page' : undefined}>Bleu</a>
-				<a href="/v2/violet/" aria-current={theme === 'violet' ? 'page' : undefined}>
-					Violet
-				</a>
+				<a href="/v2/" aria-current={theme === 'violet' ? 'page' : undefined}>Violet</a>
+				<a href="/v2/bleu/" aria-current={theme === 'blue' ? 'page' : undefined}>Bleu</a>
 			</span>
 			<a class="flag__live" href="/">Voir la version en ligne</a>
 		</div>
 
 		<header class="top" data-top>
 			<div class="wrap top__in">
-				<a class="logo" href={theme === 'violet' ? '/v2/violet/' : '/v2/'}>
+				<a class="logo" href={theme === 'blue' ? '/v2/bleu/' : '/v2/'}>
 					<span class="logo__sq" aria-hidden="true"><BrandMark /></span>
 					Quoted
 				</a>
