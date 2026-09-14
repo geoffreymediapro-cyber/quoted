@@ -66,6 +66,37 @@ const metrics = [
 	},
 ];
 
+/**
+ * Pictogrammes des expertises. Traces a la main pour rester coherents
+ * entre eux, plutot que des emojis dont le rendu change selon l'OS.
+ */
+const ICONS: Record<string, string> = {
+	radar: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/>',
+	prompt: '<circle cx="10.5" cy="10.5" r="6.4"/><path d="M15.3 15.3 21 21"/><path d="M8.6 9.4a2 2 0 1 1 2.1 2.1v1"/>',
+	doc: '<path d="M6 3.5h8l4 4v13H6z"/><path d="M14 3.5v4h4"/><path d="M9 12.5h6M9 16h4"/>',
+	nodes: '<circle cx="5.5" cy="6.5" r="2.2"/><circle cx="18.5" cy="9.5" r="2.2"/><circle cx="10" cy="18" r="2.2"/><path d="M7.6 7.2 16.4 9M17 11.5l-5.4 5M8.9 15.9 6.3 8.7"/>',
+	gear: '<path d="M8.4 7.4 3.6 12l4.8 4.6M15.6 7.4 20.4 12l-4.8 4.6M13.6 4.6l-3.2 14.8"/>',
+	pen: '<path d="M4 20.5l1.1-4.2L16.6 4.8a2.2 2.2 0 0 1 3.1 3.1L8.2 19.4z"/><path d="M14.6 6.8l3.1 3.1"/>',
+	link: '<path d="M10.2 14.2a4.2 4.2 0 0 0 6 0l2.6-2.6a4.2 4.2 0 0 0-6-6L11.5 6.9"/><path d="M13.8 10.2a4.2 4.2 0 0 0-6 0l-2.6 2.6a4.2 4.2 0 0 0 6 6l1.3-1.3"/>',
+	chat: '<path d="M3.5 4.5h17v10h-10l-4.5 3.5V14.5h-2.5z"/><circle cx="8.5" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="9.5" r="1" fill="currentColor" stroke="none"/>',
+	book: '<path d="M3.5 4.5h6a3 3 0 0 1 3 3v12a2.4 2.4 0 0 0-2.4-2.4H3.5z"/><path d="M20.5 4.5h-6a3 3 0 0 0-3 3v12a2.4 2.4 0 0 1 2.4-2.4h6.6z"/>',
+	chart: '<path d="M3.5 20.5h17"/><path d="M6.5 17.5v-6M11.5 17.5V7M16.5 17.5v-4"/>',
+};
+
+/** Une teinte pastel par carte, seul ilot de couleur de la page. */
+const TINTS = [
+	['#efe9ff', '#e2d7ff'],
+	['#dff3ec', '#ccebdf'],
+	['#ffe8dc', '#ffd9c4'],
+	['#e1ecff', '#cfe0ff'],
+	['#fff3cf', '#ffe9ab'],
+	['#ffe3ee', '#ffd0e2'],
+	['#e7f2db', '#d7ebc2'],
+	['#f7eada', '#efdcc1'],
+	['#e4e6fc', '#d3d7fa'],
+	['#dceff6', '#c6e4f0'],
+];
+
 const scanSubject = encodeURIComponent('Scan de visibilité IA');
 const scanBody = encodeURIComponent(
 	`Bonjour,
@@ -199,7 +230,13 @@ Merci,`,
 		<ul class="exp">
 			{
 				EXPERTISES.map((item, index) => (
-					<li class:list={['exp__c', 'obs', { 'exp__c--core': item.core }]} style={`--d: ${index * 35}ms`}>
+					<li
+						class="exp__c obs"
+						style={`--a: ${TINTS[index % TINTS.length][0]}; --b: ${TINTS[index % TINTS.length][1]}; --d: ${index * 35}ms`}
+					>
+						<span class="exp__i" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={ICONS[item.icon]} />
+						</span>
 						<div class="exp__h">
 							<h3>{item.name}</h3>
 							{item.core && <span class="exp__t">GEO</span>}
@@ -209,6 +246,14 @@ Merci,`,
 					</li>
 				))
 			}
+
+			<li class="exp__c exp__c--cta obs" style={`--d: ${EXPERTISES.length * 35}ms`}>
+				<a href="#contact">
+					<span class="exp__go" aria-hidden="true">↗</span>
+					<h3>Scanner ma visibilité IA</h3>
+					<p>Relevé gratuit sur cinq prompts de votre marché, réponse sous 48 h.</p>
+				</a>
+			</li>
 		</ul>
 	</div>
 </section>
@@ -746,25 +791,36 @@ Merci,`,
 		list-style: none;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-		gap: 0.85rem;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+		gap: clamp(0.7rem, 1.6vw, 1.1rem);
 	}
 
 	.exp__c {
-		padding: 1.3rem 1.4rem;
-		border-radius: var(--round-sm);
-		background: var(--paper);
-		border: 1px solid var(--line);
-		transition: border-color 0.2s ease, transform 0.2s ease;
+		padding: 1.4rem 1.5rem;
+		border-radius: var(--round);
+		background: linear-gradient(145deg, var(--a), var(--b));
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
 	}
 
 	.exp__c:hover {
-		border-color: var(--accent-line);
-		transform: translateY(-3px);
+		transform: translateY(-4px);
+		box-shadow: var(--shadow);
 	}
 
-	.exp__c--core {
-		background: var(--surface);
+	.exp__i {
+		display: grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 11px;
+		background: rgba(255, 255, 255, 0.75);
+		color: var(--dark);
+		margin-bottom: 1rem;
+	}
+
+	.exp__i :global(svg) {
+		width: 1.35rem;
+		height: 1.35rem;
 	}
 
 	.exp__h {
@@ -776,7 +832,8 @@ Merci,`,
 	}
 
 	.exp__c h3 {
-		font-size: var(--s-0);
+		font-size: var(--s-1);
+		color: var(--dark);
 	}
 
 	.exp__t {
@@ -786,20 +843,59 @@ Merci,`,
 		text-transform: uppercase;
 		padding: 0.15rem 0.45rem;
 		border-radius: 999px;
-		background: var(--accent);
+		background: var(--dark);
 		color: #fff;
 	}
 
 	.exp__t--via {
-		background: transparent;
-		border: 1px solid var(--line-strong);
-		color: var(--ink-mute);
+		background: rgba(255, 255, 255, 0.8);
+		color: var(--dark);
 	}
 
 	.exp__c p {
-		font-size: 0.82rem;
+		font-size: 0.84rem;
 		line-height: 1.55;
-		color: var(--ink-soft);
+		color: color-mix(in srgb, var(--dark) 72%, transparent);
+	}
+
+	/* Derniere case : appel a l'action, seule carte en couleur pleine */
+	.exp__c--cta {
+		padding: 0;
+		background: var(--accent);
+	}
+
+	.exp__c--cta a {
+		display: block;
+		padding: 1.4rem 1.5rem;
+		text-decoration: none;
+		height: 100%;
+	}
+
+	.exp__go {
+		display: grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 50%;
+		background: #fff;
+		color: var(--accent);
+		font-size: 1rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+		transition: transform 0.2s ease;
+	}
+
+	.exp__c--cta:hover .exp__go {
+		transform: translate(2px, -2px);
+	}
+
+	.exp__c--cta h3,
+	.exp__c--cta p {
+		color: #fff;
+	}
+
+	.exp__c--cta p {
+		opacity: 0.85;
 	}
 
 	/* ================= SURFACES ================= */

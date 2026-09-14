@@ -152,6 +152,8 @@ export const CLIENTS: Client[] = [
 export interface Expertise {
 	name: string;
 	note: string;
+	/** Cle de pictogramme, voir ICONS dans components/v2/Page.astro. */
+	icon: string;
 	core?: boolean;
 	via?: string;
 }
@@ -159,48 +161,58 @@ export interface Expertise {
 export const EXPERTISES: Expertise[] = [
 	{
 		name: 'Audit de visibilité IA',
+		icon: 'radar',
 		note: 'Le relevé de ce que les moteurs répondent déjà, et de qui ils citent.',
 		core: true,
 	},
 	{
 		name: 'Cartographie de prompts',
+		icon: 'prompt',
 		note: 'Les questions réelles de votre marché, par intention, en panel rejouable.',
 		core: true,
 	},
 	{
 		name: 'Contenu GEO',
+		icon: 'doc',
 		note: 'Des pages dont un moteur peut extraire une réponse autonome et sourcée.',
 		core: true,
 	},
 	{
 		name: 'Maillage et cocon sémantique',
+		icon: 'nodes',
 		note: 'Rattacher vos pages pour que le sujet soit traité comme un ensemble.',
 		core: true,
 	},
 	{
 		name: 'SEO technique',
+		icon: 'gear',
 		note: 'Indexation, structure, données structurées : le socle que les moteurs doivent pouvoir lire.',
 	},
 	{
 		name: 'Rédaction SEO',
+		icon: 'pen',
 		note: 'Le contenu classique, pensé pour la recherche autant que pour la lecture.',
 	},
 	{
 		name: 'Netlinking',
+		icon: 'link',
 		note: 'Liens éditoriaux pour l’autorité, et médias que les moteurs citent réellement.',
 	},
 	{
 		name: 'Reddit et forums',
+		icon: 'chat',
 		note: 'Présence organique sur les espaces massivement repris par les moteurs.',
 		core: true,
 	},
 	{
 		name: 'Wikipédia et Wikidata',
+		icon: 'book',
 		note: 'Les référentiels d’entités que tous les moteurs consultent.',
 		via: 'Partenaire',
 	},
 	{
 		name: 'Suivi de visibilité',
+		icon: 'chart',
 		note: 'Le même panel rejoué chaque mois, avec un score et une part de voix.',
 		core: true,
 	},
