@@ -8,7 +8,7 @@ const year = 2026;
 <footer class="foot">
 	<div class="wrap foot__grid">
 		<div class="foot__brand">
-			<p class="foot__logo"><BrandMark class="foot__mark" />Quoted</p>
+			<p class="foot__logo">Quoted<BrandMark class="foot__mark" /></p>
 			<p class="foot__line">
 				Agence GEO. La visibilité de votre marque dans les réponses générées par
 				ChatGPT, Perplexity, Gemini et les AI Overviews.
@@ -67,8 +67,7 @@ const year = 2026;
 
 	.foot__logo {
 		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+		align-items: flex-start;
 		font-family: var(--display);
 		font-size: 1.7rem;
 		font-weight: 800;
@@ -79,10 +78,13 @@ const year = 2026;
 	}
 
 	.foot__logo :global(.foot__mark) {
-		width: 1.15rem;
-		height: 1.15rem;
+		width: 0.46em;
+		height: 0.46em;
+		margin-left: 0.14em;
+		margin-top: 0.08em;
 		color: #fff;
 		opacity: 0.55;
+		flex: none;
 	}
 
 	.foot__line {

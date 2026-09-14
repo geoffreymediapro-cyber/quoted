@@ -18,8 +18,7 @@ const links = [
 <header class="top" data-top>
 	<div class="wrap top__in">
 		<a class="logo" href="/" aria-label="Quoted, retour à l'accueil">
-			<span class="logo__sq" aria-hidden="true"><BrandMark /></span>
-			Quoted
+			Quoted<BrandMark class="logo__q" />
 		</a>
 
 		<nav class="menu" aria-label="Navigation principale">
@@ -75,10 +74,10 @@ const links = [
 		min-height: 4.75rem;
 	}
 
+	/* Mot-symbole suivi du guillemet fermant : le mot est « cité ». */
 	.logo {
 		display: inline-flex;
-		align-items: center;
-		gap: 0.55rem;
+		align-items: flex-start;
 		margin-right: auto;
 		font-family: var(--display);
 		font-size: 1.4rem;
@@ -88,24 +87,18 @@ const links = [
 		text-decoration: none;
 	}
 
-	.logo__sq {
-		display: grid;
-		place-items: center;
-		width: 2.1rem;
-		height: 2.1rem;
-		border-radius: 9px;
-		background: var(--accent);
-		color: #fff;
-		transition: background-color 0.18s ease;
+	.logo :global(.logo__q) {
+		width: 0.46em;
+		height: 0.46em;
+		margin-left: 0.14em;
+		margin-top: 0.08em;
+		color: var(--accent);
+		flex: none;
+		transition: color 0.18s ease;
 	}
 
-	.logo:hover .logo__sq {
-		background: var(--dark);
-	}
-
-	.logo__sq :global(svg) {
-		width: 1.1rem;
-		height: 1.1rem;
+	.logo:hover :global(.logo__q) {
+		color: var(--dark);
 	}
 
 	.menu {
