@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL } from '../data/site';
+import { CONTACT_EMAIL, FORM_KEY } from '../data/site';
 ---
 
 <BaseLayout
@@ -26,11 +26,37 @@ import { CONTACT_EMAIL } from '../data/site';
 				</p>
 
 				<h2>Ce que ce site collecte</h2>
-				<p>
-					Ce site est un site statique. Il ne comporte ni formulaire, ni compte
-					utilisateur, ni espace de commentaire. Aucune donnée n'est saisie ni stockée
-					sur le site : la prise de contact se fait par e-mail, à votre initiative.
-				</p>
+				{
+					FORM_KEY ? (
+						<Fragment>
+							<p>
+								Le site comporte un formulaire de demande de scan. Les champs collectés
+								sont : l'adresse de votre site, votre adresse e-mail, votre secteur, les
+								questions que vous indiquez, et le nom d'un concurrent si vous le
+								renseignez. Ces informations servent uniquement à préparer le relevé
+								demandé et à vous répondre.
+							</p>
+							<p>
+								L'envoi est traité par <strong>Web3Forms</strong>, qui transmet le contenu
+								du formulaire à notre adresse de réception. Ce prestataire agit comme
+								sous-traitant au sens du RGPD et ne conserve pas les messages au-delà de
+								leur acheminement. Il n'y a ni compte utilisateur, ni espace de
+								commentaire, et aucune donnée n'est stockée sur le site lui-même.
+							</p>
+							<p>
+								Base légale : votre démarche volontaire de prise de contact, relevant de
+								l'intérêt légitime à répondre à une demande commerciale entrante.
+							</p>
+						</Fragment>
+					) : (
+						<p>
+							Ce site est un site statique. Il ne comporte ni formulaire, ni compte
+							utilisateur, ni espace de commentaire. Aucune donnée n'est saisie ni
+							stockée sur le site : la prise de contact se fait par e-mail, à votre
+							initiative.
+						</p>
+					)
+				}
 
 				<h2>Cookies et mesure d'audience</h2>
 				<p>
@@ -55,7 +81,8 @@ import { CONTACT_EMAIL } from '../data/site';
 
 				<h2>Échanges par e-mail</h2>
 				<p>
-					Lorsque vous nous écrivez, les informations contenues dans votre message sont
+					Lorsque vous nous écrivez, directement ou via le formulaire, les informations
+					contenues dans votre message sont
 					utilisées pour vous répondre et, le cas échéant, établir une proposition
 					commerciale. Elles ne sont ni cédées ni revendues, et ne servent pas à
 					alimenter une prospection automatisée.

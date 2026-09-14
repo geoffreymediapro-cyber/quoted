@@ -7,8 +7,23 @@ export const SITE_NAME = 'Quoted';
 export const SITE_URL = 'https://quoted.fr';
 export const SITE_TAGLINE = 'Agence GEO, Generative Engine Optimization';
 
-/** TODO : creer la boite (aucun MX sur la zone quoted.fr pour l'instant). */
+/**
+ * Adresse de repli, utilisee tant que le formulaire n'est pas configure.
+ * ⚠️ Aucun MX sur la zone quoted.fr : cette boite n'existe pas encore.
+ */
 export const CONTACT_EMAIL = 'contact@quoted.fr';
+
+/**
+ * Cle d'acces Web3Forms. Le site etant statique (GitHub Pages), un service
+ * tiers est necessaire pour recevoir les envois du formulaire.
+ * A obtenir sur web3forms.com : on saisit une adresse de reception, la cle
+ * arrive par mail. Aucun compte a creer, gratuit.
+ *
+ * Tant que cette constante est vide, le formulaire n'est PAS affiche et la
+ * section contact garde les boutons mailto : rien ne casse, et aucun envoi
+ * ne part dans le vide.
+ */
+export const FORM_KEY = '';
 
 /* -------------------------------------------------------------------------
    Ce qu'on fait : capacites, sans packaging commercial ni prix
