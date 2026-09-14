@@ -40,13 +40,31 @@ const surfaces = [
 const covered = surfaces.filter((s) => s.on).length;
 
 /**
- * Apercu du rapport mensuel. Valeurs volontairement illustratives et
- * signalees comme telles : ce n'est le resultat d'aucun client reel.
+ * Graphe du hero : visibilite par moteur, facon tableau de bord.
+ * Trois metriques, celles que nous livrons reellement. Les valeurs sont
+ * ILLUSTRATIVES et signalees comme telles : aucun client reel derriere.
  */
-const scoreRows = [
-	{ label: 'Taux de présence', value: '2 prompts sur 5', pct: 40 },
-	{ label: 'Taux de citation', value: '1 prompt sur 5', pct: 20 },
-	{ label: 'Part de voix', value: '3ᵉ sur 5 acteurs', pct: 34 },
+const models = ['ChatGPT', 'Perplexity', 'Gemini', 'AI Overviews'];
+
+const metrics = [
+	{
+		id: 'presence',
+		label: 'Taux de présence',
+		note: 'Part des réponses où la marque est mentionnée.',
+		values: [24, 40, 31, 18],
+	},
+	{
+		id: 'citation',
+		label: 'Taux de citation',
+		note: 'Part des réponses où le domaine figure dans les sources.',
+		values: [16, 34, 22, 11],
+	},
+	{
+		id: 'voix',
+		label: 'Part de voix',
+		note: 'Poids de la marque face aux concurrents, à prompts identiques.',
+		values: [21, 38, 27, 15],
+	},
 ];
 
 const scanSubject = encodeURIComponent('Scan de visibilité IA');
@@ -97,23 +115,63 @@ Merci,`,
 				Quel logiciel de facturation pour une TPE en 2026 ?
 			</figure>
 
-			<figure class="ans">
-				<div class="ans__bar">
-					<span>Réponse générée</span>
-					<span class="ans__tag">Illustration</span>
+			<figure class="chart">
+				<div class="chart__bar">
+					<span>Visibilité par moteur</span>
+					<span class="chart__tag">Illustration</span>
 				</div>
-				<div class="ans__in">
-					<p class="ans__txt">
-						Trois solutions reviennent régulièrement sur ce besoin.
-						<mark>Votre marque</mark><sup>1</sup> est citée pour sa conformité à la
-						facturation électronique<sup>2</sup>.
-					</p>
-					<p class="ans__st">Sources citées</p>
-					<ul class="ans__src">
-						<li class="on"><span>1</span>votre-marque.fr</li>
-						<li><span>2</span>guide-comparatif.fr</li>
-						<li><span>3</span>reddit.com / r/…</li>
-					</ul>
+
+				<div class="chart__in">
+					{/* Selecteur de metrique en CSS pur : chaque radio affiche sa serie. */}
+					<div class="chart__tabs" role="group" aria-label="Métrique affichée">
+						{
+							metrics.map((metric, index) => (
+								<>
+									<input
+										type="radio"
+										name="metric"
+										id={`m-${metric.id}`}
+										class="chart__radio sr"
+										checked={index === 0}
+									/>
+									<label for={`m-${metric.id}`}>{metric.label}</label>
+								</>
+							))
+						}
+					</div>
+
+					<div class="chart__plot">
+						{
+							metrics.map((metric) => (
+								<div class={`serie serie--${metric.id}`}>
+									<div class="serie__plot">
+										<div class="serie__ax" aria-hidden="true">
+											<span>50 %</span>
+											<span>25 %</span>
+											<span>0</span>
+										</div>
+
+										<div class="serie__bars">
+											{metric.values.map((value, i) => (
+												<div class="bar">
+													<span class="bar__v">{value}%</span>
+													{/* axe cale sur 50 % : la hauteur vaut le double de la valeur */}
+													<span class="bar__col" style={`--h: ${value * 2}%`} />
+												</div>
+											))}
+										</div>
+
+										<div class="serie__names">
+											{models.map((model) => (
+												<span>{model}</span>
+											))}
+										</div>
+									</div>
+									<p class="serie__n">{metric.note}</p>
+								</div>
+							))
+						}
+					</div>
 				</div>
 			</figure>
 		</div>
@@ -220,17 +278,9 @@ Merci,`,
 				</div>
 
 				<ul class="card__rows">
-					{
-						scoreRows.map((row) => (
-							<li>
-								<span class="card__rl">{row.label}</span>
-								<span class="card__rv">{row.value}</span>
-								<span class="card__bar2">
-									<span style={`width: ${row.pct}%`} />
-								</span>
-							</li>
-						))
-					}
+					<li><span>Panel rejoué</span><strong>30 prompts, 4 moteurs</strong></li>
+					<li><span>Concurrents suivis</span><strong>4 acteurs</strong></li>
+					<li><span>Période</span><strong>Mois précédent comparé</strong></li>
 				</ul>
 
 				<p class="card__note">
@@ -479,7 +529,8 @@ Merci,`,
 		flex: none;
 	}
 
-	.ans {
+	/* ---- Graphe : visibilite par moteur ---- */
+	.chart {
 		background: var(--paper);
 		border: 1px solid var(--line);
 		border-radius: var(--round);
@@ -487,7 +538,174 @@ Merci,`,
 		overflow: hidden;
 	}
 
-	.ans__bar,
+	.chart__in {
+		padding: clamp(1.1rem, 2.4vw, 1.6rem);
+	}
+
+	.chart__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin-bottom: 1.4rem;
+	}
+
+	.chart__tabs label {
+		padding: 0.35rem 0.8rem;
+		border-radius: 999px;
+		border: 1px solid var(--line);
+		font-size: 0.72rem;
+		font-weight: 700;
+		color: var(--ink-mute);
+		cursor: pointer;
+		transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+	}
+
+	.chart__tabs label:hover {
+		border-color: var(--accent-line);
+		color: var(--accent);
+	}
+
+	.chart__radio:checked + label {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+
+	.chart__radio:focus-visible + label {
+		outline: 3px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	/* Une seule serie visible a la fois, pilotee par le radio coche */
+	.serie {
+		display: none;
+	}
+
+	.chart__in:has(#m-presence:checked) .serie--presence,
+	.chart__in:has(#m-citation:checked) .serie--citation,
+	.chart__in:has(#m-voix:checked) .serie--voix {
+		display: block;
+	}
+
+	/* Grille : axe des ordonnees a gauche, barres a droite, noms dessous */
+	.serie__plot {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		column-gap: 0.7rem;
+		row-gap: 0.55rem;
+	}
+
+	.serie__ax {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 11.5rem;
+		font-size: 0.62rem;
+		font-weight: 600;
+		color: var(--ink-mute);
+		text-align: right;
+	}
+
+	/* Les libelles sont cales sur la ligne de niveau correspondante */
+	.serie__ax span {
+		transform: translateY(-0.4em);
+	}
+
+	.serie__ax span:last-child {
+		transform: translateY(0.1em);
+	}
+
+	.serie__bars {
+		display: flex;
+		align-items: flex-end;
+		gap: clamp(0.5rem, 2vw, 1.1rem);
+		height: 11.5rem;
+		/* Lignes de niveau a 0, 25 et 50 % */
+		background-image: repeating-linear-gradient(
+			to top,
+			var(--line) 0 1px,
+			transparent 1px 50%
+		);
+	}
+
+	.serie__names {
+		grid-column: 2;
+		display: flex;
+		gap: clamp(0.5rem, 2vw, 1.1rem);
+	}
+
+	.serie__names span {
+		flex: 1;
+		min-width: 0;
+		font-size: 0.68rem;
+		font-weight: 600;
+		color: var(--ink-mute);
+		text-align: center;
+		line-height: 1.2;
+	}
+
+	.bar {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+		height: 100%;
+	}
+
+	.bar__v {
+		font-family: var(--display);
+		font-size: 0.78rem;
+		font-weight: 800;
+		color: var(--ink);
+		margin-bottom: 0.3rem;
+	}
+
+	.bar__col {
+		width: 100%;
+		max-width: 3rem;
+		height: var(--h);
+		border-radius: 7px 7px 0 0;
+		background: linear-gradient(to top, var(--accent), color-mix(in srgb, var(--accent) 55%, #fff));
+		transform-origin: bottom;
+		animation: grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+	}
+
+	.bar:nth-child(2) .bar__col {
+		animation-delay: 80ms;
+	}
+
+	.bar:nth-child(3) .bar__col {
+		animation-delay: 160ms;
+	}
+
+	.bar:nth-child(4) .bar__col {
+		animation-delay: 240ms;
+	}
+
+	@keyframes grow {
+		from {
+			transform: scaleY(0);
+		}
+	}
+
+	.serie__n {
+		margin-top: 1.4rem;
+		padding-top: 0.9rem;
+		border-top: 1px solid var(--line);
+		font-size: 0.74rem;
+		line-height: 1.5;
+		color: var(--ink-mute);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bar__col {
+			animation: none;
+		}
+	}
+
+	.chart__bar,
 	.card__bar {
 		display: flex;
 		align-items: center;
@@ -501,7 +719,7 @@ Merci,`,
 		text-transform: uppercase;
 	}
 
-	.ans__tag,
+	.chart__tag,
 	.card__tag {
 		margin-left: auto;
 		padding: 0.15rem 0.55rem;
@@ -509,82 +727,6 @@ Merci,`,
 		border-radius: 999px;
 		color: rgba(238, 241, 247, 0.6);
 		font-size: 0.64rem;
-	}
-
-	.ans__in {
-		padding: clamp(1.2rem, 2.5vw, 1.7rem);
-	}
-
-	.ans__txt {
-		font-size: var(--s--1);
-		line-height: 1.7;
-		color: var(--ink-soft);
-		margin-bottom: 1.3rem;
-	}
-
-	.ans__txt mark {
-		background: var(--accent-wash);
-		color: var(--accent-deep);
-		font-weight: 700;
-		padding: 0 0.2em;
-		border-radius: 3px;
-	}
-
-	.ans__txt sup {
-		color: var(--accent);
-		font-weight: 700;
-		font-size: 0.7em;
-	}
-
-	.ans__st {
-		font-size: 0.68rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--ink-mute);
-		margin-bottom: 0.6rem;
-	}
-
-	.ans__src {
-		list-style: none;
-		padding: 0;
-		display: grid;
-		gap: 0.4rem;
-	}
-
-	.ans__src li {
-		display: flex;
-		align-items: center;
-		gap: 0.7rem;
-		padding: 0.55rem 0.75rem;
-		border-radius: var(--round-sm);
-		background: var(--surface);
-		font-size: 0.84rem;
-		color: var(--ink-soft);
-	}
-
-	.ans__src li span {
-		display: grid;
-		place-items: center;
-		width: 1.35rem;
-		height: 1.35rem;
-		border-radius: 50%;
-		background: #fff;
-		font-size: 0.68rem;
-		font-weight: 700;
-		color: var(--ink-mute);
-		flex: none;
-	}
-
-	.ans__src li.on {
-		background: var(--accent-wash);
-		color: var(--accent-deep);
-		font-weight: 700;
-	}
-
-	.ans__src li.on span {
-		background: var(--accent);
-		color: #fff;
 	}
 
 	/* ================= BARRE DE PREUVE ================= */
@@ -837,38 +979,30 @@ Merci,`,
 		list-style: none;
 		padding: 0;
 		display: grid;
-		gap: 0.9rem;
+		gap: 0.55rem;
+		font-size: 0.82rem;
 	}
 
 	.card__rows li {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		gap: 0.3rem 1rem;
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-bottom: 0.55rem;
+		border-bottom: 1px solid var(--line);
 	}
 
-	.card__rl {
-		font-size: 0.82rem;
-		font-weight: 700;
+	.card__rows li:last-child {
+		border-bottom: 0;
+		padding-bottom: 0;
 	}
 
-	.card__rv {
-		font-size: 0.82rem;
+	.card__rows span {
 		color: var(--ink-mute);
 	}
 
-	.card__bar2 {
-		grid-column: 1 / -1;
-		height: 0.4rem;
-		border-radius: 999px;
-		background: var(--surface);
-		overflow: hidden;
-	}
-
-	.card__bar2 span {
-		display: block;
-		height: 100%;
-		border-radius: 999px;
-		background: var(--accent);
+	.card__rows strong {
+		font-weight: 700;
+		text-align: right;
 	}
 
 	.card__note {
@@ -1204,11 +1338,15 @@ Merci,`,
 
 		.hero__vis {
 			max-width: 32rem;
-			padding-top: 2rem;
+			padding-top: 0;
 		}
 
+		/* En colonne, la pastille repasse dans le flux : superposee elle
+		   recouvrait la barre de titre du graphe. */
 		.ask {
-			left: 0;
+			position: static;
+			max-width: none;
+			margin-bottom: 0.9rem;
 		}
 	}
 
