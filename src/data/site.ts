@@ -261,6 +261,44 @@ export const TOOLS: Tool[] = [
 ];
 
 /* -------------------------------------------------------------------------
+   Resultats chiffres
+   ⚠️ CONTENU DE STRUCTURE : ces valeurs ne correspondent a aucun client.
+   Tant que PLACEHOLDER_RESULTS vaut true, un bandeau d'avertissement
+   s'affiche au-dessus du bloc. Fournir pour chaque cas : le chiffre, ce
+   qu'il mesure, le contexte et la periode.
+   ------------------------------------------------------------------------- */
+
+export const PLACEHOLDER_RESULTS = true;
+
+export interface Result {
+	tag: string;
+	figure: string;
+	label: string;
+	context: string;
+}
+
+export const RESULTS: Result[] = [
+	{
+		tag: 'Secteur · typologie',
+		figure: '00 %',
+		label: 'Ce que le chiffre mesure',
+		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+	},
+	{
+		tag: 'Secteur · typologie',
+		figure: '00',
+		label: 'Ce que le chiffre mesure',
+		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+	},
+	{
+		tag: 'Secteur · typologie',
+		figure: '00',
+		label: 'Ce que le chiffre mesure',
+		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+	},
+];
+
+/* -------------------------------------------------------------------------
    Le consultant
    ⚠️ A COMPLETER : nom complet exact et intitule a confirmer. Aucune
    affirmation de parcours n'est ecrite ici tant qu'elle n'est pas fournie.

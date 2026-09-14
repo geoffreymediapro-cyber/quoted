@@ -11,6 +11,8 @@ import {
 	EXPERTISES,
 	PROCESS,
 	CONSULTANT,
+	RESULTS,
+	PLACEHOLDER_RESULTS,
 	FORM_KEY,
 	CLIENTS,
 	PLACEHOLDER_CLIENTS,
@@ -225,51 +227,43 @@ Merci,`,
 </section>
 
 <!-- ===================== RESULTATS ===================== -->
-<section class="band band--soft" id="resultats">
-	<div class="wrap res__grid">
-		<div class="obs">
-			<p class="kick">Résultats</p>
-			<h2>Une visibilité <span class="hi">notée</span>, pas racontée</h2>
-			<p class="lede">
-				Chaque mois, le même panel de prompts est rejoué sur les mêmes moteurs, dans
-				les mêmes conditions. Vous recevez un score, sa variation, et la place que vous
-				occupez face à vos concurrents sur exactement les mêmes questions.
+<section class="band band--dark" id="resultats">
+	<div class="wrap on-dark">
+		<div class="res__top obs">
+			<div>
+				<p class="kick">Résultats</p>
+				<h2>Des chiffres,<br />pas des promesses.</h2>
+			</div>
+			<p class="res__intro">
+				Une sélection de missions récentes. Chiffres réels, périodes indiquées.
 			</p>
-			<ul class="ticks res__l">
-				<li>Le même panel, rejoué à l'identique, pour que deux mois se comparent</li>
-				<li>Présence, citation et part de voix suivies séparément</li>
-				<li>La version de chaque moteur consignée à chaque campagne</li>
-			</ul>
 		</div>
 
-		<figure class="card obs" style="--d: 120ms">
-			<div class="card__bar">
-				<span>Rapport mensuel</span>
-				<span class="card__tag">Illustration</span>
-			</div>
-
-			<div class="card__in">
-				<div class="card__score">
-					<div class="card__big">
-						<strong>34</strong><span>/100</span>
-					</div>
-					<div class="card__meta">
-						<p class="card__lab">Score de visibilité IA</p>
-						<p class="card__delta">+6 points depuis le relevé précédent</p>
-					</div>
-				</div>
-
-				<ul class="card__rows">
-					<li><span>Panel rejoué</span><strong>30 prompts, 4 moteurs</strong></li>
-					<li><span>Concurrents suivis</span><strong>4 acteurs</strong></li>
-					<li><span>Période</span><strong>Mois précédent comparé</strong></li>
-				</ul>
-
-				<p class="card__note">
-					Exemple de mise en forme. Les valeurs ne correspondent à aucun client.
+		{
+			PLACEHOLDER_RESULTS && (
+				<p class="todo todo--dark obs">
+					<strong>Section à compléter.</strong> Les trois cas ci-dessous sont un
+					gabarit, pas des résultats réels. Fournir pour chacun : le chiffre, ce qu'il
+					mesure, le contexte et la période.
 				</p>
-			</div>
-		</figure>
+			)
+		}
+
+		<div class="res__grid">
+			{
+				RESULTS.map((item, index) => (
+					<article
+						class:list={['res__c', 'obs', { 'res__c--todo': PLACEHOLDER_RESULTS }]}
+						style={`--d: ${index * 70}ms`}
+					>
+						<p class="res__tag">{item.tag}</p>
+						<p class="res__fig">{item.figure}</p>
+						<p class="res__lab">{item.label}</p>
+						<p class="res__ctx">{item.context}</p>
+					</article>
+				))
+			}
+		</div>
 	</div>
 </section>
 
@@ -332,41 +326,8 @@ Merci,`,
 	</div>
 </section>
 
-<!-- ===================== CONSULTANT ===================== -->
-<section class="band band--soft" id="consultant">
-	<div class="wrap who">
-		<figure class="who__ph obs">
-			<Image
-				src={portrait}
-				alt={`${CONSULTANT.name}, ${CONSULTANT.role}`}
-				widths={[320, 480, 640]}
-				sizes="(max-width: 56rem) 60vw, 20rem"
-			/>
-		</figure>
-
-		<div class="obs" style="--d: 90ms">
-			<p class="kick">Derrière Quoted</p>
-			<h2>Vous parlez à la personne <span class="hi">qui exécute</span></h2>
-			<p class="lede who__p">
-				Pas de commercial qui vend puis disparaît, pas de dossier repassé à un junior
-				après la signature. La personne qui relève vos prompts est celle qui écrit vos
-				contenus et qui vous présente le reporting.
-			</p>
-
-			<ul class="ticks who__l">
-				{CONSULTANT.points.map((point) => <li>{point}</li>)}
-			</ul>
-
-			<p class="who__id">
-				<strong>{CONSULTANT.name}</strong>
-				<span>{CONSULTANT.role}</span>
-			</p>
-		</div>
-	</div>
-</section>
-
 <!-- ===================== CLIENTS ===================== -->
-<section class="band" id="clients">
+<section class="band band--soft" id="clients">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Clients accompagnés</p>
@@ -415,7 +376,7 @@ Merci,`,
 </section>
 
 <!-- ===================== RESSOURCES ===================== -->
-<section class="band band--soft" id="ressources">
+<section class="band" id="ressources">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Ressources</p>
@@ -434,6 +395,39 @@ Merci,`,
 					</a>
 				))
 			}
+		</div>
+	</div>
+</section>
+
+<!-- ===================== CONSULTANT ===================== -->
+<section class="band band--soft" id="consultant">
+	<div class="wrap who">
+		<figure class="who__ph obs">
+			<Image
+				src={portrait}
+				alt={`${CONSULTANT.name}, ${CONSULTANT.role}`}
+				widths={[320, 480, 640]}
+				sizes="(max-width: 56rem) 60vw, 20rem"
+			/>
+		</figure>
+
+		<div class="obs" style="--d: 90ms">
+			<p class="kick">Derrière Quoted</p>
+			<h2>Vous parlez à la personne <span class="hi">qui exécute</span></h2>
+			<p class="lede who__p">
+				Pas de commercial qui vend puis disparaît, pas de dossier repassé à un junior
+				après la signature. La personne qui relève vos prompts est celle qui écrit vos
+				contenus et qui vous présente le reporting.
+			</p>
+
+			<ul class="ticks who__l">
+				{CONSULTANT.points.map((point) => <li>{point}</li>)}
+			</ul>
+
+			<p class="who__id">
+				<strong>{CONSULTANT.name}</strong>
+				<span>{CONSULTANT.role}</span>
+			</p>
 		</div>
 	</div>
 </section>
@@ -743,8 +737,7 @@ Merci,`,
 		}
 	}
 
-	.chart__bar,
-	.card__bar {
+	.chart__bar {
 		display: flex;
 		align-items: center;
 		gap: 0.6rem;
@@ -757,8 +750,7 @@ Merci,`,
 		text-transform: uppercase;
 	}
 
-	.chart__tag,
-	.card__tag {
+	.chart__tag {
 		margin-left: auto;
 		padding: 0.15rem 0.55rem;
 		border: 1px solid rgba(238, 241, 247, 0.28);
@@ -1049,110 +1041,237 @@ Merci,`,
 	}
 
 	/* ================= RESULTATS ================= */
+	.res__top {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+		gap: clamp(1.25rem, 4vw, 3rem);
+		align-items: end;
+		margin-bottom: clamp(2rem, 4vw, 3rem);
+	}
+
+	.res__top h2 {
+		margin-top: 0.4rem;
+	}
+
+	.res__intro {
+		font-size: var(--s-1);
+		line-height: 1.5;
+		color: rgba(238, 241, 247, 0.6);
+		max-width: 36ch;
+	}
+
 	.res__grid {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-		gap: clamp(2rem, 5vw, 3.5rem);
-		align-items: center;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 2vw, 1.5rem);
 	}
 
-	.res__grid h2 {
-		margin-block: 0 1.1rem;
-	}
-
-	.res__l {
-		margin-top: 1.5rem;
-		font-size: var(--s--1);
-	}
-
-	.card {
-		background: var(--paper);
-		border: 1px solid var(--line);
+	.res__c {
+		padding: clamp(1.5rem, 2.8vw, 2.1rem);
 		border-radius: var(--round);
-		box-shadow: var(--shadow);
-		overflow: hidden;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
-	.card__in {
-		padding: clamp(1.3rem, 2.5vw, 1.8rem);
-	}
-
-	.card__score {
-		display: flex;
-		align-items: center;
-		gap: 1.1rem;
-		padding-bottom: 1.3rem;
-		margin-bottom: 1.3rem;
-		border-bottom: 1px solid var(--line);
-	}
-
-	.card__big {
-		display: flex;
-		align-items: baseline;
+	.res__tag {
 		font-family: var(--display);
-		color: var(--accent);
-	}
-
-	.card__big strong {
-		font-size: 3.4rem;
-		font-weight: 800;
-		line-height: 1;
-		letter-spacing: -0.04em;
-	}
-
-	.card__big span {
-		font-size: 1.1rem;
+		font-size: 0.7rem;
 		font-weight: 700;
-		color: var(--ink-mute);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #c7b3ff;
+		margin-bottom: 1.1rem;
 	}
 
-	.card__lab {
+	.res__fig {
+		font-family: var(--display);
+		font-size: clamp(2.6rem, 5vw, 3.6rem);
+		font-weight: 800;
+		line-height: 0.95;
+		letter-spacing: -0.04em;
+		color: #c7b3ff;
+		margin-bottom: 0.7rem;
+	}
+
+	.res__lab {
 		font-family: var(--display);
 		font-size: var(--s-0);
 		font-weight: 700;
+		color: #fff;
+		margin-bottom: 0.4rem;
 	}
 
-	.card__delta {
-		font-size: 0.78rem;
-		color: var(--ink-mute);
+	.res__ctx {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: rgba(238, 241, 247, 0.6);
 	}
 
-	.card__rows {
-		list-style: none;
-		padding: 0;
-		display: grid;
-		gap: 0.55rem;
-		font-size: 0.82rem;
+	/* Gabarit : les valeurs sont volontairement en retrait */
+	.res__c--todo .res__fig,
+	.res__c--todo .res__tag {
+		color: rgba(199, 179, 255, 0.45);
 	}
 
-	.card__rows li {
+	.res__c--todo .res__lab {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.todo.todo--dark {
+		background: rgba(255, 255, 255, 0.07);
+		border-left-color: #c7b3ff;
+		color: rgba(238, 241, 247, 0.75);
+	}
+
+	.todo.todo--dark strong {
+		color: #fff;
+	}
+
+	@media (max-width: 62rem) {
+		.res__top {
+			grid-template-columns: 1fr;
+			align-items: start;
+		}
+	}
+
+	@media (max-width: 52rem) {
+		.res__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* ================= PROCESS ================= */
+	.proc__tabs {
 		display: flex;
-		justify-content: space-between;
-		gap: 1rem;
-		padding-bottom: 0.55rem;
-		border-bottom: 1px solid var(--line);
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin-bottom: 1.75rem;
 	}
 
-	.card__rows li:last-child {
-		border-bottom: 0;
-		padding-bottom: 0;
-	}
-
-	.card__rows span {
-		color: var(--ink-mute);
-	}
-
-	.card__rows strong {
+	.proc__tabs label {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		padding: 0.6rem 1.1rem;
+		border-radius: 999px;
+		border: 1px solid var(--line);
+		background: var(--paper);
+		font-family: var(--display);
+		font-size: var(--s--1);
 		font-weight: 700;
-		text-align: right;
+		color: var(--ink-soft);
+		cursor: pointer;
+		transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
 	}
 
-	.card__note {
-		margin-top: 1.3rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--line);
-		font-size: 0.74rem;
+	.proc__tabs label span {
+		font-size: 0.72rem;
 		color: var(--ink-mute);
+	}
+
+	.proc__tabs label:hover {
+		border-color: var(--accent-line);
+		color: var(--accent);
+	}
+
+	.proc__radio:checked + label {
+		background: var(--dark);
+		border-color: var(--dark);
+		color: #fff;
+	}
+
+	.proc__radio:checked + label span {
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	.proc__radio:focus-visible + label {
+		outline: 3px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	/* Un seul panneau visible, pilote par le radio coche */
+	.panel {
+		display: none;
+	}
+
+	.proc:has(#s-releve:checked) .panel--releve,
+	.proc:has(#s-priorite:checked) .panel--priorite,
+	.proc:has(#s-production:checked) .panel--production,
+	.proc:has(#s-mesure:checked) .panel--mesure {
+		display: grid;
+	}
+
+	.panel {
+		grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+		gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: stretch;
+		animation: fade 0.4s ease;
+	}
+
+	@keyframes fade {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+	}
+
+	.panel__txt h3 {
+		font-size: var(--s-2);
+		margin-bottom: 0.8rem;
+	}
+
+	.panel__txt > p {
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+		max-width: 56ch;
+		margin-bottom: 1.4rem;
+	}
+
+	/* Panneau lateral : pas de photo, un aplat qui porte le repere de delai */
+	.panel__side {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 13rem;
+		padding: 1.5rem;
+		border-radius: var(--round);
+		background: linear-gradient(150deg, var(--accent), var(--accent-deep));
+		color: #fff;
+	}
+
+	.panel__n {
+		font-family: var(--display);
+		font-size: 4.5rem;
+		font-weight: 800;
+		line-height: 0.85;
+		letter-spacing: -0.05em;
+		color: rgba(255, 255, 255, 0.28);
+	}
+
+	.panel__when {
+		font-family: var(--display);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	@media (max-width: 56rem) {
+		.panel {
+			grid-template-columns: 1fr;
+		}
+
+		.panel__side {
+			min-height: 0;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.panel__n {
+			font-size: 2.6rem;
+		}
 	}
 
 	/* ================= CONSULTANT ================= */
