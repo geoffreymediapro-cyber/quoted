@@ -6,18 +6,15 @@ import gemini from '../../assets/engines/gemini.webp';
 import claude from '../../assets/engines/claude.png';
 import googleAi from '../../assets/engines/google-ai.png';
 import portrait from '../../assets/consultant.png';
-import ContactForm from './ContactForm.astro';
 import {
 	EXPERTISES,
 	PROCESS,
 	CONSULTANT,
 	RESULTS,
 	PLACEHOLDER_RESULTS,
-	FORM_KEY,
 	CLIENTS,
 	PLACEHOLDER_CLIENTS,
 	FAQ,
-	CONTACT_EMAIL,
 } from '../../data/site';
 
 const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
@@ -75,17 +72,6 @@ const TINTS = [
 	['#dceff6', '#c6e4f0'],
 ];
 
-const scanSubject = encodeURIComponent('Scan de visibilité IA');
-const scanBody = encodeURIComponent(
-	`Bonjour,
-
-Notre site :
-Notre secteur :
-Deux ou trois questions que nos clients posent avant d'acheter :
-Un concurrent de référence :
-
-Merci,`,
-);
 ---
 
 <!-- ===================== HERO ===================== -->
@@ -471,21 +457,12 @@ Merci,`,
 				clients posent avant d'acheter. Nous rejouons ces questions sur les moteurs et
 				nous vous renvoyons ce qu'ils répondent, et qui ils citent.
 			</p>
-			{
-				FORM_KEY ? (
-					<div class="obs" style="--d: 180ms">
-						<ContactForm />
-					</div>
-				) : (
-					<div class="fin__act obs" style="--d: 180ms">
-						<a class="b b--go" href={`mailto:${CONTACT_EMAIL}?subject=${scanSubject}&body=${scanBody}`}>
-							Scanner ma visibilité IA
-							<span class="arw" aria-hidden="true">→</span>
-						</a>
-						<a class="b b--line" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-					</div>
-				)
-			}
+			<div class="fin__act obs" style="--d: 180ms">
+				<a class="b b--go" href="/scan/">
+					Scanner ma visibilité IA
+					<span class="arw" aria-hidden="true">→</span>
+				</a>
+			</div>
 		</div>
 
 		<div class="fin__box obs" style="--d: 240ms">

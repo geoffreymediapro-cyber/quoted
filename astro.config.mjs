@@ -9,8 +9,11 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			// Pages legales : noindex tant qu'elles ne sont pas completees.
+			// /scan/ : noindex tant que FORM_KEY est vide, a reintegrer ensuite.
 			filter: (page) =>
-				!page.includes('/mentions-legales') && !page.includes('/politique-de-confidentialite'),
+				!page.includes('/mentions-legales') &&
+				!page.includes('/politique-de-confidentialite') &&
+				!page.includes('/scan'),
 		}),
 	],
 
