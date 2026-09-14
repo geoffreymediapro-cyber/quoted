@@ -144,7 +144,70 @@ export const CLIENTS: Client[] = [
 ];
 
 /* -------------------------------------------------------------------------
-   Stack : outils du metier
+   Expertises : la grille facon astrak, GEO + tout ce qui existe reellement.
+   ⚠️ A VALIDER : ne garder que ce qui est reellement vendu. `via` signale
+   ce qui passe par un partenaire plutot que par nous.
+   ------------------------------------------------------------------------- */
+
+export interface Expertise {
+	name: string;
+	note: string;
+	core?: boolean;
+	via?: string;
+}
+
+export const EXPERTISES: Expertise[] = [
+	{
+		name: 'Audit de visibilité IA',
+		note: 'Le relevé de ce que les moteurs répondent déjà, et de qui ils citent.',
+		core: true,
+	},
+	{
+		name: 'Cartographie de prompts',
+		note: 'Les questions réelles de votre marché, par intention, en panel rejouable.',
+		core: true,
+	},
+	{
+		name: 'Contenu GEO',
+		note: 'Des pages dont un moteur peut extraire une réponse autonome et sourcée.',
+		core: true,
+	},
+	{
+		name: 'Maillage et cocon sémantique',
+		note: 'Rattacher vos pages pour que le sujet soit traité comme un ensemble.',
+		core: true,
+	},
+	{
+		name: 'SEO technique',
+		note: 'Indexation, structure, données structurées : le socle que les moteurs doivent pouvoir lire.',
+	},
+	{
+		name: 'Rédaction SEO',
+		note: 'Le contenu classique, pensé pour la recherche autant que pour la lecture.',
+	},
+	{
+		name: 'Netlinking',
+		note: 'Liens éditoriaux pour l’autorité, et médias que les moteurs citent réellement.',
+	},
+	{
+		name: 'Reddit et forums',
+		note: 'Présence organique sur les espaces massivement repris par les moteurs.',
+		core: true,
+	},
+	{
+		name: 'Wikipédia et Wikidata',
+		note: 'Les référentiels d’entités que tous les moteurs consultent.',
+		via: 'Partenaire',
+	},
+	{
+		name: 'Suivi de visibilité',
+		note: 'Le même panel rejoué chaque mois, avec un score et une part de voix.',
+		core: true,
+	},
+];
+
+/* -------------------------------------------------------------------------
+   Stack : outils du metier (conserve pour la home en ligne)
    ⚠️ A CONFIRMER : ne laisser que les outils reellement utilises. Annoncer
    la maitrise d'un outil qu'on n'a pas est une fausse declaration.
    ------------------------------------------------------------------------- */
