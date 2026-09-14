@@ -1,47 +1,46 @@
 /* =========================================================================
    Quoted — systeme de design
-   Bleu nuit, bleu electrique, accent citron. Geometrique arrondi, titres
-   en casse normale, blocs pleins. Outfit pour l'affichage, Plus Jakarta
-   Sans pour le texte courant.
+   Monochrome violet sur blanc : une seule couleur d'accent et des neutres
+   de la meme famille. Bricolage Grotesque en capitales pour les titres,
+   Plus Jakarta Sans pour le texte courant.
    ========================================================================= */
 
 :root {
-	/* --- Surfaces --- */
-	--navy: #0f1e33;
+	/* --- Couleur unique, plus ses declinaisons --- */
+	--accent: #5b2fe0;
+	--accent-deep: #3a17a5;
+	--accent-wash: #f1ecff;
+	--accent-line: #d8ccfa;
+
+	/* --- Surfaces et encre --- */
 	--paper: #ffffff;
-	--paper-tint: #f4f6fb;
-	--ink: #101c2e;
-	--ink-soft: #4a5769;
-	--ink-mute: #7c8798;
-
-	/* --- Bleu dominant, citron en accent rare --- */
-	--blue: #2049e5;
-	--blue-deep: #0f2bb0;
-	--blue-wash: #e8edff;
-	--lemon: #ffd919;
-
-	--line: #e2e7f0;
-	--line-strong: #c3ccdb;
+	--surface: #f8f6fd;
+	--dark: #17102f;
+	--ink: #171030;
+	--ink-soft: #514a6b;
+	--ink-mute: #827a98;
+	--line: #eae5f4;
+	--line-strong: #cdc4e0;
 
 	/* --- Typo --- */
-	--display: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+	--display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
 	--body: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
 	--mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', monospace;
 
 	--s--1: clamp(0.84rem, 0.81rem + 0.13vw, 0.92rem);
 	--s-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
-	--s-1: clamp(1.15rem, 1.06rem + 0.42vw, 1.4rem);
+	--s-1: clamp(1.12rem, 1.03rem + 0.42vw, 1.38rem);
 	--s-2: clamp(1.4rem, 1.2rem + 0.95vw, 2rem);
-	--s-3: clamp(1.8rem, 1.42rem + 1.85vw, 2.9rem);
-	--s-4: clamp(2.2rem, 1.55rem + 3.2vw, 4.1rem);
+	--s-3: clamp(1.9rem, 1.45rem + 2.1vw, 3.1rem);
+	--s-4: clamp(2.4rem, 1.6rem + 3.9vw, 4.9rem);
 
 	--gutter: clamp(1.15rem, 4vw, 2.5rem);
 	--pad-y: clamp(3.5rem, 7vw, 6.5rem);
 	--measure: 62ch;
-	--round: 18px;
-	--round-sm: 10px;
+	--round: 20px;
+	--round-sm: 11px;
 
-	--shadow: 0 2px 4px rgba(16, 28, 46, 0.04), 0 18px 40px -24px rgba(16, 28, 46, 0.35);
+	--shadow: 0 3px 6px rgba(23, 16, 47, 0.05), 0 24px 48px -28px rgba(23, 16, 47, 0.35);
 }
 
 *,
@@ -105,14 +104,14 @@ select {
 }
 
 :focus-visible {
-	outline: 3px solid var(--blue);
+	outline: 3px solid var(--accent);
 	outline-offset: 3px;
 	border-radius: 4px;
 }
 
 ::selection {
-	background: var(--lemon);
-	color: var(--navy);
+	background: var(--accent);
+	color: #fff;
 }
 
 /* -------------------------------------------------------------------------
@@ -120,29 +119,30 @@ select {
    ------------------------------------------------------------------------- */
 
 h1,
-h2,
-h3,
-h4 {
+h2 {
 	font-family: var(--display);
-	font-weight: 600;
-	line-height: 1.04;
-	letter-spacing: -0.035em;
+	font-weight: 800;
+	text-transform: uppercase;
+	line-height: 0.95;
+	letter-spacing: -0.03em;
 	text-wrap: balance;
 }
 
 h1 {
 	font-size: var(--s-4);
-	font-weight: 700;
 }
 
 h2 {
 	font-size: var(--s-3);
 }
 
-h3 {
+h3,
+h4 {
+	font-family: var(--display);
 	font-size: var(--s-1);
-	line-height: 1.2;
-	letter-spacing: -0.025em;
+	font-weight: 700;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
 }
 
 p {
@@ -153,26 +153,17 @@ strong {
 	font-weight: 700;
 }
 
-/* Mot souligne : trait citron passe derriere le texte */
-.hl {
-	position: relative;
-	white-space: nowrap;
+/* Mot mis en couleur dans un titre */
+.hi {
+	color: var(--accent);
 }
 
-.hl::after {
-	content: '';
-	position: absolute;
-	left: -0.06em;
-	right: -0.06em;
-	bottom: 0.06em;
-	height: 0.3em;
-	background: var(--lemon);
-	z-index: -1;
-	border-radius: 2px;
-}
-
-.blue {
-	color: var(--blue);
+.on-dark .hi {
+	color: #fff;
+	text-decoration: underline;
+	text-decoration-color: var(--accent);
+	text-decoration-thickness: 0.12em;
+	text-underline-offset: 0.1em;
 }
 
 /* -------------------------------------------------------------------------
@@ -180,61 +171,59 @@ strong {
    ------------------------------------------------------------------------- */
 
 .wrap {
-	width: min(100% - (var(--gutter) * 2), 76rem);
+	width: min(100% - (var(--gutter) * 2), 78rem);
 	margin-inline: auto;
 }
 
 .wrap--narrow {
 	width: min(100% - (var(--gutter) * 2), 52rem);
+	margin-inline: auto;
 }
 
 .band {
 	padding-block: var(--pad-y);
 }
 
-.band--tint {
-	background: var(--paper-tint);
+.band--soft {
+	background: var(--surface);
 }
 
-.band--navy {
-	background: var(--navy);
-	color: #eaf0fb;
+.band--dark {
+	background: var(--dark);
+	color: #eef1f7;
 }
 
-.kicker {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
-	padding: 0.4rem 0.85rem;
-	border-radius: 999px;
-	background: var(--blue-wash);
-	color: var(--blue-deep);
-	font-size: 0.76rem;
+.kick {
+	display: inline-block;
+	font-family: var(--display);
+	font-size: 0.78rem;
 	font-weight: 700;
-	letter-spacing: 0.04em;
-	margin-bottom: 1.1rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin-bottom: 1rem;
 }
 
-.band--navy .kicker {
-	background: rgba(234, 240, 251, 0.12);
+.band--dark .kick {
 	color: #fff;
+	opacity: 0.6;
 }
 
 .head {
-	max-width: 44rem;
+	max-width: 46rem;
 	margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
 }
 
 .head p {
-	margin-top: 1rem;
+	margin-top: 1.1rem;
 	font-size: var(--s-1);
 	line-height: 1.5;
 	color: var(--ink-soft);
-	max-width: 54ch;
+	max-width: 56ch;
 }
 
-.band--navy .head p {
-	color: rgba(234, 240, 251, 0.72);
+.band--dark .head p {
+	color: rgba(238, 241, 247, 0.72);
 }
 
 .lede {
@@ -253,12 +242,14 @@ strong {
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	padding: 0.95rem 1.6rem;
+	padding: 1rem 1.7rem;
 	border: 2px solid transparent;
 	border-radius: 999px;
 	font-family: var(--display);
 	font-size: var(--s--1);
-	font-weight: 600;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
 	text-decoration: none;
 	cursor: pointer;
 	transition:
@@ -272,22 +263,22 @@ strong {
 	transform: translateY(-2px);
 }
 
-.b--fill {
-	background: var(--blue);
+.b--go {
+	background: var(--accent);
 	color: #fff;
 }
 
-.b--fill:hover {
-	background: var(--blue-deep);
+.b--go:hover {
+	background: var(--accent-deep);
 }
 
-.b--lemon {
-	background: var(--lemon);
-	color: var(--navy);
+.b--dark {
+	background: var(--dark);
+	color: #fff;
 }
 
-.b--lemon:hover {
-	background: #ffe75c;
+.b--dark:hover {
+	background: var(--accent);
 }
 
 .b--line {
@@ -296,34 +287,44 @@ strong {
 }
 
 .b--line:hover {
-	border-color: var(--blue);
-	color: var(--blue);
+	border-color: var(--accent);
+	color: var(--accent);
 }
 
-.band--navy .b--line {
-	border-color: rgba(234, 240, 251, 0.32);
+.band--dark .b--go {
+	background: #fff;
+	color: var(--dark);
+}
+
+.band--dark .b--go:hover {
+	background: var(--accent);
 	color: #fff;
 }
 
-.band--navy .b--line:hover {
-	border-color: #fff;
-	background: #fff;
-	color: var(--navy);
+.band--dark .b--line {
+	border-color: rgba(238, 241, 247, 0.3);
+	color: #fff;
 }
 
-.arrow {
+.band--dark .b--line:hover {
+	border-color: #fff;
+	background: #fff;
+	color: var(--dark);
+}
+
+.arw {
 	transition: transform 0.18s ease;
 }
 
-.b:hover .arrow {
+.b:hover .arw {
 	transform: translateX(3px);
 }
 
 /* -------------------------------------------------------------------------
-   Listes a puce citron
+   Listes a coche
    ------------------------------------------------------------------------- */
 
-.dots {
+.ticks {
 	list-style: none;
 	padding: 0;
 	display: grid;
@@ -332,19 +333,32 @@ strong {
 	color: var(--ink-soft);
 }
 
-.dots li {
+.ticks li {
 	display: grid;
-	grid-template-columns: 0.9rem 1fr;
+	grid-template-columns: 1rem 1fr;
 	gap: 0.55rem;
 }
 
-.dots li::before {
+.ticks li::before {
 	content: '';
-	width: 0.9rem;
-	height: 0.9rem;
-	margin-top: 0.25rem;
+	width: 1rem;
+	height: 1rem;
+	margin-top: 0.22rem;
 	border-radius: 50%;
-	background: var(--lemon);
+	background: var(--accent-wash);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%235b2fe0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
+	background-size: 0.72rem;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.band--dark .ticks {
+	color: rgba(238, 241, 247, 0.85);
+}
+
+.band--dark .ticks li::before {
+	background-color: rgba(255, 255, 255, 0.14);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
 }
 
 /* -------------------------------------------------------------------------
@@ -354,7 +368,7 @@ strong {
 @keyframes rise {
 	from {
 		opacity: 0;
-		transform: translateY(16px);
+		transform: translateY(18px);
 	}
 
 	to {
@@ -409,6 +423,11 @@ strong {
 
 .prose h2 {
 	font-size: var(--s-2);
+	/* Les titres de corps d'article restent en casse normale : les
+	   capitales de la regle globale sont trop criardes en lecture suivie. */
+	text-transform: none;
+	font-weight: 700;
+	letter-spacing: -0.02em;
 	color: var(--ink);
 	margin-top: 3rem;
 	padding-top: 1.75rem;
@@ -428,16 +447,16 @@ strong {
 }
 
 .prose a {
-	color: var(--blue-deep);
+	color: var(--accent-deep);
 	text-decoration: underline;
 	text-underline-offset: 3px;
 	text-decoration-thickness: 1px;
-	text-decoration-color: var(--line-strong);
+	text-decoration-color: var(--accent-line);
 	transition: text-decoration-color 0.18s ease;
 }
 
 .prose a:hover {
-	text-decoration-color: var(--blue);
+	text-decoration-color: var(--accent);
 }
 
 .prose ul,
@@ -448,19 +467,19 @@ strong {
 }
 
 .prose li::marker {
-	color: var(--blue);
+	color: var(--accent);
 }
 
 .prose blockquote {
 	margin-inline: 0;
 	padding: 1rem 1.35rem;
-	border-left: 4px solid var(--lemon);
-	background: var(--paper-tint);
+	border-left: 4px solid var(--accent);
+	background: var(--surface);
 	border-radius: 0 var(--round-sm) var(--round-sm) 0;
 	font-family: var(--display);
 	font-size: var(--s-1);
-	font-weight: 500;
-	line-height: 1.45;
+	font-weight: 600;
+	line-height: 1.4;
 	letter-spacing: -0.02em;
 	color: var(--ink);
 }
@@ -472,7 +491,7 @@ strong {
 .prose code {
 	font-family: var(--mono);
 	font-size: 0.88em;
-	background: var(--paper-tint);
+	background: var(--surface);
 	border: 1px solid var(--line);
 	border-radius: 4px;
 	padding: 0.1em 0.35em;
@@ -506,7 +525,7 @@ strong {
 	left: 0.5rem;
 	z-index: 200;
 	padding: 0.7rem 1.1rem;
-	background: var(--navy);
+	background: var(--dark);
 	color: #fff;
 	border-radius: 999px;
 	text-decoration: none;

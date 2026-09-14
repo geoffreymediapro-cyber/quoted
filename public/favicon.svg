@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quoted">
-	<rect width="64" height="64" rx="14" fill="#2049e5" />
+	<rect width="64" height="64" rx="14" fill="#5b2fe0" />
 	<!-- Guillemet fermant en formes pleines : rendu identique partout,
 	     contrairement a un <text> qui depend des polices du systeme. -->
 	<g fill="#ffffff" transform="translate(4 6) scale(0.86)">

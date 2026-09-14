@@ -13,29 +13,26 @@ const year = 2026;
 				Agence GEO. La visibilité de votre marque dans les réponses générées par
 				ChatGPT, Perplexity, Gemini et les AI Overviews.
 			</p>
-			<a class="b b--lemon foot__cta" href={`mailto:${CONTACT_EMAIL}`}>
-				{CONTACT_EMAIL}
-			</a>
+			<a class="b b--go" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
 		</div>
 
-		<nav class="foot__col" aria-label="Services">
-			<h2>Services</h2>
+		<nav class="foot__col" aria-label="Expertises">
+			<h2>Expertises</h2>
 			<ul>
-				<li><a href="/#services">Cartographie de prompts</a></li>
-				<li><a href="/#services">Audit de visibilité</a></li>
-				<li><a href="/#services">Contenu conçu pour être cité</a></li>
-				<li><a href="/#services">Présence hors site</a></li>
-				<li><a href="/#outils">Nos outils</a></li>
+				<li><a href="/#expertises">Audit de visibilité IA</a></li>
+				<li><a href="/#expertises">Cartographie de prompts</a></li>
+				<li><a href="/#expertises">Contenu GEO</a></li>
+				<li><a href="/#expertises">SEO technique</a></li>
+				<li><a href="/#expertises">Netlinking</a></li>
 			</ul>
 		</nav>
 
 		<nav class="foot__col" aria-label="En savoir plus">
 			<h2>En savoir plus</h2>
 			<ul>
-				<li><a href="/guide/">Guide GEO</a></li>
-				<li><a href="/#methode">Méthode</a></li>
-				<li><a href="/#perimetre">Périmètre</a></li>
+				<li><a href="/#resultats">Résultats</a></li>
 				<li><a href="/#clients">Clients accompagnés</a></li>
+				<li><a href="/guide/">Guide GEO</a></li>
 				<li><a href="/#faq">Questions fréquentes</a></li>
 				<li><a href="/rss.xml">Flux RSS du guide</a></li>
 			</ul>
@@ -53,8 +50,8 @@ const year = 2026;
 
 <style>
 	.foot {
-		background: var(--navy);
-		color: rgba(234, 240, 251, 0.72);
+		background: var(--dark);
+		color: rgba(238, 241, 247, 0.72);
 		padding-top: clamp(3rem, 6vw, 5rem);
 		padding-bottom: 2rem;
 		font-size: var(--s--1);
@@ -73,8 +70,9 @@ const year = 2026;
 		gap: 0.5rem;
 		font-family: var(--display);
 		font-size: 1.7rem;
-		font-weight: 700;
-		letter-spacing: -0.04em;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: -0.03em;
 		color: #fff;
 		margin-bottom: 0.6rem;
 	}
@@ -82,7 +80,8 @@ const year = 2026;
 	.foot__logo :global(.foot__mark) {
 		width: 1.15rem;
 		height: 1.15rem;
-		color: var(--lemon);
+		color: #fff;
+		opacity: 0.55;
 	}
 
 	.foot__line {
@@ -97,7 +96,7 @@ const year = 2026;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: rgba(234, 240, 251, 0.45);
+		color: rgba(238, 241, 247, 0.45);
 		margin-bottom: 1.1rem;
 	}
 
@@ -126,9 +125,9 @@ const year = 2026;
 		justify-content: space-between;
 		align-items: center;
 		padding-top: 1.75rem;
-		border-top: 1px solid rgba(234, 240, 251, 0.12);
+		border-top: 1px solid rgba(238, 241, 247, 0.12);
 		font-size: 0.8rem;
-		color: rgba(234, 240, 251, 0.5);
+		color: rgba(238, 241, 247, 0.5);
 	}
 
 	.foot__base ul {

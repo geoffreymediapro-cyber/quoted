@@ -60,7 +60,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 					<span>{entry.data.shortTitle ?? entry.data.title}</span>
 				</nav>
 
-				<p class="kicker">{entry.data.chapter}</p>
+				<p class="kick">{entry.data.chapter}</p>
 				<h1>{entry.data.title}</h1>
 				<p class="lede">{entry.data.description}</p>
 				<p class="date">Mis à jour le {updated}</p>
@@ -109,16 +109,16 @@ const toc = headings.filter((heading) => heading.depth === 2);
 			</nav>
 		</div>
 
-		<aside class="band band--navy">
+		<aside class="band band--dark">
 			<div class="wrap wrap--narrow cta">
 				<h2>Appliquer ça à votre marché ?</h2>
 				<p>
 					On relève ce que les moteurs répondent déjà sur vos sujets, qui ils citent, et
 					ce qu'il faut faire en premier.
 				</p>
-				<a class="b b--lemon" href="/#contact">
+				<a class="b b--go" href="/#contact">
 					Parler de votre visibilité
-					<span class="arrow" aria-hidden="true">→</span>
+					<span class="arw" aria-hidden="true">→</span>
 				</a>
 			</div>
 		</aside>
@@ -129,7 +129,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 	.intro {
 		padding-block: clamp(2.25rem, 4.5vw, 3.5rem) clamp(1.75rem, 3.5vw, 2.75rem);
 		background:
-			radial-gradient(55% 70% at 90% 0%, var(--blue-wash), transparent 70%),
+			radial-gradient(55% 70% at 90% 0%, var(--accent-wash), transparent 70%),
 			var(--paper);
 	}
 
@@ -142,7 +142,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 	}
 
 	.crumbs a {
-		color: var(--blue);
+		color: var(--accent);
 		font-weight: 600;
 		text-decoration: none;
 	}
@@ -168,7 +168,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 
 	/* --- Sommaire --- */
 	.toc {
-		background: var(--paper-tint);
+		background: var(--surface);
 		border-radius: var(--round);
 		padding: 1.25rem 1.6rem;
 		margin-bottom: clamp(2rem, 4vw, 3rem);
@@ -192,7 +192,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 	}
 
 	.toc li::marker {
-		color: var(--blue);
+		color: var(--accent);
 	}
 
 	.toc a {
@@ -201,7 +201,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 	}
 
 	.toc a:hover {
-		color: var(--blue);
+		color: var(--accent);
 		text-decoration: underline;
 		text-underline-offset: 3px;
 	}
@@ -221,13 +221,13 @@ const toc = headings.filter((heading) => heading.depth === 2);
 		gap: 0.3rem;
 		padding: 1.1rem 1.35rem;
 		border-radius: var(--round-sm);
-		background: var(--paper-tint);
+		background: var(--surface);
 		text-decoration: none;
 		transition: background-color 0.2s ease, transform 0.2s ease;
 	}
 
 	.pager__i:hover {
-		background: var(--blue-wash);
+		background: var(--accent-wash);
 		transform: translateY(-2px);
 	}
 
@@ -240,7 +240,7 @@ const toc = headings.filter((heading) => heading.depth === 2);
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: var(--blue);
+		color: var(--accent);
 	}
 
 	.pager__t {

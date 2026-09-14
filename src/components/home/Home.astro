@@ -20,25 +20,6 @@ const proofs = [
 ];
 
 /**
- * Surfaces de reponse. Le statut est honnete : ce qui est hors perimetre
- * l'est vraiment, et c'est ce qui rend le reste credible.
- */
-const surfaces = [
-	{ code: 'AI', name: 'AI Overviews', on: true },
-	{ code: 'GPT', name: 'ChatGPT', on: true },
-	{ code: 'PPX', name: 'Perplexity', on: true },
-	{ code: 'GEM', name: 'Gemini', on: true },
-	{ code: 'SEO', name: 'Google organique', on: true },
-	{ code: 'RDT', name: 'Reddit et forums', on: true },
-	{ code: 'WIK', name: 'Wikipédia et Wikidata', on: true },
-	{ code: 'YT', name: 'YouTube et vidéo', on: false },
-	{ code: 'SHP', name: 'Shopping et flux', on: false },
-	{ code: 'ASO', name: 'App Store', on: false },
-];
-
-const covered = surfaces.filter((s) => s.on).length;
-
-/**
  * Graphe du hero : visibilite par moteur, facon tableau de bord.
  * Trois metriques, celles que nous livrons reellement. Les valeurs sont
  * ILLUSTRATIVES et signalees comme telles : aucun client reel derriere.
@@ -254,34 +235,6 @@ Merci,`,
 					<p>Relevé gratuit sur cinq prompts de votre marché, réponse sous 48 h.</p>
 				</a>
 			</li>
-		</ul>
-	</div>
-</section>
-
-<!-- ===================== SURFACES ===================== -->
-<section class="band band--soft" id="surfaces">
-	<div class="wrap surf__wrap">
-		<div class="head obs surf__head">
-			<p class="kick">Couverture</p>
-			<h2>Dix surfaces. <span class="hi">{covered} couvertes.</span></h2>
-			<p>
-				Vos clients ne cherchent pas au même endroit selon la question. Voici où nous
-				intervenons, et où nous n'intervenons pas.
-			</p>
-		</div>
-
-		<ul class="surf obs">
-			{
-				surfaces.map((surface) => (
-					<li class:list={['surf__c', { off: !surface.on }]}>
-						<span class="surf__code" aria-hidden="true">
-							{surface.code}
-						</span>
-						<span class="surf__n">{surface.name}</span>
-						<span class="surf__st">{surface.on ? 'Couvert' : 'Hors périmètre'}</span>
-					</li>
-				))
-			}
 		</ul>
 	</div>
 </section>
@@ -898,87 +851,6 @@ Merci,`,
 		opacity: 0.85;
 	}
 
-	/* ================= SURFACES ================= */
-	.surf__wrap {
-		display: grid;
-		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-		gap: clamp(1.5rem, 4vw, 3rem);
-		align-items: center;
-	}
-
-	.surf__head {
-		margin-bottom: 0;
-	}
-
-	.surf {
-		list-style: none;
-		padding: 0;
-		display: grid;
-		gap: 0.4rem;
-	}
-
-	.surf__c {
-		display: grid;
-		grid-template-columns: 2.2rem 1fr auto;
-		align-items: center;
-		gap: 0.8rem;
-		padding: 0.6rem 0.85rem;
-		border-radius: var(--round-sm);
-		background: var(--paper);
-		border: 1px solid var(--line);
-	}
-
-	.surf__code {
-		display: grid;
-		place-items: center;
-		width: 2.2rem;
-		height: 2.2rem;
-		border-radius: 7px;
-		background: var(--dark);
-		color: #fff;
-		font-family: var(--display);
-		font-size: 0.62rem;
-		font-weight: 800;
-	}
-
-	.surf__n {
-		font-family: var(--display);
-		font-size: var(--s--1);
-		font-weight: 700;
-	}
-
-	.surf__st {
-		font-size: 0.62rem;
-		font-weight: 700;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		padding: 0.2rem 0.55rem;
-		border-radius: 999px;
-		background: var(--accent-wash);
-		color: var(--accent-deep);
-	}
-
-	.surf__c.off {
-		background: transparent;
-		border-style: dashed;
-	}
-
-	.surf__c.off .surf__code {
-		background: transparent;
-		border: 1px solid var(--line-strong);
-		color: var(--ink-mute);
-	}
-
-	.surf__c.off .surf__n {
-		color: var(--ink-mute);
-	}
-
-	.surf__c.off .surf__st {
-		background: transparent;
-		border: 1px solid var(--line-strong);
-		color: var(--ink-mute);
-	}
-
 	/* ================= RESULTATS ================= */
 	.res__grid {
 		display: grid;
@@ -1346,14 +1218,9 @@ Merci,`,
 
 	@media (max-width: 62rem) {
 		.hero__grid,
-		.surf__wrap,
 		.res__grid,
 		.fin {
 			grid-template-columns: 1fr;
-		}
-
-		.surf__head {
-			margin-bottom: 1.5rem;
 		}
 
 		.hero__blob {

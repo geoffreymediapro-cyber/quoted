@@ -1,16 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/home/Hero.astro';
-import Positioning from '../components/home/Positioning.astro';
-import Engagements from '../components/home/Engagements.astro';
-import Services from '../components/home/Services.astro';
-import Stack from '../components/home/Stack.astro';
-import Method from '../components/home/Method.astro';
-import Scope from '../components/home/Scope.astro';
-import Clients from '../components/home/Clients.astro';
-import Resources from '../components/home/Resources.astro';
-import Faq from '../components/home/Faq.astro';
-import Contact from '../components/home/Contact.astro';
+import Home from '../components/home/Home.astro';
 import { FAQ } from '../data/site';
 
 const faqSchema = {
@@ -26,18 +16,8 @@ const faqSchema = {
 
 <BaseLayout
 	title="Quoted, agence GEO : être cité par ChatGPT, Perplexity et Gemini"
-	description="Agence GEO (Generative Engine Optimization) : cartographie de prompts, audit de visibilité dans les moteurs de réponse, contenus conçus pour être cités et suivi mensuel des citations."
+	description="Agence GEO (Generative Engine Optimization) : audit de visibilité dans les moteurs de réponse, contenus conçus pour être cités, SEO technique et suivi mensuel des citations."
 	schema={faqSchema}
 >
-	<Hero />
-	<Positioning />
-	<Engagements />
-	<Services />
-	<Stack />
-	<Method />
-	<Scope />
-	<Clients />
-	<Resources />
-	<Faq />
-	<Contact />
+	<Home />
 </BaseLayout>
