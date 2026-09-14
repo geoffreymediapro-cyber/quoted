@@ -4,8 +4,6 @@ import {
 	SERVICES,
 	METHOD,
 	TOOLS,
-	SCOPE_IN,
-	SCOPE_OUT,
 	CLIENTS,
 	PLACEHOLDER_CLIENTS,
 	FAQ,
@@ -281,48 +279,8 @@ Merci,`,
 	</div>
 </section>
 
-<!-- ===================== PERIMETRE ===================== -->
-<section class="band band--dark" id="perimetre">
-	<div class="wrap on-dark">
-		<div class="head obs">
-			<p class="kick">Périmètre</p>
-			<h2>Ce qu'on <span class="hi">refuse</span> de faire</h2>
-			<p>
-				Un périmètre flou finit toujours par se payer, d'un côté ou de l'autre. Autant
-				l'écrire avant le devis.
-			</p>
-		</div>
-
-		<div class="scope">
-			<div class="scope__in obs">
-				<h3>Dans le périmètre</h3>
-				<ul class="ticks">
-					{SCOPE_IN.map((item) => <li>{item}</li>)}
-				</ul>
-			</div>
-
-			<div class="scope__out obs" style="--d: 90ms">
-				<h3>Hors périmètre</h3>
-				<ul>
-					{
-						SCOPE_OUT.map((item) => (
-							<li>
-								<p class="scope__l">
-									<span aria-hidden="true">✕</span>
-									{item.label}
-								</p>
-								<p class="scope__d">{item.detail}</p>
-							</li>
-						))
-					}
-				</ul>
-			</div>
-		</div>
-	</div>
-</section>
-
 <!-- ===================== CLIENTS ===================== -->
-<section class="band" id="clients">
+<section class="band band--soft" id="clients">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Clients accompagnés</p>
@@ -375,7 +333,7 @@ Merci,`,
 </section>
 
 <!-- ===================== RESSOURCES ===================== -->
-<section class="band band--soft" id="ressources">
+<section class="band" id="ressources">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Ressources</p>
@@ -404,7 +362,7 @@ Merci,`,
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section class="band" id="faq">
+<section class="band band--soft" id="faq">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Questions fréquentes</p>
@@ -956,73 +914,6 @@ Merci,`,
 		max-width: 68ch;
 	}
 
-	/* ================= PERIMETRE ================= */
-	.scope {
-		display: grid;
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-		gap: clamp(1.25rem, 3vw, 2rem);
-		align-items: start;
-	}
-
-	.scope__in,
-	.scope__out {
-		padding: clamp(1.4rem, 2.6vw, 2rem);
-		border-radius: var(--round);
-	}
-
-	.scope__in {
-		background: rgba(255, 255, 255, 0.07);
-	}
-
-	.scope__out {
-		background: var(--paper);
-		color: var(--ink-soft);
-	}
-
-	.scope h3 {
-		margin-bottom: 1.2rem;
-		padding-bottom: 0.9rem;
-		border-bottom: 1px solid rgba(238, 241, 247, 0.18);
-		color: #fff;
-	}
-
-	.scope__out h3 {
-		color: var(--ink);
-		border-bottom-color: var(--line);
-	}
-
-	.scope__in :global(.ticks) {
-		font-size: var(--s--1);
-	}
-
-	.scope__out ul {
-		list-style: none;
-		padding: 0;
-		display: grid;
-		gap: 1.25rem;
-	}
-
-	.scope__l {
-		display: flex;
-		align-items: baseline;
-		gap: 0.6rem;
-		font-family: var(--display);
-		font-weight: 700;
-		font-size: var(--s-0);
-		color: var(--ink);
-		margin-bottom: 0.3rem;
-	}
-
-	.scope__l span {
-		color: var(--accent);
-	}
-
-	.scope__d {
-		font-size: var(--s--1);
-		line-height: 1.6;
-		padding-left: 1.4rem;
-	}
-
 	/* ================= CLIENTS ================= */
 	.todo {
 		border-left: 4px solid var(--accent);
@@ -1313,10 +1204,6 @@ Merci,`,
 
 		.ask {
 			left: 0;
-		}
-
-		.scope {
-			grid-template-columns: 1fr;
 		}
 	}
 
