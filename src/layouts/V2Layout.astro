@@ -9,9 +9,11 @@ import { CONTACT_EMAIL } from '../data/site';
 interface Props {
 	title: string;
 	description: string;
+	/** Variante chromatique de la page de test. */
+	theme?: 'blue' | 'violet';
 }
 
-const { title, description } = Astro.props;
+const { title, description, theme = 'blue' } = Astro.props;
 
 const nav = [
 	{ href: '#surfaces', label: 'Surfaces' },
@@ -32,7 +34,7 @@ const nav = [
 		<meta name="description" content={description} />
 		{/* Page de comparaison : jamais indexee, jamais dans le sitemap. */}
 		<meta name="robots" content="noindex, nofollow" />
-		<meta name="theme-color" content="#f7f4ef" />
+		<meta name="theme-color" content="#ffffff" />
 		<noscript>
 			<style>
 				.v2 .obs {
@@ -43,15 +45,21 @@ const nav = [
 		</noscript>
 	</head>
 
-	<body class="v2">
+	<body class:list={['v2', { 'v2--violet': theme === 'violet' }]}>
 		<div class="flag">
-			Version&nbsp;2 · page de comparaison, non indexée ·
-			<a href="/">voir la version en ligne</a>
+			<span>Page de comparaison, non indexée</span>
+			<span class="flag__sw">
+				<a href="/v2/" aria-current={theme === 'blue' ? 'page' : undefined}>Bleu</a>
+				<a href="/v2/violet/" aria-current={theme === 'violet' ? 'page' : undefined}>
+					Violet
+				</a>
+			</span>
+			<a class="flag__live" href="/">Voir la version en ligne</a>
 		</div>
 
 		<header class="top" data-top>
 			<div class="wrap top__in">
-				<a class="logo" href="/v2/">
+				<a class="logo" href={theme === 'violet' ? '/v2/violet/' : '/v2/'}>
 					<span class="logo__sq" aria-hidden="true"><BrandMark /></span>
 					Quoted
 				</a>
@@ -140,16 +148,41 @@ const nav = [
 </html>
 
 <style>
+	/* Bandeau de test, avec le selecteur de variante */
 	.flag {
-		background: var(--lemon);
-		color: var(--navy);
-		text-align: center;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem 1.25rem;
+		background: var(--dark);
+		color: rgba(238, 241, 247, 0.75);
 		padding: 0.5rem 1rem;
-		font-size: 0.78rem;
-		font-weight: 700;
+		font-size: 0.76rem;
+		font-weight: 600;
 	}
 
-	.flag a {
+	.flag__sw {
+		display: inline-flex;
+		gap: 2px;
+		padding: 2px;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.flag__sw a {
+		padding: 0.2rem 0.75rem;
+		border-radius: 999px;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.flag__sw a[aria-current='page'] {
+		background: #fff;
+		color: var(--dark);
+	}
+
+	.flag__live {
 		text-decoration: underline;
 	}
 
@@ -193,8 +226,13 @@ const nav = [
 		width: 2.1rem;
 		height: 2.1rem;
 		border-radius: 9px;
-		background: var(--navy);
-		color: var(--lemon);
+		background: var(--accent);
+		color: #fff;
+		transition: background-color 0.18s ease;
+	}
+
+	.logo:hover .logo__sq {
+		background: var(--dark);
 	}
 
 	.logo__sq :global(svg) {
@@ -217,7 +255,7 @@ const nav = [
 	}
 
 	.menu a:hover {
-		color: var(--blue);
+		color: var(--accent);
 	}
 
 	.burger {
@@ -278,8 +316,8 @@ const nav = [
 
 	/* --- Pied --- */
 	.foot {
-		background: var(--navy);
-		color: rgba(233, 238, 247, 0.72);
+		background: var(--dark);
+		color: rgba(238, 241, 247, 0.72);
 		padding-block: clamp(2.5rem, 5vw, 4rem);
 	}
 
@@ -307,7 +345,8 @@ const nav = [
 	.foot__logo :global(.foot__mark) {
 		width: 1.15rem;
 		height: 1.15rem;
-		color: var(--lemon);
+		color: #fff;
+		opacity: 0.55;
 	}
 
 	.foot__line {

@@ -1,31 +1,26 @@
 /* =========================================================================
-   Quoted — V2 (page de test /v2/), inspiree de botanik.ai
-   Papier chaud, encre bleu nuit, display Bricolage en capitales, et une
-   seule couleur inattendue reservee au bouton principal.
-   Tout est scope sous .v2 : global.css n'est pas charge sur cette page,
-   la home en ligne n'est donc pas touchee.
+   Quoted — V2 (pages de test /v2/ et /v2/violet/)
+   Monochrome : une seule couleur d'accent sur fond blanc, le reste en
+   neutres de la meme famille chromatique. Deux variantes, bleu par defaut
+   et violet via .v2--violet : seuls les huit jetons de couleur changent.
+   Tout est scope sous .v2, global.css n'est pas charge sur ces pages.
    ========================================================================= */
 
 .v2 {
-	/* --- Surfaces : papier chaud plutot que blanc pur --- */
-	--paper: #f7f4ef;
-	--paper-card: #ffffff;
-	--navy: #0f1e33;
-	--navy-deep: #081422;
-	--ink: #101c2e;
-	--ink-soft: #4a5769;
-	--ink-mute: #7c8798;
+	/* --- Variante bleue (defaut) --- */
+	--accent: #2049e5;
+	--accent-deep: #0f2bb0;
+	--accent-wash: #eef1ff;
+	--accent-line: #cfd8fb;
+	--dark: #0d1730;
+	--surface: #f5f7fc;
+	--ink: #101a33;
+	--ink-soft: #4a5570;
+	--ink-mute: #7b849b;
+	--line: #e4e8f2;
+	--line-strong: #c2cadd;
 
-	/* --- Bleu de marque, citron, et le corail du bouton --- */
-	--blue: #2049e5;
-	--blue-deep: #0f2bb0;
-	--blue-wash: #e6ecff;
-	--lemon: #ffd919;
-	--coral: #ff8259;
-	--coral-soft: #ffd4c6;
-
-	--line: #e0dcd4;
-	--line-strong: #c4bdb1;
+	--paper: #ffffff;
 
 	/* --- Typo --- */
 	--display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
@@ -40,10 +35,10 @@
 
 	--gutter: clamp(1.15rem, 4vw, 2.5rem);
 	--pad-y: clamp(3.5rem, 7vw, 6.5rem);
-	--round: 22px;
-	--round-sm: 12px;
+	--round: 20px;
+	--round-sm: 11px;
 
-	--shadow: 0 3px 6px rgba(15, 30, 51, 0.05), 0 24px 48px -28px rgba(15, 30, 51, 0.4);
+	--shadow: 0 3px 6px rgba(16, 26, 51, 0.05), 0 24px 48px -28px rgba(16, 26, 51, 0.35);
 
 	background: var(--paper);
 	color: var(--ink);
@@ -51,6 +46,21 @@
 	font-size: var(--s-0);
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
+}
+
+/* --- Variante violette : seuls les jetons de couleur bougent --- */
+.v2--violet {
+	--accent: #5b2fe0;
+	--accent-deep: #3a17a5;
+	--accent-wash: #f1ecff;
+	--accent-line: #d8ccfa;
+	--dark: #17102f;
+	--surface: #f8f6fd;
+	--ink: #171030;
+	--ink-soft: #514a6b;
+	--ink-mute: #827a98;
+	--line: #eae5f4;
+	--line-strong: #cdc4e0;
 }
 
 .v2 *,
@@ -82,18 +92,18 @@
 }
 
 .v2 :focus-visible {
-	outline: 3px solid var(--blue);
+	outline: 3px solid var(--accent);
 	outline-offset: 3px;
 	border-radius: 4px;
 }
 
 .v2 ::selection {
-	background: var(--lemon);
-	color: var(--navy);
+	background: var(--accent);
+	color: #fff;
 }
 
 /* -------------------------------------------------------------------------
-   Titres : capitales serrees, display a fort caractere
+   Titres
    ------------------------------------------------------------------------- */
 
 .v2 h1,
@@ -123,12 +133,16 @@
 }
 
 /* Mot mis en couleur dans un titre */
-.v2 .lime {
-	color: var(--blue);
+.v2 .hi {
+	color: var(--accent);
 }
 
-.v2 .on-dark .lime {
-	color: var(--lemon);
+.v2 .on-dark .hi {
+	color: #fff;
+	text-decoration: underline;
+	text-decoration-color: var(--accent);
+	text-decoration-thickness: 0.12em;
+	text-underline-offset: 0.1em;
 }
 
 /* -------------------------------------------------------------------------
@@ -144,13 +158,13 @@
 	padding-block: var(--pad-y);
 }
 
-.v2 .band--card {
-	background: var(--paper-card);
+.v2 .band--soft {
+	background: var(--surface);
 }
 
-.v2 .band--navy {
-	background: var(--navy);
-	color: #e9eef7;
+.v2 .band--dark {
+	background: var(--dark);
+	color: #eef1f7;
 }
 
 .v2 .kick {
@@ -160,12 +174,13 @@
 	font-weight: 700;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: var(--blue);
+	color: var(--accent);
 	margin-bottom: 1rem;
 }
 
-.v2 .band--navy .kick {
-	color: var(--lemon);
+.v2 .band--dark .kick {
+	color: #fff;
+	opacity: 0.6;
 }
 
 .v2 .head {
@@ -181,12 +196,12 @@
 	max-width: 56ch;
 }
 
-.v2 .band--navy .head p {
-	color: rgba(233, 238, 247, 0.72);
+.v2 .band--dark .head p {
+	color: rgba(238, 241, 247, 0.72);
 }
 
 /* -------------------------------------------------------------------------
-   Boutons : le corail est reserve a l'action principale
+   Boutons
    ------------------------------------------------------------------------- */
 
 .v2 .b {
@@ -216,21 +231,21 @@
 }
 
 .v2 .b--go {
-	background: var(--coral);
-	color: var(--navy);
-}
-
-.v2 .b--go:hover {
-	background: var(--lemon);
-}
-
-.v2 .b--navy {
-	background: var(--navy);
+	background: var(--accent);
 	color: #fff;
 }
 
-.v2 .b--navy:hover {
-	background: var(--blue);
+.v2 .b--go:hover {
+	background: var(--accent-deep);
+}
+
+.v2 .b--dark {
+	background: var(--dark);
+	color: #fff;
+}
+
+.v2 .b--dark:hover {
+	background: var(--accent);
 }
 
 .v2 .b--line {
@@ -239,20 +254,29 @@
 }
 
 .v2 .b--line:hover {
-	border-color: var(--navy);
-	background: var(--navy);
+	border-color: var(--accent);
+	color: var(--accent);
+}
+
+.v2 .band--dark .b--go {
+	background: #fff;
+	color: var(--dark);
+}
+
+.v2 .band--dark .b--go:hover {
+	background: var(--accent);
 	color: #fff;
 }
 
-.v2 .band--navy .b--line {
-	border-color: rgba(233, 238, 247, 0.3);
+.v2 .band--dark .b--line {
+	border-color: rgba(238, 241, 247, 0.3);
 	color: #fff;
 }
 
-.v2 .band--navy .b--line:hover {
+.v2 .band--dark .b--line:hover {
 	border-color: #fff;
 	background: #fff;
-	color: var(--navy);
+	color: var(--dark);
 }
 
 .v2 .arw {
@@ -288,11 +312,25 @@
 	height: 1rem;
 	margin-top: 0.22rem;
 	border-radius: 50%;
-	background: var(--lemon);
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230f1e33' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
+	background: var(--accent-wash);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%232049e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
 	background-size: 0.72rem;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+.v2--violet .ticks li::before {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%235b2fe0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
+}
+
+/* Sur fond sombre, la pastille passe en blanc translucide */
+.v2 .band--dark .ticks {
+	color: rgba(238, 241, 247, 0.85);
+}
+
+.v2 .band--dark .ticks li::before {
+	background-color: rgba(255, 255, 255, 0.14);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.3l2.4 2.4 4.6-4.9'/%3E%3C/svg%3E");
 }
 
 /* -------------------------------------------------------------------------
