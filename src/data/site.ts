@@ -246,34 +246,66 @@ export const TOOLS: Tool[] = [
 ];
 
 /* -------------------------------------------------------------------------
-   Methode
+   Process en 4 etapes, presente en onglets sur la home.
    ------------------------------------------------------------------------- */
 
-export const METHOD: { step: string; title: string; body: string }[] = [
+export interface Step {
+	id: string;
+	tab: string;
+	title: string;
+	body: string;
+	points: string[];
+	when: string;
+}
+
+export const PROCESS: Step[] = [
 	{
-		step: '01',
-		title: 'Cartographier',
-		body: "On identifie les personas et les prompts qui comptent réellement dans votre marché, puis on relève ce que ChatGPT, Perplexity, Gemini et Claude répondent aujourd'hui, et qui ils citent.",
+		id: 'releve',
+		tab: 'Relevé',
+		title: 'On regarde tout, on ne suppose rien.',
+		body: "Avant de toucher à quoi que ce soit, on mesure : ce que les moteurs répondent déjà sur vos sujets, qui ils citent, et ce que votre site leur donne à lire.",
+		points: [
+			'Panel de prompts construit sur vos intentions réelles',
+			'Relevé sur ChatGPT, Gemini, Claude et les AI Overviews',
+			'Lecture technique de ce qui rend vos pages citables',
+		],
+		when: 'Semaine 1 à 2',
 	},
 	{
-		step: '02',
-		title: 'Prioriser',
-		body: 'Chaque écart constaté devient une action, classée dans une matrice impact/effort. Vous savez ce qui se joue en premier, ce qui attend, et ce que ça coûte.',
+		id: 'priorite',
+		tab: 'Priorisation',
+		title: 'Un plan classé par impact.',
+		body: "Pas de feuille de route de quarante pages. Chaque écart constaté devient une action, classée par effort et par gain attendu, arbitrée avec vous.",
+		points: [
+			'Matrice impact / effort sur les écarts constatés',
+			'Ce qui se joue en premier, ce qui attend',
+			'Périmètre et volumes arrêtés noir sur blanc',
+		],
+		when: 'Semaine 3',
 	},
 	{
-		step: '03',
-		title: 'Produire',
-		body: "On crée et on optimise les contenus pour qu'ils soient extractibles : réponse en tête, structure explicite, sources vérifiables, données structurées cohérentes.",
+		id: 'production',
+		tab: 'Production',
+		title: 'On produit, vous suivez.',
+		body: "Contenus, maillage, données structurées, présence hors site. Vous voyez ce qui avance, sans jargon, et vous validez avant publication.",
+		points: [
+			'Contenus conçus pour être repris et cités',
+			'Maillage et données structurées cohérents',
+			'Médias, Reddit et référentiels travaillés en parallèle',
+		],
+		when: 'En continu',
 	},
 	{
-		step: '04',
-		title: 'Faire citer',
-		body: 'Le maillage interne consolide le sujet côté site. Hors du site, on travaille les sources que les moteurs reprennent réellement : médias, Reddit, référentiels.',
-	},
-	{
-		step: '05',
-		title: 'Mesurer',
-		body: 'On rejoue les mêmes prompts, mois après mois, sur les mêmes moteurs. Le reporting montre ce qui a bougé, sur quelles requêtes, et face à quels concurrents.',
+		id: 'mesure',
+		tab: 'Mesure',
+		title: 'Des chiffres, pas des impressions.',
+		body: "Le même panel rejoué dans les mêmes conditions, mois après mois. Vous voyez ce qui a bougé, sur quelles questions, et face à quels concurrents.",
+		points: [
+			'Score de visibilité et sa variation',
+			'Présence, citation et part de voix suivies séparément',
+			'Version de chaque moteur consignée à chaque campagne',
+		],
+		when: 'Chaque mois',
 	},
 ];
 
