@@ -230,6 +230,9 @@ export const TOOLS: Tool[] = [
 export const CONSULTANT = {
 	name: 'Geoffrey',
 	role: 'Fondateur de Quoted',
+	/* Pastille posee sur la photo. Chiffre volontairement prudent :
+	   « + de 10 » se tient sans avoir a produire la liste exacte. */
+	badge: { figure: '+ de 10', label: 'clients accompagnés' },
 	points: [
 		"Cinq ans d'expérience en référencement, sur le périmètre que j'exécute moi-même",
 		'Un seul interlocuteur, du premier relevé au reporting',
