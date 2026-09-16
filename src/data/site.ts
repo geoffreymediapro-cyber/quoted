@@ -28,7 +28,7 @@ export const CONTACT_EMAIL = 'contact@quoted.fr';
  * Une fois la cle posee : retirer le noindex de /scan (pages/scan.astro) et
  * l'exclusion de /scan du sitemap (astro.config.mjs).
  */
-export const FORM_KEY = '';
+export const FORM_KEY = '20803be5-f4d1-4099-83d7-eb1b08b9eeb1';
 
 /* -------------------------------------------------------------------------
    Ce qu'on fait : capacites, sans packaging commercial ni prix
