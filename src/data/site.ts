@@ -262,13 +262,16 @@ export const TOOLS: Tool[] = [
 
 /* -------------------------------------------------------------------------
    Resultats chiffres
-   ⚠️ CONTENU DE STRUCTURE : ces valeurs ne correspondent a aucun client.
-   Tant que PLACEHOLDER_RESULTS vaut true, un bandeau d'avertissement
-   s'affiche au-dessus du bloc. Fournir pour chaque cas : le chiffre, ce
-   qu'il mesure, le contexte et la periode.
+   Ces trois chiffres decrivent le dispositif et son perimetre. Ils sont
+   verifiables sur le site lui-meme : cinq moteurs sur le graphique de la
+   ligne de flottaison, 48 h annonces sur /scan/, et le refus des avis
+   fabriques qui figure au brief.
+   ⚠️ Ce ne sont PAS des resultats clients. Des qu'il y a trois cas reels
+   (chiffre, ce qu'il mesure, contexte, periode), ils remplacent ceux-ci et
+   PLACEHOLDER_RESULTS repasse a true le temps de la relecture.
    ------------------------------------------------------------------------- */
 
-export const PLACEHOLDER_RESULTS = true;
+export const PLACEHOLDER_RESULTS = false;
 
 export interface Result {
 	tag: string;
@@ -279,22 +282,25 @@ export interface Result {
 
 export const RESULTS: Result[] = [
 	{
-		tag: 'Secteur · typologie',
-		figure: '00 %',
-		label: 'Ce que le chiffre mesure',
-		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+		tag: 'Mesure · couverture',
+		figure: '5',
+		label: 'Moteurs interrogés à chaque relevé',
+		context:
+			"ChatGPT, Perplexity, Gemini, Claude et les AI Overviews de Google, sur le même jeu de questions. C'est ce qui rend deux relevés comparables d'un mois sur l'autre.",
 	},
 	{
-		tag: 'Secteur · typologie',
-		figure: '00',
-		label: 'Ce que le chiffre mesure',
-		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+		tag: 'Premier relevé · délai',
+		figure: '48 h',
+		label: 'Entre la demande et le retour',
+		context:
+			"Jours ouvrés. Le scan est gratuit et sans relance derrière : vous repartez avec ce que les moteurs répondent, que la suite se fasse avec nous ou non.",
 	},
 	{
-		tag: 'Secteur · typologie',
-		figure: '00',
-		label: 'Ce que le chiffre mesure',
-		context: 'Le contexte en une phrase, et la période sur laquelle il a été constaté.',
+		tag: 'Méthode · périmètre',
+		figure: '0',
+		label: 'Avis fabriqué, faux profil, citation achetée',
+		context:
+			"Ces pratiques sont hors périmètre, quelle que soit la pression sur les délais. Le travail consiste à mériter la citation, pas à l'acheter.",
 	},
 ];
 
