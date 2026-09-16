@@ -164,6 +164,12 @@ import { CONTACT_EMAIL, FORM_KEY } from '../data/site';
 		color: #ff9b8a;
 	}
 
+	.form__msg a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
 	@media (max-width: 40rem) {
 		.form__row {
 			grid-template-columns: 1fr;
@@ -183,6 +189,27 @@ import { CONTACT_EMAIL, FORM_KEY } from '../data/site';
 		const button = form.querySelector<HTMLButtonElement>('[data-submit]');
 		const key = form.dataset.key ?? '';
 		const mail = form.dataset.mail ?? '';
+		const SUBJECT = 'Demande de scan de visibilité IA';
+
+		// Le meme message, mis en forme pour un client mail. Sert de repli quand
+		// aucune cle n'est configuree, et de session de rattrapage quand l'envoi
+		// echoue : le visiteur ne retape rien.
+		const mailtoHref = () => {
+			const f = new FormData(form);
+			const body = [
+				`Site : ${f.get('site') ?? ''}`,
+				`Secteur : ${f.get('secteur') ?? ''}`,
+				`Questions : ${f.get('questions') ?? ''}`,
+				`Concurrent : ${f.get('concurrent') ?? ''}`,
+				'',
+				`Me répondre à : ${f.get('email') ?? ''}`,
+			].join(String.fromCharCode(10));
+
+			return (
+				`mailto:${mail}?subject=${encodeURIComponent(SUBJECT)}` +
+				`&body=${encodeURIComponent(body)}`
+			);
+		};
 
 		form.addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -190,38 +217,26 @@ import { CONTACT_EMAIL, FORM_KEY } from '../data/site';
 
 			// Pas de service configure : on repasse la main au client mail
 			if (!key) {
-				const f = new FormData(form);
-				const body = [
-					`Site : ${f.get('site') ?? ''}`,
-					`Secteur : ${f.get('secteur') ?? ''}`,
-					`Questions : ${f.get('questions') ?? ''}`,
-					`Concurrent : ${f.get('concurrent') ?? ''}`,
-					'',
-					`Me répondre à : ${f.get('email') ?? ''}`,
-				].join(String.fromCharCode(10));
-
-				window.location.href =
-					`mailto:${mail}?subject=${encodeURIComponent('Demande de scan de visibilité IA')}` +
-					`&body=${encodeURIComponent(body)}`;
+				window.location.href = mailtoHref();
 				return;
 			}
 
-			msg.textContent = '';
+			msg.replaceChildren();
 			msg.removeAttribute('data-state');
 			button.disabled = true;
 
-			const data = Object.fromEntries(new FormData(form));
+			// Envoi en multipart et non en JSON : une requete simple au sens CORS,
+			// donc sans preflight OPTIONS. Un filtre reseau ou un proxy d'entreprise
+			// de moins sur le chemin.
+			const payload = new FormData(form);
+			payload.append('access_key', key);
+			payload.append('subject', SUBJECT);
+			payload.append('from_name', 'quoted.fr');
 
 			try {
 				const response = await fetch('https://api.web3forms.com/submit', {
 					method: 'POST',
-					headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-					body: JSON.stringify({
-						access_key: key,
-						subject: 'Demande de scan de visibilité IA',
-						from_name: 'quoted.fr',
-						...data,
-					}),
+					body: payload,
 				});
 
 				if (!response.ok) throw new Error(String(response.status));
@@ -231,9 +246,19 @@ import { CONTACT_EMAIL, FORM_KEY } from '../data/site';
 				msg.textContent =
 					'Bien reçu. Vous avez une réponse sous 48 h ouvrées, avec le relevé.';
 			} catch {
+				// L'envoi peut echouer pour des raisons qui ne regardent pas le
+				// visiteur : reseau filtre, service tiers indisponible. On lui rend
+				// son message sous forme de mail pret a partir plutot qu'une impasse.
+				const link = document.createElement('a');
+				link.href = mailtoHref();
+				link.textContent = 'envoyer votre demande par e-mail';
+
 				msg.dataset.state = 'ko';
-				msg.textContent =
-					"L'envoi a échoué. Réessayez, ou écrivez-nous directement à l'adresse ci-dessous.";
+				msg.replaceChildren(
+					document.createTextNode("L'envoi a échoué. Réessayez, ou "),
+					link,
+					document.createTextNode(" : tout est déjà rempli, il ne reste qu'à cliquer."),
+				);
 			} finally {
 				button.disabled = false;
 			}
