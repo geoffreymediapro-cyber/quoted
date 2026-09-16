@@ -23,10 +23,11 @@ export const CONTACT_EMAIL = 'contact@quoted.fr';
  * A obtenir sur web3forms.com : on saisit une adresse de reception, la cle
  * arrive par mail. Aucun compte a creer, gratuit.
  *
- * Tant que cette constante est vide, le formulaire reste affiche mais bascule
- * sur un mailto pre-rempli vers CONTACT_EMAIL, qui est desormais relevee.
- * Une fois la cle posee : retirer le noindex de /scan (pages/scan.astro) et
- * l'exclusion de /scan du sitemap (astro.config.mjs).
+ * Cle posee le 17/09/2026, reception sur CONTACT_EMAIL. La page /scan/ est
+ * donc indexable (son noindex est conditionne a cette constante) et figure
+ * au sitemap. Vider cette constante suffit a tout remettre en veille : le
+ * formulaire rebascule sur un mailto pre-rempli et la page ressort de l'index.
+ * Quota du plan gratuit : 250 envois par mois.
  */
 export const FORM_KEY = '20803be5-f4d1-4099-83d7-eb1b08b9eeb1';
 
