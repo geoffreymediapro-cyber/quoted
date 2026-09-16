@@ -8,8 +8,12 @@ export const SITE_URL = 'https://quoted.fr';
 export const SITE_TAGLINE = 'Agence GEO, Generative Engine Optimization';
 
 /**
- * Adresse de repli, utilisee tant que le formulaire n'est pas configure.
- * ⚠️ Aucun MX sur la zone quoted.fr : cette boite n'existe pas encore.
+ * Boite de contact du site, affichee dans le footer, les mentions legales et
+ * la politique de confidentialite. Elle sert aussi de repli au formulaire.
+ * Redirection entrante active depuis le 16/09/2026 : MX Forward Email poses
+ * sur la zone Hetzner (mx1/mx2.forwardemail.net) + TXT `forward-email`, les
+ * messages retombent dans la boite personnelle. Aucun envoi sortant depuis
+ * cette adresse : elle ne recoit, elle n'expedie pas.
  */
 export const CONTACT_EMAIL = 'contact@quoted.fr';
 
@@ -19,9 +23,10 @@ export const CONTACT_EMAIL = 'contact@quoted.fr';
  * A obtenir sur web3forms.com : on saisit une adresse de reception, la cle
  * arrive par mail. Aucun compte a creer, gratuit.
  *
- * Tant que cette constante est vide, le formulaire n'est PAS affiche et la
- * section contact garde les boutons mailto : rien ne casse, et aucun envoi
- * ne part dans le vide.
+ * Tant que cette constante est vide, le formulaire reste affiche mais bascule
+ * sur un mailto pre-rempli vers CONTACT_EMAIL, qui est desormais relevee.
+ * Une fois la cle posee : retirer le noindex de /scan (pages/scan.astro) et
+ * l'exclusion de /scan du sitemap (astro.config.mjs).
  */
 export const FORM_KEY = '';
 
@@ -109,52 +114,6 @@ export const SERVICES: Service[] = [
 			'Présence organique sur Reddit',
 			'Wikipédia et Wikidata, via partenaire spécialisé',
 		],
-	},
-];
-
-/* -------------------------------------------------------------------------
-   Clients accompagnes : profils anonymises
-   ------------------------------------------------------------------------- */
-
-export interface Client {
-	sector: string;
-	profile: string;
-	context: string;
-	work: string;
-}
-
-/**
- * ⚠️ CONTENU DE STRUCTURE : a remplacer par les profils reels.
- * Tant que PLACEHOLDER_CLIENTS vaut true, un bandeau d'avertissement
- * s'affiche au-dessus de la section pour qu'aucune de ces lignes ne soit
- * lue comme une reference reelle.
- */
-export const PLACEHOLDER_CLIENTS = true;
-
-export const CLIENTS: Client[] = [
-	{
-		sector: 'Secteur à renseigner',
-		profile: 'Taille / typologie',
-		context: 'La situation de départ : ce que les moteurs répondaient, ou ne répondaient pas.',
-		work: 'Ce qui a été mis en place.',
-	},
-	{
-		sector: 'Secteur à renseigner',
-		profile: 'Taille / typologie',
-		context: 'La situation de départ.',
-		work: 'Ce qui a été mis en place.',
-	},
-	{
-		sector: 'Secteur à renseigner',
-		profile: 'Taille / typologie',
-		context: 'La situation de départ.',
-		work: 'Ce qui a été mis en place.',
-	},
-	{
-		sector: 'Secteur à renseigner',
-		profile: 'Taille / typologie',
-		context: 'La situation de départ.',
-		work: 'Ce qui a été mis en place.',
 	},
 ];
 
@@ -258,50 +217,6 @@ export const TOOLS: Tool[] = [
 	{ code: 'SCH', name: 'Schema Validator', use: 'Données structurées' },
 	{ code: 'IDX', name: 'IndexNow', use: 'Soumission d’URL' },
 	{ code: 'LKR', name: 'Looker Studio', use: 'Reporting' },
-];
-
-/* -------------------------------------------------------------------------
-   Resultats chiffres
-   Ces trois chiffres decrivent le dispositif et son perimetre. Ils sont
-   verifiables sur le site lui-meme : cinq moteurs sur le graphique de la
-   ligne de flottaison, 48 h annonces sur /scan/, et le refus des avis
-   fabriques qui figure au brief.
-   ⚠️ Ce ne sont PAS des resultats clients. Des qu'il y a trois cas reels
-   (chiffre, ce qu'il mesure, contexte, periode), ils remplacent ceux-ci et
-   PLACEHOLDER_RESULTS repasse a true le temps de la relecture.
-   ------------------------------------------------------------------------- */
-
-export const PLACEHOLDER_RESULTS = false;
-
-export interface Result {
-	tag: string;
-	figure: string;
-	label: string;
-	context: string;
-}
-
-export const RESULTS: Result[] = [
-	{
-		tag: 'Mesure · couverture',
-		figure: '5',
-		label: 'Moteurs interrogés à chaque relevé',
-		context:
-			"ChatGPT, Perplexity, Gemini, Claude et les AI Overviews de Google, sur le même jeu de questions. C'est ce qui rend deux relevés comparables d'un mois sur l'autre.",
-	},
-	{
-		tag: 'Premier relevé · délai',
-		figure: '48 h',
-		label: 'Entre la demande et le retour',
-		context:
-			"Jours ouvrés. Le scan est gratuit et sans relance derrière : vous repartez avec ce que les moteurs répondent, que la suite se fasse avec nous ou non.",
-	},
-	{
-		tag: 'Méthode · périmètre',
-		figure: '0',
-		label: 'Avis fabriqué, faux profil, citation achetée',
-		context:
-			"Ces pratiques sont hors périmètre, quelle que soit la pression sur les délais. Le travail consiste à mériter la citation, pas à l'acheter.",
-	},
 ];
 
 /* -------------------------------------------------------------------------

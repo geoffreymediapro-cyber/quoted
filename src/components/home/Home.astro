@@ -14,10 +14,6 @@ import {
 	EXPERTISES,
 	PROCESS,
 	CONSULTANT,
-	RESULTS,
-	PLACEHOLDER_RESULTS,
-	CLIENTS,
-	PLACEHOLDER_CLIENTS,
 	FAQ,
 } from '../../data/site';
 
@@ -253,49 +249,8 @@ const TINTS = [
 	</div>
 </section>
 
-<!-- ===================== RESULTATS ===================== -->
-<section class="band band--dark" id="resultats">
-	<div class="wrap on-dark">
-		<div class="res__top obs">
-			<div>
-				<p class="kick">En chiffres</p>
-				<h2>Des chiffres,<br />pas des promesses.</h2>
-			</div>
-			<p class="res__intro">
-				Trois chiffres sur la façon dont on mesure, et sur ce qu'on refuse de faire.
-			</p>
-		</div>
-
-		{
-			PLACEHOLDER_RESULTS && (
-				<p class="todo todo--dark obs">
-					<strong>Section à compléter.</strong> Les trois cas ci-dessous sont un
-					gabarit, pas des résultats réels. Fournir pour chacun : le chiffre, ce qu'il
-					mesure, le contexte et la période.
-				</p>
-			)
-		}
-
-		<div class="res__grid">
-			{
-				RESULTS.map((item, index) => (
-					<article
-						class:list={['res__c', 'obs', { 'res__c--todo': PLACEHOLDER_RESULTS }]}
-						style={`--d: ${index * 70}ms`}
-					>
-						<p class="res__tag">{item.tag}</p>
-						<p class="res__fig">{item.figure}</p>
-						<p class="res__lab">{item.label}</p>
-						<p class="res__ctx">{item.context}</p>
-					</article>
-				))
-			}
-		</div>
-	</div>
-</section>
-
 <!-- ===================== PROCESS ===================== -->
-<section class="band" id="methode">
+<section class="band band--soft" id="methode">
 	<div class="wrap">
 		<div class="head obs">
 			<p class="kick">Méthode</p>
@@ -349,55 +304,6 @@ const TINTS = [
 					))
 				}
 			</div>
-		</div>
-	</div>
-</section>
-
-<!-- ===================== CLIENTS ===================== -->
-<section class="band band--soft" id="clients">
-	<div class="wrap">
-		<div class="head obs">
-			<p class="kick">Clients accompagnés</p>
-			<h2>Les marques que <span class="hi">nous accompagnons</span></h2>
-			<p>
-				Nos références sont présentées sans nom, par choix : le profil, la situation de
-				départ et le travail engagé.
-			</p>
-		</div>
-
-		{
-			PLACEHOLDER_CLIENTS && (
-				<p class="todo obs">
-					<strong>Section à compléter.</strong> Les profils ci-dessous sont un gabarit,
-					pas des références réelles.
-				</p>
-			)
-		}
-
-		<div class="cli">
-			<div class="cli__l">
-				{
-					CLIENTS.map((client, index) => (
-						<article class="cli__c obs" style={`--d: ${index * 50}ms`}>
-							<span class="cli__n">{String(index + 1).padStart(2, '0')}</span>
-							<div>
-								<h3>{client.sector}</h3>
-								<p class="cli__p">{client.profile}</p>
-							</div>
-							<p class="cli__x">{client.context}</p>
-						</article>
-					))
-				}
-			</div>
-
-			<aside class="cli__note obs">
-				<h3>Pourquoi aucun logo</h3>
-				<p>
-					Travailler la visibilité d'une marque, c'est entrer dans sa stratégie de
-					contenu et dans ses points faibles. Nous ne les affichons pas en vitrine.
-				</p>
-				<a class="b b--go" href="#contact">Demander des références</a>
-			</aside>
 		</div>
 	</div>
 </section>
@@ -1122,106 +1028,6 @@ const TINTS = [
 		}
 	}
 
-	/* ================= RESULTATS ================= */
-	.res__top {
-		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-		gap: clamp(1.25rem, 4vw, 3rem);
-		align-items: end;
-		margin-bottom: clamp(2rem, 4vw, 3rem);
-	}
-
-	.res__top h2 {
-		margin-top: 0.4rem;
-	}
-
-	.res__intro {
-		font-size: var(--s-1);
-		line-height: 1.5;
-		color: rgba(238, 241, 247, 0.6);
-		max-width: 36ch;
-	}
-
-	.res__grid {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: clamp(1rem, 2vw, 1.5rem);
-	}
-
-	.res__c {
-		padding: clamp(1.5rem, 2.8vw, 2.1rem);
-		border-radius: var(--round);
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-	}
-
-	.res__tag {
-		font-family: var(--display);
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		color: #c7b3ff;
-		margin-bottom: 1.1rem;
-	}
-
-	.res__fig {
-		font-family: var(--display);
-		font-size: clamp(2.6rem, 5vw, 3.6rem);
-		font-weight: 800;
-		line-height: 0.95;
-		letter-spacing: -0.04em;
-		color: #c7b3ff;
-		margin-bottom: 0.7rem;
-	}
-
-	.res__lab {
-		font-family: var(--display);
-		font-size: var(--s-0);
-		font-weight: 700;
-		color: #fff;
-		margin-bottom: 0.4rem;
-	}
-
-	.res__ctx {
-		font-size: var(--s--1);
-		line-height: 1.6;
-		color: rgba(238, 241, 247, 0.6);
-	}
-
-	/* Gabarit : les valeurs sont volontairement en retrait */
-	.res__c--todo .res__fig,
-	.res__c--todo .res__tag {
-		color: rgba(199, 179, 255, 0.45);
-	}
-
-	.res__c--todo .res__lab {
-		color: rgba(255, 255, 255, 0.5);
-	}
-
-	.todo.todo--dark {
-		background: rgba(255, 255, 255, 0.07);
-		border-left-color: #c7b3ff;
-		color: rgba(238, 241, 247, 0.75);
-	}
-
-	.todo.todo--dark strong {
-		color: #fff;
-	}
-
-	@media (max-width: 62rem) {
-		.res__top {
-			grid-template-columns: 1fr;
-			align-items: start;
-		}
-	}
-
-	@media (max-width: 52rem) {
-		.res__grid {
-			grid-template-columns: 1fr;
-		}
-	}
-
 	/* ================= PROCESS ================= */
 	.proc__tabs {
 		display: flex;
@@ -1420,87 +1226,6 @@ const TINTS = [
 		}
 	}
 
-	/* ================= CLIENTS ================= */
-	.todo {
-		border-left: 4px solid var(--accent);
-		background: var(--accent-wash);
-		padding: 0.9rem 1.15rem;
-		border-radius: 0 var(--round-sm) var(--round-sm) 0;
-		font-size: var(--s--1);
-		color: var(--ink-soft);
-		margin-bottom: 1.6rem;
-	}
-
-	.cli {
-		display: grid;
-		grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
-		gap: clamp(1.25rem, 2.5vw, 2rem);
-		align-items: start;
-	}
-
-	.cli__l {
-		display: grid;
-		gap: 0.7rem;
-	}
-
-	.cli__c {
-		display: grid;
-		grid-template-columns: 2.5rem minmax(8rem, 1fr) minmax(0, 1.4fr);
-		gap: 1rem;
-		align-items: center;
-		padding: 1.05rem 1.25rem;
-		background: var(--paper);
-		border-radius: var(--round-sm);
-		border: 1px solid var(--line);
-	}
-
-	.cli__n {
-		font-family: var(--display);
-		font-weight: 800;
-		color: var(--accent);
-	}
-
-	.cli__c h3 {
-		font-size: var(--s-0);
-		color: var(--ink-mute);
-	}
-
-	.cli__p,
-	.cli__x {
-		font-size: 0.82rem;
-		line-height: 1.5;
-		color: var(--ink-mute);
-	}
-
-	.cli__note {
-		padding: clamp(1.35rem, 2.5vw, 1.9rem);
-		background: var(--dark);
-		color: rgba(238, 241, 247, 0.75);
-		border-radius: var(--round);
-		display: grid;
-		gap: 0.85rem;
-	}
-
-	.cli__note h3 {
-		color: #fff;
-	}
-
-	.cli__note p {
-		font-size: var(--s--1);
-		line-height: 1.6;
-	}
-
-	.cli__note .b {
-		justify-self: start;
-		background: #fff;
-		color: var(--dark);
-	}
-
-	.cli__note .b:hover {
-		background: var(--accent);
-		color: #fff;
-	}
-
 	/* ================= RESSOURCES ================= */
 	.gui {
 		display: grid;
@@ -1669,10 +1394,6 @@ const TINTS = [
 
 	/* ================= RESPONSIVE ================= */
 	@media (max-width: 66rem) {
-		.cli {
-			grid-template-columns: 1fr;
-		}
-
 		.gui {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
@@ -1680,7 +1401,6 @@ const TINTS = [
 
 	@media (max-width: 62rem) {
 		.hero__grid,
-		.res__grid,
 		.fin {
 			grid-template-columns: 1fr;
 		}
@@ -1710,15 +1430,6 @@ const TINTS = [
 	@media (max-width: 44rem) {
 		.gui {
 			grid-template-columns: 1fr;
-		}
-
-		.cli__c {
-			grid-template-columns: 2.5rem minmax(0, 1fr);
-			row-gap: 0.4rem;
-		}
-
-		.cli__x {
-			grid-column: 2;
 		}
 	}
 </style>
