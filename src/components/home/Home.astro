@@ -10,6 +10,8 @@ import manucurist from '../../assets/clients/manucurist.png';
 import arrago from '../../assets/clients/arrago.png';
 import petitsCulottes from '../../assets/clients/petits-culottes.png';
 import dermalogica from '../../assets/clients/dermalogica.png';
+import tradis from '../../assets/clients/tradis.png';
+import deltic from '../../assets/clients/deltic.png';
 import {
 	EXPERTISES,
 	PROCESS,
@@ -30,8 +32,10 @@ const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
  */
 const clientLogos = [
 	{ name: 'Manucurist Paris', src: manucurist, w: 116, h: 32 },
-	{ name: 'Dermalogica', src: dermalogica, w: 148, h: 18 },
-	{ name: 'Arrago', src: arrago, w: 36, h: 47 },
+	{ name: 'Dermalogica', src: dermalogica, w: 152, h: 18 },
+	{ name: 'Tradis', src: tradis, w: 122, h: 28 },
+	{ name: 'Arrago', src: arrago, w: 40, h: 52 },
+	{ name: 'Deltic', src: deltic, w: 122, h: 31 },
 	{ name: 'Les Petits Culottés', src: petitsCulottes, w: 62, h: 46 },
 ];
 
@@ -178,22 +182,31 @@ const TINTS = [
 
 <!-- ===================== LOGOS CLIENTS ===================== -->
 <section class="marks">
-	<div class="wrap marks__in">
+	<div class="wrap">
 		<p class="marks__k">Marques accompagnées</p>
-		<ul class="marks__row">
+	</div>
+
+	<div class="marks__vp">
+		{/* La piste repete la serie quatre fois et ne se decale que d'un quart,
+		    soit exactement une serie : la boucle est sans raccord. Quatre plutot
+		    que deux parce qu'une serie fait environ 1140 px et laisserait un vide
+		    a droite au moment du raccord sur un ecran plus large qu'elle. */}
+		<ul class="marks__track">
 			{
-				clientLogos.map((logo) => (
-					<li>
-						<Image
-							src={logo.src}
-							alt={logo.name}
-							width={logo.w}
-							height={logo.h}
-							densities={[1, 2]}
-							loading="eager"
-						/>
-					</li>
-				))
+				[0, 1, 2, 3].map((copie) =>
+					clientLogos.map((logo) => (
+						<li aria-hidden={copie > 0 ? 'true' : undefined}>
+							<Image
+								src={logo.src}
+								alt={copie === 0 ? logo.name : ''}
+								width={logo.w}
+								height={logo.h}
+								densities={[1, 2]}
+								loading="eager"
+							/>
+						</li>
+					)),
+				)
 			}
 		</ul>
 	</div>
@@ -687,15 +700,7 @@ const TINTS = [
 	.marks {
 		background: var(--paper);
 		border-top: 1px solid var(--line);
-	}
-
-	.marks__in {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
-		padding-block: clamp(1.4rem, 3vw, 2.1rem);
+		padding-block: clamp(1.5rem, 3vw, 2.2rem);
 	}
 
 	.marks__k {
@@ -705,22 +710,54 @@ const TINTS = [
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: var(--ink-mute);
-		flex: none;
+		margin-bottom: 1.2rem;
 	}
 
-	.marks__row {
+	.marks__vp {
+		overflow: hidden;
+		/* Les logos ne doivent pas se couper net sur les bords de l'ecran. */
+		-webkit-mask-image: linear-gradient(
+			90deg,
+			transparent,
+			#000 4rem,
+			#000 calc(100% - 4rem),
+			transparent
+		);
+		mask-image: linear-gradient(
+			90deg,
+			transparent,
+			#000 4rem,
+			#000 calc(100% - 4rem),
+			transparent
+		);
+	}
+
+	.marks__track {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		flex: 1 1 22rem;
-		flex-wrap: wrap;
-		gap: 1.25rem clamp(1.75rem, 4vw, 3.25rem);
+		width: max-content;
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		animation: marks-run 32s linear infinite;
 	}
 
-	.marks__row :global(img) {
+	.marks__vp:hover .marks__track,
+	.marks__vp:focus-within .marks__track {
+		animation-play-state: paused;
+	}
+
+	/* La marge est portee par les elements, pas par un gap du conteneur :
+	   sinon le decalage de 50 % tombe a un demi-ecart pres et la boucle
+	   saute a chaque tour. */
+	.marks__track li {
+		flex: none;
+		display: flex;
+		align-items: center;
+		margin-right: clamp(2.75rem, 7vw, 5.5rem);
+	}
+
+	.marks__track :global(img) {
 		display: block;
 		width: auto;
 		/* Les logos sont polychromes : sans desaturation ils entrent en
@@ -732,19 +769,42 @@ const TINTS = [
 			opacity 0.2s ease;
 	}
 
-	.marks__row li:hover :global(img) {
+	.marks__track li:hover :global(img) {
 		filter: none;
 		opacity: 1;
 	}
 
-	@media (max-width: 52rem) {
-		.marks__in {
-			justify-content: flex-start;
+	@keyframes marks-run {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-25%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marks__vp {
+			-webkit-mask-image: none;
+			mask-image: none;
 		}
 
-		.marks__row {
-			justify-content: flex-start;
-			gap: 1.25rem 2rem;
+		/* Sans defilement, la piste n'a plus de raison d'aller au bord de
+		   l'ecran : elle se cale sur la marge du reste de la page. */
+		.marks__track {
+			animation: none;
+			width: min(100% - (var(--gutter) * 2), 78rem);
+			margin-inline: auto;
+			flex-wrap: wrap;
+			gap: 1.25rem 2.5rem;
+		}
+
+		.marks__track li {
+			margin-right: 0;
+		}
+
+		.marks__track li[aria-hidden] {
+			display: none;
 		}
 	}
 
