@@ -306,14 +306,16 @@ export const RESULTS: Result[] = [
 
 /* -------------------------------------------------------------------------
    Le consultant
-   ⚠️ A COMPLETER : nom complet exact et intitule a confirmer. Aucune
-   affirmation de parcours n'est ecrite ici tant qu'elle n'est pas fournie.
+   ⚠️ A COMPLETER : nom complet exact et intitule a confirmer.
+   Les cinq ans portent sur le perimetre execute en propre, pas sur ce qui
+   est confie a un partenaire : c'est la distinction demandee.
    ------------------------------------------------------------------------- */
 
 export const CONSULTANT = {
 	name: 'Geoffrey',
 	role: 'Fondateur de Quoted',
 	points: [
+		"Cinq ans d'expérience en référencement, sur le périmètre que j'exécute moi-même",
 		'Un seul interlocuteur, du premier relevé au reporting',
 		'Les relevés sont faits à la main, pas délégués à un junior',
 		'Ce qui dépasse le périmètre est confié à un partenaire, et vous le savez',

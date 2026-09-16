@@ -6,6 +6,10 @@ import gemini from '../../assets/engines/gemini.webp';
 import claude from '../../assets/engines/claude.png';
 import googleAi from '../../assets/engines/google-ai.png';
 import portrait from '../../assets/consultant.png';
+import manucurist from '../../assets/clients/manucurist.png';
+import arrago from '../../assets/clients/arrago.png';
+import petitsCulottes from '../../assets/clients/petits-culottes.png';
+import dermalogica from '../../assets/clients/dermalogica.png';
 import {
 	EXPERTISES,
 	PROCESS,
@@ -20,6 +24,20 @@ import {
 const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
 	(a, b) => a.data.order - b.data.order,
 );
+
+/**
+ * Logos sous la ligne de flottaison.
+ * Les fichiers sont detoures et exportes au triple de la taille visee,
+ * d'ou le couple width/height ci-dessous qui donne l'affichage reel.
+ * Les hauteurs different volontairement : a hauteur egale, un logo carre
+ * ecrase un wordmark allonge. Elles sont calees sur une surface egale.
+ */
+const clientLogos = [
+	{ name: 'Manucurist Paris', src: manucurist, w: 116, h: 32 },
+	{ name: 'Dermalogica', src: dermalogica, w: 148, h: 18 },
+	{ name: 'Arrago', src: arrago, w: 36, h: 47 },
+	{ name: 'Les Petits Culottés', src: petitsCulottes, w: 62, h: 46 },
+];
 
 const proofs = [
 	'Relevé avant toute production',
@@ -159,6 +177,29 @@ const TINTS = [
 				</div>
 			</figure>
 		</div>
+	</div>
+</section>
+
+<!-- ===================== LOGOS CLIENTS ===================== -->
+<section class="marks">
+	<div class="wrap marks__in">
+		<p class="marks__k">Marques accompagnées</p>
+		<ul class="marks__row">
+			{
+				clientLogos.map((logo) => (
+					<li>
+						<Image
+							src={logo.src}
+							alt={logo.name}
+							width={logo.w}
+							height={logo.h}
+							densities={[1, 2]}
+							loading="eager"
+						/>
+					</li>
+				))
+			}
+		</ul>
 	</div>
 </section>
 
@@ -737,6 +778,70 @@ const TINTS = [
 	}
 
 	/* ================= BARRE DE PREUVE ================= */
+	.marks {
+		background: var(--paper);
+		border-top: 1px solid var(--line);
+	}
+
+	.marks__in {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1.25rem clamp(1.5rem, 4vw, 3rem);
+		padding-block: clamp(1.4rem, 3vw, 2.1rem);
+	}
+
+	.marks__k {
+		font-family: var(--display);
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-mute);
+		flex: none;
+	}
+
+	.marks__row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex: 1 1 22rem;
+		flex-wrap: wrap;
+		gap: 1.25rem clamp(1.75rem, 4vw, 3.25rem);
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.marks__row :global(img) {
+		display: block;
+		width: auto;
+		/* Les logos sont polychromes : sans desaturation ils entrent en
+		   concurrence avec le violet. La couleur revient au survol. */
+		filter: grayscale(1);
+		opacity: 0.55;
+		transition:
+			filter 0.2s ease,
+			opacity 0.2s ease;
+	}
+
+	.marks__row li:hover :global(img) {
+		filter: none;
+		opacity: 1;
+	}
+
+	@media (max-width: 52rem) {
+		.marks__in {
+			justify-content: flex-start;
+		}
+
+		.marks__row {
+			justify-content: flex-start;
+			gap: 1.25rem 2rem;
+		}
+	}
+
 	.proof {
 		background: var(--dark);
 		color: #eef1f7;
