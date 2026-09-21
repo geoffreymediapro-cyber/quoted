@@ -24,3 +24,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 .idea/
+
+# Outillage local : contournement du push quand github.com ne resout pas.
+scripts/
