@@ -1,7 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import BrandMark from './BrandMark.astro';
 
 const path = Astro.url.pathname;
+// L'entree Blog n'apparait qu'a partir du premier article publie.
+const blogOuvert = (await getCollection('blog', ({ data }) => !data.draft)).length > 0;
 // Sur les pages interieures, les ancres doivent repartir de l'accueil.
 const home = path === '/' ? '' : '/';
 
@@ -9,6 +12,7 @@ const links = [
 	{ href: `${home}#expertises`, label: 'Expertises' },
 	{ href: `${home}#methode`, label: 'Méthode' },
 	{ href: '/guide/', label: 'Guide' },
+	...(blogOuvert ? [{ href: '/blog/', label: 'Blog' }] : []),
 	{ href: `${home}#faq`, label: 'FAQ' },
 ];
 ---

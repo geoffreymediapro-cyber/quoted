@@ -1,6 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import BrandMark from './BrandMark.astro';
 import { CONTACT_EMAIL } from '../data/site';
+
+const blogOuvert = (await getCollection('blog', ({ data }) => !data.draft)).length > 0;
 
 const year = 2026;
 ---
@@ -32,9 +35,11 @@ const year = 2026;
 			<ul>
 				<li><a href="/#methode">Méthode</a></li>
 				<li><a href="/guide/">Guide GEO</a></li>
+				{blogOuvert && <li><a href="/blog/">Blog</a></li>}
 				<li><a href="/scan/">Scanner ma visibilité IA</a></li>
 				<li><a href="/#faq">Questions fréquentes</a></li>
 				<li><a href="/rss.xml">Flux RSS du guide</a></li>
+				{blogOuvert && <li><a href="/blog/rss.xml">Flux RSS du blog</a></li>}
 			</ul>
 		</nav>
 	</div>
