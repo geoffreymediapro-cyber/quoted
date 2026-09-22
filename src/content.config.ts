@@ -18,7 +18,7 @@ const guide = defineCollection({
 });
 
 /**
- * Pages metier : /consultant-geo/metiers/<slug>/
+ * Pages metier : /metiers/<slug>/
  * Une page par profession. Le gabarit impose les blocs qui font la valeur
  * de la page, pour qu'aucune ne se resume a un remplissage : les questions
  * reellement posees, les familles de sources que les moteurs privilegient
