@@ -1,0 +1,166 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_URL } from '../../data/site';
+
+/**
+ * Hub « consultant GEO ». Il remplit le segment parent des pages metier,
+ * qui renverrait sinon un 404 depuis le fil d'Ariane, et il vise la requete
+ * generique. Tant qu'aucune page metier n'est publiee, il reste en noindex
+ * et hors sitemap : meme principe que le reste du site.
+ */
+const pages = (await getCollection('metiers', ({ data }) => !data.draft)).sort((a, b) =>
+	a.data.metier.localeCompare(b.data.metier, 'fr'),
+);
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: 'Consultant GEO par métier',
+	url: `${SITE_URL}/consultant-geo/`,
+	description:
+		"Ce que les moteurs de réponse citent dans votre profession, et comment y prendre une place. Une page par métier.",
+	provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+};
+---
+
+<BaseLayout
+	title="Consultant GEO par métier | Quoted"
+	description="Ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent quand un prospect cherche un professionnel comme vous, et comment y prendre une place."
+	noindex={pages.length === 0}
+	schema={schema}
+>
+	<section class="intro">
+		<div class="wrap">
+			<p class="kick">Consultant GEO</p>
+			<h1>Votre métier, <span class="hi">vu par l'IA</span></h1>
+			<p class="lede">
+				Les questions ne se posent pas de la même façon selon la profession, et les
+				sources que les moteurs reprennent ne sont pas les mêmes non plus. Une page par
+				métier, avec les questions réellement posées et les endroits où il faut exister.
+			</p>
+		</div>
+	</section>
+
+	<section class="band band--soft">
+		<div class="wrap">
+			{
+				pages.length === 0 ? (
+					<p class="vide">
+						Les premières pages arrivent. En attendant, le <a href="/guide/">guide</a> couvre
+						la méthode, tous secteurs confondus.
+					</p>
+				) : (
+					<ul class="grid">
+						{pages.map((page, index) => (
+							<li class="obs" style={`--d: ${index * 50}ms`}>
+								<a href={`/consultant-geo/metiers/${page.id}/`}>
+									<h2>{page.data.metier}</h2>
+									<p>{page.data.intro}</p>
+									<span class="go">
+										Voir la page <span class="arw" aria-hidden="true">→</span>
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="band">
+		<div class="wrap closing obs">
+			<h2>Votre métier n'est pas listé ?</h2>
+			<p class="lede">
+				Le relevé se fait sur vos questions, pas sur une liste préétablie. Décrivez votre
+				situation, nous rejouons vos sujets sur les cinq moteurs.
+			</p>
+			<a class="b b--go" href="/scan/">
+				Scanner ma visibilité IA
+				<span class="arw" aria-hidden="true">→</span>
+			</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.intro {
+		padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+		background:
+			radial-gradient(55% 70% at 85% 0%, var(--accent-wash), transparent 70%),
+			var(--paper);
+	}
+
+	.intro h1 {
+		margin-bottom: 1.35rem;
+	}
+
+	.vide {
+		font-size: var(--s-1);
+		color: var(--ink-soft);
+	}
+
+	.vide a {
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	.grid {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+		gap: clamp(0.8rem, 1.8vw, 1.2rem);
+	}
+
+	.grid a {
+		display: grid;
+		gap: 0.6rem;
+		height: 100%;
+		align-content: start;
+		background: var(--paper);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		padding: clamp(1.25rem, 2.5vw, 1.8rem);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.grid a:hover {
+		border-color: transparent;
+		transform: translateY(-3px);
+		box-shadow: var(--shadow);
+	}
+
+	.grid h2 {
+		font-size: var(--s-1);
+		text-transform: none;
+	}
+
+	.grid p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.go {
+		font-family: var(--display);
+		font-weight: 600;
+		color: var(--accent-deep);
+	}
+
+	.closing {
+		display: grid;
+		justify-items: center;
+		text-align: center;
+		gap: 1.25rem;
+	}
+
+	.closing .lede {
+		max-width: 46ch;
+	}
+</style>
