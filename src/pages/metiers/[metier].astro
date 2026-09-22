@@ -1,8 +1,8 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { SITE_NAME, SITE_URL } from '../../../data/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_URL } from '../../data/site';
 
 export const getStaticPaths = (async () => {
 	const pages = await getCollection('metiers', ({ data }) => !data.draft);
@@ -16,7 +16,7 @@ export const getStaticPaths = (async () => {
 const { page } = Astro.props;
 const { Content } = await render(page);
 const d = page.data;
-const url = `${SITE_URL}/consultant-geo/metiers/${page.id}/`;
+const url = `${SITE_URL}/metiers/${page.id}/`;
 
 const updated = d.updated.toLocaleDateString('fr-FR', {
 	year: 'numeric',
@@ -56,7 +56,7 @@ const schema = [
 		<header class="intro">
 			<div class="wrap wrap--narrow">
 				<nav class="crumbs" aria-label="Fil d'Ariane">
-					<a href="/consultant-geo/">Consultant GEO</a>
+					<a href="/metiers/">Métiers</a>
 					<span aria-hidden="true">/</span>
 					<span>{d.metier}</span>
 				</nav>

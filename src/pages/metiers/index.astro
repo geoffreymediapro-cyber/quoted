@@ -17,7 +17,7 @@ const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'CollectionPage',
 	name: 'Consultant GEO par métier',
-	url: `${SITE_URL}/consultant-geo/`,
+	url: `${SITE_URL}/metiers/`,
 	description:
 		"Ce que les moteurs de réponse citent dans votre profession, et comment y prendre une place. Une page par métier.",
 	provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
@@ -54,7 +54,7 @@ const schema = {
 					<ul class="grid">
 						{pages.map((page, index) => (
 							<li class="obs" style={`--d: ${index * 50}ms`}>
-								<a href={`/consultant-geo/metiers/${page.id}/`}>
+								<a href={`/metiers/${page.id}/`}>
 									<h2>{page.data.metier}</h2>
 									<p>{page.data.intro}</p>
 									<span class="go">

@@ -1,7 +1,7 @@
 ---
 # Gabarit de page metier. Dupliquer, renommer sans le prefixe `_`, remplir.
 # Le nom du fichier devient l'URL : avocat-affaires.md donne
-# /consultant-geo/metiers/avocat-affaires/
+# /metiers/avocat-affaires/
 
 metier: 'nom de la profession, au singulier'
 pluriel: 'la meme au pluriel, pour les tournures « les X »'
