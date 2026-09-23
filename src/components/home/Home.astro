@@ -26,6 +26,29 @@ const guides = (await getCollection('guide', ({ data }) => !data.draft)).sort(
 );
 
 /**
+ * Les fiches metier et secteur, juste pour les nommer sur la home. Le bloc
+ * renvoie vers les deux hubs, il ne liste pas les douze pages : la home doit
+ * rester courte, et l'enumeration des noms suffit a montrer la couverture.
+ */
+const parNom = (a, b) => a.data.nom.localeCompare(b.data.nom, 'fr');
+const fiches = [
+	{
+		href: '/metiers/',
+		titre: 'Par métier',
+		texte:
+			"Ce que les moteurs répondent quand un prospect cherche un professionnel comme vous, et qui est cité à votre place.",
+		items: (await getCollection('metiers', ({ data }) => !data.draft)).sort(parNom),
+	},
+	{
+		href: '/secteurs/',
+		titre: 'Par secteur',
+		texte:
+			"D'un marché à l'autre, ce ne sont pas les mêmes acteurs qui captent les réponses. Un distributeur, un comparateur, parfois un concurrent.",
+		items: (await getCollection('secteurs', ({ data }) => !data.draft)).sort(parNom),
+	},
+];
+
+/**
  * Logos sous la ligne de flottaison.
  * Les fichiers sont detoures et exportes au triple de la taille visee,
  * d'ou le couple width/height ci-dessous qui donne l'affichage reel.
@@ -284,6 +307,37 @@ const TINTS = [
 				</a>
 			</li>
 		</ul>
+	</div>
+</section>
+
+<!-- ===================== METIERS ET SECTEURS ===================== -->
+<section class="band band--dark" id="metiers">
+	<div class="wrap on-dark">
+		<div class="head obs">
+			<p class="kick">Par métier, par secteur</p>
+			<h2>Ce que l'IA répond <span class="hi">sur votre marché</span></h2>
+			<p>
+				Les questions ne se posent pas de la même façon selon le terrain, et les sources
+				que les moteurs reprennent non plus. Une page par cas, relevé à l'appui.
+			</p>
+		</div>
+
+		<div class="fic">
+			{
+				fiches.map((famille, index) => (
+					<a class="fic__c obs" href={famille.href} style={`--d: ${index * 70}ms`}>
+						<h3>
+							{famille.titre}
+							<span class="arw" aria-hidden="true">
+								→
+							</span>
+						</h3>
+						<p class="fic__p">{famille.texte}</p>
+						<p class="fic__l">{famille.items.map((item) => item.data.nom).join(', ')}</p>
+					</a>
+				))
+			}
+		</div>
 	</div>
 </section>
 
@@ -997,6 +1051,56 @@ const TINTS = [
 
 	.exp__c--cta p {
 		opacity: 0.85;
+	}
+
+	/* ================= METIERS ET SECTEURS ================= */
+	.fic {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+		gap: clamp(0.9rem, 2vw, 1.3rem);
+	}
+
+	.fic__c {
+		display: grid;
+		align-content: start;
+		gap: 0.7rem;
+		padding: clamp(1.4rem, 3vw, 2rem);
+		border-radius: var(--round);
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		text-decoration: none;
+		transition:
+			background-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.fic__c:hover {
+		background: rgba(255, 255, 255, 0.09);
+		transform: translateY(-3px);
+	}
+
+	.fic__c h3 {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: var(--s-1);
+		color: #fff;
+	}
+
+	.fic__p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: rgba(238, 241, 247, 0.72);
+	}
+
+	/* La liste des noms sert a montrer la couverture, pas a etre lue en entier */
+	.fic__l {
+		margin-top: 0.35rem;
+		padding-top: 0.85rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		font-size: 0.78rem;
+		line-height: 1.55;
+		color: rgba(238, 241, 247, 0.5);
 	}
 
 	/* ================= PROCESS ================= */
