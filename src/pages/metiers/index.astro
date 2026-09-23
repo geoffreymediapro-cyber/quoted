@@ -10,7 +10,7 @@ import { SITE_NAME, SITE_URL } from '../../data/site';
  * et hors sitemap : meme principe que le reste du site.
  */
 const pages = (await getCollection('metiers', ({ data }) => !data.draft)).sort((a, b) =>
-	a.data.metier.localeCompare(b.data.metier, 'fr'),
+	a.data.nom.localeCompare(b.data.nom, 'fr'),
 );
 
 const schema = {
@@ -55,7 +55,7 @@ const schema = {
 						{pages.map((page, index) => (
 							<li class="obs" style={`--d: ${index * 50}ms`}>
 								<a href={`/metiers/${page.id}/`}>
-									<h2>{page.data.metier}</h2>
+									<h2>{page.data.nom}</h2>
 									<p>{page.data.intro}</p>
 									<span class="go">
 										Voir la page <span class="arw" aria-hidden="true">→</span>
@@ -73,8 +73,8 @@ const schema = {
 		<div class="wrap closing obs">
 			<h2>Votre métier n'est pas listé ?</h2>
 			<p class="lede">
-				Le relevé se fait sur vos questions, pas sur une liste préétablie. Décrivez votre
-				situation, nous rejouons vos sujets sur les cinq moteurs.
+				Le relevé se fait sur vos questions, pas sur une liste préétablie. Voyez aussi
+				<a href="/secteurs/">les pages par secteur</a>, ou décrivez-nous votre situation.
 			</p>
 			<a class="b b--go" href="/scan/">
 				Scanner ma visibilité IA

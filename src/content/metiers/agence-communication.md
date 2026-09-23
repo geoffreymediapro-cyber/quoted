@@ -1,5 +1,5 @@
 ---
-metier: 'agence de communication'
+nom: 'agence de communication'
 pluriel: 'agences de communication'
 title: "Référencement IA agence de communication : répondre à vos clients"
 h1: "Référencement IA pour agence de communication"

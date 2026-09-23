@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_URL } from '../../data/site';
+
+/**
+ * Hub des pages secteur. Meme role que celui des metiers : remplir le
+ * segment parent du fil d'Ariane et viser la requete generique. Noindex et
+ * hors sitemap tant qu'aucune page n'est publiee.
+ */
+const pages = (await getCollection('secteurs', ({ data }) => !data.draft)).sort((a, b) =>
+	a.data.nom.localeCompare(b.data.nom, 'fr'),
+);
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: 'Référencement IA par secteur',
+	url: `${SITE_URL}/secteurs/`,
+	description:
+		"Ce que les moteurs de réponse citent dans votre secteur, et qui capte les réponses à votre place. Une page par marché.",
+	provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+};
+---
+
+<BaseLayout
+	title="Référencement IA par secteur | Quoted"
+	description="Ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent sur votre marché, qui ils citent à votre place, et comment y prendre une position."
+	noindex={pages.length === 0}
+	schema={schema}
+>
+	<section class="intro">
+		<div class="wrap">
+			<p class="kick">Par secteur</p>
+			<h1>Votre marché, <span class="hi">vu par l'IA</span></h1>
+			<p class="lede">
+				D'un marché à l'autre, ce ne sont pas les mêmes acteurs qui captent les réponses.
+				Ici un distributeur, là un comparateur, ailleurs un concurrent qui publie le
+				classement où il se place en premier. Une page par secteur, relevé à l'appui.
+			</p>
+		</div>
+	</section>
+
+	<section class="band band--soft">
+		<div class="wrap">
+			{
+				pages.length === 0 ? (
+					<p class="vide">
+						Les premières pages arrivent. En attendant, le <a href="/guide/">guide</a> couvre
+						la méthode, tous marchés confondus.
+					</p>
+				) : (
+					<ul class="grid">
+						{pages.map((page, index) => (
+							<li class="obs" style={`--d: ${index * 50}ms`}>
+								<a href={`/secteurs/${page.id}/`}>
+									<h2>{page.data.nom}</h2>
+									<p>{page.data.intro}</p>
+									<span class="go">
+										Voir la page <span class="arw" aria-hidden="true">→</span>
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="band">
+		<div class="wrap closing obs">
+			<h2>Votre secteur n'est pas listé ?</h2>
+			<p class="lede">
+				Le relevé se fait sur vos questions, pas sur une liste préétablie. Voyez aussi
+				<a href="/metiers/">les pages par métier</a>, ou décrivez-nous votre situation.
+			</p>
+			<a class="b b--go" href="/scan/">
+				Scanner ma visibilité IA
+				<span class="arw" aria-hidden="true">→</span>
+			</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.intro {
+		padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+		background:
+			radial-gradient(55% 70% at 85% 0%, var(--accent-wash), transparent 70%),
+			var(--paper);
+	}
+
+	.intro h1 {
+		margin-bottom: 1.35rem;
+	}
+
+	.vide {
+		font-size: var(--s-1);
+		color: var(--ink-soft);
+	}
+
+	.vide a {
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	.grid {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+		gap: clamp(0.8rem, 1.8vw, 1.2rem);
+	}
+
+	.grid a {
+		display: grid;
+		gap: 0.6rem;
+		height: 100%;
+		align-content: start;
+		background: var(--paper);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		padding: clamp(1.25rem, 2.5vw, 1.8rem);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.grid a:hover {
+		border-color: transparent;
+		transform: translateY(-3px);
+		box-shadow: var(--shadow);
+	}
+
+	.grid h2 {
+		font-size: var(--s-1);
+		text-transform: none;
+	}
+
+	.grid p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.go {
+		font-family: var(--display);
+		font-weight: 600;
+		color: var(--accent-deep);
+	}
+
+	.closing {
+		display: grid;
+		justify-items: center;
+		text-align: center;
+		gap: 1.25rem;
+	}
+
+	.closing .lede {
+		max-width: 46ch;
+	}
+</style>

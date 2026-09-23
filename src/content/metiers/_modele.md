@@ -3,7 +3,7 @@
 # Le nom du fichier devient l'URL : avocat-affaires.md donne
 # /metiers/avocat-affaires/
 
-metier: 'nom de la profession, au singulier'
+nom: 'nom de la profession, au singulier'
 pluriel: 'la meme au pluriel, pour les tournures « les X »'
 
 title: "Consultant GEO pour <metier> : <ce que la page promet>"

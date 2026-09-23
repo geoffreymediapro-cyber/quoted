@@ -1,5 +1,5 @@
 ---
-metier: 'courtier en assurance'
+nom: 'courtier en assurance'
 pluriel: 'courtiers en assurance'
 title: "Référencement IA courtier assurance : exister face aux comparateurs"
 h1: "Référencement IA pour courtier en assurance"

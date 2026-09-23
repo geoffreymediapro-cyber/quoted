@@ -1,5 +1,5 @@
 ---
-metier: 'cabinet de recrutement'
+nom: 'cabinet de recrutement'
 pluriel: 'cabinets de recrutement'
 title: "Référencement IA cabinet de recrutement : exister avant l'outil"
 h1: "Référencement IA pour cabinet de recrutement"
