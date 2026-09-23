@@ -1,5 +1,5 @@
 ---
-metier: 'agence immobilière'
+nom: 'agence immobilière'
 pluriel: 'agences immobilières'
 title: "Référencement IA agence immobilière : exister hors des portails"
 h1: "Référencement IA pour agence immobilière"

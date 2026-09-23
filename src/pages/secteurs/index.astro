@@ -4,40 +4,39 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { SITE_NAME, SITE_URL } from '../../data/site';
 
 /**
- * Hub « consultant GEO ». Il remplit le segment parent des pages metier,
- * qui renverrait sinon un 404 depuis le fil d'Ariane, et il vise la requete
- * generique. Tant qu'aucune page metier n'est publiee, il reste en noindex
- * et hors sitemap : meme principe que le reste du site.
+ * Hub des pages secteur. Meme role que celui des metiers : remplir le
+ * segment parent du fil d'Ariane et viser la requete generique. Noindex et
+ * hors sitemap tant qu'aucune page n'est publiee.
  */
-const pages = (await getCollection('metiers', ({ data }) => !data.draft)).sort((a, b) =>
+const pages = (await getCollection('secteurs', ({ data }) => !data.draft)).sort((a, b) =>
 	a.data.nom.localeCompare(b.data.nom, 'fr'),
 );
 
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'CollectionPage',
-	name: 'Consultant GEO par métier',
-	url: `${SITE_URL}/metiers/`,
+	name: 'Référencement IA par secteur',
+	url: `${SITE_URL}/secteurs/`,
 	description:
-		"Ce que les moteurs de réponse citent dans votre profession, et comment y prendre une place. Une page par métier.",
+		"Ce que les moteurs de réponse citent dans votre secteur, et qui capte les réponses à votre place. Une page par marché.",
 	provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
 };
 ---
 
 <BaseLayout
-	title="Consultant GEO par métier | Quoted"
-	description="Ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent quand un prospect cherche un professionnel comme vous, et comment y prendre une place."
+	title="Référencement IA par secteur | Quoted"
+	description="Ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent sur votre marché, qui ils citent à votre place, et comment y prendre une position."
 	noindex={pages.length === 0}
 	schema={schema}
 >
 	<section class="intro">
 		<div class="wrap">
-			<p class="kick">Consultant GEO</p>
-			<h1>Votre métier, <span class="hi">vu par l'IA</span></h1>
+			<p class="kick">Par secteur</p>
+			<h1>Votre marché, <span class="hi">vu par l'IA</span></h1>
 			<p class="lede">
-				Les questions ne se posent pas de la même façon selon la profession, et les
-				sources que les moteurs reprennent ne sont pas les mêmes non plus. Une page par
-				métier, avec les questions réellement posées et les endroits où il faut exister.
+				D'un marché à l'autre, ce ne sont pas les mêmes acteurs qui captent les réponses.
+				Ici un distributeur, là un comparateur, ailleurs un concurrent qui publie le
+				classement où il se place en premier. Une page par secteur, relevé à l'appui.
 			</p>
 		</div>
 	</section>
@@ -48,13 +47,13 @@ const schema = {
 				pages.length === 0 ? (
 					<p class="vide">
 						Les premières pages arrivent. En attendant, le <a href="/guide/">guide</a> couvre
-						la méthode, tous secteurs confondus.
+						la méthode, tous marchés confondus.
 					</p>
 				) : (
 					<ul class="grid">
 						{pages.map((page, index) => (
 							<li class="obs" style={`--d: ${index * 50}ms`}>
-								<a href={`/metiers/${page.id}/`}>
+								<a href={`/secteurs/${page.id}/`}>
 									<h2>{page.data.nom}</h2>
 									<p>{page.data.intro}</p>
 									<span class="go">
@@ -71,10 +70,10 @@ const schema = {
 
 	<section class="band">
 		<div class="wrap closing obs">
-			<h2>Votre métier n'est pas listé ?</h2>
+			<h2>Votre secteur n'est pas listé ?</h2>
 			<p class="lede">
 				Le relevé se fait sur vos questions, pas sur une liste préétablie. Voyez aussi
-				<a href="/secteurs/">les pages par secteur</a>, ou décrivez-nous votre situation.
+				<a href="/metiers/">les pages par métier</a>, ou décrivez-nous votre situation.
 			</p>
 			<a class="b b--go" href="/scan/">
 				Scanner ma visibilité IA

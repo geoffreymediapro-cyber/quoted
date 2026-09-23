@@ -1,5 +1,5 @@
 ---
-metier: 'avocat'
+nom: 'avocat'
 pluriel: 'avocats'
 title: "Référencement IA avocat : être cité plutôt que les plateformes"
 h1: "Référencement IA pour avocat"

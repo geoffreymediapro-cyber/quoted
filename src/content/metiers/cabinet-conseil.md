@@ -1,5 +1,5 @@
 ---
-metier: 'cabinet de conseil'
+nom: 'cabinet de conseil'
 pluriel: 'cabinets de conseil'
 title: "Référencement IA cabinet de conseil : sortir des classements"
 h1: "Référencement IA pour cabinet de conseil"

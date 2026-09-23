@@ -1,5 +1,5 @@
 ---
-metier: 'expert-comptable'
+nom: 'expert-comptable'
 pluriel: 'experts-comptables'
 title: "Référencement IA expert-comptable : être cité par ChatGPT"
 h1: "Référencement IA pour expert-comptable"

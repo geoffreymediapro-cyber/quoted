@@ -1,18 +1,18 @@
 ---
-# Gabarit de page metier. Dupliquer, renommer sans le prefixe `_`, remplir.
-# Le nom du fichier devient l'URL : avocat-affaires.md donne
-# /metiers/avocat-affaires/
+# Gabarit de page secteur. Dupliquer, renommer sans le prefixe `_`, remplir.
+# Le nom du fichier devient l'URL : mon-secteur.md donne
+# /secteurs/mon-secteur/
 
 nom: 'nom de la profession, au singulier'
 pluriel: 'la meme au pluriel, pour les tournures « les X »'
 
-title: "Consultant GEO pour <metier> : <ce que la page promet>"
+title: "Référencement IA <secteur> : <ce que la page promet>"
 # H1 affiche, court. Le title complet tient mal en capitales.
-h1: 'Consultant GEO pour <metier>'
+h1: 'Référencement IA pour <secteur>'
 description: "Deux phrases maximum. Elle sert de meta description et doit se tenir hors contexte."
 intro: "Une phrase qui situe le marche, affichee en chapeau sous le H1."
 
-# 4 a 6 questions REELLEMENT posees par les clients de ce metier avant
+# 4 a 6 questions REELLEMENT posees par les clients de ce secteur avant
 # d'acheter. C'est le coeur de la page : elles doivent venir d'un releve,
 # pas d'une supposition. Les formuler comme on les tape.
 prompts:
@@ -27,7 +27,7 @@ sources:
   - nom: '...'
     pourquoi: '...'
 
-# Au moins 2 freins propres au metier : cadre reglementaire, habitudes du
+# Au moins 2 freins propres au secteur : cadre reglementaire, habitudes du
 # secteur, structure des sites existants. C'est ce qui empeche la page
 # d'etre interchangeable avec une autre.
 freins:

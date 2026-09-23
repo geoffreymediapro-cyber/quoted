@@ -7,10 +7,10 @@ import { ficheSchema } from '../../data/fiche';
 import { SITE_URL } from '../../data/site';
 
 export const getStaticPaths = (async () => {
-	const pages = await getCollection('metiers', ({ data }) => !data.draft);
+	const pages = await getCollection('secteurs', ({ data }) => !data.draft);
 
 	return pages.map((page) => ({
-		params: { metier: page.id },
+		params: { secteur: page.id },
 		props: { page },
 	}));
 }) satisfies GetStaticPaths;
@@ -20,11 +20,11 @@ const { Content } = await render(page);
 const d = page.data;
 
 const KICKER = 'Référencement IA';
-const schema = ficheSchema(d, `${SITE_URL}/metiers/${page.id}/`, KICKER);
+const schema = ficheSchema(d, `${SITE_URL}/secteurs/${page.id}/`, KICKER);
 ---
 
 <BaseLayout title={`${d.title} | Quoted`} description={d.description} schema={schema}>
-	<FichePro d={d} filHref="/metiers/" filLabel="Métiers" kicker="Métier">
+	<FichePro d={d} filHref="/secteurs/" filLabel="Secteurs" kicker="Secteur">
 		<Content />
 	</FichePro>
 </BaseLayout>

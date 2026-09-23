@@ -1,5 +1,5 @@
 ---
-metier: 'architecte'
+nom: 'architecte'
 pluriel: 'architectes'
 title: "Référencement IA architecte : être cité avant les constructeurs"
 h1: "Référencement IA pour architecte"
