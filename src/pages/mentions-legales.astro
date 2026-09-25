@@ -6,19 +6,20 @@ import { CONTACT_EMAIL } from '../data/site';
 <BaseLayout
 	title="Mentions légales | Quoted"
 	description="Mentions légales du site quoted.fr."
-	noindex={true}
 >
 	<section class="band">
 		<div class="wrap wrap--narrow">
 			<h1>Mentions légales</h1>
 
+			{/* ⚠️ Les champs d'identification ci-dessous sont encore vides alors
+			    que la page est desormais indexable : c'est un choix du user, mais
+			    l'article 6 III de la LCEN les rend obligatoires. A remplir des que
+			    les informations sont disponibles. */}
 			<p class="todo">
-				<strong>Page à compléter.</strong> Les informations d'identification de
-				l'éditeur ne sont pas encore renseignées : cette page est en <code>noindex</code>
-				tant qu'elle n'est pas finalisée. Éléments requis par l'article 6 III de la
-				LCEN : dénomination sociale, forme juridique, capital, adresse du siège, RCS et
-				SIREN, numéro de TVA intracommunautaire, directeur de la publication, et
-				coordonnées de l'hébergeur.
+				<strong>Page en cours de finalisation.</strong> Les informations
+				d'identification de l'éditeur sont en cours d'enregistrement et seront publiées
+				ici. Pour toute demande dans l'intervalle, écrivez à
+				<a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
 			</p>
 
 			<div class="prose">
