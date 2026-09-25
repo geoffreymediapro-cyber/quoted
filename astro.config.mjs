@@ -1,23 +1,16 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://quoted.fr',
+  site: "https://quoted.fr",
 
-	integrations: [
-		sitemap({
-			// Pages legales : noindex tant qu'elles ne sont pas completees.
-			filter: (page) =>
-				!page.includes('/mentions-legales') &&
-				!page.includes('/politique-de-confidentialite'),
-		}),
-	],
+  integrations: [sitemap()],
 
-	build: {
-		inlineStylesheets: 'auto',
-	},
+  build: {
+    inlineStylesheets: "auto",
+  },
 
-	compressHTML: true,
+  compressHTML: true,
 });
