@@ -1,6 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import BrandMark from './BrandMark.astro';
 import { CONTACT_EMAIL } from '../data/site';
+
+/**
+ * Les colonnes metiers et secteurs sont alimentees par les collections :
+ * elles restent a jour toutes seules quand une fiche est ajoutee.
+ * L'ancienne colonne « Expertises » listait cinq libelles qui pointaient
+ * tous vers la meme ancre, ce qui ne servait ni le lecteur ni le maillage.
+ */
+const parNom = (a, b) => a.data.nom.localeCompare(b.data.nom, 'fr');
+const metiers = (await getCollection('metiers', ({ data }) => !data.draft)).sort(parNom);
+const secteurs = (await getCollection('secteurs', ({ data }) => !data.draft)).sort(parNom);
 
 
 const year = 2026;
@@ -17,22 +28,36 @@ const year = 2026;
 			<a class="b b--go" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
 		</div>
 
-		<nav class="foot__col" aria-label="Expertises">
-			<h2>Expertises</h2>
+		<nav class="foot__col" aria-label="Référencement IA par métier">
+			<h2><a href="/metiers/">Par métier</a></h2>
 			<ul>
-				<li><a href="/#expertises">Audit de visibilité IA</a></li>
-				<li><a href="/#expertises">Cartographie de prompts</a></li>
-				<li><a href="/#expertises">Contenu GEO</a></li>
-				<li><a href="/#expertises">SEO technique</a></li>
-				<li><a href="/#expertises">Netlinking</a></li>
+				{
+					metiers.map((m) => (
+						<li>
+							<a href={`/metiers/${m.id}/`}>{m.data.nom}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<nav class="foot__col" aria-label="Référencement IA par secteur">
+			<h2><a href="/secteurs/">Par secteur</a></h2>
+			<ul>
+				{
+					secteurs.map((x) => (
+						<li>
+							<a href={`/secteurs/${x.id}/`}>{x.data.nom}</a>
+						</li>
+					))
+				}
 			</ul>
 		</nav>
 
 		<nav class="foot__col" aria-label="En savoir plus">
 			<h2>En savoir plus</h2>
 			<ul>
-				<li><a href="/metiers/">Référencement IA par métier</a></li>
-				<li><a href="/secteurs/">Référencement IA par secteur</a></li>
+				<li><a href="/#expertises">Nos expertises</a></li>
 				<li><a href="/#methode">Méthode</a></li>
 				<li><a href="/guide/">Guide GEO</a></li>
 				<li><a href="/scan/">Scanner ma visibilité IA</a></li>
@@ -62,7 +87,7 @@ const year = 2026;
 
 	.foot__grid {
 		display: grid;
-		grid-template-columns: 1.6fr 1fr 1fr;
+		grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
 		gap: clamp(2rem, 4vw, 3.5rem);
 		padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
 	}
@@ -93,6 +118,15 @@ const year = 2026;
 		max-width: 40ch;
 		line-height: 1.6;
 		margin-bottom: 1.4rem;
+	}
+
+	/* Les deux premieres colonnes ont un titre cliquable vers leur hub. */
+	.foot__col h2 a {
+		color: inherit;
+	}
+
+	.foot__col h2 a:hover {
+		color: rgba(238, 241, 247, 0.8);
 	}
 
 	.foot__col h2 {
@@ -143,9 +177,19 @@ const year = 2026;
 		padding: 0;
 	}
 
-	@media (max-width: 58rem) {
+	@media (max-width: 68rem) {
 		.foot__grid {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.foot__brand {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 52rem) {
+		.foot__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 
 		.foot__brand {
