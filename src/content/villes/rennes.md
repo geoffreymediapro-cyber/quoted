@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, voyelle.fr, newp.fr, stafe.fr et agence-geo.agency. Deux des quatre premiers appartiennent au même opérateur, qui décline des pages par commune. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Rennes vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "Télécoms et numérique forment le premier pôle d'emploi qualifié."
+  - href: "/villes/nantes/"
+    label: "Agence GEO à Nantes"
+    note: "L'autre métropole de l'Ouest, marché souvent travaillé conjointement."
 updated: 2026-10-04
 ---
 

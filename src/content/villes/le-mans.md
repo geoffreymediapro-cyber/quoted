@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, stafe.fr, convertix.fr, agence-geo.agency et atelier-seo.fr. Trois des quatre publient une page par ville depuis un siège situé ailleurs. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position au Mans vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/metiers/courtier-assurance/"
+    label: "Référencement IA pour courtier en assurance"
+    note: "Le Mans est un pôle historique de l'assurance en France."
+  - href: "/metiers/expert-comptable/"
+    label: "Référencement IA pour expert-comptable"
+    note: "Le tissu d'équipementiers automobiles génère une forte demande comptable."
 updated: 2026-10-04
 ---
 

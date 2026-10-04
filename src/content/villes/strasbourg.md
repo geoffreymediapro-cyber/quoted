@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, hemisphereweb.com, mazette.co et myclientisrich.com. Requête tenue par des agences alsaciennes, peu d'acteurs nationaux. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Strasbourg vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/metiers/cabinet-conseil/"
+    label: "Référencement IA pour cabinet de conseil"
+    note: "Les institutions européennes génèrent une demande de conseil spécifique."
+  - href: "/metiers/avocat/"
+    label: "Référencement IA pour avocat"
+    note: "Place juridique importante, du fait des juridictions européennes."
 updated: 2026-10-04
 ---
 

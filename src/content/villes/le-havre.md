@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, newp.fr, botanik.ai, agence-geo.agency et maxelik.com. Deux des quatre premiers appartiennent au même opérateur. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position au Havre vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "Premier port à conteneurs français, donc porte d'entrée de la distribution."
+  - href: "/villes/rouen/"
+    label: "Agence GEO à Rouen"
+    note: "L'autre pôle du 76, sur le même axe logistique."
 updated: 2026-10-04
 ---
 

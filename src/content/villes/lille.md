@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, dalt.fr, odiens.com, wapiti-agency.com et agence-slashr.fr. Les quatre premiers sont des agences régionales, le tissu local tient la requête. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Lille vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "La distribution est le premier employeur privé de la métropole."
+  - href: "/metiers/agence-communication/"
+    label: "Référencement IA pour agence de communication"
+    note: "Tissu d'agences dense, qui tient d'ailleurs la requête locale."
 updated: 2026-10-04
 ---
 

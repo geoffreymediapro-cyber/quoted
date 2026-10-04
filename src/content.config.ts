@@ -50,6 +50,20 @@ const ficheSchema = z.object({
   freins: z.array(z.string()).min(2),
   faq: z.array(z.object({ q: z.string(), a: z.string() })).min(3),
   updated: z.coerce.date(),
+  /**
+   * Liens contextuels vers des pages soeurs. Chaque entree porte une `note`
+   * qui dit POURQUOI le lien existe : un lien sans justification editoriale
+   * est un lien de remplissage, et ca se voit.
+   */
+  liens: z
+    .array(
+      z.object({
+        href: z.string(),
+        label: z.string(),
+        note: z.string(),
+      }),
+    )
+    .default([]),
   draft: z.boolean().default(false),
 });
 

@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, com-et-net.com, pluvian.fr et next-generation.dev. Requête encore tenue par de petites structures locales. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Grenoble vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "La microélectronique et la recherche y produisent un tissu d'éditeurs techniques."
+  - href: "/metiers/cabinet-recrutement/"
+    label: "Référencement IA pour cabinet de recrutement"
+    note: "Bassin très tendu sur les profils scientifiques."
 updated: 2026-10-04
 ---
 

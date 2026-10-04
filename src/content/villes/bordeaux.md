@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, eskimoz.fr, yabawt.com, qlint.fr et digital-passengers.com. Une grosse agence nationale occupe la première place. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Bordeaux vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "Le vin et l'agroalimentaire y ont basculé une part importante de leurs ventes en direct."
+  - href: "/secteurs/cosmetique/"
+    label: "Référencement IA pour marque de cosmétique"
+    note: "La filière cosmétique régionale s'appuie sur le même socle agricole."
 updated: 2026-10-04
 ---
 

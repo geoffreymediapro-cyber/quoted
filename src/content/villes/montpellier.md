@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, noiise.com, consultant-geo.paris et inwin.fr. Un acteur national et, en deuxième position, un site parisien qui cible Montpellier à distance. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Montpellier vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "Santé et recherche alimentent un écosystème d'éditeurs spécialisés."
+  - href: "/secteurs/cosmetique/"
+    label: "Référencement IA pour marque de cosmétique"
+    note: "La filière santé et bien-être y est structurée."
 updated: 2026-10-04
 ---
 

@@ -39,6 +39,13 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "Le cas inverse du vôtre : là, aucune marque n'apparaît, ce sont les distributeurs qui répondent."
+  - href: "/secteurs/luxe/"
+    label: "Référencement IA pour maison de luxe"
+    note: "Marché voisin où les maisons ne sont pas citées non plus, mais pour une tout autre raison."
 updated: 2026-09-23
 ---
 

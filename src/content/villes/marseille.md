@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, les-nicheurs.fr, noiise.com et paulvengeons.fr. Deux des trois premiers sont des acteurs nationaux, pas des agences marseillaises. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Marseille vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "Port et logistique font de Marseille une place de distribution."
+  - href: "/metiers/agence-immobiliere/"
+    label: "Référencement IA pour agence immobilière"
+    note: "Marché immobilier particulièrement actif et concurrentiel."
 updated: 2026-10-04
 ---
 

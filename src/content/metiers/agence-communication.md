@@ -37,6 +37,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Nous le disons aussi clairement à vos clients qu'à vous : c'est une probabilité qui se pilote, pas une position qui s'achète."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "Le type de client qui vous demandera du référencement IA en premier, et ce qu'il faut lui répondre."
+  - href: "/metiers/cabinet-conseil/"
+    label: "Référencement IA pour cabinet de conseil"
+    note: "Même vente de prestation intellectuelle, mêmes difficultés à prouver sans trahir un client."
+  - href: "/secteurs/luxe/"
+    label: "Référencement IA pour maison de luxe"
+    note: "Un marché où vos clients communiquent par l'image, registre invisible pour un moteur de réponse."
 updated: 2026-09-22
 ---
 
