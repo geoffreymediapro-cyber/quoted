@@ -37,6 +37,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/metiers/courtier-assurance/"
+    label: "Référencement IA pour courtier en assurance"
+    note: "Même situation face aux comparateurs : votre valeur est le conseil, et le comparateur répond à la question du prix."
+  - href: "/metiers/architecte/"
+    label: "Référencement IA pour architecte"
+    note: "L'autre métier du bâti où un acteur national capte la question d'entrée du projet."
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "La mécanique du distributeur qui parle de vos produits mieux que vous, détaillée sur un autre marché."
 updated: 2026-09-22
 ---
 

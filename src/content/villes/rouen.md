@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, dopamine360.fr, optiimyzer.com et botanik.ai. Trois agences, dont aucune n'est spécifiquement rouennaise. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Rouen vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/secteurs/e-commerce/"
+    label: "Référencement IA pour marque e-commerce"
+    note: "La logistique portuaire dessert une part importante de la distribution française."
+  - href: "/villes/le-havre/"
+    label: "Agence GEO à Le Havre"
+    note: "L'autre pôle portuaire du département, souvent traité ensemble."
 updated: 2026-10-04
 ---
 

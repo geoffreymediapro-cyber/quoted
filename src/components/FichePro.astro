@@ -140,6 +140,34 @@ const updated = d.updated.toLocaleDateString('fr-FR', {
 		</div>
 	</section>
 
+	{
+		d.liens.length > 0 && (
+			<section class="band">
+				<div class="wrap wrap--narrow">
+					<p class="kick">À lire aussi</p>
+					<h2>
+						Les pages qui <span class="hi">se répondent</span>
+					</h2>
+					<ul class="liens">
+						{d.liens.map((l) => (
+							<li>
+								<a href={l.href}>
+									<span class="liens__t">
+										{l.label}
+										<span class="arw" aria-hidden="true">
+											→
+										</span>
+									</span>
+									<span class="liens__n">{l.note}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</section>
+		)
+	}
+
 	<aside class="band band--dark">
 		<div class="wrap wrap--narrow cta">
 			<h2>Voyons ce que l'IA répond sur votre marché</h2>
@@ -280,6 +308,48 @@ const updated = d.updated.toLocaleDateString('fr-FR', {
 
 	.faq {
 		margin-top: 1.9rem;
+	}
+
+	/* Chaque lien porte sa justification : sans elle, c'est du remplissage. */
+	.liens {
+		list-style: none;
+		padding: 0;
+		margin-top: 1.9rem;
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	.liens a {
+		display: grid;
+		gap: 0.3rem;
+		padding: clamp(1rem, 2vw, 1.3rem) clamp(1.1rem, 2.2vw, 1.45rem);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.liens a:hover {
+		border-color: var(--accent-line);
+		background: var(--accent-wash);
+	}
+
+	.liens__t {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		font-family: var(--display);
+		font-size: var(--s-0);
+		font-weight: 700;
+		color: var(--accent-deep);
+	}
+
+	.liens__n {
+		font-size: var(--s--1);
+		line-height: 1.55;
+		color: var(--ink-soft);
 	}
 
 	.maj {

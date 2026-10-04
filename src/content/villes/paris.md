@@ -38,6 +38,13 @@ faq:
     a: "Au moment de notre relevé, iaba.tech, noiise.com, littlebigthings.fr et dity.fr. C'est la requête la plus disputée de France : la concurrence y est nationale, pas locale. C'est une information que nous vous donnons parce qu'elle est vérifiable en trente secondes, et parce qu'elle montre ce contre quoi il faut se positionner."
   - q: "Combien ça coûte et garantissez-vous d'être cité ?"
     a: "Nous ne publions pas de grille tarifaire, parce que le périmètre dépend de ce que le relevé fait apparaître. Le relevé initial, lui, est gratuit. Et non, nous ne garantissons aucune citation : aucun moteur n'expose de levier de classement, et quiconque vous promet une position à Paris vous vend quelque chose qu'il ne contrôle pas."
+liens:
+  - href: "/metiers/cabinet-conseil/"
+    label: "Référencement IA pour cabinet de conseil"
+    note: "Les sièges sociaux et les services aux entreprises concentrent la demande de conseil."
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "La densité tech y est la plus forte de France."
 updated: 2026-10-04
 ---
 

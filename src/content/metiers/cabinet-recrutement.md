@@ -37,6 +37,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "L'éditeur de logiciel RH qui capte vos réponses applique une stratégie précise. La voici, vue de son côté."
+  - href: "/metiers/cabinet-conseil/"
+    label: "Référencement IA pour cabinet de conseil"
+    note: "Même modèle fondé sur le réseau, et même difficulté à publier sans trahir des clients."
+  - href: "/metiers/agence-communication/"
+    label: "Référencement IA pour agence de communication"
+    note: "Autre métier de service où le premier tri se fait désormais devant un assistant."
 updated: 2026-09-22
 ---
 

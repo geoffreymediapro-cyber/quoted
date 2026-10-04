@@ -39,6 +39,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "La déontologie de la profession pose-t-elle un problème ?"
     a: "Le cadre de la profession interdit le démarchage déloyal et la publicité mensongère, pas le fait d'être trouvable. Le travail décrit ici consiste à rendre lisible ce que vous faites déjà. Nous ne fabriquons aucun avis et ne publions rien en votre nom sans votre validation."
+liens:
+  - href: "/secteurs/logiciel-saas-b2b/"
+    label: "Référencement IA pour éditeur SaaS B2B"
+    note: "Les éditeurs de logiciels sont ceux qui captent les réponses à votre place sur la facturation électronique. Voilà comment ils s'y prennent, vu de leur côté."
+  - href: "/metiers/avocat/"
+    label: "Référencement IA pour avocat"
+    note: "Même mécanique dans une autre profession réglementée : ce sont des plateformes qui répondent, pas les cabinets."
+  - href: "/metiers/cabinet-conseil/"
+    label: "Référencement IA pour cabinet de conseil"
+    note: "Autre métier où la confidentialité interdit le cas client, et où la sortie est donc la méthode rendue publique."
 updated: 2026-09-22
 ---
 

@@ -37,6 +37,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/metiers/cabinet-recrutement/"
+    label: "Référencement IA pour cabinet de recrutement"
+    note: "Métier voisin où la valeur est le réseau, donc invisible par nature pour un moteur de réponse."
+  - href: "/metiers/avocat/"
+    label: "Référencement IA pour avocat"
+    note: "Même contrainte de confidentialité et même sortie : documenter la méthode plutôt que les dossiers."
+  - href: "/metiers/expert-comptable/"
+    label: "Référencement IA pour expert-comptable"
+    note: "Autre conseil aux entreprises, concurrencé sur ses propres sujets par des éditeurs de logiciels."
 updated: 2026-09-22
 ---
 

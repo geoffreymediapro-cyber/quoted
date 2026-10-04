@@ -37,6 +37,16 @@ faq:
     a: "Non, et personne ne le peut. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Ce qui se pilote, c'est la probabilité : rendre vos pages extractibles, exister sur les sources que les modèles reprennent, et mesurer ce qui change."
   - q: "Combien de temps avant de voir un changement ?"
     a: "Les relevés bougent rarement avant plusieurs semaines, parce qu'une page doit d'abord être indexée, puis reprise. Nous mesurons chaque mois dans les mêmes conditions, sur le même panel de questions."
+liens:
+  - href: "/metiers/expert-comptable/"
+    label: "Référencement IA pour expert-comptable"
+    note: "Autre métier du conseil réglementé où les éditeurs et les comparateurs occupent le terrain."
+  - href: "/metiers/agence-immobiliere/"
+    label: "Référencement IA pour agence immobilière"
+    note: "Même affrontement avec des plateformes nationales qui publient à grande échelle."
+  - href: "/villes/le-mans/"
+    label: "Agence GEO au Mans"
+    note: "Le Mans est un pôle historique de l'assurance : le relevé y est particulièrement parlant pour votre métier."
 updated: 2026-09-22
 ---
 
