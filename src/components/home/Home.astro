@@ -46,6 +46,13 @@ const fiches = [
 			"D'un marché à l'autre, ce ne sont pas les mêmes acteurs qui captent les réponses. Un distributeur, un comparateur, parfois un concurrent.",
 		items: (await getCollection('secteurs', ({ data }) => !data.draft)).sort(parNom),
 	},
+	{
+		href: '/villes/',
+		titre: 'Par ville',
+		texte:
+			"Une question posée avec le nom de votre ville ne donne pas la même réponse. Pour chacune, qui occupe déjà la requête.",
+		items: (await getCollection('villes', ({ data }) => !data.draft)).sort(parNom),
+	},
 ];
 
 /**
@@ -314,7 +321,7 @@ const TINTS = [
 <section class="band band--dark" id="metiers">
 	<div class="wrap on-dark">
 		<div class="head obs">
-			<p class="kick">Par métier, par secteur</p>
+			<p class="kick">Par métier, secteur et ville</p>
 			<h2>Ce que l'IA répond <span class="hi">sur votre marché</span></h2>
 			<p>
 				Les questions ne se posent pas de la même façon selon le terrain, et les sources

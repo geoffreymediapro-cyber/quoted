@@ -12,6 +12,7 @@ import { CONTACT_EMAIL } from '../data/site';
 const parNom = (a, b) => a.data.nom.localeCompare(b.data.nom, 'fr');
 const metiers = (await getCollection('metiers', ({ data }) => !data.draft)).sort(parNom);
 const secteurs = (await getCollection('secteurs', ({ data }) => !data.draft)).sort(parNom);
+const villes = (await getCollection('villes', ({ data }) => !data.draft)).length;
 
 
 const year = 2026;
@@ -58,6 +59,7 @@ const year = 2026;
 			<h2>En savoir plus</h2>
 			<ul>
 				<li><a href="/#expertises">Nos expertises</a></li>
+				<li><a href="/villes/">Agence GEO par ville ({villes})</a></li>
 				<li><a href="/#methode">Méthode</a></li>
 				<li><a href="/guide/">Guide GEO</a></li>
 				<li><a href="/scan/">Scanner ma visibilité IA</a></li>

@@ -64,4 +64,23 @@ const secteurs = defineCollection({
   schema: ficheSchema,
 });
 
-export const collections = { guide, metiers, secteurs };
+/**
+ * Pages ville. Meme structure que les fiches metier et secteur, plus deux
+ * champs de langue.
+ *
+ * ⚠️ `dans` existe pour une raison precise : on dit « au Mans » et « au
+ * Havre », pas « a Le Mans ». Les concurrents concatenent « a » + le nom et
+ * publient la faute dans leur H1. La forme correcte est donc ecrite a la
+ * main dans chaque fiche, jamais calculee.
+ */
+const villes = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/villes" }),
+  schema: ficheSchema.extend({
+    /** Forme locative complete, articles contractes compris : « au Mans ». */
+    dans: z.string(),
+    /** Numero de departement, affiche a cote du nom. */
+    departement: z.string(),
+  }),
+});
+
+export const collections = { guide, metiers, secteurs, villes };

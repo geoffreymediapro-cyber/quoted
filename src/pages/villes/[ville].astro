@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FichePro from '../../components/FichePro.astro';
+import { ficheSchema } from '../../data/fiche';
+import { SITE_URL } from '../../data/site';
+
+export const getStaticPaths = (async () => {
+	const pages = await getCollection('villes', ({ data }) => !data.draft);
+
+	return pages.map((page) => ({
+		params: { ville: page.id },
+		props: { page },
+	}));
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const d = page.data;
+
+const KICKER = 'Référencement IA';
+const schema = ficheSchema(d, `${SITE_URL}/villes/${page.id}/`, KICKER);
+---
+
+<BaseLayout title={`${d.title} | Quoted`} description={d.description} schema={schema}>
+	<FichePro d={d} filHref="/villes/" filLabel="Villes" kicker={`${d.nom} (${d.departement})`}>
+		<Content />
+	</FichePro>
+</BaseLayout>
