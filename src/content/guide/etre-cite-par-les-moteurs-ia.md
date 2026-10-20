@@ -1,10 +1,10 @@
 ---
-title: 'Comment être cité par ChatGPT, Perplexity et Gemini'
+title: 'Les sept pratiques qui font qu’un contenu est repris'
 shortTitle: 'Se faire citer'
-description: "Les pratiques concrètes qui augmentent les chances qu'un contenu soit repris par un moteur de réponse : structure, extractibilité, sourcing, données structurées et présence hors site."
+description: "Ce qui augmente concrètement les chances qu'un contenu soit repris par un moteur de réponse, quel qu'il soit : structure, extractibilité, sourcing, données structurées et présence hors site."
 chapter: 'Pratique'
 order: 2
-updated: 2026-09-12
+updated: 2026-10-20
 ---
 
 Aucune méthode ne garantit une citation. En revanche, on observe des différences nettes entre les contenus régulièrement repris et ceux qui ne le sont jamais. Voici ce sur quoi il est raisonnable d'agir.
