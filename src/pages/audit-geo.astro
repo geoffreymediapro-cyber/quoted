@@ -1,0 +1,334 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_NAME, SITE_URL } from '../data/site';
+
+/**
+ * Page commerciale de l'audit. Elle existe parce que /scan/ ne fait que
+ * 164 mots et ne capte donc aucune des requetes « audit GEO » et « audit
+ * de visibilite IA », qui sont pourtant les requetes d'achat du metier.
+ * Repartition : cette page vend et se positionne, /scan/ convertit.
+ */
+
+const contenu = [
+	{
+		t: 'Le panel de questions, construit sur votre marché',
+		d: "Cinq à dix formulations telles que vos clients les posent réellement, pas des mots-clés. C'est ce panel qui sert de référence à toutes les mesures suivantes.",
+	},
+	{
+		t: 'Le relevé sur cinq moteurs',
+		d: "ChatGPT, Perplexity, Gemini, Claude et les AI Overviews de Google, interrogés sur le même panel, dans les mêmes conditions, avec et sans mention géographique.",
+	},
+	{
+		t: 'Qui est cité, et à partir de quelles sources',
+		d: "La liste des marques et des sites repris question par question, et surtout d'où vient la réponse : votre site, un comparateur, un distributeur, un média, un concurrent.",
+	},
+	{
+		t: 'La lecture de ce que votre site donne à lire',
+		d: "Extractibilité des pages, structure des réponses, dates, données structurées, et ce que vos robots autorisent réellement. Cette dernière vérification réserve souvent des surprises.",
+	},
+	{
+		t: 'Les écarts, classés par effort et par gain',
+		d: "Pas une liste de quarante recommandations. Ce qui manque, dans l'ordre où nous le traiterions, avec ce que chaque point demande comme travail.",
+	},
+];
+
+const faq = [
+	{
+		q: "L'audit est-il vraiment gratuit ?",
+		a: "Le relevé initial l'est, sans engagement et sans relance automatique derrière. Il demande environ une demi-journée de travail manuel de notre côté, et nous le faisons parce que c'est la meilleure démonstration de ce que nous savons faire. Un audit approfondi, sur un panel large et plusieurs marchés, fait l'objet d'un devis.",
+	},
+	{
+		q: 'Quelle différence avec un outil de suivi automatique ?',
+		a: "Un outil relève des occurrences. Il vous dit que vous apparaissez trois fois sur dix. Il ne vous dit pas pourquoi la source citée est un comparateur plutôt que vous, ni ce qu'il faudrait changer. Nous ne vendons pas de licence et nous n'en facturons aucune : ce que vous payez, le cas échéant, c'est le travail d'analyse.",
+	},
+	{
+		q: 'Combien de temps pour recevoir le résultat ?',
+		a: "Sous 48 heures ouvrées pour le relevé initial. C'est un délai que nous tenons parce que le travail est manuel et calibré pour cette durée.",
+	},
+	{
+		q: "L'audit garantit-il que je serai cité ensuite ?",
+		a: "Non, et personne ne peut le garantir. Aucun moteur n'expose de levier de classement, et les réponses varient d'une session à l'autre. Un audit vous dit où vous en êtes et ce qui se joue. Il ne promet pas un résultat, il rend le sujet pilotable.",
+	},
+	{
+		q: 'Faut-il refaire un audit régulièrement ?',
+		a: "Un relevé unique ne dit presque rien, parce que les réponses bougent. Ce qui a de la valeur, c'est la reprise du même panel dans les mêmes conditions, mois après mois. Le premier audit sert de point zéro.",
+	},
+	{
+		q: 'Et si le résultat est bon ?',
+		a: "Nous vous le disons, et nous nous arrêtons là. Il nous arrive de conclure qu'il n'y a pas matière à travailler, soit parce que la position est déjà solide, soit parce que le sujet ne génère pas assez de questions pour justifier l'effort.",
+	},
+];
+
+const schema = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		name: 'Audit de visibilité IA',
+		alternateName: 'Audit GEO',
+		description:
+			"Relevé de ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent sur votre marché, de qui ils citent, et des écarts à combler.",
+		url: `${SITE_URL}/audit-geo/`,
+		serviceType: 'Generative Engine Optimization',
+		areaServed: { '@type': 'Country', name: 'France' },
+		provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faq.map((item) => ({
+			'@type': 'Question',
+			name: item.q,
+			acceptedAnswer: { '@type': 'Answer', text: item.a },
+		})),
+	},
+];
+---
+
+<BaseLayout
+	title="Audit GEO : relevé de votre visibilité dans les réponses IA"
+	description="Ce que ChatGPT, Perplexity, Gemini, Claude et les AI Overviews répondent sur votre marché, qui ils citent à votre place, et les écarts à combler. Relevé initial gratuit sous 48 h."
+	schema={schema}
+>
+	<article>
+		<header class="intro">
+			<div class="wrap wrap--narrow">
+				<p class="kick">Audit GEO</p>
+				<h1>Savoir ce que l'IA <span class="hi">répond déjà</span> sur vous</h1>
+				<p class="lede">
+					Un audit de visibilité IA ne mesure pas une position. Il répond à trois
+					questions : qui est cité sur vos sujets, à partir de quelles sources, et ce
+					qu'il manque à votre site pour y figurer.
+				</p>
+
+				<div class="acts">
+					<a class="b b--go" href="/scan/">
+						Demander le relevé
+						<span class="arw" aria-hidden="true">→</span>
+					</a>
+					<a class="b b--line" href="/guide/mesurer-sa-visibilite-ia/">La méthode en détail</a>
+				</div>
+			</div>
+		</header>
+
+		<section class="band band--soft">
+			<div class="wrap wrap--narrow">
+				<p class="kick">Le livrable</p>
+				<h2>Ce que contient <span class="hi">l'audit</span></h2>
+				<p class="lede sec__p">
+					Cinq éléments, dans cet ordre. Le dernier est le seul qui soit actionnable, les
+					quatre premiers servent à ne pas le construire au doigt mouillé.
+				</p>
+
+				<ol class="liste">
+					{
+						contenu.map((item, i) => (
+							<li>
+								<span class="liste__n" aria-hidden="true">
+									{String(i + 1).padStart(2, '0')}
+								</span>
+								<div>
+									<h3>{item.t}</h3>
+									<p>{item.d}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</section>
+
+		<section class="band">
+			<div class="wrap wrap--narrow prose">
+				<h2>Pourquoi un relevé et pas un score</h2>
+				<p>
+					La plupart des audits de visibilité IA produisent une note sur cent. C'est
+					rassurant et ça ne sert à rien, pour une raison simple : les réponses générées
+					varient d'une session à l'autre, selon la formulation et selon l'historique. Une
+					note issue d'un relevé unique mesure surtout le hasard.
+				</p>
+				<p>
+					Ce qui a du sens, c'est une fréquence d'apparition sur un panel de questions
+					fixe, rejoué dans des conditions identiques. C'est moins spectaculaire à
+					présenter, et c'est la seule chose qu'on puisse comparer d'un mois sur l'autre.
+				</p>
+				<p>
+					C'est aussi pour ça que nous relevons avec et sans mention géographique : une
+					même question ne produit pas la même liste de sources selon qu'elle nomme une
+					ville ou non. La méthode complète est décrite dans
+					<a href="/guide/mesurer-sa-visibilite-ia/">mesurer sa visibilité dans les réponses IA</a>.
+				</p>
+
+				<h2>Ce que l'audit révèle le plus souvent</h2>
+				<p>
+					Trois constats reviennent, et aucun n'est celui auquel les entreprises
+					s'attendent.
+				</p>
+				<p>
+					<strong>Ce n'est presque jamais un concurrent direct qui est cité.</strong> C'est
+					un comparateur, un distributeur, un éditeur de logiciel ou un média. Le détail
+					change selon le marché : nous l'avons documenté
+					<a href="/metiers/">par métier</a> et <a href="/secteurs/">par secteur</a>.
+				</p>
+				<p>
+					<strong>Le site répond à la mauvaise question.</strong> Les pages décrivent ce
+					que l'entreprise fait, quand la question posée est « qu'est-ce qu'il me faut ».
+					C'est un décalage de format autant que de contenu, et il se corrige.
+				</p>
+				<p>
+					<strong>Les robots sont mal réglés.</strong> Beaucoup de sites ont bloqué des
+					crawlers d'IA en 2023 par prudence, sans distinguer ceux qui servent
+					l'entraînement de ceux qui alimentent la recherche. Ils se sont retirés des
+					réponses sourcées sans jamais l'avoir voulu. Le cas d'OpenAI, qui opère trois
+					robots distincts, est détaillé dans
+					<a href="/guide/apparaitre-dans-chatgpt/">l'article sur ChatGPT</a>.
+				</p>
+
+				<h2>Ce que l'audit ne vous dira pas</h2>
+				<p>
+					Il ne vous donnera pas de volume de recherche sur les assistants : aucun des
+					moteurs ne publie cette donnée, et quiconque vous présente un tableau de volumes
+					par prompt extrapole.
+				</p>
+				<p>
+					Il ne vous dira pas combien de clients viennent de là. L'attribution depuis une
+					réponse générée est partielle, variable selon les moteurs, et
+					<a href="/guide/apparaitre-dans-perplexity/">Perplexity</a> est à peu près le
+					seul où elle se lit correctement.
+				</p>
+				<p>
+					Il ne promet aucune position. Un audit établit un point de départ et une liste
+					de travaux. C'est tout, et c'est déjà ce que presque personne ne fait
+					sérieusement.
+				</p>
+			</div>
+		</section>
+
+		<section class="band band--soft">
+			<div class="wrap wrap--narrow">
+				<p class="kick">Questions fréquentes</p>
+				<h2>Ce qu'on nous demande</h2>
+
+				<div class="faq">
+					{
+						faq.map((item) => (
+							<details class="qa" name="faq-audit">
+								<summary>
+									<span>{item.q}</span>
+									<span class="qa__s" aria-hidden="true" />
+								</summary>
+								<div class="qa__a">
+									<p>{item.a}</p>
+								</div>
+							</details>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<aside class="band band--dark">
+			<div class="wrap wrap--narrow cta">
+				<h2>Le relevé initial est gratuit</h2>
+				<p>
+					Décrivez votre activité et deux ou trois questions que vos clients posent avant
+					d'acheter. Nous les rejouons sur les cinq moteurs et nous vous renvoyons ce
+					qu'ils répondent, et qui ils citent. Réponse sous 48 h ouvrées.
+				</p>
+				<a class="b b--go" href="/scan/">
+					Demander le relevé
+					<span class="arw" aria-hidden="true">→</span>
+				</a>
+			</div>
+		</aside>
+	</article>
+</BaseLayout>
+
+<style>
+	.intro {
+		padding-block: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
+		background:
+			radial-gradient(55% 70% at 90% 0%, var(--accent-wash), transparent 70%),
+			var(--paper);
+	}
+
+	.intro h1 {
+		font-size: var(--s-3);
+		margin-bottom: 1.1rem;
+	}
+
+	.acts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+		margin-top: 1.9rem;
+	}
+
+	.sec__p {
+		margin-block: 1.1rem 2rem;
+	}
+
+	.liste {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		gap: clamp(1.1rem, 2.5vw, 1.6rem);
+	}
+
+	.liste li {
+		display: grid;
+		grid-template-columns: 2.75rem minmax(0, 1fr);
+		column-gap: clamp(0.9rem, 2vw, 1.4rem);
+		row-gap: 0;
+		align-items: start;
+	}
+
+	.liste__n {
+		font-family: var(--display);
+		font-size: var(--s-1);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		color: var(--accent-line);
+		padding-top: 0.1rem;
+	}
+
+	.liste h3 {
+		font-size: var(--s-0);
+		text-transform: none;
+		margin-bottom: 0.4rem;
+	}
+
+	.liste p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+		max-width: 62ch;
+	}
+
+	.faq {
+		margin-top: 1.9rem;
+	}
+
+	.cta {
+		display: grid;
+		gap: 1rem;
+		justify-items: start;
+	}
+
+	.cta p {
+		font-size: var(--s-1);
+		line-height: 1.5;
+		color: rgba(234, 240, 251, 0.75);
+		max-width: 54ch;
+	}
+
+	.cta .b {
+		margin-top: 0.5rem;
+	}
+
+	@media (max-width: 40rem) {
+		.liste li {
+			grid-template-columns: 1fr;
+			row-gap: 0.3rem;
+		}
+	}
+</style>
