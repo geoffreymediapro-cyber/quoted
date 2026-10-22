@@ -97,4 +97,38 @@ const villes = defineCollection({
   }),
 });
 
-export const collections = { guide, metiers, secteurs, villes };
+/**
+ * Pages expertise : une landing par prestation.
+ * Structure differente des fiches metier/secteur, qui analysent un marche.
+ * Ici on vend une prestation : ce qu'elle produit, ce qu'elle n'est pas, et
+ * ce qu'on refuse de promettre.
+ *
+ * ⚠️ `pasCeQue` n'est pas decoratif. Sur ce marche, le vocabulaire francais
+ * n'est pas stabilise et Google confond les intentions : « contenu IA »
+ * renvoie « ecrire AVEC l'IA » et non « ecrire POUR etre cite ». Chaque
+ * page doit donc lever explicitement la confusion qui la concerne.
+ */
+const expertises = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/expertises" }),
+  schema: z.object({
+    nom: z.string(),
+    title: z.string(),
+    h1: z.string(),
+    description: z.string(),
+    intro: z.string(),
+    /** Resume en une ligne pour la carte du hub. */
+    resume: z.string(),
+    /** Ce que la prestation produit concretement. */
+    livrables: z.array(z.object({ t: z.string(), d: z.string() })).min(3),
+    /** Les confusions a lever, propres a cette expertise. */
+    pasCeQue: z.array(z.object({ t: z.string(), d: z.string() })).min(2),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).min(3),
+    liens: z
+      .array(z.object({ href: z.string(), label: z.string(), note: z.string() }))
+      .default([]),
+    updated: z.coerce.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { guide, metiers, secteurs, villes, expertises };

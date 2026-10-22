@@ -1,0 +1,227 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { EXPERTISES, SITE_NAME, SITE_URL } from '../../data/site';
+
+/**
+ * Hub des expertises. Il remplace l'ancre `#expertises` dans le menu.
+ *
+ * ⚠️ L'audit vit a `/audit-geo/` et non dans la collection : son URL est
+ * calee sur la requete d'achat « audit GEO », qui est la plus forte du
+ * metier. Changer son adresse pour une coherence de structure couterait
+ * plus que ca ne rapporterait. Il est donc ajoute a la main en tete.
+ */
+const fiches = (await getCollection('expertises', ({ data }) => !data.draft)).sort((a, b) =>
+	a.data.nom.localeCompare(b.data.nom, 'fr'),
+);
+
+const avecPage = [
+	{
+		href: '/audit-geo/',
+		nom: 'Audit de visibilité IA',
+		resume:
+			"Le relevé de ce que les moteurs répondent déjà sur vos sujets, de qui ils citent, et des écarts à combler.",
+	},
+	...fiches.map((f) => ({
+		href: `/expertises/${f.id}/`,
+		nom: f.data.nom,
+		resume: f.data.resume,
+	})),
+];
+
+/** Celles qui n'ont pas encore de page : listees sans lien, sans promesse. */
+const sansPage = EXPERTISES.filter(
+	(e) => !avecPage.some((p) => p.nom.toLowerCase().includes(e.name.toLowerCase().slice(0, 12))),
+);
+
+const schema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: 'Expertises',
+	url: `${SITE_URL}/expertises/`,
+	description:
+		"Les prestations de Quoted en visibilité dans les réponses générées : audit, contenu, maillage, présence hors site.",
+	provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+};
+---
+
+<BaseLayout
+	title="Nos expertises : GEO et SEO | Quoted"
+	description="Ce que nous faisons concrètement pour la visibilité d'une marque dans les réponses générées par ChatGPT, Perplexity, Gemini, Claude et les AI Overviews."
+	schema={schema}
+>
+	<section class="intro">
+		<div class="wrap">
+			<p class="kick">Expertises</p>
+			<h1>Le GEO d'abord, <span class="hi">le SEO avec</span></h1>
+			<p class="lede">
+				Être cité par une IA suppose d'être trouvable tout court. Nous travaillons les
+				deux, et nous disons lequel des deux compte le plus dans votre cas. Parfois la
+				réponse est le SEO, et nous le disons avant de vendre autre chose.
+			</p>
+		</div>
+	</section>
+
+	<section class="band band--soft">
+		<div class="wrap">
+			<ul class="grid">
+				{
+					avecPage.map((item, i) => (
+						<li class="obs" style={`--d: ${i * 50}ms`}>
+							<a href={item.href}>
+								<h2>{item.nom}</h2>
+								<p>{item.resume}</p>
+								<span class="go">
+									Voir la page <span class="arw" aria-hidden="true">→</span>
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			{
+				sansPage.length > 0 && (
+					<div class="reste">
+						<h2 class="reste__t">Également au périmètre</h2>
+						<p class="reste__p">
+							Ces prestations n'ont pas encore leur page. Elles sont décrites dans le{' '}
+							<a href="/guide/">guide</a>, et nous en parlons volontiers.
+						</p>
+						<ul class="reste__l">
+							{sansPage.map((e) => (
+								<li>
+									<strong>{e.name}</strong> {e.note}
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<section class="band">
+		<div class="wrap closing obs">
+			<h2>Par quoi commencer</h2>
+			<p class="lede">
+				Par le relevé. Il dit lesquelles de ces prestations vous serviraient, et dans
+				quel ordre. Il arrive qu'il conclue qu'aucune ne s'impose.
+			</p>
+			<a class="b b--go" href="/scan/">
+				Demander le relevé
+				<span class="arw" aria-hidden="true">→</span>
+			</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.intro {
+		padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+		background:
+			radial-gradient(55% 70% at 85% 0%, var(--accent-wash), transparent 70%),
+			var(--paper);
+	}
+
+	.intro h1 {
+		margin-bottom: 1.35rem;
+	}
+
+	.grid {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+		gap: clamp(0.8rem, 1.8vw, 1.2rem);
+	}
+
+	.grid a {
+		display: grid;
+		gap: 0.6rem;
+		height: 100%;
+		align-content: start;
+		background: var(--paper);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		padding: clamp(1.25rem, 2.5vw, 1.8rem);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.grid a:hover {
+		border-color: transparent;
+		transform: translateY(-3px);
+		box-shadow: var(--shadow);
+	}
+
+	.grid h2 {
+		font-size: var(--s-1);
+		text-transform: none;
+	}
+
+	.grid p {
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.go {
+		font-family: var(--display);
+		font-weight: 600;
+		color: var(--accent-deep);
+	}
+
+	/* Les prestations sans page : annoncees sans lien plutot que masquees. */
+	.reste {
+		margin-top: clamp(2.5rem, 5vw, 4rem);
+		padding-top: clamp(2rem, 4vw, 2.75rem);
+		border-top: 1px solid var(--line-strong);
+	}
+
+	.reste__t {
+		font-size: var(--s-1);
+		text-transform: none;
+		margin-bottom: 0.7rem;
+	}
+
+	.reste__p {
+		font-size: var(--s--1);
+		color: var(--ink-soft);
+		margin-bottom: 1.4rem;
+	}
+
+	.reste__p a {
+		color: var(--accent);
+		font-weight: 600;
+	}
+
+	.reste__l {
+		list-style: none;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+		gap: 0.8rem 2rem;
+		font-size: var(--s--1);
+		line-height: 1.6;
+		color: var(--ink-soft);
+	}
+
+	.reste__l strong {
+		color: var(--ink);
+	}
+
+	.closing {
+		display: grid;
+		justify-items: center;
+		text-align: center;
+		gap: 1.25rem;
+	}
+
+	.closing .lede {
+		max-width: 46ch;
+	}
+</style>
