@@ -44,11 +44,11 @@ liens:
   - href: '/guide/apparaitre-dans-perplexity/'
     label: 'Comment être cité par Perplexity'
     note: "Le moteur où l'effet d'un contenu bien structuré se mesure le plus vite."
-  - href: '/expertises/reddit-geo/'
-    label: 'Reddit et forums'
+  - href: '/guide/reddit-et-les-reponses-ia/'
+    label: 'Reddit et les réponses IA'
     note: "Les questions d'expérience appellent des voix humaines. Votre contenu ne peut pas les produire."
-  - href: '/expertises/wikipedia-wikidata/'
-    label: 'Wikipédia et Wikidata'
+  - href: '/guide/wikipedia-ou-wikidata/'
+    label: 'Wikipédia ou Wikidata'
     note: "Écrire ne sert à rien si un moteur ne sait pas de quelle organisation il parle."
 updated: 2026-10-22
 ---
