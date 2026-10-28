@@ -15,6 +15,35 @@ const chapters = entries.reduce<Map<string, typeof entries>>((acc, entry) => {
 	return acc;
 }, new Map());
 
+/** é → e avant le slug, sinon « Fondamentaux » passe mais pas un futur chapitre accentué. */
+const slugifie = (s: string) =>
+	s
+		.normalize('NFD')
+		.replace(/[̀-ͯ]/g, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
+
+const groupes = [...chapters.entries()].map(([nom, items]) => ({
+	nom,
+	slug: slugifie(nom),
+	items,
+}));
+
+/**
+ * Filtre en CSS pur : un bouton radio par chapitre, et une regle qui masque
+ * les autres quand il est coche. Les chapitres naissent du contenu, les
+ * regles sont donc generees ici plutot qu'ecrites a la main.
+ *
+ * ⚠️ C'est aussi la raison pour laquelle `.obs` est porte par le conteneur
+ * et non par chaque chapitre : un bloc en `display: none` ne croise jamais
+ * l'observateur, il n'obtient jamais `.seen`, et il resterait invisible une
+ * fois demasque par le filtre.
+ */
+const filtreCss = groupes
+	.map((g) => `.guide:has(#ch-${g.slug}:checked) .chapter:not(.ch--${g.slug}){display:none}`)
+	.join('\n');
+
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'CollectionPage',
@@ -43,27 +72,49 @@ const schema = {
 	</section>
 
 	<section class="band band--soft">
-		<div class="wrap chapters">
-			{
-				[...chapters.entries()].map(([chapter, items]) => (
-					<div class="chapter obs">
-						<h2 class="chapter__name">{chapter}</h2>
-						<ul class="chapter__list">
-							{items.map((entry) => (
-								<li>
-									<a href={`/guide/${entry.id}/`}>
-										<h3>{entry.data.title}</h3>
-										<p>{entry.data.description}</p>
-										<span class="chapter__go">
-											Lire <span class="arw" aria-hidden="true">→</span>
-										</span>
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				))
-			}
+		<div class="wrap guide obs">
+			<fieldset class="filtre">
+				<legend class="sr">Filtrer le guide par chapitre</legend>
+
+				<input class="sr" type="radio" name="chapitre" id="ch-tout" checked />
+				<label class="puce" for="ch-tout">
+					Tout <span class="puce__n">{entries.length}</span>
+				</label>
+
+				{
+					groupes.map((g) => (
+						<>
+							<input class="sr" type="radio" name="chapitre" id={`ch-${g.slug}`} />
+							<label class="puce" for={`ch-${g.slug}`}>
+								{g.nom} <span class="puce__n">{g.items.length}</span>
+							</label>
+						</>
+					))
+				}
+			</fieldset>
+
+			<div class="chapters">
+				{
+					groupes.map((g) => (
+						<div class={`chapter ch--${g.slug}`}>
+							<h2 class="chapter__name">{g.nom}</h2>
+							<ul class="chapter__list">
+								{g.items.map((entry) => (
+									<li>
+										<a href={`/guide/${entry.id}/`}>
+											<h3>{entry.data.title}</h3>
+											<p>{entry.data.description}</p>
+											<span class="chapter__go">
+												Lire <span class="arw" aria-hidden="true">→</span>
+											</span>
+										</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
 		</div>
 	</section>
 
@@ -92,6 +143,69 @@ const schema = {
 
 	.intro h1 {
 		margin-bottom: 1.35rem;
+	}
+
+	.guide {
+		display: grid;
+		gap: clamp(2rem, 4vw, 3rem);
+	}
+
+	/* Des puces, pas un menu deroulant : les chapitres restent tous lisibles. */
+	.filtre {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
+		border: 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.puce {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		padding: 0.5rem 0.95rem;
+		border: 1px solid var(--line-strong);
+		border-radius: 999px;
+		background: var(--paper);
+		font-family: var(--display);
+		font-size: var(--s--1);
+		font-weight: 600;
+		color: var(--ink-soft);
+		cursor: pointer;
+		user-select: none;
+		transition:
+			border-color 0.18s ease,
+			background-color 0.18s ease,
+			color 0.18s ease;
+	}
+
+	.puce:hover {
+		border-color: var(--accent-line);
+		color: var(--ink);
+	}
+
+	.puce__n {
+		font-size: 0.72rem;
+		font-variant-numeric: tabular-nums;
+		color: var(--ink-mute);
+	}
+
+	input:checked + .puce {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+
+	input:checked + .puce .puce__n {
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	/* Le radio est masque, c'est donc la puce qui doit montrer le focus clavier. */
+	input:focus-visible + .puce {
+		outline: 2px solid var(--accent-deep);
+		outline-offset: 2px;
 	}
 
 	.chapters {
@@ -174,3 +288,6 @@ const schema = {
 		}
 	}
 </style>
+
+{/* Regles du filtre, generees d'apres les chapitres reellement presents. */}
+<style is:inline set:html={filtreCss}></style>
