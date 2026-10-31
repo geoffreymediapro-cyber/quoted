@@ -1,8 +1,15 @@
 ---
 import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { SITE_NAME, SITE_URL } from '../../data/site';
+import { CONSULTANT, SITE_NAME, SITE_URL } from '../../data/site';
+/**
+ * Recadre carre du portrait de la home, centre sur le visage. Un
+ * `object-fit` sur le buste entier donnait une pastille ou la tete est
+ * minuscule : le sujet y occupe toute la hauteur, pas le tiers superieur.
+ */
+import portrait from '../../assets/auteur.webp';
 
 export const getStaticPaths = (async () => {
 	const entries = await getCollection('guide', ({ data }) => !data.draft);
@@ -38,7 +45,14 @@ const schema = {
 	dateModified: entry.data.updated.toISOString(),
 	inLanguage: 'fr-FR',
 	mainEntityOfPage: `${SITE_URL}/guide/${entry.id}/`,
-	author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+	/* Une personne signe, l'organisation publie. L'auteur est reel : c'est
+	   la condition pour le declarer, cf. le refus de tout faux relecteur. */
+	author: {
+		'@type': 'Person',
+		name: CONSULTANT.name,
+		jobTitle: CONSULTANT.role,
+		url: `${SITE_URL}/#consultant`,
+	},
 	publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
 	isPartOf: { '@type': 'CollectionPage', name: 'Guide GEO', url: `${SITE_URL}/guide/` },
 };
@@ -63,7 +77,21 @@ const toc = headings.filter((heading) => heading.depth === 2);
 				<p class="kick">{entry.data.chapter}</p>
 				<h1>{entry.data.title}</h1>
 				<p class="lede">{entry.data.description}</p>
-				<p class="date">Mis à jour le {updated}</p>
+
+				<div class="auteur">
+					<Image
+						class="auteur__ph"
+						src={portrait}
+						alt=""
+						widths={[96, 144]}
+						sizes="48px"
+						loading="eager"
+					/>
+					<p class="auteur__t">
+						Par <a href="/#consultant">{CONSULTANT.name}</a>, {CONSULTANT.role}
+						<span class="auteur__d">Mis à jour le {updated}</span>
+					</p>
+				</div>
 			</div>
 		</header>
 
@@ -156,8 +184,44 @@ const toc = headings.filter((heading) => heading.depth === 2);
 		margin-bottom: 1.1rem;
 	}
 
-	.date {
-		margin-top: 1.35rem;
+	/* Signature : une personne reelle, pas « la redaction ». Elle remplace
+	   la ligne de date seule, qui ne portait aucun signal d'auteur. */
+	.auteur {
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		margin-top: 1.9rem;
+		padding-top: 1.4rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.auteur__ph {
+		flex: none;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		border: 1px solid var(--line);
+		background: var(--accent-wash);
+	}
+
+	.auteur__t {
+		font-size: var(--s--1);
+		line-height: 1.4;
+		color: var(--ink-soft);
+	}
+
+	.auteur__t a {
+		color: var(--ink);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.auteur__t a:hover {
+		text-decoration: underline;
+	}
+
+	.auteur__d {
+		display: block;
 		font-size: 0.8rem;
 		color: var(--ink-mute);
 	}
