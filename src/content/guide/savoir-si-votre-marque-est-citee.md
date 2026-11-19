@@ -89,4 +89,6 @@ Une vérification ponctuelle répond à « est-ce que j'y suis ». Elle ne répo
 
 Et si le constat est que vous n'apparaissez nulle part, ne concluez pas trop vite à un problème de contenu : [quatre causes très différentes](/guide/pourquoi-chatgpt-ne-cite-pas-votre-site/) produisent le même symptôme, et trois d'entre elles ne se corrigent pas en écrivant des pages.
 
+La question qui suit immédiatement, une fois la cause identifiée, est celle du calendrier. Elle n'a pas de réponse en semaines, mais elle en a une : [le délai dépend du verrou auquel vous êtes bloqué](/guide/delai-resultats-geo/), et les logs dont il est question plus haut vous disent lequel.
+
 Si vous préférez que ce soit fait pour vous, c'est précisément ce que nous renvoyons dans le relevé gratuit : vos questions rejouées sur cinq moteurs, et les réponses brutes, pas un score.

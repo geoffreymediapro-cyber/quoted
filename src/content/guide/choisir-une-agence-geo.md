@@ -2,7 +2,7 @@
 title: "Comment choisir une agence GEO, y compris contre nous"
 shortTitle: 'Choisir une agence'
 description: "Toutes les listes de critères sont écrites par des agences, et calibrées pour que leur auteur gagne. Voici des questions dont vous pouvez vérifier la réponse seul, et les cas où il ne faut prendre personne."
-chapter: 'Pratique'
+chapter: 'Décider'
 order: 15
 updated: 2026-11-10
 ---
@@ -35,11 +35,13 @@ Un bon critère n'est pas celui auquel l'agence répond bien. C'est celui dont v
 
 **« Qui fera le travail ? »** Un nom, pas une équipe anonyme. Et le droit de parler à cette personne avant de signer.
 
+Reste le prix, qui n'est pas un critère de choix tant que vous ne savez pas ce qu'il recouvre. [La méthode pour ramener deux devis au même périmètre](/guide/combien-coute-une-prestation-geo/) est le seul moyen de les comparer honnêtement, et elle vaut mieux que n'importe quelle grille publiée.
+
 ## Les promesses qui doivent faire reculer
 
 Quatre, et elles se repèrent à l'écrit.
 
-**Une position garantie.** Aucun moteur n'expose de levier de classement, et les réponses varient d'une exécution à l'autre. Quiconque garantit une place vend quelque chose qu'il ne contrôle pas.
+**Une position garantie, ou une date.** Aucun moteur n'expose de levier de classement, et les réponses varient d'une exécution à l'autre. Quiconque garantit une place vend quelque chose qu'il ne contrôle pas. Il en va de même pour les délais annoncés à l'avance : [ce qui détermine réellement le calendrier](/guide/delai-resultats-geo/) se diagnostique, il ne se promet pas.
 
 **Des avis ou des témoignages fabriqués.** C'est une pratique interdite, et elle se retourne contre la marque qui en bénéficie, pas contre le prestataire qui l'a mise en place.
 
