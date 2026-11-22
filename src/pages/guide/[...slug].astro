@@ -113,7 +113,7 @@ if (faq.length) {
 						loading="eager"
 					/>
 					<p class="auteur__t">
-						Par <a href="/#consultant">{CONSULTANT.name}</a>, {CONSULTANT.role}
+						Par <strong>{CONSULTANT.name}</strong>, {CONSULTANT.role}
 						<span class="auteur__d">Mis à jour le {updated}</span>
 					</p>
 				</div>
@@ -253,14 +253,11 @@ if (faq.length) {
 		color: var(--ink-soft);
 	}
 
-	.auteur__t a {
+	/* Le nom n'est plus un lien. Il reste identifie par la graisse, et
+	   l'auteur continue d'etre declare dans les donnees structurees. */
+	.auteur__t strong {
 		color: var(--ink);
 		font-weight: 700;
-		text-decoration: none;
-	}
-
-	.auteur__t a:hover {
-		text-decoration: underline;
 	}
 
 	.auteur__d {
