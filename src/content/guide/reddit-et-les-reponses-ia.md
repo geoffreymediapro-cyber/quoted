@@ -3,7 +3,7 @@ title: "Reddit et les réponses IA : ce que la chute d'août 2026 a montré"
 shortTitle: 'Reddit'
 description: "Reddit a été la source la plus citée par les modèles, puis sa part s'est effondrée en quelques jours. Ce que l'épisode apprend, et comment travailler les forums sans en faire un pari."
 chapter: 'Hors site'
-order: 10
+order: 11
 updated: 2026-10-28
 ---
 

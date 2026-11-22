@@ -3,7 +3,7 @@ title: 'Comment apparaître dans les AI Overviews'
 shortTitle: 'AI Overviews'
 description: "Le seul des cinq qui s'impose sans être demandé, et celui dont l'effet sur les clics se mesure. Il ne reprend que ce qui est déjà classé : le référencement classique en est le prérequis."
 chapter: 'Par moteur'
-order: 9
+order: 10
 updated: 2026-10-20
 ---
 
@@ -27,7 +27,7 @@ Plusieurs études publiées en 2025 et 2026 constatent une baisse du taux de cli
 
 Cet écart ne signifie pas que l'une a tort. Il vient de méthodologies différentes : certaines comparent avec et sans encadré sur les mêmes requêtes, d'autres observent une évolution dans le temps, d'autres encore se concentrent sur des types de requêtes particuliers. Les requêtes informationnelles sont beaucoup plus touchées que les requêtes transactionnelles ou de marque.
 
-Ce qu'il faut en retenir, plutôt qu'un chiffre : l'impact est réel, il est inégal selon le type de requête, et citer un pourcentage précis sans dire d'où il vient n'a pas de valeur. Nous préférons mesurer sur vos requêtes plutôt que vous appliquer une moyenne.
+Ce qu'il faut en retenir, plutôt qu'un chiffre : l'impact est réel, il est inégal selon le type de requête, et citer un pourcentage précis sans dire d'où il vient n'a pas de valeur. Nous préférons mesurer sur vos requêtes plutôt que vous appliquer une moyenne. Chaque étude publiée a toutefois un périmètre précis, et les classer permet de voir laquelle parle de votre cas : c'est l'objet de [l'impact des AI Overviews sur le trafic](/guide/impact-des-ai-overviews-sur-le-trafic/).
 
 ## Ce qui augmente les chances d'être repris
 

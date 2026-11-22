@@ -3,7 +3,7 @@ title: 'Les sept pratiques qui font qu’un contenu est repris'
 shortTitle: 'Se faire citer'
 description: "Ce qui augmente concrètement les chances qu'un contenu soit repris par un moteur de réponse, quel qu'il soit : structure, extractibilité, sourcing, données structurées et présence hors site."
 chapter: 'Pratique'
-order: 3
+order: 4
 updated: 2026-10-20
 ---
 

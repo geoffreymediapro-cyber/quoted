@@ -3,7 +3,7 @@ title: 'Comment être cité par Perplexity'
 shortTitle: 'Perplexity'
 description: "Perplexity numérote ses sources et les affiche en évidence. C'est le moteur où une citation rapporte réellement du trafic, et celui où la fraîcheur du contenu pèse le plus."
 chapter: 'Par moteur'
-order: 6
+order: 7
 updated: 2026-10-20
 ---
 

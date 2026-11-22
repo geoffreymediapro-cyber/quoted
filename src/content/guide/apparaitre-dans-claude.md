@@ -3,7 +3,7 @@ title: 'Comment être cité par Claude'
 shortTitle: 'Claude'
 description: "Moins d'audience que les autres, mais une audience professionnelle qui décide. Ce qui vaut à Claude d'être traité à part dans une stratégie B2B."
 chapter: 'Par moteur'
-order: 8
+order: 9
 updated: 2026-10-20
 ---
 

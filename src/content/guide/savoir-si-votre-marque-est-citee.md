@@ -3,7 +3,7 @@ title: "Comment savoir si votre marque est citée par les IA"
 shortTitle: 'Savoir si vous êtes cité'
 description: "Quatre méthodes pour le vérifier vous-même, ce que chacune prouve réellement, et le piège qui donne un faux positif à presque tout le monde dès la première tentative."
 chapter: 'Pratique'
-order: 15
+order: 16
 updated: 2026-11-10
 ---
 

@@ -3,7 +3,7 @@ title: "Ce que contient un audit GEO, section par section"
 shortTitle: "Contenu d'un audit"
 description: "À quoi ressemble réellement le document que vous achetez, ce que chaque section permet de décider, et surtout ce qu'un audit ne peut pas vous dire. Pour savoir ce que vous payez avant de payer."
 chapter: 'Décider'
-order: 18
+order: 19
 updated: 2026-11-19
 ---
 

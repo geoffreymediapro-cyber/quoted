@@ -17,7 +17,7 @@ En recherche classique, l'utilisateur voit une liste et arbitre lui-même. Dix p
 
 Dans une réponse générée, il n'y a plus de liste : il y a un texte, et trois ou quatre sources rattachées. Deux conséquences suivent.
 
-La première est arithmétique. **Le nombre de places s'effondre.** Passer de dix résultats à quatre sources citées change la nature de la compétition : il n'existe pas d'équivalent de la « deuxième page » où subsister discrètement.
+La première est arithmétique. **Le nombre de places s'effondre.** Passer de dix résultats à quatre sources citées change la nature de la compétition : il n'existe pas d'équivalent de la « deuxième page » où subsister discrètement. Cette compression a un coût déjà mesuré, étude par étude, et nous l'avons détaillé dans [l'impact des AI Overviews sur le trafic](/guide/impact-des-ai-overviews-sur-le-trafic/).
 
 La seconde est plus subtile. **Le moteur ne récompense pas la même chose.** Il ne cherche pas la page la plus pertinente à afficher, il cherche des fragments de texte qu'il peut reprendre, recouper et attribuer sans se tromper. Un contenu peut être bien positionné en SEO et rester ignoré par un moteur de réponse, simplement parce que l'information y est diluée, implicite ou impossible à extraire proprement.
 

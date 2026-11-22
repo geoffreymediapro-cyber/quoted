@@ -79,7 +79,7 @@ C'est celui que personne ne reprend, et c'est le plus actionnable des trois.
 
 Les auteurs ont ventilé les gains **selon la position du site dans les résultats de recherche de départ**. Le constat est net : ce sont les sites les moins bien classés qui gagnent le plus. Pour le site en cinquième position, l'ajout de sources fait progresser la visibilité de **115 %**. Pour le site déjà premier, la même opération la fait **reculer de 30 % en moyenne**.
 
-Lisez bien la seconde moitié. Dans ce dispositif, celui qui domine déjà la recherche classique ne gagne rien à travailler sa page, puisqu'il occupe déjà la citation, et il perd quand les autres s'y mettent. **Le GEO est un levier d'outsider.**
+Lisez bien la seconde moitié. Dans ce dispositif, celui qui domine déjà la recherche classique ne gagne rien à travailler sa page, puisqu'il occupe déjà la citation, et il perd quand les autres s'y mettent. **Le GEO est un levier d'outsider.** Un autre jeu de mesures va dans le même sens sur un terrain différent : à l'arrivée des encadrés de réponse de Google, c'est également la première position qui perd le plus de clics, comme le montre [l'impact des AI Overviews sur le trafic](/guide/impact-des-ai-overviews-sur-le-trafic/).
 
 Si vous êtes challenger sur vos requêtes, c'est l'argument le plus solide pour vous y mettre, et il est plus parlant que n'importe quel discours sur l'avenir de la recherche. Si vous êtes la référence installée de votre marché, votre sujet n'est pas d'augmenter votre reprise mais de surveiller qu'elle ne se déplace pas, ce qui est un travail de [mesure](/guide/mesurer-sa-visibilite-ia/) avant d'être un travail de production.
 

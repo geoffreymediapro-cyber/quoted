@@ -3,7 +3,7 @@ title: "Wikipédia ou Wikidata : lequel est à la portée de votre entreprise"
 shortTitle: 'Wikipédia et Wikidata'
 description: "La plupart des entreprises ne sont pas admissibles sur Wikipédia, et le sont sur Wikidata. Comment faire le test vous-même, et ce que les référentiels d'entités changent vraiment dans les réponses IA."
 chapter: 'Hors site'
-order: 11
+order: 12
 updated: 2026-10-28
 ---
 

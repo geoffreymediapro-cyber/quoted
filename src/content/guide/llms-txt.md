@@ -3,7 +3,7 @@ title: "llms.txt : à quoi il sert vraiment, et qui devrait en poser un"
 shortTitle: 'llms.txt'
 description: "Le débat porte sur la mauvaise question. llms.txt n'est pas un fichier de référencement, c'est un fichier de documentation pour agents. Ce que ça change pour votre décision."
 chapter: 'Pratique'
-order: 12
+order: 13
 updated: 2026-10-31
 ---
 
