@@ -3,7 +3,7 @@ title: 'Mesurer sa visibilité dans les réponses IA'
 shortTitle: 'Mesurer'
 description: "Comment suivre sérieusement sa présence dans ChatGPT, Perplexity ou Gemini : panel de prompts stable, gestion de la variance, indicateurs qui tiennent la route et pièges de mesure."
 chapter: 'Pratique'
-order: 3
+order: 4
 updated: 2026-09-12
 ---
 

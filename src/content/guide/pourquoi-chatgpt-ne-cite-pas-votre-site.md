@@ -3,7 +3,7 @@ title: "Pourquoi ChatGPT ne cite pas votre site : quatre cas à ne pas confondre
 shortTitle: 'ChatGPT ne vous cite pas'
 description: "La phrase recouvre quatre problèmes différents, et trois ne relèvent pas du GEO. Le diagnostic consiste à savoir lequel vous avez avant d'acheter quoi que ce soit."
 chapter: 'Pratique'
-order: 12
+order: 13
 updated: 2026-11-01
 ---
 

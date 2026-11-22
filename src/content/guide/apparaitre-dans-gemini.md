@@ -3,7 +3,7 @@ title: 'Comment apparaître dans Gemini'
 shortTitle: 'Gemini'
 description: "Gemini s'adosse à l'index de Google. Si vous n'y êtes pas, rien d'autre ne compte. Et Google-Extended ne fait pas ce que la plupart des sites croient."
 chapter: 'Par moteur'
-order: 6
+order: 7
 updated: 2026-10-20
 ---
 

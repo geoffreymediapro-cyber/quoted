@@ -3,7 +3,7 @@ title: "Au bout de combien de temps le GEO donne-t-il des résultats ?"
 shortTitle: 'Délai des résultats'
 description: "Le délai ne se compte pas en semaines, il se compte en verrous franchis. Il y en a quatre entre votre page et une citation, chacun a son horloge, et vos logs vous disent lequel vous bloque."
 chapter: 'Décider'
-order: 16
+order: 17
 updated: 2026-11-19
 ---
 

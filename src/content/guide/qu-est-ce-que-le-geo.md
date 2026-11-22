@@ -9,7 +9,7 @@ updated: 2026-09-12
 
 Le **GEO**, pour *Generative Engine Optimization*, désigne le travail consistant à rendre une marque, un site ou une expertise repérable et citable par les moteurs qui **rédigent** une réponse plutôt que de lister des liens : ChatGPT, Perplexity, Gemini, Claude, et les blocs de réponse générée intégrés aux moteurs de recherche classiques.
 
-On croise aussi l'acronyme **AEO** (*Answer Engine Optimization*). Les deux recouvrent la même préoccupation : ne pas disparaître au moment où la réponse se substitue à la liste de résultats.
+On croise aussi les acronymes **AEO** (*Answer Engine Optimization*), **LLMO** et **AIO**. Tous recouvrent la même préoccupation : ne pas disparaître au moment où la réponse se substitue à la liste de résultats. Un seul d'entre eux renvoie toutefois à un protocole publié, et [ce que ce protocole a mesuré](/guide/aeo-geo-llmo-sigles/) mérite d'être connu avant d'arbitrer un budget.
 
 ## Ce qui change concrètement
 

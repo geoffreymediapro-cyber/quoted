@@ -3,7 +3,7 @@ title: 'Comment apparaître dans ChatGPT'
 shortTitle: 'ChatGPT'
 description: "OpenAI n'a pas un robot mais trois, et ils ne servent pas à la même chose. Bloquer le mauvais vous retire des réponses sans rien protéger. Ce qui décide de votre présence dans ChatGPT."
 chapter: 'Par moteur'
-order: 4
+order: 5
 updated: 2026-10-20
 ---
 

@@ -3,7 +3,7 @@ title: "Comment choisir une agence GEO, y compris contre nous"
 shortTitle: 'Choisir une agence'
 description: "Toutes les listes de critères sont écrites par des agences, et calibrées pour que leur auteur gagne. Voici des questions dont vous pouvez vérifier la réponse seul, et les cas où il ne faut prendre personne."
 chapter: 'Décider'
-order: 15
+order: 16
 updated: 2026-11-10
 ---
 

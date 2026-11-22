@@ -3,7 +3,7 @@ title: 'Comment apparaître dans les AI Overviews'
 shortTitle: 'AI Overviews'
 description: "Le seul des cinq qui s'impose sans être demandé, et celui dont l'effet sur les clics se mesure. Il ne reprend que ce qui est déjà classé : le référencement classique en est le prérequis."
 chapter: 'Par moteur'
-order: 8
+order: 9
 updated: 2026-10-20
 ---
 

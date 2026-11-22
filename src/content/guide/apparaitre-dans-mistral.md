@@ -3,7 +3,7 @@ title: "Mistral Vibe (ex-Le Chat) : comment être cité par l'IA française"
 shortTitle: 'Mistral (ex-Le Chat)'
 description: "L'assistant de Mistral n'interroge pas l'index de Google mais celui de Brave, dont le robot n'annonce aucun user-agent. Deux faits que les pages françaises sur le sujet ne mentionnent pas, et qui changent tout."
 chapter: 'Par moteur'
-order: 13
+order: 14
 updated: 2026-11-02
 ---
 

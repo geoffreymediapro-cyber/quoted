@@ -3,7 +3,7 @@ title: "Combien coûte une prestation GEO, et pourquoi aucune grille ne répond"
 shortTitle: 'Le prix du GEO'
 description: "Les grilles publiées donnent un montant sans dire sur quel périmètre, ce qui ne vous avance à rien. Voici les cinq variables qui font le devis, la méthode pour comparer deux propositions, et ce qui ne devrait pas vous être facturé."
 chapter: 'Décider'
-order: 18
+order: 19
 updated: 2026-11-19
 ---
 

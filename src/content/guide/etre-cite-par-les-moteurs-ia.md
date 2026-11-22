@@ -3,11 +3,11 @@ title: 'Les sept pratiques qui font qu’un contenu est repris'
 shortTitle: 'Se faire citer'
 description: "Ce qui augmente concrètement les chances qu'un contenu soit repris par un moteur de réponse, quel qu'il soit : structure, extractibilité, sourcing, données structurées et présence hors site."
 chapter: 'Pratique'
-order: 2
+order: 3
 updated: 2026-10-20
 ---
 
-Aucune méthode ne garantit une citation. En revanche, on observe des différences nettes entre les contenus régulièrement repris et ceux qui ne le sont jamais. Voici ce sur quoi il est raisonnable d'agir.
+Aucune méthode ne garantit une citation. En revanche, on observe des différences nettes entre les contenus régulièrement repris et ceux qui ne le sont jamais. Voici ce sur quoi il est raisonnable d'agir. Trois d'entre elles ont même été classées par la mesure, dans [le papier qui a introduit le terme GEO](/guide/aeo-geo-llmo-sigles/).
 
 ## 1. Répondre dans les deux premières phrases
 
