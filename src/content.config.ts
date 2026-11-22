@@ -13,6 +13,15 @@ const guide = defineCollection({
     chapter: z.string(),
     order: z.number(),
     updated: z.coerce.date(),
+    /**
+     * Questions frequentes, rendues par le gabarit et declarees en JSON-LD
+     * `FAQPage`. Optionnel : une FAQ ne se justifie que si les pages qui
+     * occupent la requete en ont une, jamais comme remplissage.
+     *
+     * ⚠️ Les reponses sont reprises telles quelles dans les donnees
+     * structurees : elles doivent se tenir seules, sans lien ni markdown.
+     */
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
     draft: z.boolean().default(false),
   }),
 });

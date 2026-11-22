@@ -31,6 +31,8 @@ C'est la méthode la plus fiable, et la moins utilisée. Les robots passent chez
 
 Encore faut-il savoir lequel regarder, parce qu'ils ne servent pas à la même chose. C'est le point que presque tous les articles sur le sujet passent sous silence.
 
+<div class="table-scroll" tabindex="0" role="region" aria-label="Les robots des editeurs d IA">
+
 | Robot | À quoi il sert | Ce que sa présence prouve |
 |---|---|---|
 | `GPTBot` | Entraînement des modèles OpenAI | Rien sur votre citabilité |
@@ -41,6 +43,8 @@ Encore faut-il savoir lequel regarder, parce qu'ils ne servent pas à la même c
 | `ClaudeBot` | Entraînement des modèles Anthropic | Rien sur votre citabilité |
 | `Claude-SearchBot` | Index de recherche de Claude | Vous êtes candidat chez Claude |
 | `Claude-User` | Lecture en direct suite à une question | Une réponse est allée vous chercher |
+
+</div>
 
 Retenez la distinction, elle change l'interprétation du tout au tout. Voir `GPTBot` ou `ClaudeBot` signifie seulement que votre contenu a pu servir à l'entraînement. Voir `OAI-SearchBot` signifie que vous êtes dans l'index qui alimente les réponses. Et voir `ChatGPT-User` ou `Perplexity-User` est le signal le plus direct qui existe : une personne a posé une question, et le moteur est venu lire votre page pour y répondre.
 

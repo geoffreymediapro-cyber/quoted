@@ -5,6 +5,19 @@ description: "Quatre sigles pour une même préoccupation, et un seul dont la d�
 chapter: 'Fondamentaux'
 order: 2
 updated: 2026-11-22
+faq:
+  - q: "Quelle est la différence entre le GEO et l'AEO ?"
+    a: "Sur le fond, aucune : les deux désignent le fait de rendre un contenu citable par un moteur qui rédige sa réponse. La seule différence vérifiable est documentaire. Le GEO renvoie à un article de recherche publié à la conférence KDD 2024, qui a introduit le terme, un banc d'essai et des résultats mesurés. L'AEO ne renvoie à aucun texte fondateur, et son périmètre change d'un auteur à l'autre."
+  - q: "Qui a inventé le terme GEO ?"
+    a: "Six chercheurs : Pranjal Aggarwal, Vishvak Murahari, Tanmay Rajpurohit, Ashwin Kalyan, Karthik Narasimhan et Ameet Deshpande. Leur article, intitulé GEO: Generative Engine Optimization, a été déposé en novembre 2023 et publié à la conférence ACM SIGKDD de 2024, à Barcelone. Il propose le terme, un jeu de tests appelé GEO-bench, et la mesure de neuf façons de réécrire une page."
+  - q: "Faut-il choisir entre le SEO et le GEO ?"
+    a: "Non, et la question est mal posée. Les moteurs de réponse s'appuient sur des index de recherche : une page introuvable ou mal indexée ne sera pas citée davantage qu'elle n'était classée. Les fondamentaux techniques du référencement restent un prérequis, ils ont simplement cessé d'être suffisants."
+  - q: "Le bourrage de mots-clés fonctionne-t-il sur les moteurs d'IA ?"
+    a: "Non. Dans l'étude fondatrice, sur neuf méthodes de réécriture testées, le bourrage de mots-clés est la seule qui fasse baisser la visibilité de la page. Les auteurs le mesurent à 10 pour cent en dessous de la page laissée telle quelle lorsque le moteur utilisé est Perplexity. Ce qui fonctionne, ce sont les citations attribuées, les chiffres et les sources."
+  - q: "Le GEO sert-il à quelque chose si mon site est déjà premier sur Google ?"
+    a: "Beaucoup moins, et c'est mesuré. Les auteurs de l'étude fondatrice ont ventilé les gains selon la position de départ dans les résultats de recherche. Le site en cinquième position gagne jusqu'à 115 pour cent de visibilité, tandis que celle du site déjà premier recule de 30 pour cent en moyenne. Pour un leader installé, l'enjeu n'est donc pas d'augmenter sa reprise mais de surveiller qu'elle ne se déplace pas vers un concurrent."
+  - q: "Que vaut le sigle LLMO ?"
+    a: "C'est du vocabulaire. Le LLMO, pour Large Language Model Optimization, décrit le même travail que le GEO en se plaçant du point de vue du modèle plutôt que du moteur. Il ne renvoie à aucun protocole, aucun jeu de tests et aucune mesure publiée. Son apparition n'oblige personne à changer de méthode."
 ---
 
 Depuis deux ans, le même besoin se vend sous quatre noms : **AEO** (*Answer Engine Optimization*), **GEO** (*Generative Engine Optimization*), **LLMO** (*Large Language Model Optimization*) et **AIO** (*AI Optimization*, parfois *AI SEO*). On croise aussi AISO, LLM SEO et quelques variantes propres à leur auteur.
@@ -12,6 +25,23 @@ Depuis deux ans, le même besoin se vend sous quatre noms : **AEO** (*Answer Eng
 La tentation est de chercher la frontière entre ces disciplines. Il n'y en a pas : elles recouvrent toutes la même préoccupation, [celle que décrit le GEO](/guide/qu-est-ce-que-le-geo/), être présent au moment où un moteur rédige la réponse au lieu d'afficher une liste de liens.
 
 Il existe en revanche une différence réelle entre ces sigles, et ce n'est pas celle qu'on vous présentera. **Un seul des quatre renvoie à un protocole publié, avec un jeu de tests, des mesures et des résultats que vous pouvez aller lire.** Les trois autres sont du vocabulaire. Et ce protocole n'est cité dans presque aucune des pages françaises qui comparent les sigles, alors qu'il contient le résultat le plus utile du lot.
+
+## Ce que chaque sigle désigne
+
+Avant d'entrer dans le détail, voici les quatre termes mis à plat. La dernière colonne est celle qui compte, et c'est aussi la seule qu'on ne trouve nulle part ailleurs.
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Comparatif des quatre sigles">
+
+| Sigle | Ce qu'il désigne en pratique | Texte fondateur |
+|---|---|---|
+| **GEO** | Être cité dans une réponse rédigée par un moteur : ChatGPT, Perplexity, Gemini, Claude | **Oui** : article publié à KDD 2024, avec banc d'essai et résultats mesurés |
+| **AEO** | Le même objet, avec un héritage des extraits de réponse de Google et des assistants vocaux | Aucun |
+| **LLMO** | Le même objet, formulé du point de vue du modèle plutôt que du moteur | Aucun |
+| **AIO** | Terme parapluie, dont le périmètre change selon l'auteur | Aucun |
+
+</div>
+
+Trois lignes sur quatre portent la même mention. C'est tout le sujet de cet article.
 
 ## Le test des cinq définitions
 
@@ -73,7 +103,9 @@ Présenter l'AEO et le GEO comme deux disciplines distinctes permet de vendre de
 
 ## Les deux questions qui remplacent le sigle
 
-Il n'y a pas à choisir entre quatre disciplines. Il y a deux questions à poser, et aucune ne contient d'acronyme.
+On lit souvent qu'il faut « combiner le SEO, l'AEO et le GEO » dans une stratégie unifiée. La formule est rassurante et ne dit rien : on ne combine pas trois noms du même travail. Ce qui s'articule réellement, c'est d'un côté le référencement classique, qui conditionne l'accès à l'index, de l'autre le travail d'extractibilité et de preuve, qui conditionne la reprise.
+
+Il n'y a donc pas à choisir entre quatre disciplines. Il y a deux questions à poser, et aucune ne contient d'acronyme.
 
 **Quel moteur ?** Parce qu'ils ne consultent pas les mêmes index et ne citent pas les mêmes sources. L'assistant de Mistral, par exemple, [interroge l'index de Brave](/guide/apparaitre-dans-mistral/) et pas celui de Google : une page absente de l'un peut être parfaitement visible dans l'autre.
 

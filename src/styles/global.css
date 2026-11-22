@@ -497,6 +497,69 @@ strong {
 	padding: 0.1em 0.35em;
 }
 
+/* Tableaux du guide. Le conteneur defile horizontalement plutot que de
+   deborder : sur 390px de large, un comparatif a trois colonnes ne tient
+   pas, et un tableau tronque ne se lit pas. */
+.prose .table-scroll {
+	overflow-x: auto;
+	margin: 1.75rem 0;
+	border: 1px solid var(--line);
+	border-radius: var(--round-sm);
+	-webkit-overflow-scrolling: touch;
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--s--1);
+	line-height: 1.5;
+}
+
+.prose .table-scroll table {
+	margin: 0;
+	border: 0;
+}
+
+.prose th,
+.prose td {
+	padding: 0.7rem 0.9rem;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid var(--line);
+}
+
+.prose thead th {
+	font-family: var(--display);
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	color: var(--ink);
+	background: var(--surface);
+	white-space: nowrap;
+}
+
+.prose tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.prose tbody th {
+	font-weight: 700;
+	color: var(--ink);
+}
+
+/* Sur petit ecran, l'en-tete non secable est ce qui impose la largeur du
+   tableau. Le laisser passer a la ligne evite le defilement dans la
+   plupart des cas. */
+@media (max-width: 560px) {
+	.prose thead th {
+		white-space: normal;
+	}
+
+	.prose th,
+	.prose td {
+		padding: 0.6rem 0.7rem;
+	}
+}
+
 .prose hr {
 	border: 0;
 	border-top: 1px solid var(--line);
