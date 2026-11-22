@@ -45,6 +45,23 @@ const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [sc
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		{/* Google Tag Manager. `is:inline` est obligatoire : sans lui Astro
+		    bundlerait le script et le sortirait du <head>, or GTM doit etre
+		    charge le plus haut possible. L'identifiant est ecrit en dur, les
+		    expressions Astro n'etant pas interpretees dans un script inline. */}
+		<script is:inline>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, 'script', 'dataLayer', 'GTM-557QQLMV');
+		</script>
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<link
@@ -94,6 +111,15 @@ const schemas = [organisation, ...(Array.isArray(schema) ? schema : schema ? [sc
 	</head>
 
 	<body>
+		{/* Repli GTM sans JavaScript. Masque, donc hors du parcours au clavier. */}
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-557QQLMV"
+				height="0"
+				width="0"
+				style="display:none;visibility:hidden"
+				title="Google Tag Manager"></iframe></noscript
+		>
 		<a class="skip" href="#main">Aller au contenu principal</a>
 		<Header />
 		<main id="main">
