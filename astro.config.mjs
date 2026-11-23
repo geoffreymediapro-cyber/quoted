@@ -6,7 +6,12 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://quoted.fr",
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Une page de redirection n'a rien a faire dans le sitemap.
+      filter: (page) => !page.includes("/expertises"),
+    }),
+  ],
 
   build: {
     inlineStylesheets: "auto",

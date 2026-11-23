@@ -1,0 +1,72 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { SITE_URL } from '../../data/site';
+
+/**
+ * Anciennes URL de la famille /expertises/, publiees puis retirees entre le
+ * 22 octobre et le 23 novembre 2026. Au moins deux sont encore dans l'index
+ * Google, et elles renvoyaient un 404 sec.
+ *
+ * GitHub Pages ne sert pas de 301 : pas de .htaccess, et le fichier
+ * `_redirects` est propre a Netlify et Cloudflare Pages, GitHub l'ignore
+ * purement et simplement. On emet donc le seul equivalent que Google
+ * documente comme redirection permanente : un meta refresh a zero seconde
+ * double d'un canonical absolu.
+ *
+ * L'option `redirects` d'Astro ferait le travail en quatre lignes de config,
+ * mais elle ajoute un `noindex` : Google retire alors l'ancienne URL sans
+ * reporter son signal sur la cible. Ici on veut justement ce report, donc la
+ * page est ecrite a la main.
+ *
+ * La table est declaree dans `getStaticPaths` et non au-dessus : Astro
+ * hoiste cette fonction, qui ne voit pas les constantes du frontmatter.
+ *
+ * Ces pages sont exclues du sitemap par le filtre d'astro.config.mjs.
+ */
+export const getStaticPaths = (() => {
+	const redirections: {
+		depuis: string | undefined;
+		vers: string;
+		libelle: string;
+	}[] = [
+		{ depuis: undefined, vers: '/#expertises', libelle: 'nos expertises' },
+		{
+			depuis: 'contenu-geo',
+			vers: '/guide/etre-cite-par-les-moteurs-ia/',
+			libelle: 'les pratiques qui font qu’un contenu est repris',
+		},
+		{
+			depuis: 'reddit-geo',
+			vers: '/guide/reddit-et-les-reponses-ia/',
+			libelle: 'Reddit et les réponses IA',
+		},
+		{
+			depuis: 'wikipedia-wikidata',
+			vers: '/guide/wikipedia-ou-wikidata/',
+			libelle: 'Wikipédia ou Wikidata',
+		},
+	];
+
+	return redirections.map(({ depuis, vers, libelle }) => ({
+		params: { ancienne: depuis },
+		props: { vers, libelle },
+	}));
+}) satisfies GetStaticPaths;
+
+const { vers, libelle } = Astro.props;
+const cible = `${SITE_URL}${vers}`;
+---
+
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Page déplacée | Quoted</title>
+		<link rel="canonical" href={cible} />
+		<meta http-equiv="refresh" content={`0; url=${cible}`} />
+	</head>
+	<body>
+		<p>Cette page a été remplacée. <a href={vers}>Continuer vers {libelle}</a>.</p>
+	</body>
+</html>
