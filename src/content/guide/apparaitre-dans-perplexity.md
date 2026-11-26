@@ -5,6 +5,30 @@ description: "Perplexity numérote ses sources et les affiche en évidence. C'es
 chapter: 'Par moteur'
 order: 7
 updated: 2026-10-20
+reponse: >-
+  Perplexity numérote ses sources et les affiche à côté de l'affirmation
+  qu'elles appuient : une citation y est un lien cliquable, donc un effet
+  traçable dans vos statistiques, ce qui en fait le meilleur terrain de
+  mesure. Ce qu'il reprend, ce sont des passages factuels autonomes, chiffres,
+  définitions, procédures et comparatifs, pas des argumentaires. Et la
+  fraîcheur y pèse plus que partout ailleurs : une date visible et sincère, et
+  une page reprise plutôt qu'une page de plus.
+limites:
+  - >-
+    L'audience de Perplexity est nettement plus faible que celle de ChatGPT ou
+    des AI Overviews. C'est le moteur le plus gratifiant à travailler parce
+    qu'on y voit l'effet, et c'est exactement ce qui en fait un piège : y
+    concentrer l'effort revient à optimiser pour le plus petit des terrains.
+  - >-
+    Une partie de ce qui remonte ne vous appartient pas. Les forums, les
+    communautés et la presse spécialisée pèsent plus que ce que vous publiez
+    vous-même, et la seule façon d'agir dessus est lente, indirecte, et ne
+    consiste jamais à les manipuler.
+  - >-
+    Autoriser PerplexityBot n'est pas le bon choix pour tout le monde. Un
+    éditeur qui vit des pages vues peut avoir intérêt à refuser, là où une
+    entreprise de services a intérêt à autoriser : la décision dépend de votre
+    modèle économique, pas d'une règle générale.
 ---
 
 Perplexity est le moteur de réponse où une citation vaut le plus cher, et c'est aussi celui où elle se mesure le plus facilement. La raison tient à un choix d'interface : les sources sont numérotées, affichées en évidence, et cliquables.

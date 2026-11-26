@@ -14,6 +14,26 @@ const guide = defineCollection({
     order: z.number(),
     updated: z.coerce.date(),
     /**
+     * Reponse directe a la question du titre, en deux a quatre phrases.
+     * Rendue juste sous le chapeau, avant le sommaire, et declaree en
+     * `abstract` dans les donnees structurees : c'est le passage qu'un
+     * moteur de reponse reprend quand il n'en reprend qu'un seul.
+     *
+     * ⚠️ Reprise telle quelle en JSON-LD : elle doit se tenir seule,
+     * sans lien, sans markdown et sans renvoi au reste de la page.
+     */
+    reponse: z.string().optional(),
+    /**
+     * Ce que la page ne promet pas : cas ou la methode ne s'applique pas,
+     * incertitudes assumees, mesures qu'on ne sait pas faire. Rendu juste
+     * avant la FAQ.
+     *
+     * C'est le bloc qu'un moteur reprend pour nuancer une reponse, et le
+     * seul endroit du guide ou l'on ecrit ce qu'on ignore. Optionnel : une
+     * page qui n'a pas de limite reelle n'en invente pas.
+     */
+    limites: z.array(z.string()).optional(),
+    /**
      * Questions frequentes, rendues par le gabarit et declarees en JSON-LD
      * `FAQPage`. Optionnel : une FAQ ne se justifie que si les pages qui
      * occupent la requete en ont une, jamais comme remplissage.

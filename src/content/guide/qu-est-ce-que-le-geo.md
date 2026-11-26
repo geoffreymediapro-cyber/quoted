@@ -5,6 +5,29 @@ description: "Le GEO consiste à travailler la visibilité d'une marque dans les
 chapter: 'Fondamentaux'
 order: 1
 updated: 2026-09-12
+reponse: >-
+  Le GEO consiste à rendre une marque citable par les moteurs qui rédigent une
+  réponse au lieu de lister des liens. Cinq facteurs décident d'une citation :
+  une réponse extractible formulée tôt, une structure explicite, des
+  affirmations vérifiables, la convergence entre ce que dit votre site et ce
+  qu'en disent les autres, et des signaux d'auteur identifiables. Ce n'est ni un
+  remplacement du SEO, dont les moteurs de réponse réutilisent l'index, ni une
+  position qu'on achète.
+limites:
+  - >-
+    Aucun éditeur de modèle ne publie les critères qui décident d'une citation.
+    Les cinq facteurs décrits ici sont déduits de ce qu'on observe sur un grand
+    nombre de réponses, pas d'une documentation officielle, et ils se déplacent
+    à chaque version de modèle.
+  - >-
+    Rien de ce qui est décrit ici ne produit une place garantie. Deux
+    exécutions de la même question à une minute d'intervalle ne citent pas
+    toujours les mêmes sources : c'est une propriété des modèles, pas un défaut
+    de méthode.
+  - >-
+    Tout ceci suppose que vos pages sont déjà accessibles et indexées. Si elles
+    ne le sont pas, ce qu'il vous faut s'appelle du référencement, et aucune
+    optimisation pour les moteurs de réponse ne comblera ce manque.
 ---
 
 Le **GEO**, pour *Generative Engine Optimization*, désigne le travail consistant à rendre une marque, un site ou une expertise repérable et citable par les moteurs qui **rédigent** une réponse plutôt que de lister des liens : ChatGPT, Perplexity, Gemini, Claude, et les blocs de réponse générée intégrés aux moteurs de recherche classiques.

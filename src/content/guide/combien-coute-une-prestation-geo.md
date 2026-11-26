@@ -5,6 +5,37 @@ description: "Les grilles publiées donnent un montant sans dire sur quel périm
 chapter: 'Décider'
 order: 20
 updated: 2026-11-19
+reponse: >-
+  Cette page ne donne pas de montant, parce qu'un prix affiché sans périmètre
+  n'informe de rien. Cinq variables font le devis : le nombre de questions
+  suivies, le nombre de moteurs, le nombre d'exécutions par question, la
+  production de contenu, et le travail hors du site. Pour comparer deux
+  propositions, isolez la production de contenu et comparez-la au nombre et à
+  la longueur, ramenez le suivi à une unité commune en multipliant les
+  questions par les moteurs, les exécutions et la fréquence, puis demandez qui
+  exécute. Ne payez comme levier ni un fichier déclaratif, ni une garantie de
+  position, ni une identité d'emprunt, ni un retard de référencement rebaptisé
+  GEO.
+limites:
+  - >-
+    Aucun prestataire sérieux ne peut chiffrer avant d'avoir regardé, et cette
+    page ne vous donnera donc même pas d'ordre de grandeur. Si vous cherchez
+    un montant pour arbitrer un budget avant toute discussion, elle ne répond
+    pas à votre question.
+  - >-
+    La troisième variable, le nombre d'exécutions par question, n'est presque
+    jamais annoncée. Un relevé interrogé une fois coûte cinq fois moins cher
+    qu'un relevé interrogé cinq fois : deux devis peuvent être identiques sur
+    le papier sans mesurer la même chose.
+  - >-
+    Le travail hors du site est le plus lent, le plus cher, et celui dont les
+    résultats sont les moins garantis. C'est aussi celui qu'on ne peut pas
+    chiffrer au résultat, seulement au temps engagé.
+  - >-
+    Un abonnement peut vous laisser sans rien à l'arrêt. Demandez si vous
+    conservez le panel de questions et l'historique des relevés : s'ils
+    restent chez le prestataire, vous ne louez pas un service, vous louez
+    votre propre mesure.
 ---
 
 Vous cherchez un prix, vous trouvez des grilles. Des fourchettes par taille d'entreprise, des prix médians, parfois des tableaux par région.

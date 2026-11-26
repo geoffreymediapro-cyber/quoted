@@ -5,6 +5,33 @@ description: "Comment suivre sérieusement sa présence dans ChatGPT, Perplexity
 chapter: 'Pratique'
 order: 5
 updated: 2026-09-12
+reponse: >-
+  Il n'y a pas de position dans une réponse générée : deux exécutions du même
+  prompt à quelques minutes d'écart peuvent citer des sources différentes. La
+  mesure repose donc sur un panel de questions fixe, rejoué plusieurs fois
+  dans des conditions comparables, et l'indicateur est une fréquence, pas un
+  rang. Quatre suffisent à piloter : le taux de présence, le taux de citation
+  du domaine dans les sources, la part de voix face aux concurrents, et la
+  composition des types de sources que le moteur reprend sur votre marché.
+limites:
+  - >-
+    Il n'existe pas de corrélation propre entre cette mesure et votre trafic.
+    Une part des réponses générées ne produit aucun clic, par construction :
+    la visibilité dans les réponses se juge en partie hors analytics.
+  - >-
+    Une mise à jour de modèle peut déplacer tous les résultats d'un coup,
+    indépendamment de votre travail. C'est la raison pour laquelle le relevé
+    suit aussi des concurrents : si tout le monde baisse en même temps, la
+    cause n'est pas chez vous.
+  - >-
+    Un panel figé est la condition de la comparabilité, et c'est aussi sa
+    faiblesse. Les questions que vous jugez importantes ne sont pas toujours
+    celles que vos clients posent, et corriger le panel en cours de route
+    casse l'historique.
+  - >-
+    Chez nous ce suivi est produit par cycle et inclus dans les jours
+    d'accompagnement : il n'y a pas de tableau de bord en temps réel. C'est un
+    choix de méthode, pas une étape à venir.
 ---
 
 Mesurer la visibilité dans un moteur de réponse pose un problème que le SEO ne posait pas : **il n'y a pas de position**. Deux exécutions du même prompt, à quelques minutes d'écart, peuvent produire deux réponses différentes et citer des sources différentes. Toute méthode de suivi doit partir de là.

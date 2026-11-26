@@ -5,6 +5,29 @@ description: "Gemini s'adosse à l'index de Google. Si vous n'y êtes pas, rien 
 chapter: 'Par moteur'
 order: 8
 updated: 2026-10-20
+reponse: >-
+  Gemini ne fait pas tourner son propre robot : il s'adosse à l'index de
+  Google. Une page qui n'y est pas indexée n'existe pas pour lui, et aucune
+  optimisation pour l'IA ne rattrape cela. Google-Extended, que beaucoup
+  prennent pour un réglage d'indexation, n'en est pas un : il porte sur
+  l'usage de votre contenu pour améliorer les modèles de Google, pas sur votre
+  présence dans la recherche, et ne rien écrire vaut autorisation.
+limites:
+  - >-
+    Gemini privilégie les sources établies plus nettement que Perplexity, qui
+    cite volontiers un petit site très précis sur une question de niche. Pour
+    une marque jeune, l'effort utile se déplace vers les mentions externes, et
+    il est lent.
+  - >-
+    Sur les sujets de santé, de droit, de finance et d'administration, les
+    réponses s'adossent massivement aux sites publics et aux organismes de
+    référence. L'objectif réaliste y est d'être cité à côté d'eux, pas à leur
+    place.
+  - >-
+    Si votre site ne sort pas dans la recherche classique, rien de ce qui est
+    décrit ici n'est votre priorité. Le problème est en amont, et le traiter
+    produira plus d'effet, y compris sur Gemini, que n'importe quel travail de
+    visibilité IA.
 ---
 
 Gemini est le moteur de réponse le plus mal compris des cinq, et c'est en partie la faute de la question elle-même. Tapez « comment apparaître dans Gemini » et vous tombez surtout sur des tutoriels expliquant comment utiliser l'application. Le sujet de la visibilité des marques y est très peu traité.

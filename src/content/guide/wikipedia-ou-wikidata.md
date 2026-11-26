@@ -5,6 +5,38 @@ description: "La plupart des entreprises ne sont pas admissibles sur Wikipédia,
 chapter: 'Hors site'
 order: 12
 updated: 2026-10-28
+reponse: >-
+  La plupart des entreprises ne sont pas admissibles sur Wikipédia, et le sont
+  sur Wikidata. L'admissibilité encyclopédique ne dépend ni de votre taille ni
+  de votre chiffre d'affaires, mais d'une seule chose : des tiers indépendants
+  ont-ils publié à votre sujet, de façon substantielle, dans des sources
+  reconnues, sur plusieurs années. Un communiqué repris, une interview du
+  dirigeant, une annonce de levée de fonds ou un publireportage n'y comptent
+  pas. Wikidata, qui est une base d'entités et non une encyclopédie, demande
+  seulement une existence vérifiable : des identifiants officiels et des
+  mentions datées suffisent, et la démarche est gratuite, sans intermédiaire.
+limites:
+  - >-
+    L'effet porte sur l'identification, pas sur la préférence. Une fiche
+    cohérente réduit le risque qu'un modèle vous confonde avec un homonyme ou
+    renonce à vous nommer faute de certitude ; elle ne fera jamais choisir
+    votre entreprise plutôt qu'une autre.
+  - >-
+    Une page Wikipédia ne vous appartient pas. N'importe qui peut la modifier,
+    et le ton neutre exigé par la communauté signifie que ce qui a été
+    documenté par des sources indépendantes a vocation à y figurer, litige ou
+    controverse compris, sans que vous puissiez l'en retirer.
+  - >-
+    Les contributions rémunérées sont autorisées depuis 2014, à condition
+    d'être déclarées. Quand la dissimulation est repérée, et elle l'est
+    souvent, la trace reste publique dans l'historique sous votre nom, pas
+    sous celui du prestataire.
+  - >-
+    Rien de ceci ne compense une entité incohérente ailleurs. Si votre site,
+    le registre officiel, vos fiches professionnelles et la presse ne
+    s'accordent pas sur votre date de création, votre forme juridique ou
+    l'orthographe de votre nom, une fiche parfaite ne suffira pas : le travail
+    le plus rentable est là, et il est fastidieux.
 ---
 
 Posez la question à Google : « créer une page Wikipédia pour mon entreprise ». Vous obtiendrez une liste de prestataires, des tarifs et des guides en sept étapes.

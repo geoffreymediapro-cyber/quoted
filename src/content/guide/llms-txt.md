@@ -5,6 +5,32 @@ description: "Le débat porte sur la mauvaise question. llms.txt n'est pas un fi
 chapter: 'Pratique'
 order: 13
 updated: 2026-10-31
+reponse: >-
+  llms.txt n'est pas un fichier de référencement. La spécification, qui en est
+  à sa version 2, a été écrite pour qu'un agent de code lise une documentation
+  technique sans gaspiller de jetons : aucun grand moteur ne l'exploite,
+  Google a indiqué ne pas le prendre en charge, et il ne pèse donc pas sur vos
+  chances d'être cité. Il sert à ceux dont le produit est une documentation
+  lue par des machines, et à peu près à personne d'autre. Vérifiez quand même
+  l'adresse votresite.fr/llms.txt : Yoast, AIOSEO, Wix, Mintlify et GitBook en
+  fabriquent un sans que personne l'ait décidé.
+limites:
+  - >-
+    Poser ce fichier sur un site de services est sans effet, mais c'est
+    surtout sans risque. Le vrai coût n'est pas le fichier, c'est l'heure
+    passée dessus au lieu de corriger trois pages qui répondent mal.
+  - >-
+    Un robot qui télécharge le fichier ne dit rien de ce qu'il en fait. Des
+    relevés de journaux montrent parfois des accès, et confondre exploration
+    et utilisation est la principale source de faux espoirs sur ce sujet.
+  - >-
+    Le seul cas où le sujet peut réellement vous desservir est un fichier
+    généré par défaut et jamais relu, qui annonce une offre que vous ne vendez
+    plus. Maintenu ou supprimé, jamais figé.
+  - >-
+    Cette page décrit un état de l'adoption, pas une loi. Si un fournisseur
+    majeur annonçait s'en servir, la conclusion changerait : c'est la page du
+    guide dont la réponse peut basculer le plus vite.
 ---
 
 La question posée partout est « faut-il poser un llms.txt sur son site ». Elle produit depuis deux ans la même réponse, de plus en plus argumentée : non, aucun grand moteur ne l'exploite.

@@ -38,12 +38,17 @@ const updated = entry.data.updated.toLocaleDateString('fr-FR', {
 });
 
 const faq = entry.data.faq ?? [];
+const limites = entry.data.limites ?? [];
 
 const article = {
 	'@context': 'https://schema.org',
 	'@type': 'Article',
 	headline: entry.data.title,
 	description: entry.data.description,
+	/* La reponse courte est le passage que la page offre a l'extraction. La
+	   declarer en `abstract` dit au moteur lequel c'est, au lieu de le lui
+	   laisser deviner. Absente du schema si la page n'en a pas. */
+	...(entry.data.reponse ? { abstract: entry.data.reponse } : {}),
 	dateModified: entry.data.updated.toISOString(),
 	inLanguage: 'fr-FR',
 	mainEntityOfPage: `${SITE_URL}/guide/${entry.id}/`,
@@ -78,8 +83,16 @@ const schema = faq.length
 
 const toc = headings.filter((heading) => heading.depth === 2);
 
-/* Le bloc FAQ est rendu par le gabarit et non par le markdown : son titre
-   n'apparait donc pas dans `headings`, il faut l'ajouter au sommaire. */
+/* Les blocs limites et FAQ sont rendus par le gabarit et non par le
+   markdown : leurs titres n'apparaissent pas dans `headings`, il faut les
+   ajouter au sommaire, dans l'ordre ou ils sont rendus.
+
+   La reponse courte n'y figure volontairement pas : elle est imprimee juste
+   au-dessus du sommaire, un lien vers elle ne menerait nulle part. */
+if (limites.length) {
+	toc.push({ depth: 2, slug: 'les-limites', text: 'Les limites' });
+}
+
 if (faq.length) {
 	toc.push({ depth: 2, slug: 'questions-frequentes', text: 'Questions fréquentes' });
 }
@@ -122,6 +135,17 @@ if (faq.length) {
 
 		<div class="wrap wrap--narrow body">
 			{
+				entry.data.reponse && (
+					<section class="court" aria-labelledby="la-reponse-courte">
+						<h2 class="court__t" id="la-reponse-courte">
+							La réponse courte
+						</h2>
+						<p class="court__a">{entry.data.reponse}</p>
+					</section>
+				)
+			}
+
+			{
 				toc.length > 1 && (
 					<nav class="toc" aria-label="Sommaire">
 						<p class="toc__t">Sommaire</p>
@@ -139,6 +163,21 @@ if (faq.length) {
 			<div class="prose">
 				<Content />
 			</div>
+
+			{
+				limites.length > 0 && (
+					<section class="limites" aria-labelledby="les-limites">
+						<h2 class="limites__t" id="les-limites">
+							Les limites
+						</h2>
+						<ul class="limites__l">
+							{limites.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</section>
+				)
+			}
 
 			{
 				faq.length > 0 && (
@@ -310,6 +349,69 @@ if (faq.length) {
 		text-underline-offset: 3px;
 	}
 
+	/* --- Reponse courte --- */
+	/* Posee avant le sommaire, donc avant le corps : le lecteur presse a sa
+	   reponse sans defiler, et le moteur trouve un passage autonome la ou il
+	   regarde en premier. Fond lave plutot que la surface du sommaire juste
+	   dessous, pour que les deux blocs ne se confondent pas. */
+	.court {
+		margin-bottom: clamp(2rem, 4vw, 3rem);
+		padding: 1.4rem 1.6rem;
+		border-left: 3px solid var(--accent);
+		border-radius: 0 var(--round-sm) var(--round-sm) 0;
+		background: var(--accent-wash);
+	}
+
+	.court__t {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0 0 0.6rem;
+		scroll-margin-top: 6.5rem;
+	}
+
+	.court__a {
+		margin: 0;
+		font-size: var(--s-1);
+		line-height: 1.55;
+		color: var(--ink);
+	}
+
+	/* --- Limites --- */
+	/* Meme traitement que la FAQ, dont ce bloc est le voisin immediat : deux
+	   sections de fin de page, separees du corps par le meme filet. */
+	.limites {
+		margin-top: clamp(3rem, 6vw, 4.5rem);
+		padding-top: 2rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.limites__t {
+		font-family: var(--display);
+		font-size: var(--s-1);
+		font-weight: 700;
+		letter-spacing: -0.025em;
+		line-height: 1.15;
+		margin: 0 0 1.25rem;
+		scroll-margin-top: 6.5rem;
+	}
+
+	.limites__l {
+		margin: 0;
+		padding-left: 1.2rem;
+		display: grid;
+		gap: 0.85rem;
+		font-size: var(--s--1);
+		line-height: 1.65;
+		color: var(--ink-soft);
+	}
+
+	.limites__l li::marker {
+		color: var(--accent);
+	}
+
 	/* --- Pagination --- */
 	/* FAQ. Volontairement pas en <details> : un contenu replie n'est pas
 	   toujours lu par les moteurs, et c'est exactement ce bloc qu'on veut
@@ -420,6 +522,18 @@ if (faq.length) {
 	}
 
 	@media (max-width: 40rem) {
+		/* Au format telephone, le corps agrandi de la reponse courte donne six
+		   mots par ligne et un bloc qui occupe tout le premier ecran. On
+		   revient a la taille du texte courant : c'est la place qui compte,
+		   pas la taille. */
+		.court {
+			padding: 1.15rem 1.25rem;
+		}
+
+		.court__a {
+			font-size: var(--s-0);
+		}
+
 		.pager {
 			grid-template-columns: 1fr;
 		}

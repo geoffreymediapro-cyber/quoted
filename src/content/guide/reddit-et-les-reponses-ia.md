@@ -5,6 +5,37 @@ description: "Reddit a été la source la plus citée par les modèles, puis sa 
 chapter: 'Hors site'
 order: 11
 updated: 2026-10-28
+reponse: >-
+  Reddit a été la source la plus reprise par les modèles, autour de 40 % des
+  réponses selon une étude Semrush portant sur environ 150 000 citations, puis
+  ses citations dans ChatGPT ont chuté de plus de 85 % en quelques jours, le 8
+  août 2026, sans annonce préalable. Le canal n'est pas mort pour autant : les
+  autres moteurs n'ont pas bougé de la même façon, et une question
+  d'expérience appelle toujours du témoignage que le site d'une marque ne peut
+  pas produire sans mentir. La leçon est qu'une part de citations n'est pas
+  une position gagnée, mais l'état momentané d'un arbitrage entre deux
+  entreprises.
+limites:
+  - >-
+    Les causes de la bascule d'août 2026 sont des hypothèses : opérateurs de
+    recherche modifiés, arbitrage sur la qualité des sources, évolution d'un
+    accord commercial. Personne à l'extérieur ne sait, et cette page ne
+    tranche pas à la place de ceux qui savent.
+  - >-
+    C'est le terrain où une erreur coûte le plus cher. Les modérateurs
+    bannissent des domaines, pas seulement des comptes : une campagne trop
+    pressée fait interdire votre site des espaces mêmes que vous visiez, et
+    cette porte ne se rouvre pas facilement.
+  - >-
+    L'effet n'est pas trimestriel. Un compte neuf qui parle de son employeur
+    est repéré immédiatement, et il faut plusieurs mois d'existence réelle
+    avant qu'une contribution pèse : c'est une raison de commencer tôt, pas
+    d'en attendre un résultat rapide.
+  - >-
+    Il arrive que Reddit ne ressorte pas du tout sur votre marché. Le relevé
+    dit quels espaces comptent, et ce sont souvent des forums professionnels
+    sans nom connu, nettement moins disputés : rien de ce qui est décrit ici
+    ne se transpose d'un secteur à l'autre sans vérification.
 ---
 
 Pendant un an, une statistique a tenu lieu de stratégie.

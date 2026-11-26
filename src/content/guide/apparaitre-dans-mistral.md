@@ -5,6 +5,31 @@ description: "L'assistant de Mistral n'interroge pas l'index de Google mais celu
 chapter: 'Par moteur'
 order: 15
 updated: 2026-11-02
+reponse: >-
+  L'assistant de Mistral, désormais appelé Vibe, n'interroge pas l'index de
+  Google mais celui de Brave, construit par son propre robot et entièrement
+  indépendant. Être premier sur Google ne garantit donc rien ici, et le test
+  tient en trente secondes : cherchez votre page sur search.brave.com. Comme
+  le robot de Brave n'annonce volontairement aucun user-agent, vous ne pouvez
+  pas l'autoriser nommément, mais un pare-feu applicatif ou un mode anti-
+  robots peut vous retirer de cet index sans produire la moindre alerte.
+limites:
+  - >-
+    L'audience de l'assistant reste très inférieure à celle de ChatGPT. Si
+    vous ne devez travailler qu'une seule surface, ce n'est pas celle-là :
+    trois situations seulement changent ce calcul, le secteur public et les
+    grands comptes soumis à des exigences de souveraineté, un marché
+    strictement francophone, et l'élargissement de distribution en cours.
+  - >-
+    Sur l'actualité, vous n'avez à peu près aucune chance d'être la source
+    citée. Un partenariat pluriannuel donne à l'assistant l'accès au fil de
+    dépêches de l'AFP en direct, et aucune marque ne joue dans cette catégorie
+    : ce qui reste accessible, ce sont les questions durables.
+  - >-
+    La logique d'autorisation par liste blanche, celle qui fonctionne pour
+    GPTBot ou Google-Extended, ne s'applique pas ici : il n'y a pas de nom à
+    cibler dans votre robots.txt. La seule vérification utile est de chercher
+    sa page dans l'index de Brave.
 ---
 
 Commençons par le détail qui date les pages existantes : **Le Chat s'appelle désormais Vibe**. La fiche de l'application, publiée par Mistral, l'annonce en une phrase, « Le Chat devient Vibe ».

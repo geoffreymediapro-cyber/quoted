@@ -5,6 +5,16 @@ description: "-58 %, -24,8 %, -8,8 % : trois chiffres publiés, trois objets de 
 chapter: 'Fondamentaux'
 order: 3
 updated: 2026-11-22
+reponse: >-
+  Les chiffres qui circulent ne se contredisent pas, ils ne mesurent pas le
+  même objet. Le -58 % d'Ahrefs porte sur le taux de clic de la seule position
+  1 sur des requêtes informationnelles, et la même étude donne -19,4 % en
+  dixième position. La mesure française par domaine donne -8,8 % de clics à la
+  médiane sur 963 sites, mais -24,8 % pour ceux dont plus de 20 % des requêtes
+  déclenchent un encadré. Le 8 % du Pew Research Center est une part de
+  visites comportant un clic, pas un taux de clic. Ce qui décide chez vous
+  n'est aucune de ces moyennes, c'est votre exposition : la part de vos
+  requêtes qui déclenche un encadré.
 faq:
   - q: 'Les AI Overviews font-elles vraiment baisser le trafic ?'
     a: "Oui, mais l'ampleur dépend presque entièrement de votre exposition. Sur 963 domaines français suivis par Ahrefs en 2026, la baisse médiane est de 8,8 % des clics, alors que les domaines dont plus de 20 % des requêtes déclenchent un encadré perdent près de 25 % de leur taux de clic. Un site dont le trafic vient surtout de requêtes de marque ou d'achat peut n'enregistrer aucune perte."

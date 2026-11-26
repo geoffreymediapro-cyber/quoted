@@ -5,6 +5,30 @@ description: "Ce qui augmente concrètement les chances qu'un contenu soit repri
 chapter: 'Pratique'
 order: 4
 updated: 2026-10-20
+reponse: >-
+  Sept pratiques séparent les contenus régulièrement repris de ceux qui ne le
+  sont jamais : répondre dans les deux premières phrases par une formulation
+  autonome, structurer pour le découpage, sourcer et dater ce qui est affirmé,
+  rendre l'auteur et sa légitimité visibles, poser les données structurées qui
+  lèvent les ambiguïtés, travailler ce qui se dit de vous ailleurs, et mailler
+  ce qui traite du même sujet. La première produit le plus d'effet pour le
+  moins d'effort, la sixième est celle qu'on sous-estime le plus.
+limites:
+  - >-
+    Aucune de ces sept pratiques ne garantit une citation. Elles viennent de
+    l'écart observé entre les contenus repris et les autres, et trois d'entre
+    elles seulement ont été classées par la mesure, dans un protocole publié.
+  - >-
+    La sixième, ce qui se dit de vous ailleurs, est la plus déterminante et la
+    seule que vous ne contrôlez pas. Elle est lente, elle passe par des tiers,
+    et elle ne se force pas : une fiche encyclopédique suppose des critères
+    d'admissibilité réellement remplis, ce qui est loin d'être toujours le
+    cas.
+  - >-
+    Les données structurées ne provoquent pas de citation à elles seules.
+    Elles lèvent une ambiguïté, rien de plus, et la cohérence entre le
+    balisage et le texte visible compte davantage que l'exhaustivité du
+    balisage.
 ---
 
 Aucune méthode ne garantit une citation. En revanche, on observe des différences nettes entre les contenus régulièrement repris et ceux qui ne le sont jamais. Voici ce sur quoi il est raisonnable d'agir. Trois d'entre elles ont même été classées par la mesure, dans [le papier qui a introduit le terme GEO](/guide/aeo-geo-llmo-sigles/).

@@ -5,6 +5,34 @@ description: "Toutes les listes de critères sont écrites par des agences, et c
 chapter: 'Décider'
 order: 17
 updated: 2026-11-10
+reponse: >-
+  Un bon critère n'est pas celui auquel l'agence répond bien, c'est celui dont
+  vous pouvez contrôler la réponse sans la croire sur parole. Cinq le
+  permettent : demandez les réponses brutes et non un score, la liste des
+  questions mesurées et leur provenance, le nombre d'exécutions par question,
+  la part de la proposition qui relève du SEO classique, et le nom de la
+  personne qui fera le travail. Quatre promesses doivent faire reculer : une
+  position ou une date garantie, des témoignages fabriqués, un fichier
+  déclaratif facturé comme un levier, une identité d'emprunt. Et commencez par
+  vérifier qu'il vous faut une agence, puisque trois des quatre causes
+  d'absence ne relèvent pas du GEO.
+limites:
+  - >-
+    Cet article est écrit par une agence GEO, donc par une partie intéressée.
+    C'est le défaut de toutes les listes de critères sur ce sujet, celle-ci
+    comprise : la seule parade est que chaque question posée ici soit
+    vérifiable par vous, sans nous croire.
+  - >-
+    Une liste de questions ne remplace pas un entretien. Elle écarte les
+    propositions creuses, elle ne vous dira pas si la personne en face sait
+    travailler votre marché, et c'est précisément pourquoi il faut demander à
+    parler à celle qui exécutera.
+  - >-
+    Il n'existe pas de bon format en général. L'interne convient si vous avez
+    quelqu'un qui écrit bien sur votre métier et du temps à lui donner,
+    l'indépendant à un périmètre défini, l'agence quand le volume et la
+    régularité dépassent ce qu'une personne tient dans la durée : rien ici ne
+    tranche à votre place.
 ---
 
 Disons-le avant tout le reste : **nous sommes une agence GEO**. Cet article est donc écrit par une partie intéressée, et vous devez le lire en le sachant.

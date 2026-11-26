@@ -5,6 +5,28 @@ description: "Moins d'audience que les autres, mais une audience professionnelle
 chapter: 'Par moteur'
 order: 9
 updated: 2026-10-20
+reponse: >-
+  Claude a moins d'audience que ChatGPT ou les AI Overviews, mais son usage
+  est fortement professionnel : équipes techniques, conseil, finance, droit.
+  En B2B, une poignée de réponses où votre nom apparaît devant quelqu'un en
+  train de constituer une liste de prestataires peut peser plus qu'un volume
+  d'impressions ailleurs ; en grand public, l'arbitrage s'inverse. Deux
+  inflexions propres à ce moteur : la densité d'information prime sur la
+  longueur, et la nuance est reprise plutôt qu'écartée.
+limites:
+  - >-
+    C'est l'un des rares arbitrages de ce guide dont la réponse dépend
+    vraiment de votre marché. Si vous vendez à des particuliers, Claude se
+    traite en dernier, et commencer par là serait une erreur de priorisation.
+  - >-
+    Utiliser Claude pour rédiger et être cité par Claude sont deux choses sans
+    rapport. Un contenu produit avec l'aide d'un modèle n'a aucun avantage à
+    être repris par ce modèle, contrairement à ce que laissent entendre la
+    plupart des articles sur le sujet.
+  - >-
+    Il n'existe pas de levier propre à Claude. Les fondations sont celles des
+    autres moteurs : il ne s'agit pas de produire cinq contenus pour cinq
+    moteurs, mais d'en vérifier l'effet sur chacun.
 ---
 
 Claude est le moteur qu'on écarte le plus souvent d'un arbitrage de visibilité, pour une raison défendable : son audience est plus petite que celle de ChatGPT ou des AI Overviews. Le raisonnement se tient si l'on ne regarde que le volume. Il devient discutable dès qu'on regarde qui pose les questions.

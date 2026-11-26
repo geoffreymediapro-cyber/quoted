@@ -5,6 +5,16 @@ description: "Quatre sigles pour une même préoccupation, et un seul dont la d�
 chapter: 'Fondamentaux'
 order: 2
 updated: 2026-11-22
+reponse: >-
+  Quatre sigles, AEO, GEO, LLMO et AIO, recouvrent la même préoccupation, et
+  un seul renvoie à un protocole publié : le GEO vient d'un article présenté à
+  KDD 2024, avec un jeu de tests et des résultats mesurés. Trois de ses
+  résultats comptent plus que la querelle de vocabulaire. Le bourrage de mots-
+  clés est la seule des neuf méthodes testées qui fasse baisser la visibilité
+  ; ce qui fonctionne, ce sont les citations attribuées, les chiffres et les
+  sources ; et le gain dépend d'où vous partez, le cinquième site d'une page
+  de résultats gagnant jusqu'à 115 % de visibilité là où le premier en perd 30
+  % en moyenne. Le GEO est un levier d'outsider.
 faq:
   - q: "Quelle est la différence entre le GEO et l'AEO ?"
     a: "Sur le fond, aucune : les deux désignent le fait de rendre un contenu citable par un moteur qui rédige sa réponse. La seule différence vérifiable est documentaire. Le GEO renvoie à un article de recherche publié à la conférence KDD 2024, qui a introduit le terme, un banc d'essai et des résultats mesurés. L'AEO ne renvoie à aucun texte fondateur, et son périmètre change d'un auteur à l'autre."

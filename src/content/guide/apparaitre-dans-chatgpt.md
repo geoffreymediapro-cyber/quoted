@@ -5,6 +5,30 @@ description: "OpenAI n'a pas un robot mais trois, et ils ne servent pas à la m�
 chapter: 'Par moteur'
 order: 6
 updated: 2026-10-20
+reponse: >-
+  OpenAI n'a pas un robot mais trois, et ils ne font pas la même chose :
+  GPTBot collecte pour l'entraînement, OAI-SearchBot alimente l'index qui
+  décide si vous êtes citable, ChatGPT-User va chercher une page en direct.
+  Les bloquer d'un seul geste, par réflexe de protection, retire un site des
+  réponses sourcées sans rien protéger de plus. Ensuite, ce qui pèse est de
+  répondre dès les deux premières phrases, de titrer la question telle qu'elle
+  se pose, d'afficher une date sincère, et d'exister ailleurs que sur son
+  propre site.
+limites:
+  - >-
+    Une réponse ne cite que trois ou quatre sources. Être la cinquième ne
+    rapporte rien, et il n'existe pas d'équivalent de la deuxième page où
+    subsister : sur les questions déjà tenues par des sources établies, le
+    gain réaliste peut être nul.
+  - >-
+    Rien de tout cela ne s'achète. Aucun levier de classement n'est exposé,
+    aucun espace n'est vendu dans les réponses sourcées, et quiconque promet
+    une position promet ce qu'il ne contrôle pas.
+  - >-
+    Une observation unique ne prouve rien. Les réponses varient d'une session
+    à l'autre, selon la formulation et parfois sans raison apparente : tout ce
+    qui est décrit ici se vérifie sur un panel de questions rejoué, pas sur un
+    essai.
 ---
 
 La question posée est presque toujours la même : comment faire pour que ChatGPT cite mon site. La réponse commence par un point technique que presque personne n'explique, et qui fait pourtant la différence entre être visible et avoir disparu sans le savoir.

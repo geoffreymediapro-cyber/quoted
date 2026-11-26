@@ -5,6 +5,31 @@ description: "La phrase recouvre quatre problèmes différents, et trois ne rel�
 chapter: 'Pratique'
 order: 14
 updated: 2026-11-01
+reponse: >-
+  La phrase recouvre quatre situations distinctes, et trois ne relèvent pas du
+  GEO. Le diagnostic tient en quatre vérifications, dans cet ordre : reposez
+  la question cinq fois, car un constat unique ne prouve rien ; regardez si la
+  réponse comporte des sources, car en l'absence de sources votre site n'a pas
+  été consulté ; cherchez la même question dans un moteur classique, car si
+  vous y êtes absent le sujet est le référencement ; cherchez votre marque
+  dans la réponse, car une mention fausse est un problème d'identification et
+  non de visibilité. Ce qui reste après ces quatre filtres est le seul cas qui
+  justifie un travail de contenu.
+limites:
+  - >-
+    Ce tri dit ce qu'il faut traiter, pas combien de temps cela prendra. La
+    quatrième cause, ce qui se dit de vous ailleurs, est la plus longue à
+    corriger et ne dépend pas entièrement de vous.
+  - >-
+    Il arrive que le relevé conclue qu'il n'y a pas matière à travailler. Un
+    accompagnement en visibilité IA vendu à quelqu'un qui est dans le cas 1 ou
+    le cas 2 ne produira rien, non parce que le travail est mauvais, mais
+    parce qu'il répond à une question que le client ne se posait pas.
+  - >-
+    Cinq essais écartent l'accident, ils ne donnent pas une mesure stable. Une
+    étude Semrush sur les modes de raisonnement de ChatGPT constate que
+    seulement 25,6 % des domaines cités sont communs entre le mode minimal et
+    le mode élevé : la variance limite la finesse de tout diagnostic ponctuel.
 ---
 
 « ChatGPT ne cite pas mon site. » C'est la phrase la plus fréquente dans les premiers échanges, et elle est trompeuse, parce qu'elle décrit quatre situations qui n'ont presque rien en commun.

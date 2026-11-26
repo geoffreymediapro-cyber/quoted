@@ -5,6 +5,15 @@ description: "À quoi ressemble réellement le document que vous achetez, ce que
 chapter: 'Décider'
 order: 19
 updated: 2026-11-19
+reponse: >-
+  Un audit utile répond à quatre questions, et s'il n'y répond pas c'est une
+  présentation : qui est cité à votre place et sur quelles questions, à partir
+  de quelles sources, ce que votre site donne à lire quand un moteur vient le
+  chercher, et par quoi commencer. Cinq sections le composent : le panel de
+  questions, les réponses brutes et non un score, la liste des sources citées
+  à votre place, l'accès réel des robots d'index à vos pages, et l'ordre des
+  travaux. Deux choses doivent être vérifiables par vous : la liste complète
+  des questions en clair, et le nombre de fois où chacune a été rejouée.
 ---
 
 On vous propose un audit GEO, et vous ne savez pas à quoi ça ressemble. C'est normal : les pages qui vendent ces prestations décrivent une méthode, rarement un livrable.

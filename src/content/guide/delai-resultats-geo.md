@@ -5,6 +5,36 @@ description: "Le délai ne se compte pas en semaines, il se compte en verrous fr
 chapter: 'Décider'
 order: 18
 updated: 2026-11-19
+reponse: >-
+  Le délai ne se compte pas en semaines mais en verrous franchis, et il y en a
+  quatre entre votre page et une citation : être exploré par le bon robot,
+  sachant que GPTBot et ClaudeBot servent à l'entraînement et ne disent rien
+  de votre citabilité ; entrer dans l'index que le moteur consulte réellement
+  ; être retrouvé sur la question telle que vos clients la posent ; et être
+  retenu dans la réponse, ce qui dépend en partie de ce que d'autres disent de
+  vous. Trois de ces quatre verrous ne se débloquent pas en écrivant du
+  contenu, et le premier est le seul dont vos logs serveur vous donnent
+  l'horloge exacte.
+limites:
+  - >-
+    Aucune date ne peut vous être promise. Personne ne contrôle le classement
+    d'un moteur de réponse, et un prestataire qui annonce un délai moyen n'a
+    pas fait le constat : la question vérifiable est de savoir à quel verrou
+    vous êtes bloqué aujourd'hui, et comment il l'a établi.
+  - >-
+    Deux situations rendent le calendrier long, et aucune ne se règle par la
+    production. Une entité mal identifiée doit d'abord se corriger hors de
+    chez vous, ce qui prend du temps ; un sujet saturé par dix acteurs établis
+    ne se déplace pas à court terme, et il vaut souvent mieux viser ailleurs
+    d'abord.
+  - >-
+    Apparaître une fois ne veut pas dire apparaître demain. Une source citée
+    peut cesser de l'être sans que rien n'ait changé chez vous, ce qui
+    interdit de traiter une première citation comme un acquis.
+  - >-
+    Cette page ne vous dit pas combien de temps cela prendra, elle vous dit où
+    regarder pour le savoir. Les quatre verrous se diagnostiquent en une demi-
+    journée, et vous pouvez le faire sans nous.
 ---
 
 C'est la question qui revient systématiquement avant de signer, et elle mérite mieux qu'un chiffre rassurant.

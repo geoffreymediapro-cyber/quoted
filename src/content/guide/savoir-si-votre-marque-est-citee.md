@@ -5,6 +5,35 @@ description: "Quatre méthodes pour le vérifier vous-même, ce que chacune prou
 chapter: 'Pratique'
 order: 16
 updated: 2026-11-10
+reponse: >-
+  Quatre méthodes existent, et la plus évidente est celle qui ment le plus :
+  interroger le modèle depuis son propre compte, mémoire active et historique
+  plein de son secteur, revient à questionner une session qui vous connaît
+  déjà. Pour que le test vaille, déconnectez-vous, posez la question du client
+  et non celle de la marque, et recommencez plusieurs fois. La seule preuve
+  technique est dans vos logs serveur, à condition de regarder le bon robot :
+  GPTBot et ClaudeBot ne prouvent rien sur votre citabilité, OAI-SearchBot dit
+  que vous êtes candidat à être cité, ChatGPT-User et Perplexity-User disent
+  qu'une réponse est venue vous lire.
+limites:
+  - >-
+    Un trafic de référence nul ne veut pas dire que vous n'êtes pas cité. Une
+    bonne partie des réponses générées ne produit aucun clic, par construction
+    : cet indicateur sous-estime toujours la réalité, c'est un complément et
+    jamais un verdict.
+  - >-
+    Les vérificateurs gratuits rendent un score, pas les réponses. Un chiffre
+    que vous ne pouvez pas auditer ne dit rien de ce qui se dit de vous ni de
+    qui est cité à votre place, et comme ils interrogent une seule fois, la
+    note donne une fausse impression de précision.
+  - >-
+    Un user-agent se falsifie : n'importe qui peut se présenter comme ChatGPT-
+    User. Si le volume compte pour vous, recoupez avec les plages d'adresses
+    IP que les éditeurs publient.
+  - >-
+    Ces quatre méthodes répondent à la question de savoir si vous y êtes, pas
+    à celle de savoir si cela progresse. La seconde demande un panel stable
+    rejoué dans les mêmes conditions, et c'est un autre travail.
 ---
 
 La première chose que fait une entreprise qui se pose la question, c'est ouvrir ChatGPT et demander si elle est connue.

@@ -5,6 +5,33 @@ description: "Le seul des cinq qui s'impose sans être demandé, et celui dont l
 chapter: 'Par moteur'
 order: 10
 updated: 2026-10-20
+reponse: >-
+  Un AI Overview n'invente pas ses sources, il les choisit parmi les pages
+  déjà classées sur la requête : si vous n'êtes nulle part en première page de
+  Google, vos chances d'être repris dans l'encadré au-dessus sont faibles. Ce
+  qui s'y reprend, ce sont des passages courts et autonomes, sur des requêtes
+  à réponse claire, définitions, comparaisons et procédures. Chercher à en
+  sortir par une balise d'extrait ne récupère pas le clic : vous disparaissez
+  de l'encadré pendant que vos concurrents y restent.
+limites:
+  - >-
+    L'effet sur les clics est réel, mais les chiffres qui circulent vont
+    d'environ vingt à près de soixante pour cent de baisse selon les études,
+    parce que les méthodes diffèrent. Citer un pourcentage sans dire d'où il
+    vient n'a pas de valeur, et aucune moyenne ne s'applique à vos requêtes.
+  - >-
+    L'impact est très inégal : les requêtes informationnelles sont beaucoup
+    plus touchées que les requêtes transactionnelles ou de marque. Un chiffre
+    global ne dit rien de votre cas.
+  - >-
+    L'encadré ne s'affiche pas systématiquement, et cela dépend de la requête,
+    du moment et du profil. Un relevé unique ne dit donc rien : il faut
+    rejouer un panel fixe et noter deux choses distinctes, si l'encadré
+    apparaît, et s'il vous cite.
+  - >-
+    Sortir des AI Overviews peut être le bon calcul pour un éditeur dont le
+    modèle repose entièrement sur les pages vues. La recommandation d'y rester
+    vaut pour une entreprise de services, pas pour tout le monde.
 ---
 
 Les AI Overviews ne sont pas un assistant qu'on va consulter. Ils s'affichent en haut de la page de résultats de Google, au-dessus des liens, pour un internaute qui n'a rien demandé d'autre qu'une recherche. C'est ce qui en fait, de loin, la surface de réponse générée la plus exposée.
